@@ -59,7 +59,7 @@
 					                    <tbody>
 						                    <tr>
 							                    <td>
-								                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+								                    <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" alt="">
 								                    <a href="#" class="user-link">Username</a>
 								                    <span class="user-subhead">E-mail</span>
 							                    </td>
@@ -72,7 +72,7 @@
 						                    </tr>
 												<tr>
 							                    <td>
-								                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+								                    <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" alt="">
 								                    <a href="#" class="user-link">Username</a>
 								                    <span class="user-subhead">E-mail</span>
 							                    </td>
@@ -85,7 +85,7 @@
 						                    </tr>
                                             <tr>
 							                    <td>
-								                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+								                    <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" alt="">
 								                    <a href="#" class="user-link">Username</a>
 								                    <span class="user-subhead">E-mail</span>
 							                    </td>
@@ -98,7 +98,7 @@
 						                    </tr>
 											<tr>
 							                    <td>
-								                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+								                    <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" alt="">
 								                    <a href="#" class="user-link">Username</a>
 								                    <span class="user-subhead">E-mail</span>
 							                    </td>
@@ -111,7 +111,7 @@
 						                    </tr>
 											<tr>
 							                    <td>
-								                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+								                    <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" alt="">
 								                    <a href="#" class="user-link">Username</a>
 								                    <span class="user-subhead">E-mail</span>
 							                    </td>
