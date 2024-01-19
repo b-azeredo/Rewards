@@ -82,6 +82,7 @@
                                     <p>98 points</p>
                                 </div>
                             </div>
+                        
                      </div>
                 </div>
             </div>
@@ -132,9 +133,31 @@
             </div>
             <div class="col-8">
                 <div class="content">
-                     <div class="d-flex">
+                     <div class="d-flex pb-2">
                         <span class="d-flex align-items-center"><img width="30px" height="30px" src="icon/award-solid.svg"/></span> 
                         <h1>Awards</h1>
+                    </div>
+                    <div class="rewards overflow-auto">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="imgBx">
+                                        <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
+                                    </div>
+
+                                    <div class="contentBx">
+
+                                        <h2>Shoes</h2>
+
+                                        <h4>320 Points</h4>
+
+                                        <button type="button" class="btn btn-success py-2 px-3">Claim</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
