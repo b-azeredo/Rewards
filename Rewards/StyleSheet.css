@@ -38,17 +38,20 @@ main > div {
 
 }
 
-div.content{
-    background-color: var(--secondary);
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    padding: 15px;
+div.content {
+	background-color: var(--secondary);
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	padding: 15px;
+	overflow: hidden;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 
 div.content h1{
-    font-size: 1.7rem;
+    font-size: 1.7vw;
     padding: 0px 8px;
     margin-top: 9px;
 }
@@ -58,9 +61,14 @@ div.content div.d-flex span{
     border-radius: 5px;
     background-color: var(--tertiary);
     height: 48px;
+
 }
 
-div.content img{
+div.d-flex.pb-2{
+	align-items:center;
+}
+
+div.content img {
 }
 
 
@@ -68,16 +76,18 @@ ol {
 	list-style: none;
 	counter-reset: list;
 	padding-left: 0px;
+	max-height: 100%;
 }
 
 li {
 	position: relative;
 	counter-increment: list;
 	width: 98%;
-	margin: 1rem 0px;
+	margin: 0px 0px 1rem 0px;
 	padding: 1.6rem 1rem 0.7rem 1rem;
 	border-radius: 0.25rem;
-	background-color: var(--primary);
+	background: rgb(36,37,41);
+	background: linear-gradient(90deg, rgba(36,37,41,1) 10%, rgba(54,55,62,1) 50%, rgba(36,37,41,1) 100%);
 }
 
 
@@ -140,110 +150,88 @@ h3::before {
 
 /* LEADERBOARD */
 
-.user-list tbody td > img {
-	position: relative;
-	max-width: 50px;
-	float: left;
-	margin-right: 15px;
+div.userCard {
+	width: 99%;
+	min-height: 60px;
+	background: rgb(36,37,41);
+	background: linear-gradient(90deg, rgba(36,37,41,1) 10%, rgba(54,55,62,1) 50%, rgba(36,37,41,1) 100%);
+	border-radius: 5px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0px 10px;
+	margin: 0px 0px 10px 0px;
+}
+
+div.userCard div.userImgPlaceholder{
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: var(--secondary);
+}
+
+div.userCard div.userImgPlaceholder img{
+	max-width: 100%;
 	border-radius: 50%;
 }
 
-.user-list tbody td .user-link {
-	display: block;
-	font-size: 1.25em;
-	padding-top: 3px;
-	margin-left: 60px;
+div.userCard div.userInfo{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 85%;
+	height: 100%;
 }
 
-.user-list tbody td .user-subhead {
-	font-size: 0.875em;
-	font-style: italic;
+div.userCard div.userInfo p{
+	margin-bottom: 0px;
 }
 
-/* TABLES */
-.table {
-	border-collapse: separate;
-	max-width: 98%;
-}
-
-a.user-link{
-	text-decoration: none;
+p.userName {
 	color: white;
-}
-
-.table tbody > tr {
-	border-radius: 10px !important;
-	background-color: var(--primary);
-}
-
-.table tbody > tr > td {
-	font-size: 0.875em;
-	background: transparent;
-	vertical-align: middle;
-	padding: 12px 8px;
-	border: none;
-	margin-bottom: 15px;
-}
-
-
-.table thead > tr > th span {
-	display: inline-block;
-	font-weight: normal;
-	color: white;
-}
-
-.table thead > tr > th {
-	position: sticky;
-	top: 0;
-	background: var(--primary);
-	color: white;
-	z-index: 100;
-	border: 0px;
 }
 
 /* */
-
 .ag-courses_box {
-	padding: 30px 0;
+	height: 90%;
 }
 
 .ag-courses_item {
 	margin: 0 15px 15px;
 	overflow: hidden;
-	border-radius: 18px;
+	border-radius: 8px;
 	height: 90px;
-}
-
-.ag-courses-item_link {
-	display: block;
-	padding: 30px 20px;
-	background-color: var(--primary);
+	display: flex;
+	background: rgb(36,37,41);
+	background: linear-gradient(90deg, rgba(36,37,41,1) 0%, rgba(54,55,62,1) 100%);
 	overflow: hidden;
 	position: relative;
 	text-decoration: none;
+	padding: 30px 20px;
+	width: 90%;
+	justify-content: left;
+	align-items: center;
 }
 
-
-.ag-courses-item_link:hover .ag-courses-item_bg {
+.ag-courses_item:hover .ag-courses-item_bg {
 	transform: scale(3);
 }
 
 .ag-courses-item_title {
-	min-height: 87px;
-	margin: 0 0 25px;
 	overflow: hidden;
 	font-weight: bold;
-	font-size: 25px;
+	font-size: 20px;
 	color: #FFF;
 	z-index: 2;
 	position: relative;
 	text-decoration: none;
+	
 }
 
 .ag-courses-item_bg {
 	height: 128px;
 	width: 128px;
-	background-color: #f9b234;
+	background: var(--tertiary);
 	z-index: 1;
 	position: absolute;
 	top: -75px;
@@ -279,4 +267,19 @@ a.user-link{
 		max-height: none;
 		flex: 1 0 100%;
 	}
+}
+
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+	/* Estilos para telas entre 576px e 767px (Small) */
+}
+
+/* Estilos para tamanhos de tela Medium */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	/* Estilos para telas entre 768px e 991px (Medium) */
+}
+
+/* Estilos para tamanhos de tela Large */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+	/* Estilos para telas entre 992px e 1199px (Large) */
 }
