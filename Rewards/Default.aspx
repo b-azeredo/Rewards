@@ -275,6 +275,51 @@
                                  </div>
                              </div>
 
+                                                         <div class="card">
+                                 <div class="imgBx">
+                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
+                                 </div>
+
+                                 <div class="contentBx">
+
+                                     <h2>Shoes</h2>
+
+                                     <h4>320 Points</h4>
+
+                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
+                                 </div>
+                             </div>
+
+                                                         <div class="card">
+                                 <div class="imgBx">
+                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
+                                 </div>
+
+                                 <div class="contentBx">
+
+                                     <h2>Shoes</h2>
+
+                                     <h4>320 Points</h4>
+
+                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
+                                 </div>
+                             </div>
+
+                                                         <div class="card">
+                                 <div class="imgBx">
+                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
+                                 </div>
+
+                                 <div class="contentBx">
+
+                                     <h2>Shoes</h2>
+
+                                     <h4>320 Points</h4>
+
+                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
+                                 </div>
+                             </div>
+
                         </div>  
                         </div>
                     </div>
