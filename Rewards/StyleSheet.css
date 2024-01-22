@@ -16,8 +16,74 @@
 }
 
 body {
-    background-color: var(--primary);
+	background-color: var(--primary);
 }
+
+a{
+	color: white;
+	width: 100%;
+	margin-top: 5px;
+	text-decoration: none;
+}
+
+a:hover{
+	color: var(--text-primary);
+}
+
+/* Login Page */
+
+
+#mainContent {
+	max-width: 1000px;
+	border-radius: 20px;
+	background-color: var(--secondary);
+}
+
+#mainContent h1{
+	color: white;
+	font-size: 40px;
+	line-height: 60%;
+	display:flex;
+}
+
+#mainContent h2{
+	font-size: 20px;
+	display:flex;
+	margin-bottom: 30px;
+}
+
+#mainContent .imageContainer, #mainContent .imageContainer img{
+	background-color: var(--secondary);
+	border-radius: 20px 0px 0px 20px;
+	padding: 0px;
+}
+
+.loginBox {
+	background-color: var(--secondary);
+	border-radius: 20px;
+}
+
+.loginContainer{
+	width: 100%;
+}
+
+.loginContainer input[type="text"]{
+	width: 100%;
+	padding: 8px 20px;
+	border-radius: 5px;
+	border: 1px solid var(--tertiary);
+	background-color: var(--secondary);
+}
+
+.loginContainer input[type="text"]:focus{
+	outline:none;
+}
+
+.loginContainer input[type="submit"]{
+	width: 100%;
+}
+
+/* Main Page */
 
 main.container-fluid {
     height: 100vh;
