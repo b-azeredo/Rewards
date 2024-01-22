@@ -82,17 +82,24 @@
                                     <p>98 points</p>
                                 </div>
                             </div>
+                           <div class="userCard">
+                                <div class="userImgPlaceholder"><img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" /></div>
+                                <div class="userInfo">
+                                    <p class="userName">Username</p>
+                                    <p>98 points</p>
+                                </div>
+                            </div>
                         
                      </div>
                 </div>
             </div>
-            <div class="col-xxl-3 col-xl-4">
+            <div class="col-xxl-3 col-xl-4"> <!-- YOUR PROGRESS -->
                 <div class="content">
                     <div class="d-flex pb-2">
                         <span class="d-flex align-items-center"><img width="30px" height="30px" src="icon/bars-progress-solid.svg"/></span> 
                         <h1>Your progress</h1>
                     </div>
-                      <div class="ag-courses_box d-flex flex-column overflow-auto">
+                      <div class="ag-courses_box d-flex flex-column justify-content-center overflow-auto">
 
                         <div class="ag-courses_item">
                             <div class="ag-courses-item_bg"></div>
@@ -100,6 +107,8 @@
                             <div class="ag-courses-item_title">
                               Activities done
                             </div>
+
+                            <div class="hiddenNumber">120</div>
 
                         </div>
 
@@ -110,6 +119,7 @@
                               Awards redeemed
                             </div>
 
+                            <div class="hiddenNumber">120</div>
                         </div>
 
                         <div class="ag-courses_item">
@@ -119,6 +129,8 @@
                               Points earned
                             </div>
 
+                            <div class="hiddenNumber">120</div>
+
                         </div>
 
                       </div>
@@ -126,42 +138,148 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
+            <div class="col-4"> <!-- YOUR PROFILE -->
                 <div class="content">
+                     <div class="d-flex pb-2">
+                        <span class="d-flex align-items-center"><img width="30px" height="30px" src="icon/user-solid.svg"/></span> 
+                        <h1>Your Profile</h1>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="userCard">
+                            <div class="userImgPlaceholder"><img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" /></div>
+                            <div class="userInfo">
+                                <p class="userName">Username</p>
+                                <p class="bold white">98 points</p>
+                            </div>
+                        </div>
+                        <div class="recentTransactions d-flex flex-column">
+                            <h4>Recent Transactions</h4>
+                            <div class="transactionsContainer">
+                                <div class="transaction d-flex justify-content-between">
+                                    <p class="white w-50">Activity Done</p>
+                                    <p class="up">+9 points</p>
+                                    <p>22/01</p>
+                                </div>
+                                <div class="transaction d-flex justify-content-between">
+                                    <p class="white w-50">Award Redeemed</p>
+                                    <p class="down">-9 points</p>
+                                    <p>22/01</p>
+                                </div>
+                                <div class="transaction d-flex justify-content-between">
+                                    <p class="white w-50">Award Redeemed</p>
+                                    <p class="down">-4 points</p>
+                                    <p>22/01</p>
+                                </div>
 
+                            </div>
+                            <button type="button" class="btn btn-success py-1 px-2 align-self-end mt-0 mx-1">View All</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-8">
-                <div class="content">
+                <div class="content"> <!-- AWARDS -->
                      <div class="d-flex pb-2">
-                        <span class="d-flex align-items-center"><img width="30px" height="30px" src="icon/award-solid.svg"/></span> 
+                        <span class="d-flex align-items-center"><img width="30" height="30" src="icon/award-solid.svg"/></span> 
                         <h1>Awards</h1>
                     </div>
-                    <div class="rewards overflow-auto">
-                        <div class="row">
-                            <div class="col">
-                                <div class="card">
-                                    <div class="imgBx">
-                                        <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
-                                    </div>
+                    <div class="rewards overflow-auto d-flex justify-content-center container">
+                        <div class="cardsContainer container">
+                             <div class="card">
+                                 <div class="imgBx">
+                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
+                                 </div>
 
-                                    <div class="contentBx">
+                                 <div class="contentBx">
 
-                                        <h2>Shoes</h2>
+                                     <h2>Shoes</h2>
 
-                                        <h4>320 Points</h4>
+                                     <h4>320 Points</h4>
 
-                                        <button type="button" class="btn btn-success py-2 px-3">Claim</button>
-                                    </div>
+                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
+                                 </div>
+                             </div>
 
-                                </div>
-                            </div>
+                             <div class="card">
+                                 <div class="imgBx">
+                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
+                                 </div>
+
+                                 <div class="contentBx">
+
+                                     <h2>Shoes</h2>
+
+                                     <h4>320 Points</h4>
+
+                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
+                                 </div>
+                             </div>
+
+                             <div class="card">
+                                 <div class="imgBx">
+                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
+                                 </div>
+
+                                 <div class="contentBx">
+
+                                     <h2>Shoes</h2>
+
+                                     <h4>320 Points</h4>
+
+                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
+                                 </div>
+                             </div>
+
+                             <div class="card">
+                                 <div class="imgBx">
+                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
+                                 </div>
+
+                                 <div class="contentBx">
+
+                                     <h2>Shoes</h2>
+
+                                     <h4>320 Points</h4>
+
+                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
+                                 </div>
+                             </div>
+
+                              <div class="card">
+                                 <div class="imgBx">
+                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
+                                 </div>
+
+                                 <div class="contentBx">
+
+                                     <h2>Shoes</h2>
+
+                                     <h4>320 Points</h4>
+
+                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
+                                 </div>
+                             </div>
+
+                             <div class="card">
+                                 <div class="imgBx">
+                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
+                                 </div>
+
+                                 <div class="contentBx">
+
+                                     <h2>Shoes</h2>
+
+                                     <h4>320 Points</h4>
+
+                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
+                                 </div>
+                             </div>
+
+                        </div>  
                         </div>
-                        
                     </div>
                 </div>
             </div>
-        </div>
     </main>
 
 </asp:Content>
