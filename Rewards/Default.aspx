@@ -148,7 +148,7 @@
                         <div class="userCard">
                             <div class="userImgPlaceholder"><img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" /></div>
                             <div class="userInfo">
-                                <p class="userName">Username</p>
+                                <p class="userName unde">Username <br /> <span class="black">Online</span></p>
                                 <p class="bold white">98 points</p>
                             </div>
                         </div>
@@ -162,18 +162,23 @@
                                 </div>
                                 <div class="transaction d-flex justify-content-between">
                                     <p class="white w-50">Award Redeemed</p>
-                                    <p class="down">-9 points</p>
+                                    <p class="down">-5 points</p>
                                     <p>22/01</p>
                                 </div>
                                 <div class="transaction d-flex justify-content-between">
+                                    <p class="white w-50">Activity Done</p>
+                                    <p class="up">+3 points</p>
+                                    <p>22/01</p>
+                                </div>
+                               <div class="transaction d-flex justify-content-between">
                                     <p class="white w-50">Award Redeemed</p>
                                     <p class="down">-4 points</p>
                                     <p>22/01</p>
                                 </div>
 
                             </div>
-                            <button type="button" class="btn btn-success py-1 px-2 align-self-end mt-0 mx-1">View All</button>
                         </div>
+                        <button type="button" class="btn btn-success py-1 px-2 align-self-end mt-0 mx-1">View All</button>
                     </div>
                 </div>
             </div>
