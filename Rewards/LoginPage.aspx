@@ -31,8 +31,8 @@
                     <h2>Please login to continue</h2>
                 </div>
                  <div class="w-75 loginContainer d-flex flex-column justify-content-between align-items-center">
-                     <asp:TextBox placeholder="Username" CssClass="mb-2" ID="username" runat="server" ForeColor="White"></asp:TextBox>
-                     <asp:TextBox placeholder="Password" CssClass="mb-2" ID="password" runat="server" ForeColor="White"></asp:TextBox>
+                     <asp:TextBox placeholder="Username" CssClass="mb-3" ID="username" runat="server" ForeColor="White"></asp:TextBox>
+                     <asp:TextBox placeholder="Password" CssClass="mb-3" ID="password" runat="server" ForeColor="White"></asp:TextBox>
                      <div class="d-flex justify-content-start align-items-center w-100">
                          <asp:CheckBox BorderColor="#242529" ID="CheckBox1" runat="server" /> <p class="mb-0 mx-1">Keep me logged in</p>
                      </div>
