@@ -260,14 +260,14 @@ p.userName {
 
 /* Your Progress */
 .ag-courses_box {
-	height: 90%;
+	height: 85%;
 }
 
 .ag-courses_item {
-	margin: 0 15px 15px;
+	margin: 0px 0px 10px 0px;
 	overflow: hidden;
 	border-radius: 8px;
-	height: 90px;
+	height: 80px;
 	display: flex;
 	background: rgb(36,37,41);
 	background: linear-gradient(90deg, rgba(36,37,41,1) 0%, rgba(54,55,62,1) 100%);
@@ -275,7 +275,7 @@ p.userName {
 	position: relative;
 	text-decoration: none;
 	padding: 30px 20px;
-	width: 90%;
+	width: 100%;
 	justify-content: space-between;
 	align-items: center;
 }

@@ -96,10 +96,10 @@
             <div class="col-xxl-3 col-xl-4"> <!-- YOUR PROGRESS -->
                 <div class="content">
                     <div class="d-flex pb-2">
-                        <span class="d-flex align-items-center"><img width="30px" height="30px" src="icon/bars-progress-solid.svg"/></span> 
+                        <span class="d-flex align-items-center"><img width="30" height="30" src="icon/bars-progress-solid.svg"/></span> 
                         <h1>Your progress</h1>
                     </div>
-                      <div class="ag-courses_box d-flex flex-column justify-content-center overflow-auto">
+                      <div class="ag-courses_box d-flex flex-column justify-content-center align-items-center overflow-auto">
 
                         <div class="ag-courses_item">
                             <div class="ag-courses-item_bg"></div>
@@ -144,17 +144,21 @@
                         <span class="d-flex align-items-center"><img width="30px" height="30px" src="icon/user-solid.svg"/></span> 
                         <h1>Your Profile</h1>
                     </div>
-                    <div class="d-flex flex-column align-items-center">
-                        <div class="userCard">
+                    <div class="d-flex flex-column align-items-center col">
+                        <div class="userCard row-cols-2">
                             <div class="userImgPlaceholder"><img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" /></div>
                             <div class="userInfo">
                                 <p class="userName unde">Username <br /> <span class="black">Online</span></p>
                                 <p class="bold white">98 points</p>
                             </div>
                         </div>
-                        <div class="recentTransactions d-flex flex-column">
-                            <h4>Recent Transactions</h4>
-                            <div class="transactionsContainer">
+                        <div class="recentTransactions d-flex flex-column overflow-auto row-cols-10">
+                            <div class="col">
+                              <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <h4 class="mb-0">Recent Transactions</h4>
+                                <button type="button" class="btn btn-success py-1 px-2 align-self-end mt-0 mx-1">View All</button>
+                            </div>
+                            <div class="transactionsContainer overflow-auto">
                                 <div class="transaction d-flex justify-content-between">
                                     <p class="white w-50">Activity Done</p>
                                     <p class="up">+9 points</p>
@@ -177,8 +181,9 @@
                                 </div>
 
                             </div>
+
+                            </div>
                         </div>
-                        <button type="button" class="btn btn-success py-1 px-2 align-self-end mt-0 mx-1">View All</button>
                     </div>
                 </div>
             </div>
