@@ -7,7 +7,7 @@
             <div class="col-xxl-5 col-xl-4 overflow-hidden"> <!-- ACTIVITIES -->
                 <div class="content" style="max-height:100%;">
                     <div class="d-flex pb-2">
-                        <span class="d-flex align-items-center"><img width="30px" height="30px" src="icon/list-check-solid.svg"/></span> 
+                        <span class="d-flex align-items-center"><img width="30" height="30" src="icon/list-check-solid.svg"/></span> 
                         <h1>Activities</h1>
                     </div>
                     <div class="overflow-auto" style="max-height:85%;">
@@ -43,7 +43,7 @@
             <div class="col-xxl-4 col-xl-4 overflow-hidden"> <!-- LEADERBOARD -->
                 <div class="content">
                     <div class="d-flex pb-2">
-                        <span class="d-flex align-items-center"><img width="30px" height="30px" src="icon/ranking-star-solid.svg"/></span> 
+                        <span class="d-flex align-items-center"><img width="30" height="30" src="icon/ranking-star-solid.svg"/></span> 
                         <h1>Leaderboard</h1>
                     </div>
                     <div class="overflow-auto d-flex flex-column align-items-center" style="max-height:85%;">
@@ -130,9 +130,7 @@
                             </div>
 
                             <div class="hiddenNumber">120</div>
-
                         </div>
-
                       </div>
                 </div>
             </div>
@@ -141,7 +139,7 @@
             <div class="col-4"> <!-- YOUR PROFILE -->
                 <div class="content">
                      <div class="d-flex pb-2">
-                        <span class="d-flex align-items-center"><img width="30px" height="30px" src="icon/user-solid.svg"/></span> 
+                        <span class="d-flex align-items-center"><img width="30" height="30" src="icon/user-solid.svg"/></span> 
                         <h1>Your Profile</h1>
                     </div>
                     <div class="d-flex flex-column align-items-center" style="height: 85%;">
@@ -188,9 +186,7 @@
                                     <p class="down">-4 points</p>
                                     <p>22/01</p>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -293,7 +289,7 @@
                                  </div>
                              </div>
 
-                                                         <div class="card">
+                             <div class="card">
                                  <div class="imgBx">
                                      <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
                                  </div>
@@ -308,7 +304,7 @@
                                  </div>
                              </div>
 
-                                                         <div class="card">
+                             <div class="card">
                                  <div class="imgBx">
                                      <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
                                  </div>
@@ -323,7 +319,7 @@
                                  </div>
                              </div>
 
-                                                         <div class="card">
+                             <div class="card">
                                  <div class="imgBx">
                                      <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
                                  </div>
