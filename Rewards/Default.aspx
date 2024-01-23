@@ -144,7 +144,7 @@
                         <span class="d-flex align-items-center"><img width="30px" height="30px" src="icon/user-solid.svg"/></span> 
                         <h1>Your Profile</h1>
                     </div>
-                    <div class="d-flex flex-column align-items-center col">
+                    <div class="d-flex flex-column align-items-center" style="height: 85%;">
                         <div class="userCard row-cols-2">
                             <div class="userImgPlaceholder"><img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" /></div>
                             <div class="userInfo">
@@ -152,8 +152,7 @@
                                 <p class="bold white">98 points</p>
                             </div>
                         </div>
-                        <div class="recentTransactions d-flex flex-column overflow-auto row-cols-10">
-                            <div class="col">
+                        <div class="recentTransactions d-flex flex-column overflow-auto">
                               <div class="d-flex justify-content-between align-items-center mb-3">
                                  <h4 class="mb-0">Recent Transactions</h4>
                                 <button type="button" class="btn btn-success py-1 px-2 align-self-end mt-0 mx-1">View All</button>
@@ -179,10 +178,19 @@
                                     <p class="down">-4 points</p>
                                     <p>22/01</p>
                                 </div>
+                                <div class="transaction d-flex justify-content-between">
+                                    <p class="white w-50">Award Redeemed</p>
+                                    <p class="down">-4 points</p>
+                                    <p>22/01</p>
+                                </div>
+                                <div class="transaction d-flex justify-content-between">
+                                    <p class="white w-50">Award Redeemed</p>
+                                    <p class="down">-4 points</p>
+                                    <p>22/01</p>
+                                </div>
 
                             </div>
 
-                            </div>
                         </div>
                     </div>
                 </div>
