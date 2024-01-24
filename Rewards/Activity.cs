@@ -10,6 +10,6 @@ namespace Rewards
         public int ID { get; set; }
         public string NAME { get; set; }
         public int POINTS { get; set; }
-        public int LIMITPERWEEK { get; set; }
+        public int LIMIT_PER_WEEK { get; set; }
     }
 }

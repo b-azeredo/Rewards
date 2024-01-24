@@ -12,9 +12,8 @@ namespace Rewards
         public string PASSWORD { get; set; }
         public int POINTS { get; set; }
         public string ROLE { get; set; }
-        public string EMAILBOSS { get; set; }
-        public int CLAIMEDAWARDS { get; set; }
-        public int LIFETIMEPOINTS { get; set; }
+        public string EMAIL_MANAGER { get; set; }
+        public int CLAIMED_AWARDS { get; set; }
         public byte[] PROFILEIMAGE { get; set; }
     }
 }

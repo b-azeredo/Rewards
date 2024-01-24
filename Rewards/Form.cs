@@ -11,10 +11,10 @@ namespace Rewards
         public int ID { get; set; }
 
         [ForeignKey("User")]
-        public int IDUSER { get; set; }
+        public int ID_USER { get; set; }
 
         [ForeignKey("Activity")]
-        public int IDACTIVITY { get; set; }
+        public int ID_ACTIVITY { get; set; }
 
         public string DESCRIPTION { get; set; }
         public byte[] FILES { get; set; }
