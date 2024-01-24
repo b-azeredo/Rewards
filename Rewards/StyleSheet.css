@@ -531,7 +531,7 @@ p.userName {
 	}
 	.rewards .card:before {
 	clip-path: circle(200px at 60% -60%);
-}
+	}
 }
 
 

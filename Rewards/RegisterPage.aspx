@@ -32,9 +32,9 @@
                 </div>
                  <div class="w-75 loginContainer d-flex flex-column justify-content-between align-items-center">
                      <asp:TextBox placeholder="Username" CssClass="mb-2" ID="username" runat="server" ForeColor="White"></asp:TextBox>
+                     <asp:TextBox placeholder="E-mail" CssClass="mb-2" ID="email" runat="server" ForeColor="White"></asp:TextBox>
                      <asp:TextBox placeholder="Boss E-mail" CssClass="mb-2" ID="bossEmail" runat="server" ForeColor="White"></asp:TextBox>
                      <asp:TextBox placeholder="Password" CssClass="mb-2" ID="password" runat="server" ForeColor="White"></asp:TextBox>
-                     <asp:TextBox placeholder="Comfirm Password" CssClass="mb-2" ID="comfirmEmail" runat="server" ForeColor="White"></asp:TextBox>
                      <asp:Button CssClass="btn btn-success mt-2" ID="Button1" runat="server" Text="Register" />
                     <a href="RegisterPageBoss.aspx">Are you a boss? Register here</a>
 
