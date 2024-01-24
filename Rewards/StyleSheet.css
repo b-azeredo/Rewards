@@ -1,12 +1,11 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
 
-
 :root {
 	--primary: #242529;
 	--secondary: #36373e;
 	--tertiary: #fff27a;
 	--fourth: #fff27a;
-	--text-primary: #b3b1ac;
+	--text-primary: white;
 }
 
 *{
@@ -40,7 +39,7 @@ a:hover{
 }
 
 #mainContent h1{
-	color: white;
+	color: var(--text-primary);
 	font-size: 40px;
 	line-height: 60%;
 	display:flex;
@@ -152,7 +151,7 @@ li {
 	margin: 0px 0px 1rem 0px;
 	padding: 1.6rem 1rem 0.7rem 1rem;
 	border-radius: 7px;
-	background: linear-gradient(90deg, rgba(36,37,41,1) 10%, rgba(54,55,62,1) 50%, rgba(36,37,41,1) 100%);
+	background: linear-gradient(90deg, var(--primary) 10%, var(--secondary) 50%, var(--primary) 100%);
 }
 
 
@@ -165,13 +164,13 @@ li::before {
 	border-radius: 7px 7px 0px 0px;
 	top: 0;
 	left: 0;
-	background-color: var(--fourth);
+	background-color: var(--tertiary);
 }
 
 h3 {
 	display: flex;
 	align-items: baseline;
-	color: white;
+	color: var(--text-primary);
 	font-size: 1rem;
 	margin-bottom: 4px;
 }
@@ -188,7 +187,7 @@ h3::before {
 	padding: 1rem;
 	border-radius: 50%;
 	color: black;
-	background-color: var(--fourth);
+	background-color: var(--tertiary);
 }
 
 .btn-success{
@@ -220,7 +219,7 @@ div.userCard {
 	width: 99%;
 	min-height: 60px;
 	background: rgb(36,37,41);
-	background: linear-gradient(90deg, rgba(36,37,41,1) 10%, rgba(54,55,62,1) 50%, rgba(36,37,41,1) 100%);
+	background: linear-gradient(90deg, var(--primary) 10%, var(--secondary) 50%, var(--primary) 100%);
 	border-radius: 5px;
 	display: flex;
 	justify-content: space-evenly;
@@ -255,7 +254,7 @@ div.userCard div.userInfo p{
 }
 
 p.userName {
-	color: white;
+	color: var(--text-primary);
 }
 
 /* Your Progress */
@@ -270,7 +269,7 @@ p.userName {
 	height: 80px;
 	display: flex;
 	background: rgb(36,37,41);
-	background: linear-gradient(90deg, rgba(36,37,41,1) 0%, rgba(54,55,62,1) 100%);
+	background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
 	overflow: hidden;
 	position: relative;
 	text-decoration: none;
@@ -288,17 +287,16 @@ p.userName {
 	overflow: hidden;
 	font-weight: bold;
 	font-size: 20px;
-	color: #FFF;
+	color: var(--text-primary);
 	z-index: 2;
 	position: relative;
 	text-decoration: none;
-	
 }
 
 .ag-courses-item_bg {
 	height: 128px;
 	width: 128px;
-	background: #2e8b43;
+	background: var(--tertiary);
 	z-index: 1;
 	position: absolute;
 	top: -75px;
@@ -307,16 +305,8 @@ p.userName {
 	transition: all .5s ease;
 }
 
-.ag-courses_item:nth-child(2n) .ag-courses-item_bg {
-	background-color: #3ecd5e;
-}
-
-.ag-courses_item:nth-child(3n) .ag-courses-item_bg {
-	background-color: #e44002;
-}
-
 .ag-courses_item .hiddenNumber{
-	color: white;
+	color: black;
 	font-size: 40px;
 	font-weight: bold;
 	display: none;
@@ -359,7 +349,7 @@ p.userName {
 	width: 140px;
 	height: 180px;
 	background: rgb(36,37,41);
-	background: linear-gradient(90deg, rgba(36,37,41,1) 10%, rgba(54,55,62,1) 50%, rgba(36,37,41,1) 100%);
+	background: linear-gradient(90deg, var(--primary) 10%, var(--secondary) 50%, var(--primary) 100%);
 	border-radius: 10px;
 	overflow: hidden;
 	margin-bottom: 15px;
@@ -423,7 +413,7 @@ p.userName {
 	position: relative;
 	font-weight: 600;
 	letter-spacing: 1px;
-	color: #fff;
+	color: var(--text-primary);
 	font-size: 20px;
 	transform: translateY(0px);
 }
@@ -477,7 +467,7 @@ p.userName {
 
 .recentTransactions {
 	background: rgb(36,37,41);
-	background: linear-gradient(90deg, rgba(36,37,41,1) 10%, rgba(54,55,62,1) 50%, rgba(36,37,41,1) 100%);
+	background: linear-gradient(90deg, var(--primary) 10%, var(--secondary) 50%, var(--primary) 100%);
 	width: 99%;
 	padding: 10px 10px;
 	margin: 0px 0px 10px 0px;
@@ -517,6 +507,13 @@ p.userName {
 }
 
 /* responsiveness */
+
+@media (max-height: 640px){
+	.ag-courses_box {
+		height: 90%;
+		padding: 40px 0px 20px 0px;
+	}
+}
 
 @media (max-width: 900px) {
 	div.content h1 {
