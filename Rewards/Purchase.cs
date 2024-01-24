@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -18,5 +17,8 @@ namespace Rewards
 
         [Column(TypeName = "Date")]
         public DateTime DATE { get; set; }
+
+        public User User { get; set; }
+        public Reward Reward { get; set; }
     }
 }
