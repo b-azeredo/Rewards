@@ -6,6 +6,10 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Rewards.DB_Models;
 
 namespace Rewards
 {
@@ -16,6 +20,8 @@ namespace Rewards
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Context context = new Context();
+            context.Database.Initialize(true);
         }
     }
 }

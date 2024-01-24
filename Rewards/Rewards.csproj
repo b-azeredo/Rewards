@@ -202,6 +202,12 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="DB_Models\Activity.cs" />
+    <Compile Include="DB_Models\Context.cs" />
+    <Compile Include="DB_Models\Forms.cs" />
+    <Compile Include="DB_Models\Purchase.cs" />
+    <Compile Include="DB_Models\Reward.cs" />
+    <Compile Include="DB_Models\User.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -219,6 +225,39 @@
     <Compile Include="LoginPage.aspx.designer.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401241649351_InitialCreate.cs" />
+    <Compile Include="Migrations\202401241649351_InitialCreate.designer.cs">
+      <DependentUpon>202401241649351_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401241702120_v1.cs" />
+    <Compile Include="Migrations\202401241702120_v1.designer.cs">
+      <DependentUpon>202401241702120_v1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401241704204_v2.cs" />
+    <Compile Include="Migrations\202401241704204_v2.designer.cs">
+      <DependentUpon>202401241704204_v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401241708528_v3.cs" />
+    <Compile Include="Migrations\202401241708528_v3.designer.cs">
+      <DependentUpon>202401241708528_v3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401241711595_v4.cs" />
+    <Compile Include="Migrations\202401241711595_v4.designer.cs">
+      <DependentUpon>202401241711595_v4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401241713579_v5.cs" />
+    <Compile Include="Migrations\202401241713579_v5.designer.cs">
+      <DependentUpon>202401241713579_v5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401241715229_v6.cs" />
+    <Compile Include="Migrations\202401241715229_v6.designer.cs">
+      <DependentUpon>202401241715229_v6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401241720033_v7.cs" />
+    <Compile Include="Migrations\202401241720033_v7.designer.cs">
+      <DependentUpon>202401241720033_v7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterPage.aspx.cs">
       <DependentUpon>RegisterPage.aspx</DependentUpon>
@@ -269,6 +308,32 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202401241649351_InitialCreate.resx">
+      <DependentUpon>202401241649351_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401241702120_v1.resx">
+      <DependentUpon>202401241702120_v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401241704204_v2.resx">
+      <DependentUpon>202401241704204_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401241708528_v3.resx">
+      <DependentUpon>202401241708528_v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401241711595_v4.resx">
+      <DependentUpon>202401241711595_v4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401241713579_v5.resx">
+      <DependentUpon>202401241713579_v5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401241715229_v6.resx">
+      <DependentUpon>202401241715229_v6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401241720033_v7.resx">
+      <DependentUpon>202401241720033_v7.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
