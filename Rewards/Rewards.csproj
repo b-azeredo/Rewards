@@ -218,6 +218,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Items\LeaderboardItem.cs" />
     <Compile Include="LoginPage.aspx.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -225,6 +226,7 @@
     <Compile Include="LoginPage.aspx.designer.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Manager\LeaderboardManager.cs" />
     <Compile Include="Migrations\202401241649351_InitialCreate.cs" />
     <Compile Include="Migrations\202401241649351_InitialCreate.designer.cs">
       <DependentUpon>202401241649351_InitialCreate.cs</DependentUpon>

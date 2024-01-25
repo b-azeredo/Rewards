@@ -10,6 +10,10 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Rewards.DB_Models;
+using Rewards.Items;
+using Rewards.Manager;
+using System.Web.UI.WebControls;
+
 
 namespace Rewards
 {
@@ -24,4 +28,5 @@ namespace Rewards
             context.Database.Initialize(true);
         }
     }
+
 }

@@ -47,49 +47,19 @@
                         <h1>Leaderboard</h1>
                     </div>
                     <div class="overflow-auto d-flex flex-column align-items-center" style="max-height:85%;">
-				            <div class="userCard">
-                                <div class="userImgPlaceholder"><img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" /></div>
-                                <div class="userInfo">
-                                    <p class="userName">Username</p>
-                                    <p>98 points</p>
-                                </div>
-				            </div>
-                            <div class="userCard">
-                                <div class="userImgPlaceholder"><img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" /></div>
-                                <div class="userInfo">
-                                    <p class="userName">Username</p>
-                                    <p>98 points</p>
-                                </div>
-                            </div>
-                            <div class="userCard">
-                                <div class="userImgPlaceholder"><img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" /></div>
-                                <div class="userInfo">
-                                    <p class="userName">Username</p>
-                                    <p>98 points</p>
-                                </div>
-                            </div>
-                            <div class="userCard">
-                                <div class="userImgPlaceholder"><img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" /></div>
-                                <div class="userInfo">
-                                    <p class="userName">Username</p>
-                                    <p>98 points</p>
-                                </div>
-                            </div>
-                            <div class="userCard">
-                                <div class="userImgPlaceholder"><img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" /></div>
-                                <div class="userInfo">
-                                    <p class="userName">Username</p>
-                                    <p>98 points</p>
-                                </div>
-                            </div>
-                           <div class="userCard">
-                                <div class="userImgPlaceholder"><img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" /></div>
-                                <div class="userInfo">
-                                    <p class="userName">Username</p>
-                                    <p>98 points</p>
-                                </div>
-                            </div>
-                        
+				            <asp:ListView ID="lvLeaderboard" runat="server">
+                                <ItemTemplate>
+                                    <div class="userCard">
+                                        <div class="userImgPlaceholder">
+                                            <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" />
+                                        </div>
+                                        <div class="userInfo">
+                                            <p class="userName"><%# Eval("UserName") %></p>
+                                            <p><%# Eval("Points") %> points</p>
+                                        </div>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:ListView>
                      </div>
                 </div>
             </div>
