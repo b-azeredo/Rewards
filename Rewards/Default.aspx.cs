@@ -17,6 +17,15 @@ namespace Rewards
 
                 // Atualiza a ListView
                 lvLeaderboard.DataBind();
+
+                // Chama o método para obter os itens da leaderboard do banco de dados
+                var RewardsItems = AwardsManager.GetAwardItemFromDatabase();
+
+                // Define a lista de itens como a fonte de dados da ListView
+                lvRewards.DataSource = RewardsItems;
+
+                // Atualiza a ListView
+                lvRewards.DataBind();
             }
         }
     }

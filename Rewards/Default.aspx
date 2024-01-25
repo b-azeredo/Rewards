@@ -165,144 +165,30 @@
                 <div class="content"> <!-- AWARDS -->
                      <div class="d-flex pb-2">
                         <span class="d-flex align-items-center"><img width="30" height="30" src="icon/award-solid.svg"/></span> 
-                        <h1>Awards</h1>
+                        <h1>Rewards</h1>
                     </div>
                     <div class="rewards overflow-auto d-flex justify-content-center container">
                         <div class="cardsContainer container">
-                             <div class="card">
-                                 <div class="imgBx">
-                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
-                                 </div>
 
-                                 <div class="contentBx">
 
-                                     <h2>Shoes</h2>
+                          <asp:ListView ID="lvRewards" runat="server">
+                                <ItemTemplate>
+                                     <div class="card">
+                                         <div class="imgBx">
+                                             <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
+                                         </div>
 
-                                     <h4>320 Points</h4>
+                                         <div class="contentBx">
 
-                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
-                                 </div>
-                             </div>
+                                             <h2><%# Eval("NAME") %></h2>
 
-                             <div class="card">
-                                 <div class="imgBx">
-                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
-                                 </div>
+                                             <h4><%# Eval("PRICE") %> Points</h4>
 
-                                 <div class="contentBx">
-
-                                     <h2>Shoes</h2>
-
-                                     <h4>320 Points</h4>
-
-                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
-                                 </div>
-                             </div>
-
-                             <div class="card">
-                                 <div class="imgBx">
-                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
-                                 </div>
-
-                                 <div class="contentBx">
-
-                                     <h2>Shoes</h2>
-
-                                     <h4>320 Points</h4>
-
-                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
-                                 </div>
-                             </div>
-
-                             <div class="card">
-                                 <div class="imgBx">
-                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
-                                 </div>
-
-                                 <div class="contentBx">
-
-                                     <h2>Shoes</h2>
-
-                                     <h4>320 Points</h4>
-
-                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
-                                 </div>
-                             </div>
-
-                              <div class="card">
-                                 <div class="imgBx">
-                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
-                                 </div>
-
-                                 <div class="contentBx">
-
-                                     <h2>Shoes</h2>
-
-                                     <h4>320 Points</h4>
-
-                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
-                                 </div>
-                             </div>
-
-                             <div class="card">
-                                 <div class="imgBx">
-                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
-                                 </div>
-
-                                 <div class="contentBx">
-
-                                     <h2>Shoes</h2>
-
-                                     <h4>320 Points</h4>
-
-                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
-                                 </div>
-                             </div>
-
-                             <div class="card">
-                                 <div class="imgBx">
-                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
-                                 </div>
-
-                                 <div class="contentBx">
-
-                                     <h2>Shoes</h2>
-
-                                     <h4>320 Points</h4>
-
-                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
-                                 </div>
-                             </div>
-
-                             <div class="card">
-                                 <div class="imgBx">
-                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
-                                 </div>
-
-                                 <div class="contentBx">
-
-                                     <h2>Shoes</h2>
-
-                                     <h4>320 Points</h4>
-
-                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
-                                 </div>
-                             </div>
-
-                             <div class="card">
-                                 <div class="imgBx">
-                                     <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
-                                 </div>
-
-                                 <div class="contentBx">
-
-                                     <h2>Shoes</h2>
-
-                                     <h4>320 Points</h4>
-
-                                     <button type="button" class="btn btn-success py-2 px-3">Claim</button>
-                                 </div>
-                             </div>
+                                             <button type="button" class="btn btn-success py-2 px-3">Claim</button>
+                                         </div>
+                                     </div>
+                                </ItemTemplate>
+                            </asp:ListView>
 
                         </div>  
                         </div>
