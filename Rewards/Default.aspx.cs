@@ -13,11 +13,11 @@ namespace Rewards
                 lvLeaderboard.DataSource = leaderboardItems;
                 lvLeaderboard.DataBind();
 
-                var RewardsItems = AwardsManager.GetAwardItemFromDatabase();
+                var RewardsItems = AwardsManager.GetAwardItemsFromDatabase();
                 lvRewards.DataSource = RewardsItems;
                 lvRewards.DataBind();
 
-                var activityItems = ActivitiesManager.GetActivityItemFromDatabase();
+                var activityItems = ActivitiesManager.GetActivityItemsFromDatabase();
                 lvActivity.DataSource = activityItems;
                 lvActivity.DataBind();
             }

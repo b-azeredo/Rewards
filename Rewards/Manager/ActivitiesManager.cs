@@ -9,7 +9,7 @@ namespace Rewards.Manager
 {
     public class ActivitiesManager
     {
-        public static List<ActivityItem> GetActivityItemFromDatabase()
+        public static List<ActivityItem> GetActivityItemsFromDatabase()
         {
             using (Context context = new Context())
             {

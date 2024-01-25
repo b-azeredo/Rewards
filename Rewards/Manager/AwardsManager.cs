@@ -9,7 +9,7 @@ namespace Rewards.Manager
 {
     public class AwardsManager
     {
-        public static List<AwardsItem> GetAwardItemFromDatabase()
+        public static List<AwardsItem> GetAwardItemsFromDatabase()
         {
             using (Context context = new Context())
             {
