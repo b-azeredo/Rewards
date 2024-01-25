@@ -24,13 +24,10 @@ namespace Rewards
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-<<<<<<< HEAD
-=======
             using (Context context = new Context()) 
             {
 
             }
->>>>>>> 2318c001f4fd2d16561b0a6c9f98abe8ce6ec526
         }
     }
 
