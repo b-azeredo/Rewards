@@ -26,13 +26,7 @@ namespace Rewards
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             using (Context context = new Context()) 
             {
-                Activity reward = new Activity()
-                {
-                    NAME = "name",
-                    POINTS = 192,
-                };
-                context.Activities.Add(reward);
-                context.SaveChanges();
+
             }
         }
     }
