@@ -1,5 +1,4 @@
-﻿using Rewards.DB_Models;
-using Rewards.Items;
+﻿using Rewards.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +8,7 @@ namespace Rewards.Manager
 {
     public class AwardsManager
     {
+        /*
         public static List<AwardsItem> GetAwardItemsFromDatabase()
         {
             using (Context context = new Context())
@@ -24,5 +24,6 @@ namespace Rewards.Manager
                 return awardsItems;
             }
         }
+        */
     }
 }
