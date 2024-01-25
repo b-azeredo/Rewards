@@ -9,9 +9,11 @@ namespace Rewards
         {
             if (!IsPostBack)
             {
+                /*
                 var leaderboardItems = LeaderboardManager.GetLeaderboardItemsFromDatabase();
                 lvLeaderboard.DataSource = leaderboardItems;
                 lvLeaderboard.DataBind();
+                */
 
                 var RewardsItems = AwardsManager.GetAwardItemsFromDatabase();
                 lvRewards.DataSource = RewardsItems;

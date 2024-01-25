@@ -4,18 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rewards.DB_Models
 {
-    public class Reward
+    public class Reward_Stock
     {
         [Key]
         public int ID { get; set; }
+        [ForeignKey("Reward")]
+        public int REWARD_ID { get; set; }
         [Required]
-        [MaxLength(50)]
-        public string NAME { get; set; }
-        [Required]
-        public int PRICE { get; set; }
-        public byte[] IMAGE { get; set; }
+        public int STOCK {  get; set; }
+        public Reward Reward { get; set; }
     }
 }

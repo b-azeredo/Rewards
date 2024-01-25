@@ -18,7 +18,8 @@ namespace Rewards.DB_Models
         public DbSet<Reward> Rewards { get; set; }
         public DbSet<Forms> Forms { get; set; }
         public DbSet<Activity> Activities { get; set; }
-
+        public DbSet<Reward_Stock> Rewards_Stock { get; set; }
+        public DbSet<File> Files { get; set; }
 
     }
 }
