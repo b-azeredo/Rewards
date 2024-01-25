@@ -12,30 +12,14 @@
                     </div>
                     <div class="overflow-auto" style="max-height:85%;">
                         <ol style="--length: 0" role="list">
-	                        <li class="d-flex justify-content-between">
-		                        <h3>Discovery and assessment</h3>
-                                <button type="button" class="btn btn-success py-1 px-2">Submit</button>
-	                        </li>
-	                        <li class="d-flex justify-content-between">
-		                        <h3>Information gathering and analysis</h3>
-                                <button type="button" class="btn btn-success py-1 px-2">Submit</button>
-	                        </li>
-	                        <li class="d-flex justify-content-between">
-		                        <h3>Creating your claim</h3>
-                                <button type="button" class="btn btn-success py-1 px-2">Submit</button>
-	                        </li>
-	                        <li class="d-flex justify-content-between">
-		                        <h3>Approvals and submission</h3>
-                                <button type="button" class="btn btn-success py-1 px-2">Submit</button>
-	                        </li>
-	                        <li class="d-flex justify-content-between">
-		                        <h3>Receiving your benefit</h3>
-                                <button type="button" class="btn btn-success py-1 px-2">Submit</button>
-	                        </li>
-                            <li class="d-flex justify-content-between">
-		                        <h3>Receiving your benefit</h3>
-                                <button type="button" class="btn btn-success py-1 px-2">Submit</button>
-	                        </li>
+	                       <asp:ListView ID="lvActivity" runat="server">
+                                <ItemTemplate>
+                            	    <li class="d-flex justify-content-between">
+		                                <h3><%# Eval("NAME") %> <span class="mx-2 p-1"><%# Eval("POINTS") %>  points</span> </h3>
+                                        <button type="button" class="btn btn-success py-1 px-2">Submit</button>
+	                                </li>
+                                </ItemTemplate>
+                            </asp:ListView>
                         </ol>
                     </div>
                 </div>

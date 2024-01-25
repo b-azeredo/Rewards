@@ -13,10 +13,8 @@ namespace Rewards.Manager
         {
             using (Context context = new Context())
             {
-                // Recupera as Rewards por PREÇO em ordem decrescente
                 List<Reward> rewards = context.Rewards.OrderByDescending(r => r.PRICE).ToList();
 
-                // Converte as Rewards em objetos AwardItem
                 List<AwardsItem> awardsItems = rewards.Select(r => new AwardsItem
                 {
                     NAME = r.NAME,

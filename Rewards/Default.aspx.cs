@@ -9,23 +9,17 @@ namespace Rewards
         {
             if (!IsPostBack)
             {
-                // Chama o método para obter os itens da leaderboard do banco de dados
                 var leaderboardItems = LeaderboardManager.GetLeaderboardItemsFromDatabase();
-
-                // Define a lista de itens como a fonte de dados da ListView
                 lvLeaderboard.DataSource = leaderboardItems;
-
-                // Atualiza a ListView
                 lvLeaderboard.DataBind();
 
-                // Chama o método para obter os itens da leaderboard do banco de dados
                 var RewardsItems = AwardsManager.GetAwardItemFromDatabase();
-
-                // Define a lista de itens como a fonte de dados da ListView
                 lvRewards.DataSource = RewardsItems;
-
-                // Atualiza a ListView
                 lvRewards.DataBind();
+
+                var activityItems = ActivitiesManager.GetActivityItemFromDatabase();
+                lvActivity.DataSource = activityItems;
+                lvActivity.DataBind();
             }
         }
     }
