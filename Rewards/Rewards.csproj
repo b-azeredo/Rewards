@@ -273,6 +273,10 @@
     <Compile Include="Migrations\202401251204024_v8.designer.cs">
       <DependentUpon>202401251204024_v8.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401251259023_8.1.cs" />
+    <Compile Include="Migrations\202401251259023_8.1.designer.cs">
+      <DependentUpon>202401251259023_8.1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterPage.aspx.cs">
@@ -352,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401251204024_v8.resx">
       <DependentUpon>202401251204024_v8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401251259023_8.1.resx">
+      <DependentUpon>202401251259023_8.1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
