@@ -1,5 +1,4 @@
-﻿using Rewards.DB_Models;
-using Rewards.Items;
+﻿using Rewards.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
