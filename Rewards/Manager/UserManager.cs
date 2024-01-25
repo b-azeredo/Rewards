@@ -1,4 +1,5 @@
-﻿using Rewards.Items;
+﻿using Rewards.DBModel;
+using Rewards.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +11,38 @@ namespace Rewards.Manager
 {
     public class UserManager
     {
-        /*
-        public static int Lifetime_Points(int ID)
+        
+        public static int Get_Lifetime_Points(int ID)
         {
-            using (Entities Entities = new Entities())
+            using (Entities2 Entities = new Entities2())
             {
-                int iSoma = 0;
-                var query = Entities.Forms.Where(p => p.ID == ID && p.STATUS.Equals(true)).ToList();
-                foreach(Forms Form in query)
+                int sum = 0;
+                var query = Entities.FORM.Where(p => p.ID == ID && p.STATUS.Equals(true)).ToList();
+                foreach(FORM Form in query)
                 {
-                    iSoma += Form.Activities.POINTS;
+                    sum += Form.ACTIVITY.POINTS;
                 }
 
-                return iSoma;
+                return sum;
             }
         }
-        */
+
+        public static int Get_Current_Points(int ID)
+        {
+            int lifetimePoints = Get_Lifetime_Points(ID);
+
+            using (Entities2 Entities = new Entities2())
+            {
+                int sum = 0;
+                var query = Entities.PURCHASE.Where(p => p.USER_ID == ID).ToList();
+                foreach (PURCHASE Purchase in query)
+                {
+                    sum += Purchase.REWARD.PRICE;
+                }
+
+                return lifetimePoints - sum;
+            }
+
+        }
     }
 }

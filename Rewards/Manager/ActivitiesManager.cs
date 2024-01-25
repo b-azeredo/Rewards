@@ -1,4 +1,5 @@
-﻿using Rewards.Items;
+﻿using Rewards.DBModel;
+using Rewards.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,11 @@ namespace Rewards.Manager
 {
     public class ActivitiesManager
     {
-        /*
         public static List<ActivityItem> GetActivityItemsFromDatabase()
         {
-            using (Context context = new Context())
+            using (Entities2 context = new Entities2())
             {
-                List<Activity> activities = context.Activities.ToList();
+                List<ACTIVITY> activities = context.ACTIVITY.ToList();
 
                 List<ActivityItem> activitiesItem = activities.Select(a => new ActivityItem
                 {
@@ -24,6 +24,5 @@ namespace Rewards.Manager
                 return activitiesItem;
             }
         }
-        */
     }
 }

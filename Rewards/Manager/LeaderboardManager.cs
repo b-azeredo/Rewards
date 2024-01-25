@@ -1,4 +1,5 @@
-﻿using Rewards.Items;
+﻿using Rewards.DBModel;
+using Rewards.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,10 @@ namespace Rewards.Manager
         /*
         public static List<LeaderboardItem> GetLeaderboardItemsFromDatabase()
         {
-            using (var context = new Context())
+            using (var context = new Entities2())
             {
-                // Recupera os usuários ordenados por pontos em ordem decrescente
-                List<User> users = context.Users.OrderByDescending(u => u.POINTS).ToList();
+                List<USER> users = context.USER.OrderByDescending(u => u.POINTS).ToList();
 
-                // Converte os usuários em objetos LeaderboardItem
                 List<LeaderboardItem> leaderboardItems = users.Select(u => new LeaderboardItem
                 {
                     USERNAME = u.NAME,

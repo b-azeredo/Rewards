@@ -339,7 +339,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ACTIVITY" EntityType="Self.ACTIVITY" />
           <EntitySet Name="FILE" EntityType="Self.FILE" />
           <EntitySet Name="FORM" EntityType="Self.FORM" />
@@ -377,7 +377,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities1">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities2">
           <EntitySetMapping Name="ACTIVITY">
             <EntityTypeMapping TypeName="Model.ACTIVITY">
               <MappingFragment StoreEntitySet="ACTIVITY">

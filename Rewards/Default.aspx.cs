@@ -1,4 +1,5 @@
-﻿using Rewards.Manager;
+﻿using Rewards.DBModel;
+using Rewards.Manager;
 using System;
 
 namespace Rewards
@@ -19,10 +20,12 @@ namespace Rewards
                 lvRewards.DataSource = RewardsItems;
                 lvRewards.DataBind();
 
+                */
+
                 var activityItems = ActivitiesManager.GetActivityItemsFromDatabase();
                 lvActivity.DataSource = activityItems;
                 lvActivity.DataBind();
-                */
+                
             }
         }
     }
