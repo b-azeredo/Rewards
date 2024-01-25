@@ -24,16 +24,6 @@ namespace Rewards
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            using (Context context = new Context()) 
-            {
-                Activity reward = new Activity()
-                {
-                    NAME = "nkame",
-                    POINTS = 192,
-                };
-                context.Activities.Add(reward);
-                context.SaveChanges();
-            }
         }
     }
 
