@@ -14,11 +14,11 @@ namespace Rewards.DB_Models
         public int ID { get; set; }
         
         [Column(TypeName = "Date")]
-        public DateTime DATE { get; set; }
+        public DateTime PURCHASE_DATE { get; set; }
         [ForeignKey("User")]
-        public int ID_USER { get; set; }
+        public int USER_ID { get; set; }
         [ForeignKey("Reward")]
-        public int ID_REWARD { get; set; }
+        public int REWARD_ID { get; set; }
         public User User { get; set; }
         public Reward Reward { get; set; }
     }

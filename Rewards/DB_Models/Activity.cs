@@ -11,7 +11,7 @@ namespace Rewards.DB_Models
         [Key]
         public int ID { get; set; }
         [Required]
-        [StringLength(50)]
+        [StringLength(500)]
         public string NAME { get; set; }
         [Required]
         public int POINTS { get; set; }

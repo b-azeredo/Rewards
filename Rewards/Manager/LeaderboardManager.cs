@@ -9,6 +9,7 @@ namespace Rewards.Manager
 {
     public class LeaderboardManager
     {
+        /*
         public static List<LeaderboardItem> GetLeaderboardItemsFromDatabase()
         {
             using (var context = new Context())
@@ -26,5 +27,6 @@ namespace Rewards.Manager
                 return leaderboardItems;
             }
         }
+        */
     }
 }

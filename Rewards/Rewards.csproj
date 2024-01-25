@@ -204,9 +204,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="DB_Models\Activity.cs" />
     <Compile Include="DB_Models\Context.cs" />
+    <Compile Include="DB_Models\File.cs" />
     <Compile Include="DB_Models\Forms.cs" />
     <Compile Include="DB_Models\Purchase.cs" />
     <Compile Include="DB_Models\Reward.cs" />
+    <Compile Include="DB_Models\Reward_Stock.cs" />
     <Compile Include="DB_Models\User.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -231,6 +233,7 @@
     <Compile Include="Manager\ActivitiesManager.cs" />
     <Compile Include="Manager\AwardsManager.cs" />
     <Compile Include="Manager\LeaderboardManager.cs" />
+    <Compile Include="Manager\UserManager.cs" />
     <Compile Include="Manager\YourProfileManager.cs" />
     <Compile Include="Manager\YourProgressManager.cs" />
     <Compile Include="Migrations\202401241649351_InitialCreate.cs" />
@@ -264,6 +267,10 @@
     <Compile Include="Migrations\202401241720033_v7.cs" />
     <Compile Include="Migrations\202401241720033_v7.designer.cs">
       <DependentUpon>202401241720033_v7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401251614092_v10.cs" />
+    <Compile Include="Migrations\202401251614092_v10.designer.cs">
+      <DependentUpon>202401251614092_v10.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -341,6 +348,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401241720033_v7.resx">
       <DependentUpon>202401241720033_v7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401251614092_v10.resx">
+      <DependentUpon>202401251614092_v10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -13,16 +13,20 @@ namespace Rewards.DB_Models
         public int ID { get; set; }
 
         [ForeignKey("User")]
-        public int ID_USER { get; set; }
+        public int USER_ID { get; set; }
 
         [ForeignKey("Activity")]
-        public int ID_ACTIVITY { get; set; }
+        public int ACTIVITY_ID { get; set; }
+        [MaxLength(8000)]
         public string DESCRIPTION { get; set; }
-        public byte[] FILES { get; set; }
-        public string STATUS { get; set; }
+        public bool STATUS { get; set; }
 
         [Column(TypeName = "Date")]
-        public DateTime DATE { get; set; }
+        public DateTime CREATE_DATE { get; set; }
+
+
+        [Column(TypeName = "Date")]
+        public DateTime MANAGER_DATA_APROVED { get; set; }
         public User User { get; set; }
         public Activity Activity { get; set; }
     }
