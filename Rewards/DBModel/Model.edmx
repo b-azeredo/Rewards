@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACTIVITY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="POINTS" Type="int" Nullable="false" />
+          <Property Name="LIMIT_PER_WEEK" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FILE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FORM_ID" Type="int" Nullable="false" />
+          <Property Name="CONTENT" Type="varbinary(max)" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="EXTENSION" Type="varchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FORM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="ACTIVITY_ID" Type="int" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar" MaxLength="8000" Nullable="false" />
+          <Property Name="STATUS" Type="bit" />
+          <Property Name="CREATE_DATE" Type="datetime" Nullable="false" />
+          <Property Name="MANAGER_DATA_APROVED" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PURCHASE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="REWARD_ID" Type="int" Nullable="false" />
+          <Property Name="PURCHASE_DATE" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REWARD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PRICE" Type="int" Nullable="false" />
+          <Property Name="IMAGE" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REWARD_STOCK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="REWARD_ID" Type="int" Nullable="false" />
+          <Property Name="STOCK" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ROLE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MANAGER_EMAIL" Type="varchar" MaxLength="100" />
+          <Property Name="PROFILE_IMAGE" Type="varbinary" MaxLength="50" Nullable="false" />
+          <Property Name="IMAGE_NAME" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IMAGE_EXTENSION" Type="varchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_3">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="FORM" Type="Self.FORM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FORM">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_4">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="PURCHASE" Type="Self.PURCHASE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PURCHASE">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_4_1">
+          <End Role="ACTIVITY" Type="Self.ACTIVITY" Multiplicity="1" />
+          <End Role="FORM" Type="Self.FORM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACTIVITY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FORM">
+              <PropertyRef Name="ACTIVITY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_4_2">
+          <End Role="REWARD" Type="Self.REWARD" Multiplicity="1" />
+          <End Role="PURCHASE" Type="Self.PURCHASE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REWARD">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PURCHASE">
+              <PropertyRef Name="REWARD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_5">
+          <End Role="REWARD" Type="Self.REWARD" Multiplicity="1" />
+          <End Role="REWARD_STOCK" Type="Self.REWARD_STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REWARD">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REWARD_STOCK">
+              <PropertyRef Name="REWARD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_7">
+          <End Role="FORM" Type="Self.FORM" Multiplicity="1" />
+          <End Role="FILE" Type="Self.FILE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FORM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FILE">
+              <PropertyRef Name="FORM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="ACTIVITY" EntityType="Self.ACTIVITY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FILE" EntityType="Self.FILE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FORM" EntityType="Self.FORM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PURCHASE" EntityType="Self.PURCHASE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REWARD" EntityType="Self.REWARD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REWARD_STOCK" EntityType="Self.REWARD_STOCK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_3" Association="Self.FK_3">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="FORM" EntitySet="FORM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_4" Association="Self.FK_4">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="PURCHASE" EntitySet="PURCHASE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_4_1" Association="Self.FK_4_1">
+            <End Role="ACTIVITY" EntitySet="ACTIVITY" />
+            <End Role="FORM" EntitySet="FORM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_4_2" Association="Self.FK_4_2">
+            <End Role="REWARD" EntitySet="REWARD" />
+            <End Role="PURCHASE" EntitySet="PURCHASE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_5" Association="Self.FK_5">
+            <End Role="REWARD" EntitySet="REWARD" />
+            <End Role="REWARD_STOCK" EntitySet="REWARD_STOCK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_7" Association="Self.FK_7">
+            <End Role="FORM" EntitySet="FORM" />
+            <End Role="FILE" EntitySet="FILE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ACTIVITY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="POINTS" Type="Int32" Nullable="false" />
+          <Property Name="LIMIT_PER_WEEK" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FORM" Relationship="Self.FK_4_1" FromRole="ACTIVITY" ToRole="FORM" />
+        </EntityType>
+        <EntityType Name="FILE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FORM_ID" Type="Int32" Nullable="false" />
+          <Property Name="CONTENT" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EXTENSION" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FORM" Relationship="Self.FK_7" FromRole="FILE" ToRole="FORM" />
+        </EntityType>
+        <EntityType Name="FORM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="ACTIVITY_ID" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="STATUS" Type="Boolean" />
+          <Property Name="CREATE_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MANAGER_DATA_APROVED" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ACTIVITY" Relationship="Self.FK_4_1" FromRole="FORM" ToRole="ACTIVITY" />
+          <NavigationProperty Name="FILE" Relationship="Self.FK_7" FromRole="FORM" ToRole="FILE" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_3" FromRole="FORM" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="PURCHASE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="REWARD_ID" Type="Int32" Nullable="false" />
+          <Property Name="PURCHASE_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_4" FromRole="PURCHASE" ToRole="USER" />
+          <NavigationProperty Name="REWARD" Relationship="Self.FK_4_2" FromRole="PURCHASE" ToRole="REWARD" />
+        </EntityType>
+        <EntityType Name="REWARD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRICE" Type="Int32" Nullable="false" />
+          <Property Name="IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="PURCHASE" Relationship="Self.FK_4_2" FromRole="REWARD" ToRole="PURCHASE" />
+          <NavigationProperty Name="REWARD_STOCK" Relationship="Self.FK_5" FromRole="REWARD" ToRole="REWARD_STOCK" />
+        </EntityType>
+        <EntityType Name="REWARD_STOCK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="REWARD_ID" Type="Int32" Nullable="false" />
+          <Property Name="STOCK" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="REWARD" Relationship="Self.FK_5" FromRole="REWARD_STOCK" ToRole="REWARD" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ROLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MANAGER_EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PROFILE_IMAGE" Type="Binary" MaxLength="50" FixedLength="false" Nullable="false" />
+          <Property Name="IMAGE_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IMAGE_EXTENSION" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FORM" Relationship="Self.FK_3" FromRole="USER" ToRole="FORM" />
+          <NavigationProperty Name="PURCHASE" Relationship="Self.FK_4" FromRole="USER" ToRole="PURCHASE" />
+        </EntityType>
+        <Association Name="FK_4_1">
+          <End Role="ACTIVITY" Type="Self.ACTIVITY" Multiplicity="1" />
+          <End Role="FORM" Type="Self.FORM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACTIVITY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FORM">
+              <PropertyRef Name="ACTIVITY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_7">
+          <End Role="FORM" Type="Self.FORM" Multiplicity="1" />
+          <End Role="FILE" Type="Self.FILE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FORM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FILE">
+              <PropertyRef Name="FORM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_3">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="FORM" Type="Self.FORM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FORM">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_4">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="PURCHASE" Type="Self.PURCHASE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PURCHASE">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_4_2">
+          <End Role="REWARD" Type="Self.REWARD" Multiplicity="1" />
+          <End Role="PURCHASE" Type="Self.PURCHASE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REWARD">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PURCHASE">
+              <PropertyRef Name="REWARD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_5">
+          <End Role="REWARD" Type="Self.REWARD" Multiplicity="1" />
+          <End Role="REWARD_STOCK" Type="Self.REWARD_STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REWARD">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REWARD_STOCK">
+              <PropertyRef Name="REWARD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACTIVITY" EntityType="Self.ACTIVITY" />
+          <EntitySet Name="FILE" EntityType="Self.FILE" />
+          <EntitySet Name="FORM" EntityType="Self.FORM" />
+          <EntitySet Name="PURCHASE" EntityType="Self.PURCHASE" />
+          <EntitySet Name="REWARD" EntityType="Self.REWARD" />
+          <EntitySet Name="REWARD_STOCK" EntityType="Self.REWARD_STOCK" />
+          <EntitySet Name="USER" EntityType="Self.USER" />
+          <AssociationSet Name="FK_4_1" Association="Self.FK_4_1">
+            <End Role="ACTIVITY" EntitySet="ACTIVITY" />
+            <End Role="FORM" EntitySet="FORM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_7" Association="Self.FK_7">
+            <End Role="FORM" EntitySet="FORM" />
+            <End Role="FILE" EntitySet="FILE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_3" Association="Self.FK_3">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="FORM" EntitySet="FORM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_4" Association="Self.FK_4">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="PURCHASE" EntitySet="PURCHASE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_4_2" Association="Self.FK_4_2">
+            <End Role="REWARD" EntitySet="REWARD" />
+            <End Role="PURCHASE" EntitySet="PURCHASE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_5" Association="Self.FK_5">
+            <End Role="REWARD" EntitySet="REWARD" />
+            <End Role="REWARD_STOCK" EntitySet="REWARD_STOCK" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities1">
+          <EntitySetMapping Name="ACTIVITY">
+            <EntityTypeMapping TypeName="Model.ACTIVITY">
+              <MappingFragment StoreEntitySet="ACTIVITY">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="POINTS" ColumnName="POINTS" />
+                <ScalarProperty Name="LIMIT_PER_WEEK" ColumnName="LIMIT_PER_WEEK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FILE">
+            <EntityTypeMapping TypeName="Model.FILE">
+              <MappingFragment StoreEntitySet="FILE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FORM_ID" ColumnName="FORM_ID" />
+                <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="EXTENSION" ColumnName="EXTENSION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FORM">
+            <EntityTypeMapping TypeName="Model.FORM">
+              <MappingFragment StoreEntitySet="FORM">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="ACTIVITY_ID" ColumnName="ACTIVITY_ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="MANAGER_DATA_APROVED" ColumnName="MANAGER_DATA_APROVED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PURCHASE">
+            <EntityTypeMapping TypeName="Model.PURCHASE">
+              <MappingFragment StoreEntitySet="PURCHASE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="REWARD_ID" ColumnName="REWARD_ID" />
+                <ScalarProperty Name="PURCHASE_DATE" ColumnName="PURCHASE_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REWARD">
+            <EntityTypeMapping TypeName="Model.REWARD">
+              <MappingFragment StoreEntitySet="REWARD">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REWARD_STOCK">
+            <EntityTypeMapping TypeName="Model.REWARD_STOCK">
+              <MappingFragment StoreEntitySet="REWARD_STOCK">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="REWARD_ID" ColumnName="REWARD_ID" />
+                <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER">
+            <EntityTypeMapping TypeName="Model.USER">
+              <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+                <ScalarProperty Name="MANAGER_EMAIL" ColumnName="MANAGER_EMAIL" />
+                <ScalarProperty Name="PROFILE_IMAGE" ColumnName="PROFILE_IMAGE" />
+                <ScalarProperty Name="IMAGE_NAME" ColumnName="IMAGE_NAME" />
+                <ScalarProperty Name="IMAGE_EXTENSION" ColumnName="IMAGE_EXTENSION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
