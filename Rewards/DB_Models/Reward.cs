@@ -17,6 +17,6 @@ namespace Rewards.DB_Models
         [Required]
         public int PRICE { get; set; }
         public int STOCK { get; set; }
-        public byte[] IMAGE { get; set; }
+        public string IMAGE_URL { get; set; }
     }
 }

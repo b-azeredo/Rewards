@@ -9,5 +9,6 @@ namespace Rewards.Items
     {
         public string NAME { get; set; }
         public int PRICE { get; set; }
+        public string IMAGE_URL { get; set; }
     }
 }

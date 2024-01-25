@@ -20,7 +20,8 @@ namespace Rewards.Manager
                 List<AwardsItem> awardsItems = rewards.Select(r => new AwardsItem
                 {
                     NAME = r.NAME,
-                    PRICE = r.PRICE
+                    PRICE = r.PRICE,
+                    IMAGE_URL = r.IMAGE_URL
                 }).ToList();
 
                 return awardsItems;

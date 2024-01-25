@@ -134,6 +134,11 @@
     <Content Include="icon\list-check-solid.svg" />
     <Content Include="icon\ranking-star-solid.svg" />
     <Content Include="icon\user-solid.svg" />
+    <Content Include="Images\Shoes\Addias.jpg" />
+    <Content Include="Images\Shoes\Air Jordan Blue.png" />
+    <Content Include="Images\Shoes\Air Jordan Red.png" />
+    <Content Include="Images\Shoes\Allstars.jpg" />
+    <Content Include="Images\Shoes\Nike.jpg" />
     <Content Include="LoginPage.aspx" />
     <Content Include="RegisterPage.aspx" />
     <Content Include="RegisterPageBoss.aspx" />
@@ -264,6 +269,10 @@
     <Compile Include="Migrations\202401241720033_v7.designer.cs">
       <DependentUpon>202401241720033_v7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401251204024_v8.cs" />
+    <Compile Include="Migrations\202401251204024_v8.designer.cs">
+      <DependentUpon>202401251204024_v8.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterPage.aspx.cs">
@@ -340,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401241720033_v7.resx">
       <DependentUpon>202401241720033_v7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401251204024_v8.resx">
+      <DependentUpon>202401251204024_v8.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

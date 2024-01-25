@@ -175,7 +175,7 @@
                                 <ItemTemplate>
                                      <div class="card">
                                          <div class="imgBx">
-                                             <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
+                                             <img src="<%# Eval("IMAGE_URL") %>">
                                          </div>
 
                                          <div class="contentBx">
