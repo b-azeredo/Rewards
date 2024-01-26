@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Web;
+using Rewards;
 
 
 namespace Rewards.Manager
@@ -62,9 +63,24 @@ namespace Rewards.Manager
             }
         }
 
-        public static string Get_Profile_Image(int ID)
+        public static byte[] Get_Profile_Image(int ID)
         {
-            
+            using (Entities2 Entities = new Entities2())
+            {
+                var user = Entities.USER.FirstOrDefault(u => u.ID == ID);
+                return user.PROFILE_IMAGE;
+            }
         }
+
+        public static string Get_Username(int ID)
+        {
+            using (Entities2 Entities = new Entities2())
+            {
+                var user = Entities.USER.FirstOrDefault(u => u.ID == ID);
+                return user.NAME;
+            }
+        }
+
+
     }
 }

@@ -98,10 +98,10 @@
                     </div>
                     <div class="d-flex flex-column align-items-center" style="height: 85%;">
                         <div class="userCard row-cols-2">
-                            <div class="userImgPlaceholder"><img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" /></div>
+                            <div class="userImgPlaceholder"><img runat="server" id="profileImage" src ="" /></div>
                             <div class="userInfo">
-                                <p class="userName">Username <br /> <span class="black">Online</span></p>
-                                <p class="bold white">98 points</p>
+                                <p class="userName" runat="server" ID="profileUsername"></p>
+                                <p class="bold white" runat="server" ID="profilePoints"></p>
                             </div>
                         </div>
                         <div class="recentTransactions d-flex flex-column overflow-auto">

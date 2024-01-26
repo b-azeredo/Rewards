@@ -60,6 +60,33 @@ namespace Rewards
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lifetimePoints;
 
         /// <summary>
+        /// profileImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage profileImage;
+
+        /// <summary>
+        /// profileUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl profileUsername;
+
+        /// <summary>
+        /// profilePoints control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl profilePoints;
+
+        /// <summary>
         /// lvRewards control.
         /// </summary>
         /// <remarks>
