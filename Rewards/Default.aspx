@@ -83,7 +83,7 @@
                               Points earned
                             </div>
 
-                            <div class="hiddenNumber">120</div>
+                            <div class="hiddenNumber" runat="server" id="lifetimePoints"></div>
                         </div>
                       </div>
                 </div>

@@ -17,8 +17,8 @@ namespace Rewards.Manager
             using (Entities2 Entities = new Entities2())
             {
                 int sum = 0;
-                var query = Entities.FORM.Where(p => p.ID == ID && p.STATUS.Equals(true)).ToList();
-                foreach(FORM Form in query)
+                var query = Entities.FORM.Where(p => p.ID == ID && p.STATUS == true).ToList();
+                foreach(var Form in query)
                 {
                     sum += Form.ACTIVITY.POINTS;
                 }

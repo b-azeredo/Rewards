@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="Model.PURCHASE" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.REWARD" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.REWARD_STOCK" Width="1.5" PointX="6" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.USER" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USER" Width="1.625" PointX="0.75" PointY="4.375" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_4_1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_7" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_3" ManuallyRouted="false" />

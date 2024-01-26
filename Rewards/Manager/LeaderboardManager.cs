@@ -9,22 +9,23 @@ namespace Rewards.Manager
 {
     public class LeaderboardManager
     {
-        /*
+        
         public static List<LeaderboardItem> GetLeaderboardItemsFromDatabase()
         {
             using (var context = new Entities2())
             {
-                List<USER> users = context.USER.OrderByDescending(u => u.POINTS).ToList();
+                List<USER> users = context.USER.ToList();
 
                 List<LeaderboardItem> leaderboardItems = users.Select(u => new LeaderboardItem
                 {
                     USERNAME = u.NAME,
-                    POINTS = u.POINTS
+                    POINTS = UserManager.Get_Lifetime_Points(u.ID)
                 }).ToList();
 
+                leaderboardItems.OrderByDescending(u => u.POINTS).ToList();
                 return leaderboardItems;
             }
         }
-        */
+        
     }
 }
