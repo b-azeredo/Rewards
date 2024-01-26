@@ -17,7 +17,7 @@ namespace Rewards.Manager
             using (Entities2 Entities = new Entities2())
             {
                 int sum = 0;
-                var query = Entities.FORM.Where(p => p.ID == ID && p.STATUS == true).ToList();
+                var query = Entities.FORM.Where(p => p.USER_ID == ID && p.STATUS == true).ToList();
                 foreach(var Form in query)
                 {
                     sum += Form.ACTIVITY.POINTS;
@@ -42,7 +42,29 @@ namespace Rewards.Manager
 
                 return lifetimePoints - sum;
             }
+        }
 
+        public static int Get_Number_Activities_Done(int ID)
+        {
+            using (Entities2 Entities = new Entities2())
+            {
+                int numActivitiesDone = Entities.FORM.Where(f => f.USER_ID == ID && f.STATUS == true).ToList().Count();
+                return numActivitiesDone;
+            }
+        }
+
+        public static int Get_Number_Redeemed_Rewards(int ID)
+        {
+            using (Entities2 Entities = new Entities2())
+            {
+                int numRedeemedRewards = Entities.PURCHASE.Where(p => p.USER_ID == ID).ToList().Count();
+                return numRedeemedRewards;
+            }
+        }
+
+        public static string Get_Profile_Image(int ID)
+        {
+            
         }
     }
 }

@@ -277,10 +277,7 @@
     </Compile>
     <Compile Include="Manager\ActivitiesManager.cs" />
     <Compile Include="Manager\AwardsManager.cs" />
-    <Compile Include="Manager\LeaderboardManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
-    <Compile Include="Manager\YourProfileManager.cs" />
-    <Compile Include="Manager\YourProgressManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterPage.aspx.cs">
       <DependentUpon>RegisterPage.aspx</DependentUpon>

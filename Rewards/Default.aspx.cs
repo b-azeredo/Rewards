@@ -16,39 +16,21 @@ namespace Rewards
                 var leaderboardItems = LeaderboardManager.GetLeaderboardItemsFromDatabase();
                 lvLeaderboard.DataSource = leaderboardItems;
                 lvLeaderboard.DataBind();
-                
+
                 /*
                 var RewardsItems = AwardsManager.GetAwardItemsFromDatabase();
                 lvRewards.DataSource = RewardsItems;
                 lvRewards.DataBind();
-
-                */
-
-
-                /*
-                using (Entities2 context = new Entities2())
-                {
-                    USER user = new USER()
-                    {
-                        ID = 1,
-                        NAME = "Bernardo",
-                        EMAIL = "email",
-                        ROLE = "ADMIN",
-                        MANAGER_EMAIL = "email",
-                        PROFILE_IMAGE = File.ReadAllBytes("C:\\Users\\Bernardo Azeredo\\source\\repos\\b-azeredo\\Rewards\\Rewards\\icon\\user-solid.svg"),
-                        IMAGE_NAME = "image",
-                        IMAGE_EXTENSION = "svg",
-                    };
-                    context.USER.Add(user);
-                    context.SaveChanges();
-                }
                 */
 
                 var activityItems = ActivitiesManager.GetActivityItemsFromDatabase();
                 lvActivity.DataSource = activityItems;
                 lvActivity.DataBind();
 
-                lifetimePoints.InnerText = $"{UserManager.Get_Lifetime_Points(1)}";            }
+                lifetimePoints.InnerText = $"{UserManager.Get_Lifetime_Points(4)}";    
+                activitiesDone.InnerText = $"{UserManager.Get_Number_Activities_Done(4)}";
+                redeemedRewards.InnerText = $"{UserManager.Get_Number_Redeemed_Rewards(4)}";
+            }
         }
     }
 }

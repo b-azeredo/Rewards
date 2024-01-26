@@ -7,6 +7,7 @@ namespace Rewards.Items
 {
     public class LeaderboardItem
     {
+        public byte[] PROFILE_IMAGE { get; set; }
         public string USERNAME { get; set; }
         public int POINTS { get; set; }
     }

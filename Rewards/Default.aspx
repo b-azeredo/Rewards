@@ -35,7 +35,7 @@
                                 <ItemTemplate>
                                     <div class="userCard">
                                         <div class="userImgPlaceholder">
-                                            <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" />
+                                            <img src='<%# "data:image;base64," + Convert.ToBase64String(Eval("PROFILE_IMAGE") as byte[]) %>' />
                                         </div>
                                         <div class="userInfo">
                                             <p class="userName"><%# Eval("UserName") %></p>
@@ -62,7 +62,7 @@
                               Activities done
                             </div>
 
-                            <div class="hiddenNumber">120</div>
+                            <div class="hiddenNumber" runat="server" id="activitiesDone"></div>
 
                         </div>
 
@@ -70,10 +70,10 @@
                             <div class="ag-courses-item_bg"></div>
 
                             <div class="ag-courses-item_title">
-                              Awards redeemed
+                              Rewards redeemed
                             </div>
 
-                            <div class="hiddenNumber">120</div>
+                            <div class="hiddenNumber" runat="server" id="redeemedRewards"></div>
                         </div>
 
                         <div class="ag-courses_item">
@@ -100,7 +100,7 @@
                         <div class="userCard row-cols-2">
                             <div class="userImgPlaceholder"><img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" /></div>
                             <div class="userInfo">
-                                <p class="userName unde">Username <br /> <span class="black">Online</span></p>
+                                <p class="userName">Username <br /> <span class="black">Online</span></p>
                                 <p class="bold white">98 points</p>
                             </div>
                         </div>

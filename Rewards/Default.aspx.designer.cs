@@ -33,6 +33,24 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.ListView lvLeaderboard;
 
         /// <summary>
+        /// activitiesDone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl activitiesDone;
+
+        /// <summary>
+        /// redeemedRewards control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl redeemedRewards;
+
+        /// <summary>
         /// lifetimePoints control.
         /// </summary>
         /// <remarks>

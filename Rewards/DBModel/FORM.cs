@@ -26,7 +26,7 @@ namespace Rewards.DBModel
         public string DESCRIPTION { get; set; }
         public Nullable<bool> STATUS { get; set; }
         public System.DateTime CREATE_DATE { get; set; }
-        public System.DateTime MANAGER_DATA_APROVED { get; set; }
+        public Nullable<System.DateTime> MANAGER_DATA_APROVED { get; set; }
     
         public virtual ACTIVITY ACTIVITY { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

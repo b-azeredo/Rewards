@@ -24,6 +24,7 @@ namespace Rewards.DBModel
         public string NAME { get; set; }
         public int POINTS { get; set; }
         public int LIMIT_PER_WEEK { get; set; }
+        public Nullable<bool> ACTIVATED { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FORM> FORM { get; set; }

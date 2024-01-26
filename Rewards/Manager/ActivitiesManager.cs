@@ -13,7 +13,7 @@ namespace Rewards.Manager
         {
             using (Entities2 context = new Entities2())
             {
-                List<ACTIVITY> activities = context.ACTIVITY.ToList();
+                List<ACTIVITY> activities = context.ACTIVITY.Where(a => a.ACTIVATED == true).ToList();
 
                 List<ActivityItem> activitiesItem = activities.Select(a => new ActivityItem
                 {
