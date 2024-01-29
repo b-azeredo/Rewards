@@ -513,9 +513,24 @@ p.userName {
 	color: black;
 }
 
-/* responsiveness */
+/* Modal */
 
-@media (max-height: 640px){
+.modal-content{
+	background-color: var(--primary);
+	color:white;
+}
+
+.modal-content .form-control{
+	background-color: var(--secondary);
+	color: white;
+}
+
+.btn-close {
+	color: white;
+}
+
+/* responsiveness */
+@media (max-height: 640px) {
 	.ag-courses_box {
 		height: 90%;
 		padding: 40px 0px 20px 0px;

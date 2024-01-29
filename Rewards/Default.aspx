@@ -3,6 +3,11 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <main class="container-fluid p-3">
+
+
+
+
+
         <div class="row pb-4">
             <div class="col-xxl-5 col-xl-4 overflow-hidden"> <!-- ACTIVITIES -->
                 <div class="content" style="max-height:100%;">
@@ -16,7 +21,24 @@
                                 <ItemTemplate>
                             	    <li class="d-flex justify-content-between">
 		                                <h3><%# Eval("NAME") %> <span class="mx-2 p-1"><%# Eval("POINTS") %>  points</span> </h3>
-                                        <button type="button" class="btn btn-success py-1 px-2">Submit</button>
+                                        <button type="button" class="btn btn-success py-1 px-2" data-bs-toggle="modal" data-bs-target="#myModal"  data-name='<%# Eval("NAME") %>'>Submit</button>
+                                        <div id="myModal" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Modal title</h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <textarea class="form-control" placeholder="Write down in detail the activity you did" style="resize: vertical; height: 100px;"></textarea>
+                                                    <input type="file" class="form-control mt-2">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                                    <asp:Button ID="btnSubmitForm" runat="server" CssClass="btn btn-primary" Text="Submit" ClientIDMode="Static" />
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
 	                                </li>
                                 </ItemTemplate>
                             </asp:ListView>
@@ -159,5 +181,14 @@
                 </div>
             </div>
     </main>
+    <script>
+        $('#myModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); 
+            var activityName = button.data('name');
 
+            var modal = $(this);
+            modal.find('.modal-title').text(activityName);
+
+        });
+    </script>
 </asp:Content>

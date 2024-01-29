@@ -44,6 +44,11 @@ namespace Rewards
                 profileUsername.InnerHtml = $"{UserManager.Get_Username(1)}" + "<br /> <span class=\"black\">Online</span>";
                 profilePoints.InnerText = $"{UserManager.Get_Current_Points(1)}";
 
+                /* Submit Form */
+
+                
+
+
             }
         }
     }
