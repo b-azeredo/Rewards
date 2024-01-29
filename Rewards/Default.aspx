@@ -110,43 +110,22 @@
                                 <button type="button" class="btn btn-success py-1 px-2 align-self-end mt-0 mx-1">View All</button>
                             </div>
                             <div class="transactionsContainer overflow-auto">
-                                <div class="transaction d-flex justify-content-between">
-                                    <p class="white w-50">Activity Done</p>
-                                    <p class="up">+9 points</p>
-                                    <p>22/01</p>
-                                </div>
-                                <div class="transaction d-flex justify-content-between">
-                                    <p class="white w-50">Award Redeemed</p>
-                                    <p class="down">-5 points</p>
-                                    <p>22/01</p>
-                                </div>
-                                <div class="transaction d-flex justify-content-between">
-                                    <p class="white w-50">Activity Done</p>
-                                    <p class="up">+3 points</p>
-                                    <p>22/01</p>
-                                </div>
-                               <div class="transaction d-flex justify-content-between">
-                                    <p class="white w-50">Award Redeemed</p>
-                                    <p class="down">-4 points</p>
-                                    <p>22/01</p>
-                                </div>
-                                <div class="transaction d-flex justify-content-between">
-                                    <p class="white w-50">Award Redeemed</p>
-                                    <p class="down">-4 points</p>
-                                    <p>22/01</p>
-                                </div>
-                                <div class="transaction d-flex justify-content-between">
-                                    <p class="white w-50">Award Redeemed</p>
-                                    <p class="down">-4 points</p>
-                                    <p>22/01</p>
-                                </div>
+                            <asp:ListView ID="lvTransactions" runat="server">
+                                <ItemTemplate>
+                                    <div class="transaction d-flex justify-content-between">
+                                        <p class="white w-50"> <%# Eval("NAME") %></p>
+                                        <p class="<%# Eval("ItemClass") %>"><%# Eval("POINTS") %> points</p>
+                                        <p class="TransactionDate"><%# Eval("DATE") %></p>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:ListView>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-8">
-                <div class="content"> <!-- AWARDS -->
+                <div class="content"> <!-- REWARDS -->
                      <div class="d-flex pb-2">
                         <span class="d-flex align-items-center"><img width="30" height="30" src="icon/award-solid.svg"/></span> 
                         <h1>Rewards</h1>
@@ -159,7 +138,7 @@
                                 <ItemTemplate>
                                      <div class="card">
                                          <div class="imgBx">
-                                             <img src="http://pngimg.com/uploads/running_shoes/running_shoes_PNG5782.png">
+                                             <img src="<%# "data:image;base64," + Convert.ToBase64String(Eval("IMAGE") as byte[]) %>">
                                          </div>
 
                                          <div class="contentBx">

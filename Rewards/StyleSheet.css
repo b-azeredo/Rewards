@@ -558,4 +558,12 @@ p.userName {
 		margin: 10px;
 		flex-grow: 1;
 	}
+
 }
+
+@media (max-width: 1500px) {
+	.TransactionDate {
+		display: none;
+	}
+}
+

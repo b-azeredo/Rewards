@@ -27,6 +27,5 @@ namespace Rewards.Manager
                 return leaderboardItems;
             }
         }
-
     }
 }

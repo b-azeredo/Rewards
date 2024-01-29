@@ -81,6 +81,44 @@ namespace Rewards.Manager
             }
         }
 
+        public static List<TransactionItem> GetTransactionItemsFromDatabase(int ID)
+        {
+            using (var context = new Entities2())
+            {
+                List<FORM> forms = context.FORM.ToList();
+                List<PURCHASE> purchases = context.PURCHASE.ToList();
+
+                var activitiesList = context.FORM.Where(f => f.USER_ID == ID && f.STATUS == true).ToList();
+                var purchasesList = context.PURCHASE.Where(p => p.USER_ID == ID).ToList();
+
+                List<TransactionItem> transactionItems = activitiesList.Select(f => new TransactionItem
+                {
+                    NAME = $"Activity Done ({f.ACTIVITY.NAME})",
+                    DATE = f.CREATE_DATE.ToString(),
+                    POINTS = f.ACTIVITY.POINTS,
+                    ItemClass = "up"
+                }).ToList();
+
+                transactionItems.AddRange(purchasesList.Select(p => new TransactionItem
+                {
+                    NAME = $"Reward Claimed ({p.REWARD.NAME})",
+                    DATE = p.PURCHASE_DATE.ToString(),
+                    POINTS = p.REWARD.PRICE * -1,
+                    ItemClass = "down"
+                }));
+
+                transactionItems = transactionItems.OrderByDescending(t => t.DATE).ToList();
+
+                foreach (var transactionItem in transactionItems)
+                {
+                    transactionItem.DATE = DateTime.Parse(transactionItem.DATE).ToString("yyyy/MM/dd");
+                }
+
+                transactionItems = transactionItems.Take(5).ToList();
+
+                return transactionItems;
+            }
+        }
 
     }
 }
