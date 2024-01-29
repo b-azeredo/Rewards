@@ -24,6 +24,33 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.ListView lvActivity;
 
         /// <summary>
+        /// activityID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField activityID;
+
+        /// <summary>
+        /// description control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox description;
+
+        /// <summary>
+        /// btnSubmitForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmitForm;
+
+        /// <summary>
         /// lvLeaderboard control.
         /// </summary>
         /// <remarks>

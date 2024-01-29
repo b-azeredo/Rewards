@@ -17,32 +17,35 @@
                     </div>
                     <div class="overflow-auto" style="max-height:85%;">
                         <ol style="--length: 0" role="list">
-	                       <asp:ListView ID="lvActivity" runat="server">
+                            <asp:ListView ID="lvActivity" runat="server">
                                 <ItemTemplate>
-                            	    <li class="d-flex justify-content-between">
-		                                <h3><%# Eval("NAME") %> <span class="mx-2 p-1"><%# Eval("POINTS") %>  points</span> </h3>
-                                        <button type="button" class="btn btn-success py-1 px-2" data-bs-toggle="modal" data-bs-target="#myModal"  data-name='<%# Eval("NAME") %>'>Submit</button>
-                                        <div id="myModal" class="modal fade" role="dialog">
-                                            <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Modal title</h5>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <textarea class="form-control" placeholder="Write down in detail the activity you did" style="resize: vertical; height: 100px;"></textarea>
-                                                    <input type="file" class="form-control mt-2">
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                                    <asp:Button ID="btnSubmitForm" runat="server" CssClass="btn btn-primary" Text="Submit" ClientIDMode="Static" />
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-	                                </li>
+                                    <li class="d-flex justify-content-between">
+                                        <h3><%# Eval("NAME") %> <span class="mx-2 p-1"><%# Eval("POINTS") %>  points</span> </h3>
+                                        <button type="button" class="btn btn-success py-1 px-2 submit-btn" data-bs-toggle="modal" data-bs-target="#myModal" data-name='<%# Eval("NAME") %>' data-id="<%# Eval("ACTIVITY_ID") %>">Submit</button>
+                                    </li>
                                 </ItemTemplate>
                             </asp:ListView>
+
                         </ol>
+                    </div>
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Modal title</h5>
+                            </div>
+                            <div class="modal-body">
+                                <asp:HiddenField ID="activityID" runat="server" />
+                                <asp:TextBox ID="description" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Write down in detail the activity you did"></asp:TextBox>
+
+                                <input type="file" class="form-control mt-2">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                <asp:Button ID="btnSubmitForm" runat="server" CssClass="btn btn-primary" Text="Submit" OnClick="btnSubmitForm_Click"/>
+                            </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -169,7 +172,7 @@
 
                                              <h4><%# Eval("PRICE") %> Points</h4>
 
-                                             <button type="button" class="btn btn-success py-2 px-3">Claim</button>
+                                             <asp:Button ID="btnClaim" CssClass="btn btn-success py-2 px-3" runat="server" Text="Claim" CommandName="Claim" CommandArgument='<%# Eval("ID") %>' OnCommand="btnClaim_Command" />
                                          </div>
                                      </div>
                                 </ItemTemplate>
@@ -181,14 +184,20 @@
                 </div>
             </div>
     </main>
-    <script>
-        $('#myModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); 
-            var activityName = button.data('name');
+        <script>
+            $('#myModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var activityName = button.data('name');
+                var activityId = button.data('id'); // Capturando o ID da atividade
+                document.querySelectorAll('.submit-btn').forEach(button => {
+                    button.addEventListener('click', function () {
+                        document.getElementById('MainContent_activityID').value = activityId; 
+                    });
+                });
 
-            var modal = $(this);
-            modal.find('.modal-title').text(activityName);
+                var modal = $(this);
+                modal.find('.modal-title').text(activityName);
+            });
+        </script>
 
-        });
-    </script>
 </asp:Content>

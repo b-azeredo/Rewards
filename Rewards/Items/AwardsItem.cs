@@ -7,6 +7,7 @@ namespace Rewards.Items
 {
     public class AwardsItem
     {
+        public int ID {  get; set; }
         public string NAME { get; set; }
         public int PRICE { get; set; }
         public byte[] IMAGE { get; set; }

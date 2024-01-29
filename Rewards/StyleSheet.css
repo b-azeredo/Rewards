@@ -8,10 +8,10 @@
 	--text-primary: white;
 }
 
-*{
-    color: var(--text-primary);
-    box-sizing: border-box;
-    font-family: 'Rubik';
+* {
+	color: var(--text-primary);
+	box-sizing: border-box;
+	font-family: 'Rubik';
 }
 
 body {
@@ -19,15 +19,15 @@ body {
 }
 
 a {
-    color: white;
-    width: 100%;
-    margin-top: 5px;
-    text-decoration: none;
+	color: white;
+	width: 100%;
+	margin-top: 5px;
+	text-decoration: none;
 }
 
-a:hover{
-	color: var(--text-primary);
-}
+	a:hover {
+		color: var(--text-primary);
+	}
 
 /* Login Page */
 
@@ -38,69 +38,68 @@ a:hover{
 	background-color: var(--secondary);
 }
 
-#mainContent h1{
-	color: var(--text-primary);
-	font-size: 40px;
-	line-height: 60%;
-	display:flex;
-}
+	#mainContent h1 {
+		color: var(--text-primary);
+		font-size: 40px;
+		line-height: 60%;
+		display: flex;
+	}
 
-#mainContent h2{
-	font-size: 20px;
-	display:flex;
-	margin-bottom: 30px;
-}
+	#mainContent h2 {
+		font-size: 20px;
+		display: flex;
+		margin-bottom: 30px;
+	}
 
-#mainContent .imageContainer, #mainContent .imageContainer img{
-	background-color: var(--secondary);
-	border-radius: 20px 0px 0px 20px;
-	padding: 0px;
-}
+	#mainContent .imageContainer, #mainContent .imageContainer img {
+		background-color: var(--secondary);
+		border-radius: 20px 0px 0px 20px;
+		padding: 0px;
+	}
 
 .loginBox {
 	background-color: var(--secondary);
 	border-radius: 20px;
 }
 
-.loginContainer{
+.loginContainer {
 	width: 100%;
 }
 
-.loginContainer input[type="text"]{
-	width: 100%;
-	padding: 8px 20px;
-	border-radius: 5px;
-	border: 1px solid var(--tertiary);
-	background-color: var(--secondary);
-}
+	.loginContainer input[type="text"] {
+		width: 100%;
+		padding: 8px 20px;
+		border-radius: 5px;
+		border: 1px solid var(--tertiary);
+		background-color: var(--secondary);
+	}
 
-.loginContainer input[type="text"]:focus{
-	outline:none;
-}
+		.loginContainer input[type="text"]:focus {
+			outline: none;
+		}
 
-.loginContainer input[type="submit"]{
-	width: 100%;
-}
+	.loginContainer input[type="submit"] {
+		width: 100%;
+	}
 
 /* Main Page */
 
 main.container-fluid {
-    height: 100vh;
-    width: 100vw;
-    background-color: var(--primary);
+	height: 100vh;
+	width: 100vw;
+	background-color: var(--primary);
 }
 
 main div.row {
-    height: 50%;
+	height: 50%;
 }
 
 main > div {
-    background-color: var(--primary);
+	background-color: var(--primary);
 }
 
 .container-fluid .row > div {
 	max-height: 100%;
-
 }
 
 div.content {
@@ -115,19 +114,18 @@ div.content {
 }
 
 
-div.content h1{
-    font-size: 1.7vw;
-    padding: 0px 8px;
-    margin-top: 9px;
-}
+	div.content h1 {
+		font-size: 1.7vw;
+		padding: 0px 8px;
+		margin-top: 9px;
+	}
 
-div.content div.d-flex span{
-    padding: 0px 10px;
-    border-radius: 5px;
-    background-color: var(--tertiary);
-    height: 48px;
-
-}
+	div.content div.d-flex span {
+		padding: 0px 10px;
+		border-radius: 5px;
+		background-color: var(--tertiary);
+		height: 48px;
+	}
 
 h3 span {
 	padding: 0px 5px 10px 0px;
@@ -136,8 +134,8 @@ h3 span {
 	color: black;
 }
 
-div.d-flex.pb-2{
-	align-items:center;
+div.d-flex.pb-2 {
+	align-items: center;
 }
 
 div.content img {
@@ -162,17 +160,17 @@ li {
 }
 
 
-li::before {
-	content: '';
-	display: block;
-	width: 100%;
-	height: 1rem;
-	position: absolute;
-	border-radius: 7px 7px 0px 0px;
-	top: 0;
-	left: 0;
-	background-color: var(--tertiary);
-}
+	li::before {
+		content: '';
+		display: block;
+		width: 100%;
+		height: 1rem;
+		position: absolute;
+		border-radius: 7px 7px 0px 0px;
+		top: 0;
+		left: 0;
+		background-color: var(--tertiary);
+	}
 
 h3 {
 	display: flex;
@@ -182,26 +180,28 @@ h3 {
 	margin-bottom: 4px;
 }
 
-h3::before {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex: 0 0 auto;
-	margin-right: 0.5rem;
-	width: 2rem;
-	height: 2rem;
-	content: counter(list);
-	padding: 1rem;
-	border-radius: 50%;
-	color: black;
+	h3::before {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex: 0 0 auto;
+		margin-right: 0.5rem;
+		width: 2rem;
+		height: 2rem;
+		content: counter(list);
+		padding: 1rem;
+		border-radius: 50%;
+		color: black;
+		background-color: var(--tertiary);
+	}
+
+.btn-success {
 	background-color: var(--tertiary);
+	color: black;
 }
 
-.btn-success{
-	background-color: var(--tertiary);
-	color: black;
-}
 /* SCROLLBAR */
+
 ::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	border-radius: 10px;
@@ -236,35 +236,36 @@ div.userCard {
 	cursor: pointer;
 }
 
-div.userCard div.userImgPlaceholder{
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background-color: var(--secondary);
-}
+	div.userCard div.userImgPlaceholder {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background-color: var(--secondary);
+	}
 
-div.userCard div.userImgPlaceholder img{
-	max-width: 100%;
-	border-radius: 50%;
-}
+		div.userCard div.userImgPlaceholder img {
+			max-width: 100%;
+			border-radius: 50%;
+		}
 
-div.userCard div.userInfo{
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 85%;
-	height: 100%;
-}
+	div.userCard div.userInfo {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 85%;
+		height: 100%;
+	}
 
-div.userCard div.userInfo p{
-	margin-bottom: 0px;
-}
+		div.userCard div.userInfo p {
+			margin-bottom: 0px;
+		}
 
 p.userName {
 	color: var(--text-primary);
 }
 
 /* Your Progress */
+
 .ag-courses_box {
 	height: 85%;
 }
@@ -286,9 +287,9 @@ p.userName {
 	align-items: center;
 }
 
-.ag-courses_item:hover .ag-courses-item_bg {
-	transform: scale(2.5);
-}
+	.ag-courses_item:hover .ag-courses-item_bg {
+		transform: scale(2.5);
+	}
 
 .ag-courses-item_title {
 	overflow: hidden;
@@ -312,7 +313,7 @@ p.userName {
 	transition: all .5s ease;
 }
 
-.ag-courses_item .hiddenNumber{
+.ag-courses_item .hiddenNumber {
 	color: black;
 	font-size: 40px;
 	font-weight: bold;
@@ -322,139 +323,141 @@ p.userName {
 	animation-duration: 0.5s;
 }
 
-.ag-courses_item:hover .hiddenNumber{
+.ag-courses_item:hover .hiddenNumber {
 	display: block;
 }
 
-@keyframes fromRight{
-	from{
+@keyframes fromRight {
+
+	from {
 		margin-right: -70px;
 	}
-	to{
+
+	to {
 		margin-right: 0px;
 	}
 }
 
 /* Awards */
+
 .rewards {
 	height: 95%;
 }
 
-.rewards .cardsContainer{
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	flex-wrap: wrap;
-	width: 100%;
-	overflow: auto;
-	height: 95%;
-	padding: 0px;
-}
+	.rewards .cardsContainer {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		flex-wrap: wrap;
+		width: 100%;
+		overflow: auto;
+		height: 95%;
+		padding: 0px;
+	}
 
-.rewards .card {
-	position: relative;
-	width: 140px;
-	height: 180px;
-	background: rgb(36,37,41);
-	background: linear-gradient(90deg, var(--primary) 10%, var(--secondary) 50%, var(--primary) 100%);
-	border-radius: 10px;
-	overflow: hidden;
-	margin-bottom: 15px;
-	flex-basis: 30%;
-	margin: 10px;
-}
+	.rewards .card {
+		position: relative;
+		width: 140px;
+		height: 180px;
+		background: rgb(36,37,41);
+		background: linear-gradient(90deg, var(--primary) 10%, var(--secondary) 50%, var(--primary) 100%);
+		border-radius: 10px;
+		overflow: hidden;
+		margin-bottom: 15px;
+		flex-basis: 30%;
+		margin: 10px;
+	}
 
-.rewards .card:before {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: var(--tertiary);
-	clip-path: circle(200px at 50% -60%);
-	transition: 0.5s ease-in-out;
-}
+		.rewards .card:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: var(--tertiary);
+			clip-path: circle(200px at 50% -60%);
+			transition: 0.5s ease-in-out;
+		}
 
-.rewards .card:hover:before {
-	clip-path: circle(100px at 60% -60%);
-}
+		.rewards .card:hover:before {
+			clip-path: circle(100px at 60% -60%);
+		}
 
-.rewards .card .imgBx {
-	position: absolute;
-	top: 30%;
-	transform: translateY(-50%);
-	z-index: 1000;
-	width: 100%;
-	height: 100%;
-	transition: .5s;
-}
+		.rewards .card .imgBx {
+			position: absolute;
+			top: 30%;
+			transform: translateY(-50%);
+			z-index: 1000;
+			width: 100%;
+			height: 100%;
+			transition: .5s;
+		}
 
-.rewards .card:hover .imgBx {
-	top: 0%;
-	transform: translateY(-30%);
-}
+		.rewards .card:hover .imgBx {
+			top: 0%;
+			transform: translateY(-30%);
+		}
 
-.rewards .card .imgBx img {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%) rotate(20deg);
-	width: 120px;
-}
+		.rewards .card .imgBx img {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%) rotate(20deg);
+			width: 120px;
+		}
 
-.rewards .card .contentBx {
-	position: absolute;
-	bottom: -20px;
-	width: 100%;
-	text-align: center;
-	transition: 0.5s;
-	z-index: 90;
-}
+		.rewards .card .contentBx {
+			position: absolute;
+			bottom: -20px;
+			width: 100%;
+			text-align: center;
+			transition: 0.5s;
+			z-index: 90;
+		}
 
-.rewards .card:hover .contentBx{
-	bottom: 5px;
-}
+		.rewards .card:hover .contentBx {
+			bottom: 5px;
+		}
 
-.rewards .card .contentBx h2 {
-	position: relative;
-	font-weight: 600;
-	letter-spacing: 1px;
-	color: var(--text-primary);
-	font-size: 20px;
-	transform: translateY(0px);
-}
-
-
-.rewards .card .contentBx h4{
-	font-size: 20px;
-	transform: translateY(0px);
-
-}
-
-.rewards .card:hover .rewards .card .contentBx h2, .rewards .card .contentBx h4{
-	transform: translateY(0px);
-}
-
-.rewards .card .contentBx button {
-	display: inline-block;
-	text-decoration: none;
-	color: black;
-	opacity: 0;
-	transform: translateY(10px);
-	transition: .5s;
-}
-
-.rewards .card:hover .contentBx button {
-	opacity: 1;
-	transform: translateY(0px);
-	transition-delay: 0s;
-}
+		.rewards .card .contentBx h2 {
+			position: relative;
+			font-weight: 600;
+			letter-spacing: 1px;
+			color: var(--text-primary);
+			font-size: 20px;
+			transform: translateY(0px);
+		}
 
 
-.rewards .card .contentBx button:hover{
-	color:white;
-}
+		.rewards .card .contentBx h4 {
+			font-size: 20px;
+			transform: translateY(0px);
+		}
+
+		.rewards .card:hover .rewards .card .contentBx h2, .rewards .card .contentBx h4 {
+			transform: translateY(0px);
+		}
+
+		.rewards .card .contentBx button, .rewards .card .contentBx input {
+			display: inline-block;
+			text-decoration: none;
+			color: black;
+			opacity: 0;
+			transform: translateY(10px);
+			transition: .5s;
+		}
+
+		.rewards .card:hover .contentBx button, .rewards .card:hover .contentBx input {
+			opacity: 1;
+			transform: translateY(0px);
+			transition-delay: 0s;
+		}
+
+
+		.rewards .card .contentBx button:hover, .rewards .card .contentBx input:hover {
+			color: white;
+		}
 
 .btn-success {
 	position: relative;
@@ -463,11 +466,11 @@ p.userName {
 }
 
 
-.btn-success:hover {
-	box-shadow: inset 260px 0px 0px 0px var(--secondary);
-	color: white;
-	border: none;
-}
+	.btn-success:hover {
+		box-shadow: inset 260px 0px 0px 0px var(--secondary);
+		color: white;
+		border: none;
+	}
 
 
 /* Recent Transactions */
@@ -482,55 +485,57 @@ p.userName {
 }
 
 
-.recentTransactions .transactionsContainer .transaction {
-	width: 99%;
-	min-height: 45px;
-	background-color: transparent;
-	border-radius: 5px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0px 10px;
-}
+	.recentTransactions .transactionsContainer .transaction {
+		width: 99%;
+		min-height: 45px;
+		background-color: transparent;
+		border-radius: 5px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0px 10px;
+	}
 
-.up{
+.up {
 	color: var(--tertiary);
 }
 
-.down{
+.down {
 	color: indianred;
 }
 
-.bold{
+.bold {
 	font-weight: bold;
 }
 
-.white{
+.white {
 	color: white;
 }
 
-.black{
+.black {
 	color: black;
 }
 
 /* Modal */
 
-.modal-content{
+.modal-content {
 	background-color: var(--primary);
-	color:white;
-}
-
-.modal-content .form-control{
-	background-color: var(--secondary);
 	color: white;
 }
+
+	.modal-content .form-control {
+		background-color: var(--secondary);
+		color: white;
+	}
 
 .btn-close {
 	color: white;
 }
 
 /* responsiveness */
+
 @media (max-height: 640px) {
+
 	.ag-courses_box {
 		height: 90%;
 		padding: 40px 0px 20px 0px;
@@ -538,23 +543,27 @@ p.userName {
 }
 
 @media (max-width: 900px) {
+
 	div.content h1 {
 		font-size: 5vw;
 		padding: 0px 8px;
 		margin-top: 9px;
 	}
-	.rewards .card{
+
+	.rewards .card {
 		width: 100%;
 		margin-left: 0px;
 		margin-right: 0px;
 	}
-	.rewards .card:before {
-	clip-path: circle(200px at 60% -60%);
-	}
+
+		.rewards .card:before {
+			clip-path: circle(200px at 60% -60%);
+		}
 }
 
 
 @media (max-width: 1200px) {
+
 	main div.row {
 		height: auto;
 	}
@@ -568,17 +577,17 @@ p.userName {
 		flex: 1 0 100%;
 		margin-bottom: 20px;
 	}
-	.rewards .card{
+
+	.rewards .card {
 		flex-basis: 40%;
 		margin: 10px;
 		flex-grow: 1;
 	}
-
 }
 
 @media (max-width: 1500px) {
+
 	.TransactionDate {
 		display: none;
 	}
 }
-

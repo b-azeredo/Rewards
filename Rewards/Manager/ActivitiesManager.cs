@@ -17,6 +17,7 @@ namespace Rewards.Manager
 
                 List<ActivityItem> activitiesItem = activities.Select(a => new ActivityItem
                 {
+                    ACTIVITY_ID = a.ID,
                     NAME = a.NAME,
                     POINTS = a.POINTS
                 }).ToList();

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Web;
 using Rewards;
+using System.Web.UI.WebControls;
 
 
 namespace Rewards.Manager
@@ -117,6 +118,52 @@ namespace Rewards.Manager
                 transactionItems = transactionItems.Take(5).ToList();
 
                 return transactionItems;
+            }
+        }
+
+        public static bool RemoveOneFromStock(int rewardId)
+        {
+            using (Entities2 entities = new Entities2())
+            {
+                var stockReward = entities.REWARD_STOCK.FirstOrDefault(sr => sr.REWARD_ID == rewardId);
+
+                if (stockReward != null && stockReward.STOCK > 0)
+                {
+                    stockReward.STOCK--;
+                    entities.SaveChanges();
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+
+        public static bool AddRewardToUser(int rewardId, int quantity)
+        {
+            using (Entities2 entities = new Entities2())
+            {
+                int userId = 1;
+
+                int userPoints = UserManager.Get_Current_Points(userId);
+                int rewardPoints = entities.REWARD.Where(r => r.ID == rewardId).Select(r => r.PRICE).FirstOrDefault();
+
+                if (userPoints >= rewardPoints)
+                {
+                    PURCHASE purchase = new PURCHASE
+                    {
+                        USER_ID = userId,
+                        REWARD_ID = rewardId,
+                        PURCHASE_DATE = DateTime.Now
+                    };
+
+                    entities.PURCHASE.Add(purchase);
+                    entities.SaveChanges();
+
+                    return true;
+                }
+
+                return false;
             }
         }
 
