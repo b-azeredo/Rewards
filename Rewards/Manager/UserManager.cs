@@ -73,6 +73,15 @@ namespace Rewards.Manager
             }
         }
 
+        public static string Get_Manager_Email(int ID)
+        {
+            using (Entities2 Entities = new Entities2())
+            {
+                var user = Entities.USER.FirstOrDefault(u => u.ID == ID);
+                return user.MANAGER_EMAIL;
+            }
+        }
+
         public static string Get_Username(int ID)
         {
             using (Entities2 Entities = new Entities2())
@@ -114,8 +123,6 @@ namespace Rewards.Manager
                 {
                     transactionItem.DATE = DateTime.Parse(transactionItem.DATE).ToString("yyyy/MM/dd");
                 }
-
-                transactionItems = transactionItems.Take(5).ToList();
 
                 return transactionItems;
             }

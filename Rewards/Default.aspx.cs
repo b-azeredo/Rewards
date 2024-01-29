@@ -5,12 +5,13 @@ using System.Web.UI;
 using System.IO;
 using System.Web.UI.WebControls;
 using System.EnterpriseServices;
+using System.Linq;
 
 namespace Rewards
 {
     public partial class _Default : System.Web.UI.Page
     {
-        private int USER_ID = 1;
+        private int USER_ID = 4;
 
         protected void btnClaim_Command(object sender, CommandEventArgs e)
         {
@@ -27,9 +28,6 @@ namespace Rewards
 
         protected void btnSubmitForm_Click(object sender, EventArgs e)
         {
-            Button btnSubmitForm = (Button)sender;
-
-            // Obtendo o ID da atividade do campo oculto
             int activityId = Convert.ToInt32(activityID.Value);
 
             using (Entities2 entities = new Entities2())
@@ -37,7 +35,7 @@ namespace Rewards
                 var form = new FORM()
                 {
                     USER_ID = this.USER_ID,
-                    ACTIVITY_ID = activityId, // Usando o ID da atividade obtido do campo oculto
+                    ACTIVITY_ID = activityId,
                     DESCRIPTION = description.Text,
                     STATUS = true,
                     CREATE_DATE = DateTime.Now,
@@ -48,6 +46,7 @@ namespace Rewards
                 Response.Redirect(Request.RawUrl);
             }
         }
+
 
 
 
@@ -70,9 +69,9 @@ namespace Rewards
                 lvActivity.DataSource = activityItems;
                 lvActivity.DataBind();
 
-                /* PROFILE TRANSACTIONS */
+                /* TRANSACTIONS */
 
-                var transactionItems = UserManager.GetTransactionItemsFromDatabase(USER_ID);
+                var transactionItems = UserManager.GetTransactionItemsFromDatabase(USER_ID).Take(5).ToList();
                 lvTransactions.DataSource = transactionItems;
                 lvTransactions.DataBind();
 
@@ -83,11 +82,21 @@ namespace Rewards
 
                 /* PROFILE INFO */
                 profileImage.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
-                profileUsername.InnerHtml = $"{UserManager.Get_Username(USER_ID)}" + "<br /> <span class=\"black\">Online</span>";
+                profileUsername.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
                 profilePoints.InnerText = $"{UserManager.Get_Current_Points(USER_ID)}";
 
+                /* PROFILE INFO (Modal Transactions) */
+                var transactionItems2 = UserManager.GetTransactionItemsFromDatabase(USER_ID).Take(20).ToList();
+                lvProfileTransactions.DataSource = transactionItems2;
+                lvProfileTransactions.DataBind();
 
+                /* PROFILE INFO (Modal Info) */
+                profileImage2.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
+                profileUsername2.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
+                profilePoints2.InnerText = $"{UserManager.Get_Current_Points(USER_ID)}";
+                managerEmail.InnerText = $"{UserManager.Get_Manager_Email(USER_ID)}";
             }
+
         }
     }
 }

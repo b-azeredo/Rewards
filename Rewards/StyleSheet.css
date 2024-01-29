@@ -114,18 +114,18 @@ div.content {
 }
 
 
-	div.content h1 {
-		font-size: 1.7vw;
-		padding: 0px 8px;
-		margin-top: 9px;
-	}
+div.content h1 {
+	font-size: 1.7vw;
+	padding: 0px 8px;
+	margin-top: 9px;
+}
 
-	div.content div.d-flex span {
-		padding: 0px 10px;
-		border-radius: 5px;
-		background-color: var(--tertiary);
-		height: 48px;
-	}
+div.content div.d-flex span {
+	padding: 0px 10px;
+	border-radius: 5px;
+	background-color: var(--tertiary);
+	height: 48px;
+}
 
 h3 span {
 	padding: 0px 5px 10px 0px;
@@ -137,10 +137,6 @@ h3 span {
 div.d-flex.pb-2 {
 	align-items: center;
 }
-
-div.content img {
-}
-
 
 ol {
 	list-style: none;
@@ -159,18 +155,17 @@ li {
 	background: linear-gradient(90deg, var(--primary) 10%, var(--secondary) 50%, var(--primary) 100%);
 }
 
-
-	li::before {
-		content: '';
-		display: block;
-		width: 100%;
-		height: 1rem;
-		position: absolute;
-		border-radius: 7px 7px 0px 0px;
-		top: 0;
-		left: 0;
-		background-color: var(--tertiary);
-	}
+li::before {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 1rem;
+	position: absolute;
+	border-radius: 7px 7px 0px 0px;
+	top: 0;
+	left: 0;
+	background-color: var(--tertiary);
+}
 
 h3 {
 	display: flex;
@@ -180,20 +175,20 @@ h3 {
 	margin-bottom: 4px;
 }
 
-	h3::before {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex: 0 0 auto;
-		margin-right: 0.5rem;
-		width: 2rem;
-		height: 2rem;
-		content: counter(list);
-		padding: 1rem;
-		border-radius: 50%;
-		color: black;
-		background-color: var(--tertiary);
-	}
+h3::before {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 0 0 auto;
+	margin-right: 0.5rem;
+	width: 2rem;
+	height: 2rem;
+	content: counter(list);
+	padding: 1rem;
+	border-radius: 50%;
+	color: black;
+	background-color: var(--tertiary);
+}
 
 .btn-success {
 	background-color: var(--tertiary);
@@ -236,29 +231,29 @@ div.userCard {
 	cursor: pointer;
 }
 
-	div.userCard div.userImgPlaceholder {
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
-		background-color: var(--secondary);
-	}
+div.userCard div.userImgPlaceholder {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: var(--secondary);
+}
 
-		div.userCard div.userImgPlaceholder img {
-			max-width: 100%;
-			border-radius: 50%;
-		}
+div.userCard div.userImgPlaceholder img {
+	max-width: 100%;
+	border-radius: 50%;
+}
 
-	div.userCard div.userInfo {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		width: 85%;
-		height: 100%;
-	}
+div.userCard div.userInfo {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 85%;
+	height: 100%;
+}
 
-		div.userCard div.userInfo p {
-			margin-bottom: 0px;
-		}
+div.userCard div.userInfo p {
+	margin-bottom: 0px;
+}
 
 p.userName {
 	color: var(--text-primary);
@@ -287,9 +282,6 @@ p.userName {
 	align-items: center;
 }
 
-	.ag-courses_item:hover .ag-courses-item_bg {
-		transform: scale(2.5);
-	}
 
 .ag-courses-item_title {
 	overflow: hidden;
@@ -310,21 +302,26 @@ p.userName {
 	top: -75px;
 	right: -75px;
 	border-radius: 50%;
-	transition: all .5s ease;
+	transition: all .3s ease;
+	transform: scale(1.9);
 }
 
-.ag-courses_item .hiddenNumber {
+.ag-courses_item:hover .ag-courses-item_bg {
+	transform: scale(2.1);
+	opacity: 5%;
+}
+
+.ag-courses_item:hover .number{
+	color: white;
+}
+
+.ag-courses_item .number {
 	color: black;
 	font-size: 40px;
 	font-weight: bold;
-	display: none;
 	z-index: 100;
 	animation-name: fromRight;
 	animation-duration: 0.5s;
-}
-
-.ag-courses_item:hover .hiddenNumber {
-	display: block;
 }
 
 @keyframes fromRight {
@@ -338,126 +335,126 @@ p.userName {
 	}
 }
 
-/* Awards */
+/* Rewards */
 
 .rewards {
 	height: 95%;
 }
 
-	.rewards .cardsContainer {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		flex-wrap: wrap;
-		width: 100%;
-		overflow: auto;
-		height: 95%;
-		padding: 0px;
-	}
+.rewards .cardsContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	width: 100%;
+	overflow: auto;
+	height: 95%;
+	padding: 0px;
+}
 
-	.rewards .card {
-		position: relative;
-		width: 140px;
-		height: 180px;
-		background: rgb(36,37,41);
-		background: linear-gradient(90deg, var(--primary) 10%, var(--secondary) 50%, var(--primary) 100%);
-		border-radius: 10px;
-		overflow: hidden;
-		margin-bottom: 15px;
-		flex-basis: 30%;
-		margin: 10px;
-	}
+.rewards .card {
+	position: relative;
+	width: 140px;
+	height: 180px;
+	background: rgb(36,37,41);
+	background: linear-gradient(90deg, var(--primary) 10%, var(--secondary) 50%, var(--primary) 100%);
+	border-radius: 10px;
+	overflow: hidden;
+	margin-bottom: 15px;
+	flex-basis: 30%;
+	margin: 10px;
+}
 
-		.rewards .card:before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: var(--tertiary);
-			clip-path: circle(200px at 50% -60%);
-			transition: 0.5s ease-in-out;
-		}
+.rewards .card:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--tertiary);
+	clip-path: circle(200px at 50% -60%);
+	transition: 0.5s ease-in-out;
+}
 
-		.rewards .card:hover:before {
-			clip-path: circle(100px at 60% -60%);
-		}
+.rewards .card:hover:before {
+	clip-path: circle(100px at 60% -60%);
+}
 
-		.rewards .card .imgBx {
-			position: absolute;
-			top: 30%;
-			transform: translateY(-50%);
-			z-index: 1000;
-			width: 100%;
-			height: 100%;
-			transition: .5s;
-		}
+.rewards .card .imgBx {
+	position: absolute;
+	top: 30%;
+	transform: translateY(-50%);
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	transition: .5s;
+}
 
-		.rewards .card:hover .imgBx {
-			top: 0%;
-			transform: translateY(-30%);
-		}
+.rewards .card:hover .imgBx {
+	top: 0%;
+	transform: translateY(-30%);
+}
 
-		.rewards .card .imgBx img {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%) rotate(20deg);
-			width: 120px;
-		}
+.rewards .card .imgBx img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotate(20deg);
+	width: 120px;
+}
 
-		.rewards .card .contentBx {
-			position: absolute;
-			bottom: -20px;
-			width: 100%;
-			text-align: center;
-			transition: 0.5s;
-			z-index: 90;
-		}
+.rewards .card .contentBx {
+	position: absolute;
+	bottom: -20px;
+	width: 100%;
+	text-align: center;
+	transition: 0.5s;
+	z-index: 90;
+}
 
-		.rewards .card:hover .contentBx {
-			bottom: 5px;
-		}
+.rewards .card:hover .contentBx {
+	bottom: 5px;
+}
 
-		.rewards .card .contentBx h2 {
-			position: relative;
-			font-weight: 600;
-			letter-spacing: 1px;
-			color: var(--text-primary);
-			font-size: 20px;
-			transform: translateY(0px);
-		}
-
-
-		.rewards .card .contentBx h4 {
-			font-size: 20px;
-			transform: translateY(0px);
-		}
-
-		.rewards .card:hover .rewards .card .contentBx h2, .rewards .card .contentBx h4 {
-			transform: translateY(0px);
-		}
-
-		.rewards .card .contentBx button, .rewards .card .contentBx input {
-			display: inline-block;
-			text-decoration: none;
-			color: black;
-			opacity: 0;
-			transform: translateY(10px);
-			transition: .5s;
-		}
-
-		.rewards .card:hover .contentBx button, .rewards .card:hover .contentBx input {
-			opacity: 1;
-			transform: translateY(0px);
-			transition-delay: 0s;
-		}
+.rewards .card .contentBx h2 {
+	position: relative;
+	font-weight: 600;
+	letter-spacing: 1px;
+	color: var(--text-primary);
+	font-size: 20px;
+	transform: translateY(0px);
+}
 
 
-		.rewards .card .contentBx button:hover, .rewards .card .contentBx input:hover {
-			color: white;
-		}
+.rewards .card .contentBx h4 {
+	font-size: 20px;
+	transform: translateY(0px);
+}
+
+.rewards .card:hover .rewards .card .contentBx h2, .rewards .card .contentBx h4 {
+	transform: translateY(0px);
+}
+
+.rewards .card .contentBx button, .rewards .card .contentBx input {
+	display: inline-block;
+	text-decoration: none;
+	color: black;
+	opacity: 0;
+	transform: translateY(10px);
+	transition: .5s;
+}
+
+.rewards .card:hover .contentBx button, .rewards .card:hover .contentBx input {
+	opacity: 1;
+	transform: translateY(0px);
+	transition-delay: 0s;
+}
+
+
+.rewards .card .contentBx button:hover, .rewards .card .contentBx input:hover {
+	color: white;
+}
 
 .btn-success {
 	position: relative;
@@ -532,6 +529,38 @@ p.userName {
 	color: white;
 }
 
+/* PROFILE */
+
+#MainContent_profileImage2 {
+	width: 130px;
+	height: 130px;
+	border-radius: 50%;
+}
+
+#MainContent_profileUsername2 {
+	font-size: 1.5em;
+}
+
+#profileModal .modal-content h2 {
+	font-size: 1.2em;
+}
+
+#profileModal .modal-content span {
+	padding: 0px 10px;
+	border-radius: 5px;
+	background-color: var(--tertiary);
+	height: 48px;
+	margin-right: 10px;
+}
+
+#profileModal .modal-header {
+	padding: 16px 0px;
+}
+
+h1.modal-title {
+	font-size: 1.7vw;
+}
+
 /* responsiveness */
 
 @media (max-height: 640px) {
@@ -544,7 +573,7 @@ p.userName {
 
 @media (max-width: 900px) {
 
-	div.content h1 {
+	div.content h1, h1.modal-title {
 		font-size: 5vw;
 		padding: 0px 8px;
 		margin-top: 9px;
@@ -556,9 +585,9 @@ p.userName {
 		margin-right: 0px;
 	}
 
-		.rewards .card:before {
-			clip-path: circle(200px at 60% -60%);
-		}
+	.rewards .card:before {
+		clip-path: circle(200px at 60% -60%);
+	}
 }
 
 
@@ -591,3 +620,4 @@ p.userName {
 		display: none;
 	}
 }
+

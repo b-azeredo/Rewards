@@ -21,14 +21,14 @@
                                 <ItemTemplate>
                                     <li class="d-flex justify-content-between">
                                         <h3><%# Eval("NAME") %> <span class="mx-2 p-1"><%# Eval("POINTS") %>  points</span> </h3>
-                                        <button type="button" class="btn btn-success py-1 px-2 submit-btn" data-bs-toggle="modal" data-bs-target="#myModal" data-name='<%# Eval("NAME") %>' data-id="<%# Eval("ACTIVITY_ID") %>">Submit</button>
+                                        <button type="button" class="btn btn-success py-1 px-2 submit-btn" data-bs-toggle="modal" data-bs-target="#submitFormModal" data-name='<%# Eval("NAME") %>' data-id="<%# Eval("ACTIVITY_ID") %>">Submit</button>
                                     </li>
                                 </ItemTemplate>
                             </asp:ListView>
 
                         </ol>
                     </div>
-                    <div id="myModal" class="modal fade" role="dialog">
+                    <div id="submitFormModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -87,7 +87,7 @@
                               Activities done
                             </div>
 
-                            <div class="hiddenNumber" runat="server" id="activitiesDone"></div>
+                            <div class="number" runat="server" id="activitiesDone"></div>
 
                         </div>
 
@@ -98,7 +98,7 @@
                               Rewards redeemed
                             </div>
 
-                            <div class="hiddenNumber" runat="server" id="redeemedRewards"></div>
+                            <div class="number" runat="server" id="redeemedRewards"></div>
                         </div>
 
                         <div class="ag-courses_item">
@@ -108,7 +108,7 @@
                               Points earned
                             </div>
 
-                            <div class="hiddenNumber" runat="server" id="lifetimePoints"></div>
+                            <div class="number" runat="server" id="lifetimePoints"></div>
                         </div>
                       </div>
                 </div>
@@ -116,14 +116,62 @@
         </div>
         <div class="row">
             <div class="col-4"> <!-- YOUR PROFILE -->
+
+                <div id="profileModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header d-flex flex-column">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="d-flex align-items-center"><img width="30" height="30" src="icon/user-solid.svg"/></span> 
+                                <h1 class="modal-title">Your Profile</h1>
+                            </div>
+                            <div class="d-flex justify-content-around w-100 align-items-center pt-4" style="border-top: 1px solid white;">
+                                <div class="d-flex flex-column align-items-center">
+                                    <img runat="server" id="profileImage2" width="130" height="130" src=""/>
+                                    <p class="userName" runat="server" ID="profileUsername2"></p>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center align-items-start">
+                                    <h2>Your manager: </h2>
+                                    <p class="bold white" runat="server" ID="managerEmail"></p>
+                                    <h2>Your points: </h2>
+                                    <p class="bold white" runat="server" ID="profilePoints2"></p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-body" style="	background: rgb(36,37,41); background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);">
+                           <div class="recentTransactions d-flex flex-column overflow-auto" style="background: transparent;">
+                              <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <h4 class="mb-0">Your Transactions</h4>
+                            </div>
+                            <div class="transactionsContainer overflow-auto" style="height: 160px">
+                            <asp:ListView ID="lvProfileTransactions" runat="server">
+                                <ItemTemplate>
+                                    <div class="transaction d-flex justify-content-between">
+                                        <p class="white w-50"> <%# Eval("NAME") %></p>
+                                        <p class="<%# Eval("ItemClass") %>"><%# Eval("POINTS") %> points</p>
+                                        <p class="TransactionDate"><%# Eval("DATE") %></p>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:ListView>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
                 <div class="content">
                      <div class="d-flex pb-2">
                         <span class="d-flex align-items-center"><img width="30" height="30" src="icon/user-solid.svg"/></span> 
                         <h1>Your Profile</h1>
                     </div>
                     <div class="d-flex flex-column align-items-center" style="height: 85%;">
-                        <div class="userCard row-cols-2">
-                            <div class="userImgPlaceholder"><img runat="server" id="profileImage" src ="" /></div>
+                        <div class="userCard row-cols-2" data-bs-toggle="modal" data-bs-target="#profileModal" id="divProfile" runat="server">
+                            <div class="userImgPlaceholder"><img runat="server" id="profileImage" src=""/></div>
                             <div class="userInfo">
                                 <p class="userName" runat="server" ID="profileUsername"></p>
                                 <p class="bold white" runat="server" ID="profilePoints"></p>
@@ -132,7 +180,7 @@
                         <div class="recentTransactions d-flex flex-column overflow-auto">
                               <div class="d-flex justify-content-between align-items-center mb-3">
                                  <h4 class="mb-0">Recent Transactions</h4>
-                                <button type="button" class="btn btn-success py-1 px-2 align-self-end mt-0 mx-1">View All</button>
+                                <asp:Button ID="btnViewAll" runat="server" Text="View All" CssClass="btn btn-success py-1 px-2 align-self-end mt-0 mx-1" OnClientClick="return false;" data-bs-toggle="modal" data-bs-target="#profileModal" />
                             </div>
                             <div class="transactionsContainer overflow-auto">
                             <asp:ListView ID="lvTransactions" runat="server">
@@ -185,10 +233,10 @@
             </div>
     </main>
         <script>
-            $('#myModal').on('show.bs.modal', function (event) {
+            $('#submitFormModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget);
                 var activityName = button.data('name');
-                var activityId = button.data('id'); // Capturando o ID da atividade
+                var activityId = button.data('id');
                 document.querySelectorAll('.submit-btn').forEach(button => {
                     button.addEventListener('click', function () {
                         document.getElementById('MainContent_activityID').value = activityId; 
