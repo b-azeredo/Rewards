@@ -28,10 +28,7 @@ a {
 	a:hover {
 		color: var(--text-primary);
 	}
-
 /* Login Page */
-
-
 #mainContent {
 	max-width: 1000px;
 	border-radius: 20px;
@@ -81,9 +78,7 @@ a {
 	.loginContainer input[type="submit"] {
 		width: 100%;
 	}
-
 /* Main Page */
-
 main.container-fluid {
 	height: 100vh;
 	width: 100vw;
@@ -113,19 +108,18 @@ div.content {
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+	div.content h1 {
+		font-size: 1.7vw;
+		padding: 0px 8px;
+		margin-top: 9px;
+	}
 
-div.content h1 {
-	font-size: 1.7vw;
-	padding: 0px 8px;
-	margin-top: 9px;
-}
-
-div.content div.d-flex span {
-	padding: 0px 10px;
-	border-radius: 5px;
-	background-color: var(--tertiary);
-	height: 48px;
-}
+	div.content div.d-flex span {
+		padding: 0px 10px;
+		border-radius: 5px;
+		background-color: var(--tertiary);
+		height: 48px;
+	}
 
 h3 span {
 	padding: 0px 5px 10px 0px;
@@ -155,17 +149,17 @@ li {
 	background: linear-gradient(90deg, var(--primary) 10%, var(--secondary) 50%, var(--primary) 100%);
 }
 
-li::before {
-	content: '';
-	display: block;
-	width: 100%;
-	height: 1rem;
-	position: absolute;
-	border-radius: 7px 7px 0px 0px;
-	top: 0;
-	left: 0;
-	background-color: var(--tertiary);
-}
+	li::before {
+		content: '';
+		display: block;
+		width: 100%;
+		height: 1rem;
+		position: absolute;
+		border-radius: 7px 7px 0px 0px;
+		top: 0;
+		left: 0;
+		background-color: var(--tertiary);
+	}
 
 h3 {
 	display: flex;
@@ -175,28 +169,26 @@ h3 {
 	margin-bottom: 4px;
 }
 
-h3::before {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex: 0 0 auto;
-	margin-right: 0.5rem;
-	width: 2rem;
-	height: 2rem;
-	content: counter(list);
-	padding: 1rem;
-	border-radius: 50%;
-	color: black;
-	background-color: var(--tertiary);
-}
+	h3::before {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex: 0 0 auto;
+		margin-right: 0.5rem;
+		width: 2rem;
+		height: 2rem;
+		content: counter(list);
+		padding: 1rem;
+		border-radius: 50%;
+		color: black;
+		background-color: var(--tertiary);
+	}
 
 .btn-success {
 	background-color: var(--tertiary);
 	color: black;
 }
-
 /* SCROLLBAR */
-
 ::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	border-radius: 10px;
@@ -214,9 +206,7 @@ h3::before {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: var(--primary);
 }
-
 /* LEADERBOARD */
-
 div.userCard {
 	width: 99%;
 	min-height: 60px;
@@ -231,36 +221,34 @@ div.userCard {
 	cursor: pointer;
 }
 
-div.userCard div.userImgPlaceholder {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background-color: var(--secondary);
-}
+	div.userCard div.userImgPlaceholder {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background-color: var(--secondary);
+	}
 
-div.userCard div.userImgPlaceholder img {
-	max-width: 100%;
-	border-radius: 50%;
-}
+		div.userCard div.userImgPlaceholder img {
+			max-width: 100%;
+			border-radius: 50%;
+		}
 
-div.userCard div.userInfo {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 85%;
-	height: 100%;
-}
+	div.userCard div.userInfo {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 85%;
+		height: 100%;
+	}
 
-div.userCard div.userInfo p {
-	margin-bottom: 0px;
-}
+		div.userCard div.userInfo p {
+			margin-bottom: 0px;
+		}
 
 p.userName {
 	color: var(--text-primary);
 }
-
 /* Your Progress */
-
 .ag-courses_box {
 	height: 85%;
 }
@@ -281,7 +269,6 @@ p.userName {
 	justify-content: space-between;
 	align-items: center;
 }
-
 
 .ag-courses-item_title {
 	overflow: hidden;
@@ -311,7 +298,7 @@ p.userName {
 	opacity: 5%;
 }
 
-.ag-courses_item:hover .number{
+.ag-courses_item:hover .number {
 	color: white;
 }
 
@@ -325,7 +312,6 @@ p.userName {
 }
 
 @keyframes fromRight {
-
 	from {
 		margin-right: -70px;
 	}
@@ -334,127 +320,123 @@ p.userName {
 		margin-right: 0px;
 	}
 }
-
 /* Rewards */
-
 .rewards {
 	height: 95%;
 }
 
-.rewards .cardsContainer {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	flex-wrap: wrap;
-	width: 100%;
-	overflow: auto;
-	height: 95%;
-	padding: 0px;
-}
+	.rewards .cardsContainer {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		flex-wrap: wrap;
+		width: 100%;
+		overflow: auto;
+		height: 95%;
+		padding: 0px;
+	}
 
-.rewards .card {
-	position: relative;
-	width: 140px;
-	height: 180px;
-	background: rgb(36,37,41);
-	background: linear-gradient(90deg, var(--primary) 10%, var(--secondary) 50%, var(--primary) 100%);
-	border-radius: 10px;
-	overflow: hidden;
-	margin-bottom: 15px;
-	flex-basis: 30%;
-	margin: 10px;
-}
+	.rewards .card {
+		position: relative;
+		width: 140px;
+		height: 180px;
+		background: rgb(36,37,41);
+		background: linear-gradient(90deg, var(--primary) 10%, var(--secondary) 50%, var(--primary) 100%);
+		border-radius: 10px;
+		overflow: hidden;
+		margin-bottom: 15px;
+		flex-basis: 30%;
+		margin: 10px;
+	}
 
-.rewards .card:before {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: var(--tertiary);
-	clip-path: circle(200px at 50% -60%);
-	transition: 0.5s ease-in-out;
-}
+		.rewards .card:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: var(--tertiary);
+			clip-path: circle(200px at 50% -60%);
+			transition: 0.5s ease-in-out;
+		}
 
-.rewards .card:hover:before {
-	clip-path: circle(100px at 60% -60%);
-}
+		.rewards .card:hover:before {
+			clip-path: circle(100px at 60% -60%);
+		}
 
-.rewards .card .imgBx {
-	position: absolute;
-	top: 30%;
-	transform: translateY(-50%);
-	z-index: 1000;
-	width: 100%;
-	height: 100%;
-	transition: .5s;
-}
+		.rewards .card .imgBx {
+			position: absolute;
+			top: 30%;
+			transform: translateY(-50%);
+			z-index: 1000;
+			width: 100%;
+			height: 100%;
+			transition: .5s;
+		}
 
-.rewards .card:hover .imgBx {
-	top: 0%;
-	transform: translateY(-30%);
-}
+		.rewards .card:hover .imgBx {
+			top: 0%;
+			transform: translateY(-30%);
+		}
 
-.rewards .card .imgBx img {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%) rotate(20deg);
-	width: 120px;
-}
+		.rewards .card .imgBx img {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%) rotate(20deg);
+			width: 120px;
+		}
 
-.rewards .card .contentBx {
-	position: absolute;
-	bottom: -20px;
-	width: 100%;
-	text-align: center;
-	transition: 0.5s;
-	z-index: 90;
-}
+		.rewards .card .contentBx {
+			position: absolute;
+			bottom: -20px;
+			width: 100%;
+			text-align: center;
+			transition: 0.5s;
+			z-index: 90;
+		}
 
-.rewards .card:hover .contentBx {
-	bottom: 5px;
-}
+		.rewards .card:hover .contentBx {
+			bottom: 5px;
+		}
 
-.rewards .card .contentBx h2 {
-	position: relative;
-	font-weight: 600;
-	letter-spacing: 1px;
-	color: var(--text-primary);
-	font-size: 20px;
-	transform: translateY(0px);
-}
+		.rewards .card .contentBx h2 {
+			position: relative;
+			font-weight: 600;
+			letter-spacing: 1px;
+			color: var(--text-primary);
+			font-size: 20px;
+			transform: translateY(0px);
+		}
 
+		.rewards .card .contentBx h4 {
+			font-size: 20px;
+			transform: translateY(0px);
+		}
 
-.rewards .card .contentBx h4 {
-	font-size: 20px;
-	transform: translateY(0px);
-}
+		.rewards .card:hover .rewards .card .contentBx h2, .rewards .card .contentBx h4 {
+			transform: translateY(0px);
+		}
 
-.rewards .card:hover .rewards .card .contentBx h2, .rewards .card .contentBx h4 {
-	transform: translateY(0px);
-}
+		.rewards .card .contentBx button, .rewards .card .contentBx input {
+			display: inline-block;
+			text-decoration: none;
+			color: black;
+			opacity: 0;
+			transform: translateY(10px);
+			transition: .5s;
+		}
 
-.rewards .card .contentBx button, .rewards .card .contentBx input {
-	display: inline-block;
-	text-decoration: none;
-	color: black;
-	opacity: 0;
-	transform: translateY(10px);
-	transition: .5s;
-}
+		.rewards .card:hover .contentBx button, .rewards .card:hover .contentBx input {
+			opacity: 1;
+			transform: translateY(0px);
+			transition-delay: 0s;
+		}
 
-.rewards .card:hover .contentBx button, .rewards .card:hover .contentBx input {
-	opacity: 1;
-	transform: translateY(0px);
-	transition-delay: 0s;
-}
-
-
-.rewards .card .contentBx button:hover, .rewards .card .contentBx input:hover {
-	color: white;
-}
+		.rewards .card .contentBx button:hover, .rewards .card .contentBx input:hover {
+			color: white;
+		}
 
 .btn-success {
 	position: relative;
@@ -462,16 +444,12 @@ p.userName {
 	border: none;
 }
 
-
-.btn-success:hover {
-	box-shadow: inset 260px 0px 0px 0px var(--secondary);
-	color: white;
-	border: none;
-}
-
-
+	.btn-success:hover {
+		box-shadow: inset 260px 0px 0px 0px var(--secondary);
+		color: white;
+		border: none;
+	}
 /* Recent Transactions */
-
 .recentTransactions {
 	background: rgb(36,37,41);
 	background: linear-gradient(90deg, var(--primary) 10%, var(--secondary) 50%, var(--primary) 100%);
@@ -481,17 +459,16 @@ p.userName {
 	border-radius: 10px;
 }
 
-
-.recentTransactions .transactionsContainer .transaction {
-	width: 99%;
-	min-height: 45px;
-	background-color: transparent;
-	border-radius: 5px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0px 10px;
-}
+	.recentTransactions .transactionsContainer .transaction {
+		width: 99%;
+		min-height: 45px;
+		background-color: transparent;
+		border-radius: 5px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0px 10px;
+	}
 
 .up {
 	color: var(--tertiary);
@@ -512,25 +489,32 @@ p.userName {
 .black {
 	color: black;
 }
-
 /* Modal */
-
 .modal-content {
 	background-color: var(--primary);
 	color: white;
 }
 
-.modal-content .form-control {
-	background-color: var(--primary);
-	color: white;
-}
+	.modal-content .form-control {
+		background-color: var(--primary);
+		color: white;
+	}
+
+		.modal-content .form-control::file-selector-button {
+			background-color: var(--tertiary);
+			border: 1px solid var(--tertiary);
+		}
+
+		.modal-content .form-control:hover::file-selector-button {
+			box-shadow: inset 260px 0px 0px 0px var(--secondary);
+			color: white;
+			border: 1px solid var(--secondary);
+		}
 
 .btn-close {
 	color: white;
 }
-
 /* PROFILE */
-
 #MainContent_profileImage2 {
 	width: 130px;
 	height: 130px;
@@ -560,11 +544,8 @@ p.userName {
 h1.modal-title {
 	font-size: 1.7vw;
 }
-
 /* responsiveness */
-
 @media (max-height: 640px) {
-
 	.ag-courses_box {
 		height: 90%;
 		padding: 40px 0px 20px 0px;
@@ -572,7 +553,6 @@ h1.modal-title {
 }
 
 @media (max-width: 900px) {
-
 	div.content h1, h1.modal-title {
 		font-size: 5vw;
 		padding: 0px 8px;
@@ -585,14 +565,12 @@ h1.modal-title {
 		margin-right: 0px;
 	}
 
-	.rewards .card:before {
-		clip-path: circle(200px at 60% -60%);
-	}
+		.rewards .card:before {
+			clip-path: circle(200px at 60% -60%);
+		}
 }
 
-
 @media (max-width: 1200px) {
-
 	main div.row {
 		height: auto;
 	}
@@ -615,9 +593,7 @@ h1.modal-title {
 }
 
 @media (max-width: 1500px) {
-
 	.TransactionDate {
 		display: none;
 	}
 }
-

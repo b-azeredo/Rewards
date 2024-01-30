@@ -35,8 +35,8 @@
                                         <asp:FileUpload ID="fileUpload1" runat="server" CssClass="form-control mt-3" Multiple="multiple" />
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                        <asp:Button ID="btnSubmitForm" runat="server" CssClass="btn btn-primary" Text="Submit" OnClick="btnSubmitForm_Click" />
+                                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                                        <asp:Button ID="btnSubmitForm" runat="server" CssClass="btn btn-success" Text="Submit" OnClick="btnSubmitForm_Click" />
                                     </div>
                                 </div>
                             </div>
@@ -130,30 +130,6 @@
                                             <asp:FileUpload ID="fileUpload" runat="server" style="display: none;" onchange="previewImage()" accept="image/*" />
                                             <img id="profileImage2" runat="server" width="130" height="130" src="none" onclick="document.getElementById('MainContent_fileUpload').click();" style="cursor: pointer;" />
                                             <p class="userName" runat="server" ID="profileUsername2" onclick="document.getElementById('changeUsernameBtn').click();"></p>
-
-
-                                            <button style="display: none;" type="button" id="changeUsernameBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            </button>
-
-
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            ...
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
                                         </div>
                                         <div class="d-flex flex-column justify-content-center align-items-start">
                                             <h2>Your manager: </h2>
@@ -187,8 +163,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                    <asp:Button ID="btnSaveProfileChanges" OnClick="btnSaveProfileChanges_Click" CssClass="btn btn-primary" runat="server" Text="Save Changes" />
+                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                                    <asp:Button ID="btnSaveProfileChanges" OnClick="btnSaveProfileChanges_Click" CssClass="btn btn-success" runat="server" Text="Save Changes" />
                                 </div>
                             </div>
                         </div>

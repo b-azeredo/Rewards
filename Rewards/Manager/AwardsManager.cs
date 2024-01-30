@@ -14,7 +14,11 @@ namespace Rewards.Manager
         {
             using (var context = new Entities2())
             {
-                List<REWARD> rewards = context.REWARD.OrderByDescending(r => r.PRICE).ToList();
+                List<REWARD> rewards = context.REWARD
+                    .Where(r => r.REWARD_STOCK.Any(rs => rs.STOCK > 0))
+                    .OrderByDescending(r => r.PRICE)
+                    .ToList();
+
 
                 List<AwardsItem> awardsItems = rewards.Select(r => new AwardsItem
                 {
