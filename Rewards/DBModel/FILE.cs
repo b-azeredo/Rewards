@@ -17,8 +17,6 @@ namespace Rewards.DBModel
         public int ID { get; set; }
         public int FORM_ID { get; set; }
         public byte[] CONTENT { get; set; }
-        public string NAME { get; set; }
-        public string EXTENSION { get; set; }
     
         public virtual FORM FORM { get; set; }
     }

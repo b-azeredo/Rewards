@@ -22,8 +22,6 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FORM_ID" Type="int" Nullable="false" />
           <Property Name="CONTENT" Type="varbinary(max)" Nullable="false" />
-          <Property Name="NAME" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="EXTENSION" Type="varchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <EntityType Name="FORM">
           <Key>
@@ -73,8 +71,6 @@
           <Property Name="ROLE" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="MANAGER_EMAIL" Type="varchar" MaxLength="100" />
           <Property Name="PROFILE_IMAGE" Type="varbinary(max)" />
-          <Property Name="IMAGE_NAME" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="IMAGE_EXTENSION" Type="varchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <Association Name="FK_3">
           <End Role="USER" Type="Self.USER" Multiplicity="1" />
@@ -203,8 +199,6 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FORM_ID" Type="Int32" Nullable="false" />
           <Property Name="CONTENT" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EXTENSION" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="FORM" Relationship="Self.FK_7" FromRole="FILE" ToRole="FORM" />
         </EntityType>
         <EntityType Name="FORM">
@@ -263,8 +257,6 @@
           <Property Name="ROLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MANAGER_EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="PROFILE_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="IMAGE_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IMAGE_EXTENSION" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="FORM" Relationship="Self.FK_3" FromRole="USER" ToRole="FORM" />
           <NavigationProperty Name="PURCHASE" Relationship="Self.FK_4" FromRole="USER" ToRole="PURCHASE" />
         </EntityType>
@@ -396,9 +388,7 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FORM_ID" ColumnName="FORM_ID" />
                 <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="EXTENSION" ColumnName="EXTENSION" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FORM">
@@ -452,9 +442,7 @@
                 <ScalarProperty Name="ROLE" ColumnName="ROLE" />
                 <ScalarProperty Name="MANAGER_EMAIL" ColumnName="MANAGER_EMAIL" />
                 <ScalarProperty Name="PROFILE_IMAGE" ColumnName="PROFILE_IMAGE" />
-                <ScalarProperty Name="IMAGE_NAME" ColumnName="IMAGE_NAME" />
-                <ScalarProperty Name="IMAGE_EXTENSION" ColumnName="IMAGE_EXTENSION" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
         </EntityContainerMapping>

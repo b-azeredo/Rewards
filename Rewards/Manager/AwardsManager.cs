@@ -18,6 +18,7 @@ namespace Rewards.Manager
 
                 List<AwardsItem> awardsItems = rewards.Select(r => new AwardsItem
                 {
+                    ID = r.ID,
                     NAME = r.NAME,
                     PRICE = r.PRICE,
                     IMAGE = r.IMAGE,

@@ -463,11 +463,11 @@ p.userName {
 }
 
 
-	.btn-success:hover {
-		box-shadow: inset 260px 0px 0px 0px var(--secondary);
-		color: white;
-		border: none;
-	}
+.btn-success:hover {
+	box-shadow: inset 260px 0px 0px 0px var(--secondary);
+	color: white;
+	border: none;
+}
 
 
 /* Recent Transactions */
@@ -482,16 +482,16 @@ p.userName {
 }
 
 
-	.recentTransactions .transactionsContainer .transaction {
-		width: 99%;
-		min-height: 45px;
-		background-color: transparent;
-		border-radius: 5px;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 0px 10px;
-	}
+.recentTransactions .transactionsContainer .transaction {
+	width: 99%;
+	min-height: 45px;
+	background-color: transparent;
+	border-radius: 5px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0px 10px;
+}
 
 .up {
 	color: var(--tertiary);
@@ -520,10 +520,10 @@ p.userName {
 	color: white;
 }
 
-	.modal-content .form-control {
-		background-color: var(--secondary);
-		color: white;
-	}
+.modal-content .form-control {
+	background-color: var(--primary);
+	color: white;
+}
 
 .btn-close {
 	color: white;
