@@ -336,7 +336,7 @@ p.userName {
 		padding: 0px;
 	}
 
-	.rewards .card {
+	.rewards .card, .rewards #addRewardCard {
 		position: relative;
 		width: 140px;
 		height: 180px;
@@ -349,7 +349,11 @@ p.userName {
 		margin: 10px;
 	}
 
-		.rewards .card:before {
+		.rewards #addRewardCard{
+
+		}
+
+		.rewards .card:before, #addRewardCard:before {
 			content: "";
 			position: absolute;
 			top: 0;
