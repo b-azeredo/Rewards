@@ -12,7 +12,7 @@ namespace Rewards
 {
     public partial class _Default : System.Web.UI.Page
     {
-        private int USER_ID = 1;
+        private int USER_ID = 3;
 
         protected void btnClaim_Command(object sender, CommandEventArgs e)
         {
