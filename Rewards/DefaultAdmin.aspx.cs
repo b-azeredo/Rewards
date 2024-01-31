@@ -12,6 +12,16 @@ namespace Rewards
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        protected void btnEditUser_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void btnComfirmUserChanges_Click(object sender, EventArgs e)
+        {
+
+        }
+
         protected void btnComfirmAddActivity_Click(object sender, EventArgs e)
         {
             using (Entities2 entities2 = new Entities2())
@@ -95,7 +105,7 @@ namespace Rewards
                 lvRewards.DataBind();
 
                 /* ACTIVITIES */
-                var activityItems = ActivitiesManager.GetActivityItemsFromDatabase();
+                var activityItems = AdminManager.GetActivityItemsFromDatabase();
                 lvActivity.DataSource = activityItems;
                 lvActivity.DataBind();
 
@@ -106,6 +116,7 @@ namespace Rewards
 
             }
         }
+
 
     }
 }
