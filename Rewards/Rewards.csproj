@@ -175,6 +175,7 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="DefaultAdmin.aspx" />
     <EntityDeploy Include="DBModel\Entities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Entities.Designer.cs</LastGenOutput>
@@ -315,6 +316,13 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DefaultAdmin.aspx.cs">
+      <DependentUpon>DefaultAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DefaultAdmin.aspx.designer.cs">
+      <DependentUpon>DefaultAdmin.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
