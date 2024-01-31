@@ -80,6 +80,38 @@
                             </div>
                         </div>
                     </div>
+
+                    <div id="editUserModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                               <div class="modal-header d-flex flex-column">
+                                   <div class="d-flex align-items-center mb-1">
+                                       <h1 class="modal-title">Edit user</h1>
+                                   </div>
+                               </div>
+                                <div class="modal-body">
+                                    <p class="m-0">Current Name: <span id="currentName"></span></p>
+                                    <asp:TextBox ID="newName" CssClass="form-control mb-2" placeholder="New Name" runat="server"></asp:TextBox>
+                                    <p class="m-0">Current Email: <span id="currentEmail"></span></p>
+                                    <asp:TextBox ID="newEmail" CssClass="form-control mb-2" placeholder="New Email" runat="server"></asp:TextBox>
+                                    <p class="m-0">Current Role: <span id="currentRole"></span></p>
+                                    <asp:DropDownList ID="newRole" CssClass="form-control mb-2" runat="server">
+                                        <asp:ListItem Text="EMPLOYEE" Value="EMPLOYEE"></asp:ListItem>
+                                        <asp:ListItem Text="MANAGER" Value="MANAGER"></asp:ListItem>
+                                        <asp:ListItem Text="ADMIN" Value="ADMIN"></asp:ListItem>
+                                    </asp:DropDownList>
+                                    <p class="m-0">Current Manager Email: <span id="currentManagerEmail"></span></p>
+                                    <asp:TextBox ID="newManagerEmail" CssClass="form-control mb-2" placeholder="New Manager Email" runat="server"></asp:TextBox>
+                                    <p class="m-0">Change Profile Image</p>
+                                    <asp:FileUpload ID="newProfileImage" CssClass="form-control" runat="server" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                                    <asp:Button ID="btnComfirmUserChanges"  OnClick="btnComfirmUserChanges_Click" CssClass="btn btn-success" runat="server" Text="Save Changes" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
 
                  <div class="content">
@@ -103,10 +135,11 @@
                                                      <p>ID: <%# Eval("ID") %></p>
                                                      <p class="userName"><%# Eval("USERNAME") %></p>
                                                </div>
-                                             <p>
-                                                 <%# Eval("POINTS") %> points</p>
+                                                 <p>
+                                                     <%# Eval("POINTS") %> points
+                                                </p>
                                          </div>
-                                        <asp:Button ID="btnEditUser" CssClass="btn btn-success py-2 px-3" OnClientClick="return false;" data-bs-target="#" data-bs-toggle="modal" runat="server" Text="Edit" />
+                                        <asp:Button id="btnEditUser" data-manager='<%# Eval("MANAGER_EMAIL")%>' data-role='<%# Eval("ROLE")%>' data-name='<%# Eval("USERNAME") %>' data-email='<%# Eval("EMAIL") %>' data-id='<%# Eval("ID") %>'  OnClick="btnEditUser_Click" CssClass="btn btn-success py-2 px-3 editUser" OnClientClick="return false;" data-bs-target="#editUserModal" data-bs-toggle="modal" runat="server" Text="Edit" />
                                      </div>
                                  </ItemTemplate>
                              </asp:ListView>
@@ -226,6 +259,35 @@
                      }
                  }
              }
+
+             $('#editUserModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var userName = button.data('name');
+                var userId = button.data('id');
+                var userEmail = button.data('email');
+                var userRole = button.data('role');
+                var userManagerEmail = button.data('manager');
+
+                document.querySelectorAll('btnEditUser').forEach(button => {
+                    button.addEventListener('click', function () {
+                        document.getElementById('MainContent_currentName').value = userName;
+                        document.getElementById('MainContent_currentEmail').value = userEmail;
+                        document.getElementById('MainContent_currentRole').value = userRole;
+                        document.getElementById('MainContent_currentManagerEmail').value = userManagerEmail;
+
+
+                    });
+                });
+
+                var modal = $(this);
+                modal.find('#currentName').text(userName);
+                modal.find('#currentEmail').text(userEmail);
+                modal.find('#currentRole').text(userRole);
+                modal.find('#currentManagerEmail').text(userManagerEmail);
+
+
+
+            });
          </script>
 
 
