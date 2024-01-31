@@ -7,10 +7,10 @@ using System.Web;
 
 namespace Rewards.Manager
 {
-    public class AwardsManager
+    public class RewardsManager
     {
         
-        public static List<AwardsItem> GetAwardItemsFromDatabase()
+        public static List<RewardsItem> GetAwardItemsFromDatabase()
         {
             using (var context = new Entities2())
             {
@@ -20,7 +20,7 @@ namespace Rewards.Manager
                     .ToList();
 
 
-                List<AwardsItem> awardsItems = rewards.Select(r => new AwardsItem
+                List<RewardsItem> awardsItems = rewards.Select(r => new RewardsItem
                 {
                     ID = r.ID,
                     NAME = r.NAME,

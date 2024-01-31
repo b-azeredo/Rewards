@@ -268,7 +268,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Items\ActivityItem.cs" />
-    <Compile Include="Items\AwardsItem.cs" />
+    <Compile Include="Items\RewardsItem.cs" />
     <Compile Include="Items\LeaderboardItem.cs" />
     <Compile Include="Items\TransactionItem.cs" />
     <Compile Include="LoginPage.aspx.cs">
@@ -280,7 +280,7 @@
     </Compile>
     <Compile Include="Manager\ActivitiesManager.cs" />
     <Compile Include="Manager\AdminManager.cs" />
-    <Compile Include="Manager\AwardsManager.cs" />
+    <Compile Include="Manager\RewardsManager.cs" />
     <Compile Include="Manager\LeaderboardManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

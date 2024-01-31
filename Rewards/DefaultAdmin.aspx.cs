@@ -12,14 +12,28 @@ namespace Rewards
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        protected void btnHide_Command(object sender, EventArgs e)
+        protected void btnComfirmAddActivity_Click(object sender, EventArgs e)
         {
 
         }
 
         protected void btnComfirmAddUser_Click(object sender, EventArgs e)
         {
-
+            string role = dlRoleUser.SelectedValue;
+            using (Entities2 entities2 = new Entities2())
+            {
+                USER newuser = new USER
+                {
+                    NAME = TextBox1.Text,
+                    EMAIL = TextBox2.Text,
+                    ROLE = role,
+                    PROFILE_IMAGE = FileUpload1.FileBytes,
+                    MANAGER_EMAIL = (role == "EMPLOYEE") ? managerEmailTextBox.Text : null,
+                };
+                entities2.USER.Add(newuser);
+                entities2.SaveChanges();
+                Response.Redirect(Request.RawUrl);
+            }
         }
 
         protected void btnComfirmAddReward_Click(object sender, EventArgs e)
@@ -79,7 +93,6 @@ namespace Rewards
 
             }
         }
-
 
     }
 }

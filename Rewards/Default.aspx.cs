@@ -114,7 +114,7 @@ namespace Rewards
                 lvLeaderboard.DataBind();
 
                 /* REWARDS */
-                var RewardsItems = AwardsManager.GetAwardItemsFromDatabase();
+                var RewardsItems = RewardsManager.GetAwardItemsFromDatabase();
                 lvRewards.DataSource = RewardsItems;
                 lvRewards.DataBind();
 
