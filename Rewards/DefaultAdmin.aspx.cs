@@ -95,7 +95,7 @@ namespace Rewards
                 lvRewards.DataBind();
 
                 /* ACTIVITIES */
-                var activityItems = ActivitiesManager.GetActivityItemsFromDatabase();
+                var activityItems = AdminManager.GetActivityItemsFromDatabase();
                 lvActivity.DataSource = activityItems;
                 lvActivity.DataBind();
 

@@ -161,13 +161,22 @@ li {
 		background-color: var(--tertiary);
 	}
 
-h3 {
-	display: flex;
-	align-items: baseline;
-	color: var(--text-primary);
-	font-size: 1rem;
-	margin-bottom: 4px;
-}
+	li.deactivatedActivity h3::before, li.deactivatedActivity h3 span, li.deactivatedActivity input{
+		background-color: dimgray;
+		color: white;
+	}
+
+	li.deactivatedActivity::before {
+		background-color: dimgray;
+	}
+
+	h3 {
+		display: flex;
+		align-items: baseline;
+		color: var(--text-primary);
+		font-size: 1rem;
+		margin-bottom: 4px;
+	}
 
 	h3::before {
 		display: flex;

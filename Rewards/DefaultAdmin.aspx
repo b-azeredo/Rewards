@@ -42,7 +42,7 @@
                             </li>
                              <asp:ListView ID="lvActivity" runat="server">
                                  <ItemTemplate>
-                                     <li class="d-flex justify-content-between">
+                                     <li class="d-flex justify-content-between <%# Eval("ItemClass") %>">
                                          <h3><%# Eval("NAME") %> <span class="mx-2 p-1"><%# Eval("POINTS") %>  points</span> </h3>
                                         <asp:Button ID="btnEditActivity" CssClass="btn btn-success py-2 px-3" OnClientClick="return false;" data-bs-target="#" data-bs-toggle="modal" runat="server" Text="Edit" />
                                      </li>
