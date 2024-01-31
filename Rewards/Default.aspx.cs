@@ -83,7 +83,7 @@ namespace Rewards
 
                 /* PROFILE INFO */
                 profileImage.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
-                profileUsername.InnerHtml = $"{UserManager.Get_Username(USER_ID)}" + "<br /> <span class=\"black\">Online</span>";
+                profileUsername.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
                 profilePoints.InnerText = $"{UserManager.Get_Current_Points(USER_ID)}";
 
 
