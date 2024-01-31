@@ -17,6 +17,11 @@ namespace Rewards
 
         }
 
+        protected void btnComfirmAddUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
         protected void btnComfirmAddReward_Click(object sender, EventArgs e)
         {
             if (RewardImage.HasFile)
@@ -65,6 +70,7 @@ namespace Rewards
 
             }
         }
+
 
     }
 }

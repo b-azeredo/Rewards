@@ -41,17 +41,18 @@
                                </div>
                                 <div class="modal-body">
                                     <asp:TextBox ID="TextBox1" CssClass="form-control mb-2" placeholder="Name" runat="server"></asp:TextBox>
-                                    <asp:TextBox ID="TextBox2" CssClass="form-control mb-2" placeholder="Email" runat="server"></asp:TextBox>
-                                    <asp:DropDownList ID="DropDownList1" CssClass="form-control mb-2" runat="server">
-                                        <asp:ListItem Text="EMPLOYEE" Value="EMPLOYEE"></asp:ListItem>
-                                        <asp:ListItem Text="MANAGER" Value="MANAGER"></asp:ListItem>
-                                        <asp:ListItem Text="ADMIN" Value="ADMIN"></asp:ListItem>
-                                    </asp:DropDownList>
-                                    <asp:FileUpload ID="FileUpload1" ToolTip="Profile Image" CssClass="form-control" runat="server" />
+                                        <asp:TextBox ID="TextBox2" CssClass="form-control mb-2" placeholder="Email" runat="server"></asp:TextBox>
+                                        <asp:DropDownList ID="DropDownList1" CssClass="form-control mb-2" runat="server">
+                                            <asp:ListItem Text="EMPLOYEE" Value="EMPLOYEE"></asp:ListItem>
+                                            <asp:ListItem Text="MANAGER" Value="MANAGER"></asp:ListItem>
+                                            <asp:ListItem Text="ADMIN" Value="ADMIN"></asp:ListItem>
+                                        </asp:DropDownList>
+                                        <asp:TextBox ID="managerEmailTextBox" CssClass="form-control mb-2" placeholder="Manager Email" runat="server"></asp:TextBox>
+                                        <asp:FileUpload ID="FileUpload1" CssClass="form-control" runat="server" />
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                                    <asp:Button ID="btnComfirmAddUser" OnClientClick="return validateFileUpload();" CssClass="btn btn-success" runat="server" Text="Add User" />
+                                    <asp:Button ID="btnComfirmAddUser" OnClick="btnComfirmAddUser_Click" OnClientClick="return validateFileUpload();" CssClass="btn btn-success" runat="server" Text="Add User" />
                                 </div>
                             </div>
                         </div>
@@ -175,6 +176,17 @@
          </div>
 
          <script>
+
+            $(document).ready(function () {
+                $('#MainContent_DropDownList1').change(function () {
+                    if ($(this).val() === "EMPLOYEE") {
+                        $('#MainContent_managerEmailTextBox').show();
+                    } else {
+                        $('#MainContent_managerEmailTextBox').hide();
+                    }
+                });
+            });
+
              function validateFileUpload() {
                  var fuData = document.getElementById('<%=RewardImage.ClientID%>');
                  var FileUploadPath = fuData.value;
