@@ -24,7 +24,17 @@ namespace Rewards
                 string fileExtension = System.IO.Path.GetExtension(RewardImage.FileName).ToLower();
                 if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png")
                 {
-                    
+                    using (Entities2 entities2 = new Entities2())
+                    {
+                        REWARD newReward = new REWARD
+                        {
+                            NAME = txbRewardName.Text,
+                            PRICE = int.Parse(txbRewardPrice.Text),
+                            IMAGE = RewardImage.FileBytes,
+                        };
+                        entities2.REWARD.Add(newReward);
+                        entities2.SaveChanges();
+                    };
                 }
             }
         }
@@ -33,25 +43,13 @@ namespace Rewards
         {
             if (!IsPostBack)
             {
-                using (Entities2 entities2 = new Entities2())
-                {
-                    var REWARD = new REWARD_STOCK()
-                    {
-                        REWARD_ID = 5,
-                        STOCK = 20
-                    };
-                    entities2.REWARD_STOCK.Add(REWARD);
-                    entities2.SaveChanges();
-                }
-
-
                 /* LEADERBOARD */
                 var leaderboardItems = LeaderboardManager.GetLeaderboardItemsFromDatabase();
                 lvLeaderboard.DataSource = leaderboardItems;
                 lvLeaderboard.DataBind();
 
                 /* REWARDS */
-                var RewardsItems = AwardsManager.GetAwardItemsFromDatabase();
+                var RewardsItems = AdminManager.GetRewardsFromDatabase();
                 lvRewards.DataSource = RewardsItems;
                 lvRewards.DataBind();
 
@@ -59,6 +57,11 @@ namespace Rewards
                 var activityItems = ActivitiesManager.GetActivityItemsFromDatabase();
                 lvActivity.DataSource = activityItems;
                 lvActivity.DataBind();
+
+                /* USERS */
+                var userItems = AdminManager.GetUsersFromDatabase();
+                lvUsers.DataSource = userItems;
+                lvUsers.DataBind();
 
             }
         }

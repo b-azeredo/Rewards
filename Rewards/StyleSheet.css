@@ -601,3 +601,7 @@ h1.modal-title {
 		display: none;
 	}
 }
+
+#h3AddActivity::before{
+	display:none;
+}

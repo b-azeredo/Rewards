@@ -13,10 +13,15 @@
                      </div>
                      <div class="overflow-auto" style="max-height:85%;">
                          <ol style="--length: 0" role="list">
+                            <li class="d-flex justify-content-between align-items-center">
+                                <h3 id="h3AddActivity"> Add Activity </h3>
+                                <asp:Button ID="btnAddActivity" CssClass="btn btn-success py-2 px-3" OnClientClick="return false;" data-bs-target="#" data-bs-toggle="modal" runat="server" Text="+" />
+                            </li>
                              <asp:ListView ID="lvActivity" runat="server">
                                  <ItemTemplate>
                                      <li class="d-flex justify-content-between">
                                          <h3><%# Eval("NAME") %> <span class="mx-2 p-1"><%# Eval("POINTS") %>  points</span> </h3>
+                                        <asp:Button ID="btnEditActivity" CssClass="btn btn-success py-2 px-3" OnClientClick="return false;" data-bs-target="#" data-bs-toggle="modal" runat="server" Text="Edit" />
                                      </li>
                                  </ItemTemplate>
                              </asp:ListView>
@@ -26,13 +31,61 @@
              </div>
              <div class="col-7 overflow-hidden">
                  <!-- USERS -->
+                    <div id="addUserModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                               <div class="modal-header d-flex flex-column">
+                                   <div class="d-flex align-items-center mb-1">
+                                       <h1 class="modal-title">Add User</h1>
+                                   </div>
+                               </div>
+                                <div class="modal-body">
+                                    <asp:TextBox ID="TextBox1" CssClass="form-control mb-2" placeholder="Name" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="TextBox2" CssClass="form-control mb-2" placeholder="Email" runat="server"></asp:TextBox>
+                                    <asp:DropDownList ID="DropDownList1" CssClass="form-control mb-2" runat="server">
+                                        <asp:ListItem Text="EMPLOYEE" Value="EMPLOYEE"></asp:ListItem>
+                                        <asp:ListItem Text="MANAGER" Value="MANAGER"></asp:ListItem>
+                                        <asp:ListItem Text="ADMIN" Value="ADMIN"></asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:FileUpload ID="FileUpload1" ToolTip="Profile Image" CssClass="form-control" runat="server" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                                    <asp:Button ID="btnComfirmAddUser" OnClientClick="return validateFileUpload();" CssClass="btn btn-success" runat="server" Text="Add User" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
                  <div class="content">
                      <div class="d-flex pb-2">
                          <span class="d-flex align-items-center"><img width="30" height="30" src="icon/user-solid.svg"/></span>
                          <h1>Users</h1>
                      </div>
                      <div class="d-flex flex-column align-items-center" style="height: 85%;">
-
+                            <div class="userCard justify-content-between align-items-center">
+                                <p class="m-0">Add user</p>
+                                <asp:Button ID="btnAddUser" CssClass="btn btn-success py-2 px-3" OnClientClick="return false;" data-bs-target="#addUserModal" data-bs-toggle="modal" runat="server" Text="+" />
+                            </div>
+                             <asp:ListView ID="lvUsers" runat="server">
+                                 <ItemTemplate>
+                                     <div class="userCard">
+                                         <div class="userImgPlaceholder">
+                                             <img src='<%# "data:image;base64," + Convert.ToBase64String(Eval("PROFILE_IMAGE") as byte[]) %>' />
+                                         </div>
+                                         <div class="userInfo">
+                                               <div>
+                                                     <p>ID: <%# Eval("ID") %></p>
+                                                     <p class="userName"><%# Eval("USERNAME") %></p>
+                                               </div>
+                                             <p>
+                                                 <%# Eval("POINTS") %> points</p>
+                                         </div>
+                                        <asp:Button ID="btnEditUser" CssClass="btn btn-success py-2 px-3" OnClientClick="return false;" data-bs-target="#" data-bs-toggle="modal" runat="server" Text="Edit" />
+                                     </div>
+                                 </ItemTemplate>
+                             </asp:ListView>
                      </div>
                  </div>
              </div>
@@ -85,7 +138,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                                    <asp:Button ID="btnComfirmAddReward" OnClientClick="return validateFileUpload();" CssClass="btn btn-success" runat="server" Text="Add Reward" />
+                                    <asp:Button ID="btnComfirmAddReward" OnClick="btnComfirmAddReward_Click" OnClientClick="return validateFileUpload();" CssClass="btn btn-success" runat="server" Text="Add Reward" />
                                 </div>
                             </div>
                         </div>
