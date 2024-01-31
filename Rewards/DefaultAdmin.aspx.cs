@@ -24,7 +24,7 @@ namespace Rewards
                 string fileExtension = System.IO.Path.GetExtension(RewardImage.FileName).ToLower();
                 if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png")
                 {
-                    // Faça o processamento do arquivo aqui
+                    
                 }
             }
         }

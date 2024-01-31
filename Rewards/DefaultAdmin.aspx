@@ -69,7 +69,6 @@
              <div class="col-7">
                  <div class="content">
                      <!-- REWARDS -->
-
                     <div id="addRewardModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -108,10 +107,7 @@
                                          <div class="contentBx">
                                              <h2><%# Eval("NAME") %></h2>
                                              <h4><%# Eval("PRICE") %> Points</h4>
-                                             <asp:Button ID="btnHideReward" CssClass="btn btn-success py-2 px-3" runat="server" Text="Hide" CommandName="Hide" CommandArgument='<%# Eval("ID") %>' OnCommand="btnHide_Command" />
-                                             <asp:Button ID="btnAddStockReward" CssClass="btn btn-success py-2 px-3" runat="server" Text="Stock" />
-                                             <asp:Button ID="Button1" CssClass="btn btn-success py-2 px-3" runat="server" Text="Change" />
-
+                                             <asp:Button ID="btnEditReward" CssClass="btn btn-success py-2 px-3" runat="server" Text="Edit" />
                                          </div>
                                      </div>
                                  </ItemTemplate>
