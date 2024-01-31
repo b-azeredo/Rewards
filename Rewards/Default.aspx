@@ -4,7 +4,7 @@
 
         <main class="container-fluid p-3">
             <div class="row pb-4">
-                <div class="col-xxl-5 col-xl-4 overflow-hidden">
+                <div class="col-4 overflow-hidden">
                     <!-- ACTIVITIES -->
                     <div class="content" style="max-height:100%;">
                         <div class="d-flex pb-2">
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-4 col-xl-4 overflow-hidden">
+                <div class="col-5 overflow-hidden">
                     <!-- LEADERBOARD -->
                     <div class="content">
                         <div class="d-flex pb-2">
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-3 col-xl-4">
+                <div class="col-3">
                     <!-- YOUR PROGRESS -->
                     <div class="content">
                         <div class="d-flex pb-2">

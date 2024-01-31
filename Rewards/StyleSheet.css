@@ -287,7 +287,7 @@ p.userName {
 	z-index: 1;
 	position: absolute;
 	top: -75px;
-	right: -75px;
+	right: -55px;
 	border-radius: 50%;
 	transition: all .3s ease;
 	transform: scale(1.9);
