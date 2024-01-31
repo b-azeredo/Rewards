@@ -7,6 +7,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Web;
 using Rewards;
 using System.Web.UI.WebControls;
+using System.Web.UI;
 
 
 namespace Rewards.Manager
@@ -73,6 +74,15 @@ namespace Rewards.Manager
             }
         }
 
+        public static string Get_Manager_Email(int ID)
+        {
+            using (Entities2 Entities = new Entities2())
+            {
+                var user = Entities.USER.FirstOrDefault(u => u.ID == ID);
+                return user.MANAGER_EMAIL;
+            }
+        }
+
         public static string Get_Username(int ID)
         {
             using (Entities2 Entities = new Entities2())
@@ -115,8 +125,6 @@ namespace Rewards.Manager
                     transactionItem.DATE = DateTime.Parse(transactionItem.DATE).ToString("yyyy/MM/dd");
                 }
 
-                transactionItems = transactionItems.Take(5).ToList();
-
                 return transactionItems;
             }
         }
@@ -139,13 +147,12 @@ namespace Rewards.Manager
         }
 
 
-        public static bool AddRewardToUser(int rewardId, int quantity)
+        public static bool AddRewardToUser(int rewardId, int userId)
         {
             using (Entities2 entities = new Entities2())
             {
-                int userId = 1;
 
-                int userPoints = UserManager.Get_Current_Points(userId);
+                int userPoints = Get_Current_Points(userId);
                 int rewardPoints = entities.REWARD.Where(r => r.ID == rewardId).Select(r => r.PRICE).FirstOrDefault();
 
                 if (userPoints >= rewardPoints)

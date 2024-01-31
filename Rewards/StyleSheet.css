@@ -28,10 +28,7 @@ a {
 	a:hover {
 		color: var(--text-primary);
 	}
-
 /* Login Page */
-
-
 #mainContent {
 	max-width: 1000px;
 	border-radius: 20px;
@@ -81,9 +78,7 @@ a {
 	.loginContainer input[type="submit"] {
 		width: 100%;
 	}
-
 /* Main Page */
-
 main.container-fluid {
 	height: 100vh;
 	width: 100vw;
@@ -113,7 +108,6 @@ div.content {
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-
 	div.content h1 {
 		font-size: 1.7vw;
 		padding: 0px 8px;
@@ -138,10 +132,6 @@ div.d-flex.pb-2 {
 	align-items: center;
 }
 
-div.content img {
-}
-
-
 ol {
 	list-style: none;
 	counter-reset: list;
@@ -158,7 +148,6 @@ li {
 	border-radius: 7px;
 	background: linear-gradient(90deg, var(--primary) 10%, var(--secondary) 50%, var(--primary) 100%);
 }
-
 
 	li::before {
 		content: '';
@@ -199,9 +188,7 @@ h3 {
 	background-color: var(--tertiary);
 	color: black;
 }
-
 /* SCROLLBAR */
-
 ::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	border-radius: 10px;
@@ -219,9 +206,7 @@ h3 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: var(--primary);
 }
-
 /* LEADERBOARD */
-
 div.userCard {
 	width: 99%;
 	min-height: 60px;
@@ -263,9 +248,7 @@ div.userCard {
 p.userName {
 	color: var(--text-primary);
 }
-
 /* Your Progress */
-
 .ag-courses_box {
 	height: 85%;
 }
@@ -287,10 +270,6 @@ p.userName {
 	align-items: center;
 }
 
-	.ag-courses_item:hover .ag-courses-item_bg {
-		transform: scale(2.5);
-	}
-
 .ag-courses-item_title {
 	overflow: hidden;
 	font-weight: bold;
@@ -310,25 +289,29 @@ p.userName {
 	top: -75px;
 	right: -75px;
 	border-radius: 50%;
-	transition: all .5s ease;
+	transition: all .3s ease;
+	transform: scale(1.9);
 }
 
-.ag-courses_item .hiddenNumber {
+.ag-courses_item:hover .ag-courses-item_bg {
+	transform: scale(2.1);
+	opacity: 5%;
+}
+
+.ag-courses_item:hover .number {
+	color: white;
+}
+
+.ag-courses_item .number {
 	color: black;
 	font-size: 40px;
 	font-weight: bold;
-	display: none;
 	z-index: 100;
 	animation-name: fromRight;
 	animation-duration: 0.5s;
 }
 
-.ag-courses_item:hover .hiddenNumber {
-	display: block;
-}
-
 @keyframes fromRight {
-
 	from {
 		margin-right: -70px;
 	}
@@ -337,9 +320,7 @@ p.userName {
 		margin-right: 0px;
 	}
 }
-
-/* Awards */
-
+/* Rewards */
 .rewards {
 	height: 95%;
 }
@@ -429,7 +410,6 @@ p.userName {
 			transform: translateY(0px);
 		}
 
-
 		.rewards .card .contentBx h4 {
 			font-size: 20px;
 			transform: translateY(0px);
@@ -454,7 +434,6 @@ p.userName {
 			transition-delay: 0s;
 		}
 
-
 		.rewards .card .contentBx button:hover, .rewards .card .contentBx input:hover {
 			color: white;
 		}
@@ -465,16 +444,12 @@ p.userName {
 	border: none;
 }
 
-
 	.btn-success:hover {
 		box-shadow: inset 260px 0px 0px 0px var(--secondary);
 		color: white;
 		border: none;
 	}
-
-
 /* Recent Transactions */
-
 .recentTransactions {
 	background: rgb(36,37,41);
 	background: linear-gradient(90deg, var(--primary) 10%, var(--secondary) 50%, var(--primary) 100%);
@@ -483,7 +458,6 @@ p.userName {
 	margin: 0px 0px 10px 0px;
 	border-radius: 10px;
 }
-
 
 	.recentTransactions .transactionsContainer .transaction {
 		width: 99%;
@@ -515,27 +489,63 @@ p.userName {
 .black {
 	color: black;
 }
-
 /* Modal */
-
 .modal-content {
 	background-color: var(--primary);
 	color: white;
 }
 
 	.modal-content .form-control {
-		background-color: var(--secondary);
+		background-color: var(--primary);
 		color: white;
 	}
+
+		.modal-content .form-control::file-selector-button {
+			background-color: var(--tertiary);
+			border: 1px solid var(--tertiary);
+		}
+
+		.modal-content .form-control:hover::file-selector-button {
+			box-shadow: inset 260px 0px 0px 0px var(--secondary);
+			color: white;
+			border: 1px solid var(--secondary);
+		}
 
 .btn-close {
 	color: white;
 }
+/* PROFILE */
+#MainContent_profileImage2 {
+	width: 130px;
+	height: 130px;
+	border-radius: 50%;
+}
 
+#MainContent_profileUsername2 {
+	font-size: 1.5em;
+}
+
+#profileModal .modal-content h2 {
+	font-size: 1.2em;
+}
+
+#profileModal .modal-content span {
+	padding: 0px 10px;
+	border-radius: 5px;
+	background-color: var(--tertiary);
+	height: 48px;
+	margin-right: 10px;
+}
+
+#profileModal .modal-header {
+	padding: 16px 0px;
+}
+
+h1.modal-title {
+	font-size: 1.7vw;
+}
 /* responsiveness */
-
 @media (max-height: 640px) {
-
 	.ag-courses_box {
 		height: 90%;
 		padding: 40px 0px 20px 0px;
@@ -543,8 +553,7 @@ p.userName {
 }
 
 @media (max-width: 900px) {
-
-	div.content h1 {
+	div.content h1, h1.modal-title {
 		font-size: 5vw;
 		padding: 0px 8px;
 		margin-top: 9px;
@@ -561,9 +570,7 @@ p.userName {
 		}
 }
 
-
 @media (max-width: 1200px) {
-
 	main div.row {
 		height: auto;
 	}
@@ -586,7 +593,6 @@ p.userName {
 }
 
 @media (max-width: 1500px) {
-
 	.TransactionDate {
 		display: none;
 	}
