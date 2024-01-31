@@ -16,10 +16,10 @@
                                 </div>
                             </div>
                             <div class="modal-body">
-                                <asp:TextBox ID="TextBox3" CssClass="form-control mb-2" placeholder="Name" runat="server"></asp:TextBox>
-                                <asp:TextBox ID="TextBox4" CssClass="form-control mb-2" placeholder="Description" runat="server"></asp:TextBox>
-                                <asp:TextBox ID="TextBox5" CssClass="form-control mb-2" placeholder="Points earned by doing this activity" runat="server"></asp:TextBox>
-                                <asp:TextBox ID="TextBox6" CssClass="form-control mb-2" placeholder="Limit per week" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="ActivityName" CssClass="form-control mb-2" placeholder="Name" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="ActivityDescription" CssClass="form-control mb-2" placeholder="Description" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="ActivityPoints" CssClass="form-control mb-2" placeholder="Points earned by doing this activity" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="ActivityLimit" CssClass="form-control mb-2" placeholder="Limit per week" runat="server"></asp:TextBox>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
@@ -63,8 +63,8 @@
                                    </div>
                                </div>
                                 <div class="modal-body">
-                                    <asp:TextBox ID="TextBox1" CssClass="form-control mb-2" placeholder="Name" runat="server"></asp:TextBox>
-                                        <asp:TextBox ID="TextBox2" CssClass="form-control mb-2" placeholder="Email" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="UserName" CssClass="form-control mb-2" placeholder="Name" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="UserEmail" CssClass="form-control mb-2" placeholder="Email" runat="server"></asp:TextBox>
                                         <asp:DropDownList ID="dlRoleUser" CssClass="form-control mb-2" runat="server">
                                             <asp:ListItem Text="EMPLOYEE" Value="EMPLOYEE"></asp:ListItem>
                                             <asp:ListItem Text="MANAGER" Value="MANAGER"></asp:ListItem>

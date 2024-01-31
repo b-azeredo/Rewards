@@ -39,7 +39,7 @@ namespace Rewards.Manager
                         NAME = r.NAME,
                         PRICE = r.PRICE,
                         IMAGE = r.IMAGE,
-                        ItemClass = r.REWARD_STOCK.Any(rs => rs.STOCK > 0) ? "inStock" : "outOfStock"
+                        ItemClass = r.REWARD_STOCK.Any(rs => rs.STOCK > 0) && r.ACTIVATED == true ? "inStock" : "outOfStock"
                     })
                     .ToList();
 

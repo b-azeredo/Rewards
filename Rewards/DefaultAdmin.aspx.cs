@@ -14,7 +14,20 @@ namespace Rewards
     {
         protected void btnComfirmAddActivity_Click(object sender, EventArgs e)
         {
-
+            using (Entities2 entities2 = new Entities2())
+            {
+                ACTIVITY newActivity = new ACTIVITY()
+                {
+                    NAME = ActivityName.Text,
+                    DESCRIPTION = ActivityDescription.Text,
+                    ACTIVATED = true,
+                    POINTS = int.Parse(ActivityPoints.Text),
+                    LIMIT_PER_WEEK = int.Parse(ActivityLimit.Text),
+                };
+                entities2.ACTIVITY.Add(newActivity);
+                entities2.SaveChanges();
+                Response.Redirect(Request.RawUrl);
+            }
         }
 
         protected void btnComfirmAddUser_Click(object sender, EventArgs e)
@@ -24,8 +37,8 @@ namespace Rewards
             {
                 USER newuser = new USER
                 {
-                    NAME = TextBox1.Text,
-                    EMAIL = TextBox2.Text,
+                    NAME = UserName.Text,
+                    EMAIL = UserEmail.Text,
                     ROLE = role,
                     PROFILE_IMAGE = FileUpload1.FileBytes,
                     MANAGER_EMAIL = (role == "EMPLOYEE") ? managerEmailTextBox.Text : null,

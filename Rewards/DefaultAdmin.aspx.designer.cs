@@ -15,40 +15,40 @@ namespace Rewards
     {
 
         /// <summary>
-        /// TextBox3 control.
+        /// ActivityName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox ActivityName;
 
         /// <summary>
-        /// TextBox4 control.
+        /// ActivityDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.TextBox ActivityDescription;
 
         /// <summary>
-        /// TextBox5 control.
+        /// ActivityPoints control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.TextBox ActivityPoints;
 
         /// <summary>
-        /// TextBox6 control.
+        /// ActivityLimit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox6;
+        protected global::System.Web.UI.WebControls.TextBox ActivityLimit;
 
         /// <summary>
         /// btnComfirmAddActivity control.
@@ -78,22 +78,22 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.ListView lvActivity;
 
         /// <summary>
-        /// TextBox1 control.
+        /// UserName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox UserName;
 
         /// <summary>
-        /// TextBox2 control.
+        /// UserEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox UserEmail;
 
         /// <summary>
         /// dlRoleUser control.

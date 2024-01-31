@@ -10,17 +10,17 @@ namespace Rewards.Manager
     public class RewardsManager
     {
         
-        public static List<RewardsItem> GetAwardItemsFromDatabase()
+        public static List<RewardsItem> GetRewardItemsFromDatabase()
         {
             using (var context = new Entities2())
             {
                 List<REWARD> rewards = context.REWARD
-                    .Where(r => r.REWARD_STOCK.Any(rs => rs.STOCK > 0))
+                    .Where(r => r.REWARD_STOCK.Any(rs => rs.STOCK > 0) && r.ACTIVATED == true)
                     .OrderByDescending(r => r.PRICE)
                     .ToList();
 
 
-                List<RewardsItem> awardsItems = rewards.Select(r => new RewardsItem
+                List<RewardsItem> rewardsItems = rewards.Select(r => new RewardsItem
                 {
                     ID = r.ID,
                     NAME = r.NAME,
@@ -28,7 +28,7 @@ namespace Rewards.Manager
                     IMAGE = r.IMAGE,
                 }).ToList();
 
-                return awardsItems;
+                return rewardsItems;
             }
         }
     }
