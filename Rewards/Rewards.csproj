@@ -142,6 +142,7 @@
     <Content Include="icon\award-solid.svg" />
     <Content Include="icon\bars-progress-solid.svg" />
     <Content Include="icon\list-check-solid.svg" />
+    <Content Include="icon\magnifying-glass-solid.svg" />
     <Content Include="icon\ranking-star-solid.svg" />
     <Content Include="icon\user-solid.svg" />
     <Content Include="LoginPage.aspx" />
@@ -278,6 +279,7 @@
       <DependentUpon>LoginPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Manager\ActivitiesManager.cs" />
+    <Compile Include="Manager\AdminManager.cs" />
     <Compile Include="Manager\AwardsManager.cs" />
     <Compile Include="Manager\LeaderboardManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
