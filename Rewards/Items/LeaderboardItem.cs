@@ -10,6 +10,9 @@ namespace Rewards.Items
         public int ID { get; set; }
         public byte[] PROFILE_IMAGE { get; set; }
         public string USERNAME { get; set; }
+        public string EMAIL { get; set; }
+        public string ROLE {  get; set; }
+        public string MANAGER_EMAIL { get; set; }
         public int POINTS { get; set; }
     }
 }

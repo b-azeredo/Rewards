@@ -614,3 +614,7 @@ h1.modal-title {
 #h3AddActivity::before{
 	display:none;
 }
+
+p span{
+	color: var(--tertiary);
+}

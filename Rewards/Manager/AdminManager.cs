@@ -18,6 +18,9 @@ namespace Rewards.Manager
                 List<LeaderboardItem> leaderboardItems = users.Select(u => new LeaderboardItem
                 {
                     ID = u.ID,
+                    EMAIL = u.EMAIL,
+                    MANAGER_EMAIL = u.MANAGER_EMAIL,
+                    ROLE = u.ROLE,
                     USERNAME = u.NAME,
                     POINTS = UserManager.Get_Lifetime_Points(u.ID),
                     PROFILE_IMAGE = u.PROFILE_IMAGE
