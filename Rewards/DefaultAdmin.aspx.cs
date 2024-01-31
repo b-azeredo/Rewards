@@ -24,6 +24,13 @@ namespace Rewards
 
         protected void btnComfirmAddReward_Click(object sender, EventArgs e)
         {
+            if (!int.TryParse(txbRewardPrice.Text, out _))
+            {
+                string script = "alert('Por favor, insira um valor numérico válido para o preço.');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                return;
+            }
+
             if (RewardImage.HasFile)
             {
                 string fileExtension = System.IO.Path.GetExtension(RewardImage.FileName).ToLower();
@@ -39,6 +46,8 @@ namespace Rewards
                         };
                         entities2.REWARD.Add(newReward);
                         entities2.SaveChanges();
+                        Response.Redirect(Request.RawUrl);
+
                     };
                 }
             }
