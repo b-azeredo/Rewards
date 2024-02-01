@@ -29,6 +29,32 @@
                     </div>
                 </div>
 
+                 <div id="editActivityModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header d-flex flex-column">
+                               <div class="d-flex align-items-center mb-1">
+                                   <h1 class="modal-title">Edit Activity</h1>
+                               </div>
+                           </div>
+                            <div class="modal-body">
+                                <p class="m-0">Current Name: <span id="currentActivityName"></span></p>
+                                <asp:TextBox ID="newActivityName" CssClass="form-control mb-2" placeholder="New Name" runat="server"></asp:TextBox>
+                                <p class="m-0">Current Description: <span id="currentActivityDescription"></span></p>
+                                <asp:TextBox ID="newActivityDescription" CssClass="form-control mb-2" placeholder="New Description" runat="server"></asp:TextBox>
+                                <p class="m-0">Current Points: <span id="currentActivityPoints"></span></p>
+                                <asp:TextBox ID="newActivityPoints" TextMode="Number" CssClass="form-control mb-2" placeholder="New Points" runat="server"></asp:TextBox>
+                                <p class="m-0">Current Limit per week: <span id="currentActivityLimit"></span></p>
+                                <asp:TextBox ID="newActivityLimit" TextMode="Number" CssClass="form-control mb-2" placeholder="New Limit per week" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                                <asp:Button ID="Button1"  OnClick="btnComfirmUserChanges_Click" CssClass="btn btn-success" runat="server" Text="Save Changes" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                  <div class="content" style="max-height:100%;">
                      <div class="d-flex pb-2">
                          <span class="d-flex align-items-center"><img width="30" height="30" src="icon/list-check-solid.svg"/></span>
@@ -44,7 +70,7 @@
                                  <ItemTemplate>
                                      <li class="d-flex justify-content-between <%# Eval("ItemClass") %>">
                                          <h3><%# Eval("NAME") %> <span class="mx-2 p-1"><%# Eval("POINTS") %>  points</span> </h3>
-                                        <asp:Button ID="btnEditActivity" CssClass="btn btn-success py-2 px-3" OnClientClick="return false;" data-bs-target="#" data-bs-toggle="modal" runat="server" Text="Edit" />
+                                        <asp:Button ID="btnEditActivity" data-id='<%# Eval("ACTIVITY_ID") %>' data-name='<%# Eval("NAME") %>' data-description='<%# Eval("DESCRIPTION") %>' data-limit='<%# Eval("LIMIT_PER_WEEK") %>' data-points='<%# Eval("POINTS") %>' CssClass="btn btn-success py-2 px-3" OnClientClick="return false;" data-bs-target="#editActivityModal" data-bs-toggle="modal" runat="server" Text="Edit" />
                                      </li>
                                  </ItemTemplate>
                              </asp:ListView>
@@ -274,20 +300,40 @@
                         document.getElementById('MainContent_currentEmail').value = userEmail;
                         document.getElementById('MainContent_currentRole').value = userRole;
                         document.getElementById('MainContent_currentManagerEmail').value = userManagerEmail;
-
-
                     });
                 });
-
                 var modal = $(this);
                 modal.find('#currentName').text(userName);
                 modal.find('#currentEmail').text(userEmail);
                 modal.find('#currentRole').text(userRole);
                 modal.find('#currentManagerEmail').text(userManagerEmail);
+             });
 
 
+             $('#editActivityModal').on('show.bs.modal', function (event) {
+                 var button = $(event.relatedTarget);
+                 var activityName = button.data('name');
+                 var activityId = button.data('id');
+                 var activityDescription = button.data('description');
+                 var activityLimit = button.data('limit');
+                 var activityPoints = button.data('points');
 
-            });
+                 document.querySelectorAll('btnEditactivity').forEach(button => {
+                     button.addEventListener('click', function () {
+                         document.getElementById('MainContent_currentActivityName').value = activityName;
+                         document.getElementById('MainContent_currentActivityDescription').value = activityDescription;
+                         document.getElementById('MainContent_currentActivityPoints').value = activityPoints;
+                         document.getElementById('MainContent_currentActivityLimit').value = activityLimit;
+                     });
+                 });
+
+                 var modal = $(this);
+                 modal.find('#currentActivityName').text(activityName);
+                 modal.find('#currentActivityDescription').text(activityDescription);
+                 modal.find('#currentActivityPoints').text(activityPoints);
+                 modal.find('#currentActivityLimit').text(activityLimit);
+             });
+
          </script>
 
 
