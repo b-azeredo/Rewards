@@ -19,10 +19,10 @@ namespace Rewards
 
         protected void btnComfirmUserChanges_Click(object sender, EventArgs e)
         {
-            int userID;
-            
+            string userId = currentUserId.Text;
+            string script = $"alert('{userId}');";
+            ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
         }
-
 
         protected void btnComfirmAddActivity_Click(object sender, EventArgs e)
         {

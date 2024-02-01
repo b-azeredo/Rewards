@@ -150,7 +150,6 @@
                             </div>
                         </div>
                     </div>
-                    
 
                  <div class="content">
                      <div class="d-flex pb-2">
@@ -177,7 +176,7 @@
                                                      <%# Eval("POINTS") %> points
                                                 </p>
                                          </div>
-                                        <asp:Button id="btnEditUser" CommandArgument='<%# Eval("ID") %>' data-manager='<%# Eval("MANAGER_EMAIL")%>' data-role='<%# Eval("ROLE")%>' data-name='<%# Eval("USERNAME") %>' data-email='<%# Eval("EMAIL") %>' data-id='<%# Eval("ID") %>'  OnClick="btnEditUser_Click" CssClass="btn btn-success py-2 px-3 editUser" OnClientClick="return false;" data-bs-target="#editUserModal" data-bs-toggle="modal" runat="server" Text="Edit" />
+                                        <asp:Button id="btnEditUser" OnClick="btnEditUser_Click" data-manager='<%# Eval("MANAGER_EMAIL")%>' data-role='<%# Eval("ROLE")%>' data-name='<%# Eval("USERNAME") %>' data-email='<%# Eval("EMAIL") %>' data-id='<%# Eval("ID") %>' CssClass="btn btn-success py-2 px-3 editUser" OnClientClick="return false;" data-bs-target="#editUserModal" data-bs-toggle="modal" runat="server" Text="Edit" />
                                      </div>
                                  </ItemTemplate>
                              </asp:ListView>
@@ -215,9 +214,6 @@
 
              </div>
              <div class="col-7">
-
-
-
                  <div class="content">
                      <!-- REWARDS -->
                     <div id="addRewardModal" class="modal fade" role="dialog">
@@ -346,7 +342,7 @@
                         document.getElementById('MainContent_currentRole').value = userRole;
                         document.getElementById('MainContent_currentManagerEmail').value = userManagerEmail;
                         document.getElementById('MainContent_currentUserId').val(userId);
-
+                        document.getElementById('MainContent_userID').value = userId;
                     });
                 });
                 var modal = $(this);
@@ -356,8 +352,6 @@
                 modal.find('#currentManagerEmail').text(userManagerEmail);
                 modal.find('#MainContent_currentUserId').text(userId);
              });
-
-
 
              $('#editActivityModal').on('show.bs.modal', function (event) {
                  var button = $(event.relatedTarget);
@@ -374,6 +368,7 @@
                          document.getElementById('MainContent_currentActivityPoints').value = activityPoints;
                          document.getElementById('MainContent_currentActivityLimit').value = activityLimit;
                          document.getElementById('MainContent_currentActivityId').value = activityId;
+                         $('#<%= currentUserId.ClientID %>').val(userId);
                      });
                  });
 
