@@ -14,7 +14,7 @@
           <Property Name="POINTS" Type="int" Nullable="false" />
           <Property Name="ACTIVATED" Type="bit" Nullable="false" />
           <Property Name="LIMIT_PER_WEEK" Type="int" Nullable="false" />
-          <Property Name="DESCRIPTION" Type="varchar" MaxLength="500" />
+          <Property Name="DESCRIPTION" Type="varchar" MaxLength="8000" Nullable="false" />
         </EntityType>
         <EntityType Name="FILE">
           <Key>
@@ -53,7 +53,7 @@
           <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PRICE" Type="int" Nullable="false" />
           <Property Name="IMAGE" Type="image" Nullable="false" />
-          <Property Name="ACTIVATED" Type="bit" />
+          <Property Name="ACTIVATED" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="REWARD_STOCK">
           <Key>
@@ -73,7 +73,7 @@
           <Property Name="ROLE" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="MANAGER_EMAIL" Type="varchar" MaxLength="100" />
           <Property Name="PROFILE_IMAGE" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ACTIVATED" Type="bit" />
+          <Property Name="ACTIVATED" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_3">
           <End Role="USER" Type="Self.USER" Multiplicity="1" />
@@ -194,7 +194,7 @@
           <Property Name="LIMIT_PER_WEEK" Type="Int32" Nullable="false" />
           <NavigationProperty Name="FORM" Relationship="Self.FK_4_1" FromRole="ACTIVITY" ToRole="FORM" />
           <Property Name="ACTIVATED" Type="Boolean" Nullable="false" />
-          <Property Name="DESCRIPTION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="FILE">
           <Key>
@@ -241,7 +241,7 @@
           <Property Name="IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="PURCHASE" Relationship="Self.FK_4_2" FromRole="REWARD" ToRole="PURCHASE" />
           <NavigationProperty Name="REWARD_STOCK" Relationship="Self.FK_5" FromRole="REWARD" ToRole="REWARD_STOCK" />
-          <Property Name="ACTIVATED" Type="Boolean" />
+          <Property Name="ACTIVATED" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="REWARD_STOCK">
           <Key>
@@ -264,7 +264,7 @@
           <Property Name="PROFILE_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="FORM" Relationship="Self.FK_3" FromRole="USER" ToRole="FORM" />
           <NavigationProperty Name="PURCHASE" Relationship="Self.FK_4" FromRole="USER" ToRole="PURCHASE" />
-          <Property Name="ACTIVATED" Type="Boolean" />
+          <Property Name="ACTIVATED" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_4_1">
           <End Role="ACTIVITY" Type="Self.ACTIVITY" Multiplicity="1" />

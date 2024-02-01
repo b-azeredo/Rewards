@@ -145,7 +145,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                                    <asp:Button ID="btnComfirmUserChanges"  OnClick="btnComfirmUserChanges_Click" CssClass="btn btn-success" runat="server" Text="Save Changes" />
+                                    <asp:Button ID="btnComfirmUserChanges" OnClick="btnComfirmUserChanges_Click" CssClass="btn btn-success" runat="server" Text="Save Changes" />
                                 </div>
                             </div>
                         </div>
@@ -177,7 +177,7 @@
                                                      <%# Eval("POINTS") %> points
                                                 </p>
                                          </div>
-                                        <asp:Button id="btnEditUser" data-manager='<%# Eval("MANAGER_EMAIL")%>' data-role='<%# Eval("ROLE")%>' data-name='<%# Eval("USERNAME") %>' data-email='<%# Eval("EMAIL") %>' data-id='<%# Eval("ID") %>'  OnClick="btnEditUser_Click" CssClass="btn btn-success py-2 px-3 editUser" OnClientClick="return false;" data-bs-target="#editUserModal" data-bs-toggle="modal" runat="server" Text="Edit" />
+                                        <asp:Button id="btnEditUser" CommandArgument='<%# Eval("ID") %>' data-manager='<%# Eval("MANAGER_EMAIL")%>' data-role='<%# Eval("ROLE")%>' data-name='<%# Eval("USERNAME") %>' data-email='<%# Eval("EMAIL") %>' data-id='<%# Eval("ID") %>'  OnClick="btnEditUser_Click" CssClass="btn btn-success py-2 px-3 editUser" OnClientClick="return false;" data-bs-target="#editUserModal" data-bs-toggle="modal" runat="server" Text="Edit" />
                                      </div>
                                  </ItemTemplate>
                              </asp:ListView>

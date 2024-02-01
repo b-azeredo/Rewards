@@ -25,7 +25,7 @@ namespace Rewards.DBModel
         public string NAME { get; set; }
         public int PRICE { get; set; }
         public byte[] IMAGE { get; set; }
-        public Nullable<bool> ACTIVATED { get; set; }
+        public bool ACTIVATED { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PURCHASE> PURCHASE { get; set; }
