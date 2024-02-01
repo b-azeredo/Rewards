@@ -38,6 +38,7 @@
                                </div>
                            </div>
                             <div class="modal-body">
+                                <p class="m-0">ID: <span id="currentActivityId"></span></p>
                                 <p class="m-0">Current Name: <span id="currentActivityName"></span></p>
                                 <asp:TextBox ID="newActivityName" CssClass="form-control mb-2" placeholder="New Name" runat="server"></asp:TextBox>
                                 <p class="m-0">Current Description: <span id="currentActivityDescription"></span></p>
@@ -116,6 +117,7 @@
                                    </div>
                                </div>
                                 <div class="modal-body">
+                                    <p class="m-0">ID: <span id="currentUserId"></span></p>
                                     <p class="m-0">Current Name: <span id="currentName"></span></p>
                                     <asp:TextBox ID="newName" CssClass="form-control mb-2" placeholder="New Name" runat="server"></asp:TextBox>
                                     <p class="m-0">Current Email: <span id="currentEmail"></span></p>
@@ -300,13 +302,17 @@
                         document.getElementById('MainContent_currentEmail').value = userEmail;
                         document.getElementById('MainContent_currentRole').value = userRole;
                         document.getElementById('MainContent_currentManagerEmail').value = userManagerEmail;
+                        document.getElementById('MainContent_currentUserId').value = activityId;
+
                     });
                 });
                 var modal = $(this);
                 modal.find('#currentName').text(userName);
                 modal.find('#currentEmail').text(userEmail);
                 modal.find('#currentRole').text(userRole);
-                modal.find('#currentManagerEmail').text(userManagerEmail);
+                 modal.find('#currentManagerEmail').text(userManagerEmail);
+                 modal.find('#currentUserId').text(userId);
+
              });
 
 
@@ -324,6 +330,7 @@
                          document.getElementById('MainContent_currentActivityDescription').value = activityDescription;
                          document.getElementById('MainContent_currentActivityPoints').value = activityPoints;
                          document.getElementById('MainContent_currentActivityLimit').value = activityLimit;
+                         document.getElementById('MainContent_currentActivityId').value = activityId;
                      });
                  });
 
@@ -332,6 +339,8 @@
                  modal.find('#currentActivityDescription').text(activityDescription);
                  modal.find('#currentActivityPoints').text(activityPoints);
                  modal.find('#currentActivityLimit').text(activityLimit);
+                 modal.find('#currentActivityId').text(activityId);
+
              });
 
          </script>
