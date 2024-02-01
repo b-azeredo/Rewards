@@ -19,8 +19,10 @@ namespace Rewards
 
         protected void btnComfirmUserChanges_Click(object sender, EventArgs e)
         {
-
+            int userID;
+            
         }
+
 
         protected void btnComfirmAddActivity_Click(object sender, EventArgs e)
         {
@@ -52,6 +54,7 @@ namespace Rewards
                     ROLE = role,
                     PROFILE_IMAGE = FileUpload1.FileBytes,
                     MANAGER_EMAIL = (role == "EMPLOYEE") ? managerEmailTextBox.Text : null,
+                    ACTIVATED = true
                 };
                 entities2.USER.Add(newuser);
                 entities2.SaveChanges();
@@ -80,6 +83,7 @@ namespace Rewards
                             NAME = txbRewardName.Text,
                             PRICE = int.Parse(txbRewardPrice.Text),
                             IMAGE = RewardImage.FileBytes,
+                            ACTIVATED = true
                         };
                         entities2.REWARD.Add(newReward);
                         entities2.SaveChanges();

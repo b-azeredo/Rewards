@@ -2,6 +2,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <style>
+	    h3::before {
+		    display: none;
+	    }
+    </style>
+
      <main class="container-fluid p-3">
          <div class="row pb-4">
              <div class="col-5 overflow-hidden">
@@ -18,8 +24,8 @@
                             <div class="modal-body">
                                 <asp:TextBox ID="ActivityName" CssClass="form-control mb-2" placeholder="Name" runat="server"></asp:TextBox>
                                 <asp:TextBox ID="ActivityDescription" CssClass="form-control mb-2" placeholder="Description" runat="server"></asp:TextBox>
-                                <asp:TextBox ID="ActivityPoints" CssClass="form-control mb-2" placeholder="Points earned by doing this activity" runat="server"></asp:TextBox>
-                                <asp:TextBox ID="ActivityLimit" CssClass="form-control mb-2" placeholder="Limit per week" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="ActivityPoints" TextMode="Number" CssClass="form-control mb-2" placeholder="Points earned by doing this activity" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="ActivityLimit" TextMode="Number" CssClass="form-control mb-2" placeholder="Limit per week" runat="server"></asp:TextBox>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
@@ -47,6 +53,8 @@
                                 <asp:TextBox ID="newActivityPoints" TextMode="Number" CssClass="form-control mb-2" placeholder="New Points" runat="server"></asp:TextBox>
                                 <p class="m-0">Current Limit per week: <span id="currentActivityLimit"></span></p>
                                 <asp:TextBox ID="newActivityLimit" TextMode="Number" CssClass="form-control mb-2" placeholder="New Limit per week" runat="server"></asp:TextBox>
+                                <p class="m-0">Active</p>
+                                <asp:CheckBox ID="CheckBox3" runat="server" />
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
@@ -117,7 +125,7 @@
                                    </div>
                                </div>
                                 <div class="modal-body">
-                                    <p class="m-0">ID: <span id="currentUserId"></span></p>
+                                    <p class="m-0">ID: <asp:Label ID="currentUserId" runat="server" Text="Label"></asp:Label></p>
                                     <p class="m-0">Current Name: <span id="currentName"></span></p>
                                     <asp:TextBox ID="newName" CssClass="form-control mb-2" placeholder="New Name" runat="server"></asp:TextBox>
                                     <p class="m-0">Current Email: <span id="currentEmail"></span></p>
@@ -132,6 +140,8 @@
                                     <asp:TextBox ID="newManagerEmail" CssClass="form-control mb-2" placeholder="New Manager Email" runat="server"></asp:TextBox>
                                     <p class="m-0">Change Profile Image</p>
                                     <asp:FileUpload ID="newProfileImage" CssClass="form-control" runat="server" />
+                                    <p class="m-0">Active</p>
+                                    <asp:CheckBox ID="CheckBox2" runat="server" />
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
@@ -154,7 +164,7 @@
                             </div>
                              <asp:ListView ID="lvUsers" runat="server">
                                  <ItemTemplate>
-                                     <div class="userCard">
+                                     <div class="userCard <%# Eval("ItemClass") %>">
                                          <div class="userImgPlaceholder">
                                              <img src='<%# "data:image;base64," + Convert.ToBase64String(Eval("PROFILE_IMAGE") as byte[]) %>' />
                                          </div>
@@ -205,6 +215,9 @@
 
              </div>
              <div class="col-7">
+
+
+
                  <div class="content">
                      <!-- REWARDS -->
                     <div id="addRewardModal" class="modal fade" role="dialog">
@@ -218,12 +231,41 @@
                                 </div>
                                 <div class="modal-body">
                                     <asp:TextBox ID="txbRewardName" CssClass="form-control mb-2" placeholder="Reward Name" runat="server"></asp:TextBox>
-                                    <asp:TextBox ID="txbRewardPrice" CssClass="form-control mb-2" placeholder="Reward Price" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txbRewardPrice" TextMode="Number" CssClass="form-control mb-2" placeholder="Reward Price" runat="server"></asp:TextBox>
                                     <asp:FileUpload ID="RewardImage" CssClass="form-control" runat="server" />
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
                                     <asp:Button ID="btnComfirmAddReward" OnClick="btnComfirmAddReward_Click" OnClientClick="return validateFileUpload();" CssClass="btn btn-success" runat="server" Text="Add Reward" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="editRewardModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                               <div class="modal-header d-flex flex-column">
+                                   <div class="d-flex align-items-center mb-1">
+                                       <h1 class="modal-title">Edit Reward</h1>
+                                   </div>
+                               </div>
+                                <div class="modal-body">
+                                    <p class="m-0">Current Stock: <asp:Label ID="Label1" runat="server" Text="0"></asp:Label></p>
+                                    <asp:TextBox ID="TextBox3" CssClass="form-control mb-2" placeholder="Add Stock" runat="server"></asp:TextBox>
+                                    <p class="m-0">Current Name: <span id=""></span></p>
+                                    <asp:TextBox ID="TextBox1" CssClass="form-control mb-2" placeholder="New Name" runat="server"></asp:TextBox>
+                                    <p class="m-0">Current Price: <span id=""></span></p>
+                                    <asp:TextBox ID="TextBox2" CssClass="form-control mb-2" placeholder="New Price" runat="server"></asp:TextBox>
+                                    <p class="m-0">Change Image</p>
+                                    <asp:FileUpload ID="FileUpload2" CssClass="form-control mb-2" runat="server" />
+                                    <p class="m-0">Active</p>
+                                    <asp:CheckBox ID="CheckBox1" runat="server" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                                    <asp:Button ID="Button2" CssClass="btn btn-success" runat="server" Text="Save Changes" />
                                 </div>
                             </div>
                         </div>
@@ -235,6 +277,9 @@
                      </div>
                      <div class="rewards overflow-auto d-flex justify-content-center container">
                          <div class="cardsContainer container">
+                             <div id="addRewardCard" class="d-flex justify-content-center align-items-end">
+                                <asp:Button ID="btnAddReward" CssClass="btn btn-success py-2 px-3 mb-3" OnClientClick="return false;" data-bs-target="#addRewardModal" data-bs-toggle="modal" runat="server" Text="Add Reward" />
+                            </div>
                              <asp:ListView ID="lvRewards" runat="server">
                                  <ItemTemplate>
                                      <div class="card <%# Eval("ItemClass") %>">
@@ -245,14 +290,12 @@
                                          <div class="contentBx">
                                              <h2><%# Eval("NAME") %></h2>
                                              <h4><%# Eval("PRICE") %> Points</h4>
-                                             <asp:Button ID="btnEditReward" CssClass="btn btn-success py-2 px-3" runat="server" Text="Edit" />
+                                             <asp:Button ID="btnEditReward" data-bs-target="#editRewardModal" OnClientClick="return false;" data-bs-toggle="modal" CssClass="btn btn-success py-2 px-3" runat="server" Text="Edit" />
                                          </div>
                                      </div>
                                  </ItemTemplate>
                              </asp:ListView>
-                                <div id="addRewardCard" class="d-flex justify-content-center align-items-end">
-                                    <asp:Button ID="btnAddReward" CssClass="btn btn-success py-2 px-3 mb-3" OnClientClick="return false;" data-bs-target="#addRewardModal" data-bs-toggle="modal" runat="server" Text="Add" />
-                                </div>
+                                
                          </div>
                      </div>
                  </div>
@@ -302,7 +345,7 @@
                         document.getElementById('MainContent_currentEmail').value = userEmail;
                         document.getElementById('MainContent_currentRole').value = userRole;
                         document.getElementById('MainContent_currentManagerEmail').value = userManagerEmail;
-                        document.getElementById('MainContent_currentUserId').value = activityId;
+                        document.getElementById('MainContent_currentUserId').val(userId);
 
                     });
                 });
@@ -310,10 +353,10 @@
                 modal.find('#currentName').text(userName);
                 modal.find('#currentEmail').text(userEmail);
                 modal.find('#currentRole').text(userRole);
-                 modal.find('#currentManagerEmail').text(userManagerEmail);
-                 modal.find('#currentUserId').text(userId);
-
+                modal.find('#currentManagerEmail').text(userManagerEmail);
+                modal.find('#MainContent_currentUserId').text(userId);
              });
+
 
 
              $('#editActivityModal').on('show.bs.modal', function (event) {
@@ -340,7 +383,6 @@
                  modal.find('#currentActivityPoints').text(activityPoints);
                  modal.find('#currentActivityLimit').text(activityLimit);
                  modal.find('#currentActivityId').text(activityId);
-
              });
 
          </script>

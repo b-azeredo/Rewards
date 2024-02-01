@@ -230,6 +230,14 @@ div.userCard {
 	cursor: pointer;
 }
 
+	div.userCard.deactivatedUser{
+		border: 1px solid dimgray;
+	}
+
+	div.userCard.deactivatedUser input {
+		background-color: dimgray;
+	}
+
 	div.userCard div.userImgPlaceholder {
 		width: 40px;
 		height: 40px;
@@ -618,3 +626,4 @@ h1.modal-title {
 p span{
 	color: var(--tertiary);
 }
+

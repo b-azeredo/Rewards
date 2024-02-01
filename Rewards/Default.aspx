@@ -17,7 +17,7 @@
                                     <ItemTemplate>
                                         <li class="d-flex justify-content-between">
                                             <h3><%# Eval("NAME") %> <span class="mx-2 p-1"><%# Eval("POINTS") %>  points</span> </h3>
-                                            <button type="button" class="btn btn-success py-1 px-2 submit-btn" data-bs-toggle="modal" data-bs-target="#submitFormModal" data-name='<%# Eval("NAME") %>' data-id="<%# Eval(" ACTIVITY_ID ") %>">Submit</button>
+                                            <button type="button" class="btn btn-success py-1 px-2 submit-btn" data-bs-toggle="modal" data-bs-target="#submitFormModal" data-description='<%# Eval("DESCRIPTION") %>' data-name='<%# Eval("NAME") %>' data-id="<%# Eval(" ACTIVITY_ID ") %>">Submit</button>
                                         </li>
                                     </ItemTemplate>
                                 </asp:ListView>
@@ -26,8 +26,9 @@
                         <div id="submitFormModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header">
+                                    <div class="modal-header d-flex flex-column align-items-start">
                                         <h5 class="modal-title">Modal title</h5>
+                                        <p class="activityDescription mb-0"></p>
                                     </div>
                                     <div class="modal-body">
                                         <asp:HiddenField ID="activityID" runat="server" />
@@ -243,6 +244,7 @@
                 var button = $(event.relatedTarget);
                 var activityName = button.data('name');
                 var activityId = button.data('id');
+                var activityDescripton = button.data('description')
                 document.querySelectorAll('.submit-btn').forEach(button => {
                     button.addEventListener('click', function () {
                         document.getElementById('MainContent_activityID').value = activityId;
@@ -251,6 +253,7 @@
 
                 var modal = $(this);
                 modal.find('.modal-title').text(activityName);
+                modal.find('.activityDescription').text(activityDescripton);
             });
 
             function previewImage() {

@@ -14,7 +14,7 @@ namespace Rewards.Manager
         {
             using (var context = new Entities2())
             {
-                List<USER> users = context.USER.Where(u => u.ROLE == "EMPLOYEE").ToList();
+                List<USER> users = context.USER.Where(u => u.ROLE == "EMPLOYEE" && u.ACTIVATED == true).ToList();
 
                 List<LeaderboardItem> leaderboardItems = users.Select(u => new LeaderboardItem
                 {

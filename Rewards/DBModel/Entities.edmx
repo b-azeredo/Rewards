@@ -73,6 +73,7 @@
           <Property Name="ROLE" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="MANAGER_EMAIL" Type="varchar" MaxLength="100" />
           <Property Name="PROFILE_IMAGE" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ACTIVATED" Type="bit" />
         </EntityType>
         <Association Name="FK_3">
           <End Role="USER" Type="Self.USER" Multiplicity="1" />
@@ -263,6 +264,7 @@
           <Property Name="PROFILE_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="FORM" Relationship="Self.FK_3" FromRole="USER" ToRole="FORM" />
           <NavigationProperty Name="PURCHASE" Relationship="Self.FK_4" FromRole="USER" ToRole="PURCHASE" />
+          <Property Name="ACTIVATED" Type="Boolean" />
         </EntityType>
         <Association Name="FK_4_1">
           <End Role="ACTIVITY" Type="Self.ACTIVITY" Multiplicity="1" />
@@ -442,6 +444,7 @@
           <EntitySetMapping Name="USER">
             <EntityTypeMapping TypeName="Model.USER">
               <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="ACTIVATED" ColumnName="ACTIVATED" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />

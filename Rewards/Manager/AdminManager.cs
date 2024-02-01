@@ -23,7 +23,8 @@ namespace Rewards.Manager
                     ROLE = u.ROLE,
                     USERNAME = u.NAME,
                     POINTS = UserManager.Get_Lifetime_Points(u.ID),
-                    PROFILE_IMAGE = u.PROFILE_IMAGE
+                    PROFILE_IMAGE = u.PROFILE_IMAGE,
+                    ItemClass = u.ACTIVATED == true ? "" : "deactivatedUser"
                 }).ToList();
 
                 return leaderboardItems;
