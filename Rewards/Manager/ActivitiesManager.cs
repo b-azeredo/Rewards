@@ -18,6 +18,8 @@ namespace Rewards.Manager
                 List<ActivityItem> activitiesItem = activities.Select(a => new ActivityItem
                 {
                     ACTIVITY_ID = a.ID,
+                    LIMIT_PER_WEEK = a.LIMIT_PER_WEEK,
+                    DESCRIPTION = a.DESCRIPTION,
                     NAME = a.NAME,
                     POINTS = a.POINTS
                 }).ToList();

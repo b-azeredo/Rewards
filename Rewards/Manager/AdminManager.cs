@@ -23,7 +23,8 @@ namespace Rewards.Manager
                     ROLE = u.ROLE,
                     USERNAME = u.NAME,
                     POINTS = UserManager.Get_Lifetime_Points(u.ID),
-                    PROFILE_IMAGE = u.PROFILE_IMAGE
+                    PROFILE_IMAGE = u.PROFILE_IMAGE,
+                    ItemClass = u.ACTIVATED == true ? "" : "deactivatedUser"
                 }).ToList();
 
                 return leaderboardItems;
@@ -59,6 +60,8 @@ namespace Rewards.Manager
                 List<ActivityItem> activitiesItem = activities.Select(a => new ActivityItem
                 {
                     ACTIVITY_ID = a.ID,
+                    LIMIT_PER_WEEK = a.LIMIT_PER_WEEK,
+                    DESCRIPTION = a.DESCRIPTION,
                     NAME = a.NAME,
                     POINTS = a.POINTS,
                     ItemClass = a.ACTIVATED == true ? "activatedActivity" : "deactivatedActivity"

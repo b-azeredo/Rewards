@@ -14,5 +14,6 @@ namespace Rewards.Items
         public string ROLE {  get; set; }
         public string MANAGER_EMAIL { get; set; }
         public int POINTS { get; set; }
+        public string ItemClass { get; set; }
     }
 }

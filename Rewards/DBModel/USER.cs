@@ -27,6 +27,7 @@ namespace Rewards.DBModel
         public string ROLE { get; set; }
         public string MANAGER_EMAIL { get; set; }
         public byte[] PROFILE_IMAGE { get; set; }
+        public bool ACTIVATED { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FORM> FORM { get; set; }
