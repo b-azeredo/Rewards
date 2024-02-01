@@ -118,7 +118,7 @@ namespace Rewards.Manager
                     ItemClass = "down"
                 }));
 
-                transactionItems = transactionItems.OrderByDescending(t => t.DATE).ToList();
+                transactionItems = transactionItems.OrderByDescending(t => DateTime.Parse(t.DATE)).ToList();
 
                 foreach (var transactionItem in transactionItems)
                 {
@@ -128,6 +128,7 @@ namespace Rewards.Manager
                 return transactionItems;
             }
         }
+
 
         public static bool RemoveOneFromStock(int rewardId)
         {
