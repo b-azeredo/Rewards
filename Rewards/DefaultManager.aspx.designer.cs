@@ -11,7 +11,7 @@ namespace Rewards
 {
 
 
-    public partial class _Default
+    public partial class WebForm2
     {
 
         /// <summary>
@@ -22,51 +22,6 @@ namespace Rewards
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lvActivity;
-
-        /// <summary>
-        /// activityNAME control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl activityNAME;
-
-        /// <summary>
-        /// activityID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField activityID;
-
-        /// <summary>
-        /// activityDESCRIPTION control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox activityDESCRIPTION;
-
-        /// <summary>
-        /// fileUpload1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileUpload1;
-
-        /// <summary>
-        /// btnSubmitForm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitForm;
 
         /// <summary>
         /// lvLeaderboard control.
@@ -150,15 +105,6 @@ namespace Rewards
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl profilePoints2;
 
         /// <summary>
-        /// lvProfileTransactions control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvProfileTransactions;
-
-        /// <summary>
         /// btnSaveProfileChanges control.
         /// </summary>
         /// <remarks>
@@ -202,24 +148,6 @@ namespace Rewards
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl profilePoints;
-
-        /// <summary>
-        /// btnViewAll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnViewAll;
-
-        /// <summary>
-        /// lvTransactions control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvTransactions;
 
         /// <summary>
         /// lvRewards control.

@@ -22,9 +22,13 @@
                                 </div>
                             </div>
                             <div class="modal-body">
+                                <p class="m-0">Name:</p>
                                 <asp:TextBox ID="ActivityName" CssClass="form-control mb-2" placeholder="Name" runat="server"></asp:TextBox>
+                                <p class="m-0">Description:</p>
                                 <asp:TextBox ID="ActivityDescription" CssClass="form-control mb-2" placeholder="Description" runat="server"></asp:TextBox>
+                                <p class="m-0">Points:</p>
                                 <asp:TextBox ID="ActivityPoints" TextMode="Number" CssClass="form-control mb-2" placeholder="Points earned by doing this activity" runat="server"></asp:TextBox>
+                                <p class="m-0">Limit per week:</p>
                                 <asp:TextBox ID="ActivityLimit" TextMode="Number" CssClass="form-control mb-2" placeholder="Limit per week" runat="server"></asp:TextBox>
                             </div>
                             <div class="modal-footer">
@@ -44,16 +48,15 @@
                                </div>
                            </div>
                             <div class="modal-body">
-                                <p class="m-0">ID: <span id="currentActivityId"></span></p>
-                                <p class="m-0">Current Name: <span id="currentActivityName"></span></p>
+                                <p class="mb-0">Name:</p>
                                 <asp:TextBox ID="newActivityName" CssClass="form-control mb-2" placeholder="New Name" runat="server"></asp:TextBox>
-                                <p class="m-0">Current Description: <span id="currentActivityDescription"></span></p>
+                                <p class="mb-0">Description:</p>
                                 <asp:TextBox ID="newActivityDescription" CssClass="form-control mb-2" placeholder="New Description" runat="server"></asp:TextBox>
-                                <p class="m-0">Current Points: <span id="currentActivityPoints"></span></p>
+                                <p class="mb-0">Points:</p>
                                 <asp:TextBox ID="newActivityPoints" TextMode="Number" CssClass="form-control mb-2" placeholder="New Points" runat="server"></asp:TextBox>
-                                <p class="m-0">Current Limit per week: <span id="currentActivityLimit"></span></p>
+                                <p class="mb-0">Limit Per Week:</p>
                                 <asp:TextBox ID="newActivityLimit" TextMode="Number" CssClass="form-control mb-2" placeholder="New Limit per week" runat="server"></asp:TextBox>
-                                <p class="m-0">Active</p>
+                                <p class="mb-0">Active:</p>
                                 <asp:CheckBox ID="CheckBox3" runat="server" />
                             </div>
                             <div class="modal-footer">
@@ -75,14 +78,14 @@
                                 <h3 id="h3AddActivity"> Add Activity </h3>
                                 <asp:Button ID="btnAddActivity" CssClass="btn btn-success py-2 px-3" OnClientClick="return false;" data-bs-target="#addActivityModal" data-bs-toggle="modal" runat="server" Text="+" />
                             </li>
-                             <asp:ListView ID="lvActivity" runat="server">
-                                 <ItemTemplate>
-                                     <li class="d-flex justify-content-between <%# Eval("ItemClass") %>">
-                                         <h3><%# Eval("NAME") %> <span class="mx-2 p-1"><%# Eval("POINTS") %>  points</span> </h3>
-                                        <asp:Button ID="btnEditActivity" data-id='<%# Eval("ACTIVITY_ID") %>' data-name='<%# Eval("NAME") %>' data-description='<%# Eval("DESCRIPTION") %>' data-limit='<%# Eval("LIMIT_PER_WEEK") %>' data-points='<%# Eval("POINTS") %>' CssClass="btn btn-success py-2 px-3" OnClientClick="return false;" data-bs-target="#editActivityModal" data-bs-toggle="modal" runat="server" Text="Edit" />
-                                     </li>
-                                 </ItemTemplate>
-                             </asp:ListView>
+                            <asp:ListView ID="lvActivity" runat="server" OnItemDataBound="lvActivity_ItemDataBound">
+                                <ItemTemplate>
+                                    <li class="d-flex justify-content-between">
+                                        <h3><asp:Literal runat="server" ID="activityNameLiteral"></asp:Literal> <span class="mx-2 p-1"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal>  points</span> </h3>
+                                        <asp:Button ID="btnEditActivity" OnClientClick="return false;" runat="server" CssClass="btn btn-success py-1 px-2 submit-btn" Text="Edit" data-bs-toggle="modal" data-bs-target="#editActivityModal" />
+                                    </li>
+                                </ItemTemplate>
+                            </asp:ListView>
                          </ol>
                      </div>
                  </div>
@@ -98,15 +101,20 @@
                                    </div>
                                </div>
                                 <div class="modal-body">
+                                    <p class="m-0">Name:</p>
                                     <asp:TextBox ID="UserName" CssClass="form-control mb-2" placeholder="Name" runat="server"></asp:TextBox>
-                                        <asp:TextBox ID="UserEmail" CssClass="form-control mb-2" placeholder="Email" runat="server"></asp:TextBox>
-                                        <asp:DropDownList ID="dlRoleUser" CssClass="form-control mb-2" runat="server">
-                                            <asp:ListItem Text="EMPLOYEE" Value="EMPLOYEE"></asp:ListItem>
-                                            <asp:ListItem Text="MANAGER" Value="MANAGER"></asp:ListItem>
-                                            <asp:ListItem Text="ADMIN" Value="ADMIN"></asp:ListItem>
-                                        </asp:DropDownList>
-                                        <asp:TextBox ID="managerEmailTextBox" CssClass="form-control mb-2" placeholder="Manager Email" runat="server"></asp:TextBox>
-                                        <asp:FileUpload ID="FileUpload1" CssClass="form-control" runat="server" />
+                                    <p class="m-0">Email:</p>
+                                    <asp:TextBox ID="UserEmail" CssClass="form-control mb-2" placeholder="Email" runat="server"></asp:TextBox>
+                                    <p class="m-0">Role:</p>
+                                    <asp:DropDownList ID="dlRoleUser" CssClass="form-control mb-2" runat="server">
+                                        <asp:ListItem Text="EMPLOYEE" Value="EMPLOYEE"></asp:ListItem>
+                                        <asp:ListItem Text="MANAGER" Value="MANAGER"></asp:ListItem>
+                                        <asp:ListItem Text="ADMIN" Value="ADMIN"></asp:ListItem>
+                                    </asp:DropDownList>
+                                    <p class="m-0">Manager Email:</p>
+                                    <asp:TextBox ID="managerEmailTextBox" CssClass="form-control mb-2" placeholder="Manager Email" runat="server"></asp:TextBox>
+                                    <p class="m-0">Image:</p>
+                                    <asp:FileUpload ID="FileUpload1" CssClass="form-control" runat="server" />
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
@@ -125,20 +133,21 @@
                                    </div>
                                </div>
                                 <div class="modal-body">
-                                    <p class="m-0">ID: <asp:Label ID="currentUserId" runat="server" Text="Label"></asp:Label></p>
-                                    <p class="m-0">Current Name: <span id="currentName"></span></p>
+                                    <p class="mb-0">ID:</p>
+                                    <asp:TextBox ID="ID" CssClass="form-control mb-2" placeholder="ID" ReadOnly="true" runat="server"></asp:TextBox>
+                                    <p class="mb-0">Name:</p>
                                     <asp:TextBox ID="newName" CssClass="form-control mb-2" placeholder="New Name" runat="server"></asp:TextBox>
-                                    <p class="m-0">Current Email: <span id="currentEmail"></span></p>
+                                    <p class="mb-0">Email:</p>
                                     <asp:TextBox ID="newEmail" CssClass="form-control mb-2" placeholder="New Email" runat="server"></asp:TextBox>
-                                    <p class="m-0">Current Role: <span id="currentRole"></span></p>
+                                    <p class="mb-0">Role:</p>
                                     <asp:DropDownList ID="newRole" CssClass="form-control mb-2" runat="server">
                                         <asp:ListItem Text="EMPLOYEE" Value="EMPLOYEE"></asp:ListItem>
                                         <asp:ListItem Text="MANAGER" Value="MANAGER"></asp:ListItem>
                                         <asp:ListItem Text="ADMIN" Value="ADMIN"></asp:ListItem>
                                     </asp:DropDownList>
-                                    <p class="m-0">Current Manager Email: <span id="currentManagerEmail"></span></p>
+                                    <p class="mb-0">Manager Email:</p>
                                     <asp:TextBox ID="newManagerEmail" CssClass="form-control mb-2" placeholder="New Manager Email" runat="server"></asp:TextBox>
-                                    <p class="m-0">Change Profile Image</p>
+                                    <p class="mb-0">Profile Image:</p>
                                     <asp:FileUpload ID="newProfileImage" CssClass="form-control" runat="server" />
                                     <p class="m-0">Active</p>
                                     <asp:CheckBox ID="CheckBox2" runat="server" />
@@ -150,7 +159,6 @@
                             </div>
                         </div>
                     </div>
-                    
 
                  <div class="content">
                      <div class="d-flex pb-2">
@@ -162,25 +170,23 @@
                                 <p class="m-0">Add user</p>
                                 <asp:Button ID="btnAddUser" CssClass="btn btn-success py-2 px-3" OnClientClick="return false;" data-bs-target="#addUserModal" data-bs-toggle="modal" runat="server" Text="+" />
                             </div>
-                             <asp:ListView ID="lvUsers" runat="server">
-                                 <ItemTemplate>
-                                     <div class="userCard <%# Eval("ItemClass") %>">
-                                         <div class="userImgPlaceholder">
-                                             <img src='<%# "data:image;base64," + Convert.ToBase64String(Eval("PROFILE_IMAGE") as byte[]) %>' />
-                                         </div>
-                                         <div class="userInfo">
-                                               <div>
-                                                     <p>ID: <%# Eval("ID") %></p>
-                                                     <p class="userName"><%# Eval("USERNAME") %></p>
-                                               </div>
-                                                 <p>
-                                                     <%# Eval("POINTS") %> points
-                                                </p>
-                                         </div>
-                                        <asp:Button id="btnEditUser" CommandArgument='<%# Eval("ID") %>' data-manager='<%# Eval("MANAGER_EMAIL")%>' data-role='<%# Eval("ROLE")%>' data-name='<%# Eval("USERNAME") %>' data-email='<%# Eval("EMAIL") %>' data-id='<%# Eval("ID") %>'  OnClick="btnEditUser_Click" CssClass="btn btn-success py-2 px-3 editUser" OnClientClick="return false;" data-bs-target="#editUserModal" data-bs-toggle="modal" runat="server" Text="Edit" />
-                                     </div>
-                                 </ItemTemplate>
-                             </asp:ListView>
+                            <asp:ListView ID="lvUsers" runat="server" OnItemDataBound="lvUsers_ItemDataBound">
+                                <ItemTemplate>
+                                    <div class="userCard">
+                                        <div class="userImgPlaceholder">
+                                             <asp:Image ID="profileImage" runat="server" />
+                                        </div>
+                                        <div class="userInfo">
+                                            <div>
+                                                <p class="userName"><asp:Literal runat="server" ID="litUserName" Text='' /></p>
+                                            </div>
+                                            <p><asp:Literal runat="server" ID="litPoints" Text='' /> points</p>
+                                        </div>
+                                        <asp:Button ID="btnEditUser" runat="server" CssClass="btn btn-success py-2 px-3 editUser" Text="Edit"
+                                            OnClick="btnEditUser_Click" data-bs-target="#editUserModal" data-bs-toggle="modal" OnClientClick="return false;"/>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:ListView>
                      </div>
                  </div>
              </div>
@@ -194,30 +200,24 @@
                          <h1>Leaderboard</h1>
                      </div>
                      <div class="overflow-auto d-flex flex-column align-items-center" style="max-height:85%;">
-                         <asp:ListView ID="lvLeaderboard" runat="server">
-                             <ItemTemplate>
-                                 <div class="userCard">
-                                     <div class="userImgPlaceholder">
-                                         <img src='<%# "data:image;base64," + Convert.ToBase64String(Eval("PROFILE_IMAGE") as byte[]) %>' />
-                                     </div>
-                                     <div class="userInfo">
-                                         <p class="userName">
-                                             <%# Eval("USERNAME") %>
-                                         </p>
-                                         <p>
-                                             <%# Eval("POINTS") %> points</p>
-                                     </div>
-                                 </div>
-                             </ItemTemplate>
-                         </asp:ListView>
+                            <asp:ListView ID="lvLeaderboard" runat="server" OnItemDataBound="lvLeaderboard_ItemDataBound">
+                                <ItemTemplate>
+                                    <div class="userCard">
+                                        <div class="userImgPlaceholder">
+                                            <asp:Image ID="profileImage" runat="server" />
+                                        </div>
+                                        <div class="userInfo">
+                                            <p class="userName"><asp:Literal runat="server" ID="usernameLiteral"></asp:Literal></p>
+                                            <p><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal> points</p>
+                                        </div>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:ListView>
                      </div>
                  </div>
 
              </div>
              <div class="col-7">
-
-
-
                  <div class="content">
                      <!-- REWARDS -->
                     <div id="addRewardModal" class="modal fade" role="dialog">
@@ -230,8 +230,11 @@
                                     </div>
                                 </div>
                                 <div class="modal-body">
+                                    <p class="m-0">Name:</p>
                                     <asp:TextBox ID="txbRewardName" CssClass="form-control mb-2" placeholder="Reward Name" runat="server"></asp:TextBox>
+                                    <p class="m-0">Price:</p>
                                     <asp:TextBox ID="txbRewardPrice" TextMode="Number" CssClass="form-control mb-2" placeholder="Reward Price" runat="server"></asp:TextBox>
+                                    <p class="m-0">Image:</p>
                                     <asp:FileUpload ID="RewardImage" CssClass="form-control" runat="server" />
                                 </div>
                                 <div class="modal-footer">
@@ -254,9 +257,9 @@
                                 <div class="modal-body">
                                     <p class="m-0">Current Stock: <asp:Label ID="Label1" runat="server" Text="0"></asp:Label></p>
                                     <asp:TextBox ID="TextBox3" CssClass="form-control mb-2" placeholder="Add Stock" runat="server"></asp:TextBox>
-                                    <p class="m-0">Current Name: <span id=""></span></p>
+                                    <p class="m-0">Name:</p>
                                     <asp:TextBox ID="TextBox1" CssClass="form-control mb-2" placeholder="New Name" runat="server"></asp:TextBox>
-                                    <p class="m-0">Current Price: <span id=""></span></p>
+                                    <p class="m-0">Price:</p>
                                     <asp:TextBox ID="TextBox2" CssClass="form-control mb-2" placeholder="New Price" runat="server"></asp:TextBox>
                                     <p class="m-0">Change Image</p>
                                     <asp:FileUpload ID="FileUpload2" CssClass="form-control mb-2" runat="server" />
@@ -280,22 +283,20 @@
                              <div id="addRewardCard" class="d-flex justify-content-center align-items-end">
                                 <asp:Button ID="btnAddReward" CssClass="btn btn-success py-2 px-3 mb-3" OnClientClick="return false;" data-bs-target="#addRewardModal" data-bs-toggle="modal" runat="server" Text="Add Reward" />
                             </div>
-                             <asp:ListView ID="lvRewards" runat="server">
-                                 <ItemTemplate>
-                                     <div class="card <%# Eval("ItemClass") %>">
-                                         <div class="imgBx">
-                                             <img src="<%# " data:image;base64, " + Convert.ToBase64String(Eval("IMAGE ") as byte[]) %>">
-                                         </div>
-
-                                         <div class="contentBx">
-                                             <h2><%# Eval("NAME") %></h2>
-                                             <h4><%# Eval("PRICE") %> Points</h4>
-                                             <asp:Button ID="btnEditReward" data-bs-target="#editRewardModal" OnClientClick="return false;" data-bs-toggle="modal" CssClass="btn btn-success py-2 px-3" runat="server" Text="Edit" />
-                                         </div>
-                                     </div>
-                                 </ItemTemplate>
-                             </asp:ListView>
-                                
+                                <asp:ListView ID="lvRewards" runat="server" OnItemDataBound="lvRewards_ItemDataBound">
+                                    <ItemTemplate>
+                                        <div class="card">
+                                            <div class="imgBx">
+                                                <asp:Image ID="rewardImage" runat="server" Width="100" Height="100" />
+                                            </div>
+                                            <div class="contentBx">
+                                                <h2><asp:Literal runat="server" ID="rewardNameLiteral"></asp:Literal></h2>
+                                                <h4><asp:Literal runat="server" ID="rewardPriceLiteral"></asp:Literal> Points</h4>
+                                                <asp:Button ID="btnEdit" CssClass="btn btn-success py-2 px-3" runat="server" Text="Edit" OnClientClick="return false;" data-bs-target="#editRewardModal" data-bs-toggle="modal"  />
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:ListView>
                          </div>
                      </div>
                  </div>
@@ -330,60 +331,6 @@
                      }
                  }
              }
-
-             $('#editUserModal').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget);
-                var userName = button.data('name');
-                var userId = button.data('id');
-                var userEmail = button.data('email');
-                var userRole = button.data('role');
-                var userManagerEmail = button.data('manager');
-
-                document.querySelectorAll('btnEditUser').forEach(button => {
-                    button.addEventListener('click', function () {
-                        document.getElementById('MainContent_currentName').value = userName;
-                        document.getElementById('MainContent_currentEmail').value = userEmail;
-                        document.getElementById('MainContent_currentRole').value = userRole;
-                        document.getElementById('MainContent_currentManagerEmail').value = userManagerEmail;
-                        document.getElementById('MainContent_currentUserId').val(userId);
-
-                    });
-                });
-                var modal = $(this);
-                modal.find('#currentName').text(userName);
-                modal.find('#currentEmail').text(userEmail);
-                modal.find('#currentRole').text(userRole);
-                modal.find('#currentManagerEmail').text(userManagerEmail);
-                modal.find('#MainContent_currentUserId').text(userId);
-             });
-
-
-
-             $('#editActivityModal').on('show.bs.modal', function (event) {
-                 var button = $(event.relatedTarget);
-                 var activityName = button.data('name');
-                 var activityId = button.data('id');
-                 var activityDescription = button.data('description');
-                 var activityLimit = button.data('limit');
-                 var activityPoints = button.data('points');
-
-                 document.querySelectorAll('btnEditactivity').forEach(button => {
-                     button.addEventListener('click', function () {
-                         document.getElementById('MainContent_currentActivityName').value = activityName;
-                         document.getElementById('MainContent_currentActivityDescription').value = activityDescription;
-                         document.getElementById('MainContent_currentActivityPoints').value = activityPoints;
-                         document.getElementById('MainContent_currentActivityLimit').value = activityLimit;
-                         document.getElementById('MainContent_currentActivityId').value = activityId;
-                     });
-                 });
-
-                 var modal = $(this);
-                 modal.find('#currentActivityName').text(activityName);
-                 modal.find('#currentActivityDescription').text(activityDescription);
-                 modal.find('#currentActivityPoints').text(activityPoints);
-                 modal.find('#currentActivityLimit').text(activityLimit);
-                 modal.find('#currentActivityId').text(activityId);
-             });
 
          </script>
 

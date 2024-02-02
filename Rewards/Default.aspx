@@ -13,11 +13,11 @@
                         </div>
                         <div class="overflow-auto" style="max-height:85%;">
                             <ol style="--length: 0" role="list">
-                                <asp:ListView ID="lvActivity" runat="server">
+                                <asp:ListView ID="lvActivity" runat="server" OnItemDataBound="lvActivity_ItemDataBound">
                                     <ItemTemplate>
                                         <li class="d-flex justify-content-between">
-                                            <h3><%# Eval("NAME") %> <span class="mx-2 p-1"><%# Eval("POINTS") %>  points</span> </h3>
-                                            <button type="button" class="btn btn-success py-1 px-2 submit-btn" data-bs-toggle="modal" data-bs-target="#submitFormModal" data-description='<%# Eval("DESCRIPTION") %>' data-name='<%# Eval("NAME") %>' data-id="<%# Eval(" ACTIVITY_ID ") %>">Submit</button>
+                                            <h3><asp:Literal runat="server" ID="activityNameLiteral"></asp:Literal> <span class="mx-2 p-1"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal>  points</span> </h3>
+                                           <asp:Button ID="btnSubmitActivity" OnClick="btnSubmitActivity_Click" OnClientClick="return false;" runat="server" CssClass="btn btn-success py-1 px-2 submit-btn" Text="Submit" data-bs-toggle="modal" data-bs-target="#submitFormModal" />
                                         </li>
                                     </ItemTemplate>
                                 </asp:ListView>
@@ -27,12 +27,12 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header d-flex flex-column align-items-start">
-                                        <h5 class="modal-title">Modal title</h5>
+                                        <h5 class="modal-title" runat="server" id="activityNAME">Modal title</h5>
                                         <p class="activityDescription mb-0"></p>
                                     </div>
                                     <div class="modal-body">
                                         <asp:HiddenField ID="activityID" runat="server" />
-                                        <asp:TextBox ID="description" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Write down in detail the activity you did"></asp:TextBox>
+                                        <asp:TextBox ID="activityDESCRIPTION" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Write down in detail the activity you did"></asp:TextBox>
                                         <asp:FileUpload ID="fileUpload1" runat="server" CssClass="form-control mt-3" Multiple="multiple" />
                                     </div>
                                     <div class="modal-footer">
@@ -52,18 +52,15 @@
                             <h1>Leaderboard</h1>
                         </div>
                         <div class="overflow-auto d-flex flex-column align-items-center" style="max-height:85%;">
-                            <asp:ListView ID="lvLeaderboard" runat="server">
+                            <asp:ListView ID="lvLeaderboard" runat="server" OnItemDataBound="lvLeaderboard_ItemDataBound">
                                 <ItemTemplate>
                                     <div class="userCard">
                                         <div class="userImgPlaceholder">
-                                            <img src='<%# "data:image;base64," + Convert.ToBase64String(Eval("PROFILE_IMAGE") as byte[]) %>' />
+                                            <asp:Image ID="profileImage" runat="server" />
                                         </div>
                                         <div class="userInfo">
-                                            <p class="userName">
-                                                <%# Eval("USERNAME") %>
-                                            </p>
-                                            <p>
-                                                <%# Eval("POINTS") %> points</p>
+                                            <p class="userName"><asp:Literal runat="server" ID="usernameLiteral"></asp:Literal></p>
+                                            <p><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal> points</p>
                                         </div>
                                     </div>
                                 </ItemTemplate>
@@ -117,7 +114,6 @@
             <div class="row">
                 <div class="col-4">
                     <!-- YOUR PROFILE -->
-
                     <div id="profileModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -146,20 +142,15 @@
                                             <h4 class="mb-0">Your Transactions</h4>
                                         </div>
                                         <div class="transactionsContainer overflow-auto" style="height: 160px">
-                                            <asp:ListView ID="lvProfileTransactions" runat="server">
-                                                <ItemTemplate>
-                                                    <div class="transaction d-flex justify-content-between">
-                                                        <p class="white w-50">
-                                                            <%# Eval("NAME") %>
-                                                        </p>
-                                                        <p class="<%# Eval(" ItemClass ") %>">
-                                                            <%# Eval("POINTS") %> points</p>
-                                                        <p class="TransactionDate">
-                                                            <%# Eval("DATE") %>
-                                                        </p>
-                                                    </div>
-                                                </ItemTemplate>
-                                            </asp:ListView>
+                                        <asp:ListView ID="lvProfileTransactions" runat="server" OnItemDataBound="lvProfileTransactions_ItemDataBound">
+                                            <ItemTemplate>
+                                                <div class="transaction d-flex justify-content-between">
+                                                    <p class="white w-50"><asp:Literal runat="server" ID="transactionNameLiteral"></asp:Literal></p>
+                                                    <p class="<asp:Literal runat="server" ID="itemClassLiteral"></asp:Literal>"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal> points</p>
+                                                    <p class="TransactionDate"><asp:Literal runat="server" ID="transactionDateLiteral"></asp:Literal></p>
+                                                </div>
+                                            </ItemTemplate>
+                                        </asp:ListView>
                                         </div>
                                     </div>
                                 </div>
@@ -190,20 +181,16 @@
                                     <asp:Button ID="btnViewAll" runat="server" Text="View All" CssClass="btn btn-success py-1 px-2 align-self-end mt-0 mx-1" OnClientClick="return false;" data-bs-toggle="modal" data-bs-target="#profileModal" />
                                 </div>
                                 <div class="transactionsContainer overflow-auto">
-                                    <asp:ListView ID="lvTransactions" runat="server">
+                                    <asp:ListView ID="lvTransactions" runat="server" OnItemDataBound="lvTransactions_ItemDataBound">
                                         <ItemTemplate>
                                             <div class="transaction d-flex justify-content-between">
-                                                <p class="white w-50">
-                                                    <%# Eval("NAME") %>
-                                                </p>
-                                                <p class="<%# Eval(" ItemClass ") %>">
-                                                    <%# Eval("POINTS") %> points</p>
-                                                <p class="TransactionDate">
-                                                    <%# Eval("DATE") %>
-                                                </p>
+                                                <p class="white w-50"><asp:Literal runat="server" ID="transactionNameLiteral"></asp:Literal></p>
+                                                <p class="<asp:Literal runat="server" ID="itemClassLiteral"></asp:Literal>"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal> points</p>
+                                                <p class="TransactionDate"><asp:Literal runat="server" ID="transactionDateLiteral"></asp:Literal></p>
                                             </div>
                                         </ItemTemplate>
                                     </asp:ListView>
+
                                 </div>
                             </div>
                         </div>
@@ -218,17 +205,16 @@
                         </div>
                         <div class="rewards overflow-auto d-flex justify-content-center container">
                             <div class="cardsContainer container">
-                                <asp:ListView ID="lvRewards" runat="server">
+                                <asp:ListView ID="lvRewards" runat="server" OnItemDataBound="lvRewards_ItemDataBound">
                                     <ItemTemplate>
                                         <div class="card">
                                             <div class="imgBx">
-                                                <img src="<%# " data:image;base64, " + Convert.ToBase64String(Eval("IMAGE ") as byte[]) %>">
+                                                <asp:Image ID="rewardImage" runat="server" Width="100" Height="100" />
                                             </div>
-
                                             <div class="contentBx">
-                                                <h2><%# Eval("NAME") %></h2>
-                                                <h4><%# Eval("PRICE") %> Points</h4>
-                                                <asp:Button ID="btnClaim" CssClass="btn btn-success py-2 px-3" runat="server" Text="Claim" CommandName="Claim" CommandArgument='<%# Eval("ID") %>' OnCommand="btnClaim_Command" />
+                                                <h2><asp:Literal runat="server" ID="rewardNameLiteral"></asp:Literal></h2>
+                                                <h4><asp:Literal runat="server" ID="rewardPriceLiteral"></asp:Literal> Points</h4>
+                                                <asp:Button ID="btnClaim" CssClass="btn btn-success py-2 px-3" runat="server" Text="Claim" CommandName="Claim" CommandArgument='<%# Eval("Id") %>' OnCommand="btnClaim_Command" />
                                             </div>
                                         </div>
                                     </ItemTemplate>
@@ -240,22 +226,6 @@
             </div>
         </main>
         <script>
-            $('#submitFormModal').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget);
-                var activityName = button.data('name');
-                var activityId = button.data('id');
-                var activityDescripton = button.data('description')
-                document.querySelectorAll('.submit-btn').forEach(button => {
-                    button.addEventListener('click', function () {
-                        document.getElementById('MainContent_activityID').value = activityId;
-                    });
-                });
-
-                var modal = $(this);
-                modal.find('.modal-title').text(activityName);
-                modal.find('.activityDescription').text(activityDescripton);
-            });
-
             function previewImage() {
                 var input = document.getElementById('MainContent_fileUpload');
                 var image = document.getElementById('MainContent_profileImage2');

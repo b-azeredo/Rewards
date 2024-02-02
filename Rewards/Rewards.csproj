@@ -177,6 +177,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="DefaultAdmin.aspx" />
+    <Content Include="DefaultManager.aspx" />
     <EntityDeploy Include="DBModel\Entities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Entities.Designer.cs</LastGenOutput>
@@ -325,6 +326,13 @@
     </Compile>
     <Compile Include="DefaultAdmin.aspx.designer.cs">
       <DependentUpon>DefaultAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DefaultManager.aspx.cs">
+      <DependentUpon>DefaultManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DefaultManager.aspx.designer.cs">
+      <DependentUpon>DefaultManager.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

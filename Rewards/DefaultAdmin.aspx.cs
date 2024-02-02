@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.EnterpriseServices;
 using System.Linq;
 using System.Web;
+using Rewards.Items;
 
 namespace Rewards
 {
@@ -19,10 +20,8 @@ namespace Rewards
 
         protected void btnComfirmUserChanges_Click(object sender, EventArgs e)
         {
-            int userID;
-            
-        }
 
+        }
 
         protected void btnComfirmAddActivity_Click(object sender, EventArgs e)
         {
@@ -91,6 +90,66 @@ namespace Rewards
 
                     };
                 }
+            }
+        }
+
+        /* DATA BOUNDS */
+
+        protected void lvActivity_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                var item = e.Item.DataItem as ActivityItem;
+                var activityNameLiteral = e.Item.FindControl("activityNameLiteral") as Literal;
+                var pointsLiteral = e.Item.FindControl("pointsLiteral") as Literal;
+
+                activityNameLiteral.Text = item.NAME;
+                pointsLiteral.Text = item.POINTS.ToString();
+            }
+        }
+
+
+        protected void lvRewards_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                var item = e.Item.DataItem as RewardsItem;
+                var rewardImage = e.Item.FindControl("rewardImage") as Image;
+                var rewardNameLiteral = e.Item.FindControl("rewardNameLiteral") as Literal;
+                var rewardPriceLiteral = e.Item.FindControl("rewardPriceLiteral") as Literal;
+
+                rewardImage.ImageUrl = $"data:image;base64,{Convert.ToBase64String(item.IMAGE)}";
+                rewardNameLiteral.Text = item.NAME;
+                rewardPriceLiteral.Text = item.PRICE.ToString();
+            }
+        }
+
+        protected void lvUsers_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                var item = e.Item.DataItem as LeaderboardItem;
+                var profileImage = e.Item.FindControl("profileImage") as Image;
+                var usernameLiteral = e.Item.FindControl("litUserName") as Literal;
+                var pointsLiteral = e.Item.FindControl("litPoints") as Literal;
+
+                profileImage.ImageUrl = $"data:image;base64,{Convert.ToBase64String(item.PROFILE_IMAGE)}";
+                usernameLiteral.Text = item.USERNAME;
+                pointsLiteral.Text = item.POINTS.ToString();
+            }
+        }
+        protected void lvLeaderboard_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                var item = e.Item.DataItem as LeaderboardItem;
+                var profileImage = e.Item.FindControl("profileImage") as Image;
+                var usernameLiteral = e.Item.FindControl("usernameLiteral") as Literal;
+                var pointsLiteral = e.Item.FindControl("pointsLiteral") as Literal;
+
+                profileImage.ImageUrl = $"data:image;base64,{Convert.ToBase64String(item.PROFILE_IMAGE)}";
+                usernameLiteral.Text = item.USERNAME;
+                pointsLiteral.Text = item.POINTS.ToString();
             }
         }
 
