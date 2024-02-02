@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.EnterpriseServices;
 using System.Linq;
 using System.Web;
+using Rewards.Items;
 
 namespace Rewards
 {
@@ -27,6 +28,11 @@ namespace Rewards
             }
         }
 
+        protected void btnSubmitActivity_Click(object sender, EventArgs e)
+        {
+            
+        }
+
         protected void btnSubmitForm_Click(object sender, EventArgs e)
         {
             int activityId = Convert.ToInt32(activityID.Value);
@@ -39,7 +45,7 @@ namespace Rewards
                     {
                         USER_ID = this.USER_ID,
                         ACTIVITY_ID = activityId,
-                        DESCRIPTION = description.Text,
+                        DESCRIPTION = activityDESCRIPTION.Text,
                         STATUS = true,
                         CREATE_DATE = DateTime.Now,
                         MANAGER_DATA_APROVED = DateTime.Now,
@@ -56,6 +62,8 @@ namespace Rewards
                         {
                             FORM_ID = form.ID,
                             CONTENT = fileBytes,
+                            FILE_NAME = "test",
+                            FILE_EXTENSION = "test"
                         };
                         entities.FILE.Add(file);
                     }
@@ -100,6 +108,86 @@ namespace Rewards
                 {
 
                 }
+            }
+        }
+
+
+        /* DATA BOUNDS */
+
+        protected void lvActivity_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                var item = e.Item.DataItem as ActivityItem;
+                var activityNameLiteral = e.Item.FindControl("activityNameLiteral") as Literal;
+                var pointsLiteral = e.Item.FindControl("pointsLiteral") as Literal;
+
+                activityNameLiteral.Text = item.NAME;
+                pointsLiteral.Text = item.POINTS.ToString();
+            }
+        }
+
+        protected void lvLeaderboard_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                var item = e.Item.DataItem as LeaderboardItem;
+                var profileImage = e.Item.FindControl("profileImage") as Image;
+                var usernameLiteral = e.Item.FindControl("usernameLiteral") as Literal;
+                var pointsLiteral = e.Item.FindControl("pointsLiteral") as Literal;
+
+                profileImage.ImageUrl = $"data:image;base64,{Convert.ToBase64String(item.PROFILE_IMAGE)}";
+                usernameLiteral.Text = item.USERNAME;
+                pointsLiteral.Text = item.POINTS.ToString();
+            }
+        }
+
+        protected void lvRewards_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                var item = e.Item.DataItem as RewardsItem;
+                var rewardImage = e.Item.FindControl("rewardImage") as Image;
+                var rewardNameLiteral = e.Item.FindControl("rewardNameLiteral") as Literal;
+                var rewardPriceLiteral = e.Item.FindControl("rewardPriceLiteral") as Literal;
+
+                rewardImage.ImageUrl = $"data:image;base64,{Convert.ToBase64String(item.IMAGE)}";
+                rewardNameLiteral.Text = item.NAME;
+                rewardPriceLiteral.Text = item.PRICE.ToString();
+            }
+        }
+
+        protected void lvTransactions_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                var item = e.Item.DataItem as TransactionItem;
+                var transactionNameLiteral = e.Item.FindControl("transactionNameLiteral") as Literal;
+                var itemClassLiteral = e.Item.FindControl("itemClassLiteral") as Literal;
+                var pointsLiteral = e.Item.FindControl("pointsLiteral") as Literal;
+                var transactionDateLiteral = e.Item.FindControl("transactionDateLiteral") as Literal;
+
+                transactionNameLiteral.Text = item.NAME;
+                itemClassLiteral.Text = item.ItemClass;
+                pointsLiteral.Text = item.POINTS.ToString();
+                transactionDateLiteral.Text = item.DATE.ToString();
+            }
+        }
+
+        protected void lvProfileTransactions_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                var item = e.Item.DataItem as TransactionItem;
+                var transactionNameLiteral = e.Item.FindControl("transactionNameLiteral") as Literal;
+                var itemClassLiteral = e.Item.FindControl("itemClassLiteral") as Literal;
+                var pointsLiteral = e.Item.FindControl("pointsLiteral") as Literal;
+                var transactionDateLiteral = e.Item.FindControl("transactionDateLiteral") as Literal;
+
+                transactionNameLiteral.Text = item.NAME;
+                itemClassLiteral.Text = item.ItemClass;
+                pointsLiteral.Text = item.POINTS.ToString();
+                transactionDateLiteral.Text = item.DATE.ToString();
             }
         }
 

@@ -24,6 +24,15 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.ListView lvActivity;
 
         /// <summary>
+        /// activityNAME control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl activityNAME;
+
+        /// <summary>
         /// activityID control.
         /// </summary>
         /// <remarks>
@@ -33,13 +42,13 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.HiddenField activityID;
 
         /// <summary>
-        /// description control.
+        /// activityDESCRIPTION control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox description;
+        protected global::System.Web.UI.WebControls.TextBox activityDESCRIPTION;
 
         /// <summary>
         /// fileUpload1 control.
