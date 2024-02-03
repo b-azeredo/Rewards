@@ -8,6 +8,7 @@ using System.EnterpriseServices;
 using System.Linq;
 using System.Web;
 using Rewards.Items;
+using System.Web.UI.HtmlControls;
 
 namespace Rewards
 {
@@ -30,8 +31,15 @@ namespace Rewards
 
         protected void btnSubmitActivity_Click(object sender, EventArgs e)
         {
-            
+            Button btnSubmit = (Button)sender;
+            ListViewItem item = (ListViewItem)btnSubmit.NamingContainer;
+            Literal activityNameLiteral = (Literal)item.FindControl("activityNameLiteral");
+
+            activityNAME.InnerText = activityNameLiteral.Text;
+
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showModal()", true);
         }
+
 
         protected void btnSubmitForm_Click(object sender, EventArgs e)
         {
