@@ -33,6 +33,15 @@ namespace Rewards
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl activityNAME;
 
         /// <summary>
+        /// activityDESCRIPTION control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl activityDESCRIPTION;
+
+        /// <summary>
         /// activityID control.
         /// </summary>
         /// <remarks>
@@ -42,13 +51,13 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.HiddenField activityID;
 
         /// <summary>
-        /// activityDESCRIPTION control.
+        /// txtActivityDESCRIPTION control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox activityDESCRIPTION;
+        protected global::System.Web.UI.WebControls.TextBox txtActivityDESCRIPTION;
 
         /// <summary>
         /// fileUpload1 control.

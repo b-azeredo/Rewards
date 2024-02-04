@@ -34,8 +34,12 @@ namespace Rewards
             Button btnSubmit = (Button)sender;
             ListViewItem item = (ListViewItem)btnSubmit.NamingContainer;
             Literal activityNameLiteral = (Literal)item.FindControl("activityNameLiteral");
+            HiddenField activityIdLiteral = item.FindControl("activityIdLiteral") as HiddenField;
+            HiddenField activityDescriptionLiteral = item.FindControl("activityDescriptionLiteral") as HiddenField;
 
             activityNAME.InnerText = activityNameLiteral.Text;
+            activityID.Value = activityIdLiteral.Value;
+            activityDESCRIPTION.InnerText = activityDescriptionLiteral.Value;
 
             Page.ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showModal()", true);
         }
@@ -53,7 +57,7 @@ namespace Rewards
                     {
                         USER_ID = this.USER_ID,
                         ACTIVITY_ID = activityId,
-                        DESCRIPTION = activityDESCRIPTION.Text,
+                        DESCRIPTION = activityDESCRIPTION.InnerText,
                         STATUS = true,
                         CREATE_DATE = DateTime.Now,
                         MANAGER_DATA_APROVED = DateTime.Now,
@@ -129,7 +133,11 @@ namespace Rewards
                 var item = e.Item.DataItem as ActivityItem;
                 var activityNameLiteral = e.Item.FindControl("activityNameLiteral") as Literal;
                 var pointsLiteral = e.Item.FindControl("pointsLiteral") as Literal;
+                var activityId = e.Item.FindControl("activityIdLiteral") as HiddenField;
+                var activityDescription = e.Item.FindControl("activityDescriptionLiteral") as HiddenField;
 
+                activityDescription.Value = item.DESCRIPTION;
+                activityId.Value = item.ACTIVITY_ID.ToString();
                 activityNameLiteral.Text = item.NAME;
                 pointsLiteral.Text = item.POINTS.ToString();
             }

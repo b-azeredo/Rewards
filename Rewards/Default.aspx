@@ -16,6 +16,8 @@
                                 <asp:ListView ID="lvActivity" runat="server" OnItemDataBound="lvActivity_ItemDataBound">
                                     <ItemTemplate>
                                         <li class="d-flex justify-content-between">
+                                            <asp:HiddenField runat="server" ID="activityIdLiteral"></asp:HiddenField>
+                                            <asp:HiddenField runat="server" ID="activityDescriptionLiteral"></asp:HiddenField>
                                             <h3><asp:Literal runat="server" ID="activityNameLiteral"></asp:Literal> <span class="mx-2 p-1"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal>  points</span> </h3>
                                            <asp:Button ID="btnSubmitActivity" OnClick="btnSubmitActivity_Click" runat="server" CssClass="btn btn-success py-1 px-2 submit-btn" Text="Submit" />
                                         </li>
@@ -28,11 +30,11 @@
                                 <div class="modal-content">
                                     <div class="modal-header d-flex flex-column align-items-start">
                                         <h5 id="activityNAME" class="modal-title" runat="server">Label</h5>
-                                        <p class="activityDescription mb-0"></p>
+                                        <p runat="server" id="activityDESCRIPTION" class="mb-0"></p>
                                     </div>
                                     <div class="modal-body">
                                         <asp:HiddenField ID="activityID" runat="server" />
-                                        <asp:TextBox ID="activityDESCRIPTION" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Write down in detail the activity you did"></asp:TextBox>
+                                        <asp:TextBox ID="txtActivityDESCRIPTION" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Write down in detail the activity you did"></asp:TextBox>
                                         <asp:FileUpload ID="fileUpload1" runat="server" CssClass="form-control mt-3" Multiple="multiple" />
                                     </div>
                                     <div class="modal-footer">
@@ -146,7 +148,7 @@
                                             <ItemTemplate>
                                                 <div class="transaction d-flex justify-content-between">
                                                     <p class="white w-50"><asp:Literal runat="server" ID="transactionNameLiteral"></asp:Literal></p>
-                                                    <p class="<asp:Literal runat="server" ID="itemClassLiteral"></asp:Literal>"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal> points</p>
+                                                    <p class="<asp:Literal runat='server' ID='itemClassLiteral'></asp:Literal>"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal> points</p>
                                                     <p class="TransactionDate"><asp:Literal runat="server" ID="transactionDateLiteral"></asp:Literal></p>
                                                 </div>
                                             </ItemTemplate>
@@ -185,7 +187,7 @@
                                         <ItemTemplate>
                                             <div class="transaction d-flex justify-content-between">
                                                 <p class="white w-50"><asp:Literal runat="server" ID="transactionNameLiteral"></asp:Literal></p>
-                                                <p class="<asp:Literal runat="server" ID="itemClassLiteral"></asp:Literal>"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal> points</p>
+                                                <p class="<asp:Literal runat='server' ID='itemClassLiteral'></asp:Literal>"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal> points</p>
                                                 <p class="TransactionDate"><asp:Literal runat="server" ID="transactionDateLiteral"></asp:Literal></p>
                                             </div>
                                         </ItemTemplate>
