@@ -9,28 +9,6 @@ namespace Rewards.Manager
 {
     public class AdminManager
     {
-        public static List<LeaderboardItem> GetUsersFromDatabase()
-        {
-            using (var context = new Entities2())
-            {
-                List<USER> users = context.USER.ToList();
-
-                List<LeaderboardItem> leaderboardItems = users.Select(u => new LeaderboardItem
-                {
-                    ID = u.ID,
-                    EMAIL = u.EMAIL,
-                    MANAGER_EMAIL = u.MANAGER_EMAIL,
-                    ROLE = u.ROLE,
-                    USERNAME = u.NAME,
-                    POINTS = UserManager.Get_Lifetime_Points(u.ID),
-                    PROFILE_IMAGE = u.PROFILE_IMAGE,
-                    ItemClass = u.ACTIVATED == true ? "" : "deactivatedUser"
-                }).ToList();
-
-                return leaderboardItems;
-            }
-        }
-
         public static List<RewardsItem> GetRewardsFromDatabase()
         {
             using (var context = new Entities2())
@@ -43,6 +21,7 @@ namespace Rewards.Manager
                         NAME = r.NAME,
                         PRICE = r.PRICE,
                         IMAGE = r.IMAGE,
+                        ACTIVATED = r.ACTIVATED,
                         ItemClass = r.REWARD_STOCK.Any(rs => rs.STOCK > 0) && r.ACTIVATED == true ? "inStock" : "outOfStock"
                     })
                     .ToList();
@@ -70,5 +49,7 @@ namespace Rewards.Manager
                 return activitiesItem;
             }
         }
+
+
     }
 }

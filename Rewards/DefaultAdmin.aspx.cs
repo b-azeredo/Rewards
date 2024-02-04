@@ -8,20 +8,106 @@ using System.EnterpriseServices;
 using System.Linq;
 using System.Web;
 using Rewards.Items;
+using System.Web.UI.HtmlControls;
 
 namespace Rewards
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        /* Open Modal Click */
+
+        protected void btnEditActivity_Click(object sender, EventArgs e)
+        {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showEditActivityModal()", true);
+        }
+
+        protected void btnEditReward_Click(object sender, EventArgs e)
+        {
+            Button btnEditReward = (Button)sender;
+            ListViewItem item = (ListViewItem)btnEditReward.NamingContainer;
+
+            Image rewardImage = (Image)item.FindControl("rewardImage");
+            Literal rewardNameLiteral = (Literal)item.FindControl("rewardNameLiteral");
+            Literal rewardPriceLiteral = (Literal)item.FindControl("rewardPriceLiteral");
+            HiddenField rewardId = (HiddenField)item.FindControl("rewardIDHiddenField");
+            HiddenField rewardStatusHiddenField = (HiddenField)item.FindControl("rewardStatusHiddenField");
+
+            rewardID.Value = rewardId.Value.ToString();
+            RewardImagePlaceholder.Src = rewardImage.ImageUrl;
+            txtRewardName.Text = rewardNameLiteral.Text;
+            txtRewardPrice.Text = rewardPriceLiteral.Text;
+            labelCurrentStock.Text = RewardsManager.GetRewardStock(int.Parse(rewardId.Value)).ToString();
+            foreach (ListItem dlItem in dlRewardStatus.Items)
+            {
+                dlItem.Selected = false;
+            }
+            dlRewardStatus.Items.FindByValue(rewardStatusHiddenField.Value).Selected = true;
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showEditRewardModal()", true);
+        }
+
         protected void btnEditUser_Click(object sender, EventArgs e)
         {
-            
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showEditUserModal()", true);
+        }
+
+
+        /* COMFIRM CHANGES */
+
+        protected void btnComfirmActivityChanges_Click(object sender, EventArgs e)
+        {
+
         }
 
         protected void btnComfirmUserChanges_Click(object sender, EventArgs e)
         {
 
         }
+
+        protected void btnComfirmRewardChanges_Click(object sender, EventArgs e)
+        {
+            int rewardId = int.Parse(rewardID.Value);
+
+            using (var entities = new Entities2())
+            {
+                REWARD reward = entities.REWARD.FirstOrDefault(x => x.ID == rewardId);
+
+                if (txtInsertStock.Text != "")
+                {
+                    REWARD_STOCK rewardStock = new REWARD_STOCK()
+                    {
+                        REWARD_ID = rewardId,
+                        STOCK = int.Parse(txtInsertStock.Text),
+                    };
+                    entities.REWARD_STOCK.Add(rewardStock);
+                }
+
+                if (reward != null)
+                {
+                    reward.NAME = txtRewardName.Text;
+                    reward.PRICE = int.Parse(txtRewardPrice.Text);
+                    reward.ACTIVATED = bool.Parse(dlRewardStatus.SelectedValue);
+                    if (rewardFileUpload.HasFile)
+                    {
+                        int maxSizeInBytes = 1024 * 1024; // 1 MB
+                        byte[] imageData = rewardFileUpload.FileBytes;
+                        if (imageData.Length <= maxSizeInBytes)
+                        {
+                            reward.IMAGE = imageData;
+                        }
+                        else
+                        {
+                            // Lógica para lidar com o tamanho da imagem excedido
+                        }
+                    }
+
+                    entities.SaveChanges();
+                    Response.Redirect(Request.RawUrl);
+                }
+            }
+        }
+
+
+        /* COMFIRM ADD */
 
         protected void btnComfirmAddActivity_Click(object sender, EventArgs e)
         {
@@ -117,7 +203,12 @@ namespace Rewards
                 var rewardImage = e.Item.FindControl("rewardImage") as Image;
                 var rewardNameLiteral = e.Item.FindControl("rewardNameLiteral") as Literal;
                 var rewardPriceLiteral = e.Item.FindControl("rewardPriceLiteral") as Literal;
+                var rewardIdHiddenField = e.Item.FindControl("rewardIDHiddenField") as HiddenField;
+                var rewardStatusHiddenField = e.Item.FindControl("rewardStatusHiddenField") as HiddenField;
 
+
+                rewardIdHiddenField.Value = item.ID.ToString();
+                rewardStatusHiddenField.Value = item.ACTIVATED.ToString();
                 rewardImage.ImageUrl = $"data:image;base64,{Convert.ToBase64String(item.IMAGE)}";
                 rewardNameLiteral.Text = item.NAME;
                 rewardPriceLiteral.Text = item.PRICE.ToString();
@@ -173,7 +264,7 @@ namespace Rewards
                 lvActivity.DataBind();
 
                 /* USERS */
-                var userItems = AdminManager.GetUsersFromDatabase();
+                var userItems = UserManager.GetUsersFromDatabase();
                 lvUsers.DataSource = userItems;
                 lvUsers.DataBind();
 

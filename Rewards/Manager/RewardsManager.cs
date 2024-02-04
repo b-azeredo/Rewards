@@ -9,7 +9,20 @@ namespace Rewards.Manager
 {
     public class RewardsManager
     {
-        
+        public static int GetRewardStock(int rewardID)
+        {
+            using (Entities2 entities = new Entities2())
+            {
+                int stock = entities.REWARD_STOCK
+                                    .Where(r => r.REWARD_ID == rewardID)
+                                    .Select(r => r.STOCK)
+                                    .DefaultIfEmpty(0)
+                                    .Sum();
+                return stock;
+            }
+        }
+
+
         public static List<RewardsItem> GetRewardItemsFromDatabase()
         {
             using (var context = new Entities2())

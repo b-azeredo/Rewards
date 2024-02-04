@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Rewards._Default" %>
 
     <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+        <style>
+            .form-control::placeholder{
+                color: dimgray;
+            }
+        </style>
 
         <main class="container-fluid p-3">
             <div class="row pb-4">

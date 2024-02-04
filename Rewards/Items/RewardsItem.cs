@@ -11,6 +11,7 @@ namespace Rewards.Items
         public string NAME { get; set; }
         public int PRICE { get; set; }
         public byte[] IMAGE { get; set; }
+        public bool ACTIVATED { get; set; }
         public string ItemClass { get; set; }
     }
 }

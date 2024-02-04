@@ -6,6 +6,10 @@
 	    h3::before {
 		    display: none;
 	    }
+
+        .form-control::placeholder{
+            color: dimgray;
+        }
     </style>
 
      <main class="container-fluid p-3">
@@ -61,7 +65,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                                <asp:Button ID="Button1"  OnClick="btnComfirmUserChanges_Click" CssClass="btn btn-success" runat="server" Text="Save Changes" />
+                                <asp:Button ID="btnComfirmActivityChanges" OnClick="btnComfirmActivityChanges_Click" CssClass="btn btn-success" runat="server" Text="Save Changes" />
                             </div>
                         </div>
                     </div>
@@ -82,7 +86,7 @@
                                 <ItemTemplate>
                                     <li class="d-flex justify-content-between">
                                         <h3><asp:Literal runat="server" ID="activityNameLiteral"></asp:Literal> <span class="mx-2 p-1"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal>  points</span> </h3>
-                                        <asp:Button ID="btnEditActivity" OnClientClick="return false;" runat="server" CssClass="btn btn-success py-1 px-2 submit-btn" Text="Edit" data-bs-toggle="modal" data-bs-target="#editActivityModal" />
+                                        <asp:Button ID="btnEditActivity" OnClick="btnEditActivity_Click" runat="server" CssClass="btn btn-success py-1 px-2 submit-btn" Text="Edit" data-bs-toggle="modal" data-bs-target="#editActivityModal" />
                                     </li>
                                 </ItemTemplate>
                             </asp:ListView>
@@ -183,7 +187,7 @@
                                             <p><asp:Literal runat="server" ID="litPoints" Text='' /> points</p>
                                         </div>
                                         <asp:Button ID="btnEditUser" runat="server" CssClass="btn btn-success py-2 px-3 editUser" Text="Edit"
-                                            OnClick="btnEditUser_Click" data-bs-target="#editUserModal" data-bs-toggle="modal" OnClientClick="return false;"/>
+                                            OnClick="btnEditUser_Click" data-bs-target="#editUserModal" data-bs-toggle="modal"/>
                                     </div>
                                 </ItemTemplate>
                             </asp:ListView>
@@ -255,20 +259,25 @@
                                    </div>
                                </div>
                                 <div class="modal-body">
-                                    <p class="m-0">Current Stock: <asp:Label ID="Label1" runat="server" Text="0"></asp:Label></p>
-                                    <asp:TextBox ID="TextBox3" CssClass="form-control mb-2" placeholder="Add Stock" runat="server"></asp:TextBox>
+                                    <asp:HiddenField ID="rewardID" runat="server" />
+                                    <p class="m-0">Current Stock: <asp:Label ID="labelCurrentStock" runat="server" Text="0"></asp:Label></p>
+                                    <asp:TextBox ID="txtInsertStock" TextMode="Number" CssClass="form-control mb-2" placeholder="Add Stock" runat="server"></asp:TextBox>
                                     <p class="m-0">Name:</p>
-                                    <asp:TextBox ID="TextBox1" CssClass="form-control mb-2" placeholder="New Name" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtRewardName" CssClass="form-control mb-2" placeholder="Type the name" runat="server"></asp:TextBox>
                                     <p class="m-0">Price:</p>
-                                    <asp:TextBox ID="TextBox2" CssClass="form-control mb-2" placeholder="New Price" runat="server"></asp:TextBox>
-                                    <p class="m-0">Change Image</p>
-                                    <asp:FileUpload ID="FileUpload2" CssClass="form-control mb-2" runat="server" />
-                                    <p class="m-0">Active</p>
-                                    <asp:CheckBox ID="CheckBox1" runat="server" />
+                                    <asp:TextBox ID="txtRewardPrice" TextMode="Number" CssClass="form-control mb-2" placeholder="Type the price" runat="server"></asp:TextBox>
+                                    <p class="m-0">Image</p>
+                                    <asp:FileUpload ID="rewardFileUpload" runat="server" style="display: none;" onchange="previewImage('MainContent_rewardFileUpload', 'MainContent_RewardImagePlaceholder')" accept="image/*" />
+                                    <img id="RewardImagePlaceholder" runat="server" width="130" height="130" src="none" onclick="document.getElementById('MainContent_rewardFileUpload').click();" style="cursor: pointer;" />
+                                    <p class="m-0">Activated</p>
+                                    <asp:DropDownList ID="dlRewardStatus" CssClass="form-control mb-2" runat="server">
+                                        <asp:ListItem Text="True" Value="True"></asp:ListItem>
+                                        <asp:ListItem Text="False" Value="False"></asp:ListItem>
+                                    </asp:DropDownList>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                                    <asp:Button ID="Button2" CssClass="btn btn-success" runat="server" Text="Save Changes" />
+                                    <asp:Button ID="btnComfirmRewardChanges" OnClick="btnComfirmRewardChanges_Click" CssClass="btn btn-success" runat="server" Text="Save Changes" />
                                 </div>
                             </div>
                         </div>
@@ -285,14 +294,16 @@
                             </div>
                                 <asp:ListView ID="lvRewards" runat="server" OnItemDataBound="lvRewards_ItemDataBound">
                                     <ItemTemplate>
-                                        <div class="card">
+                                        <div class="<%# Eval("ItemClass") %> card">
                                             <div class="imgBx">
                                                 <asp:Image ID="rewardImage" runat="server" Width="100" Height="100" />
                                             </div>
                                             <div class="contentBx">
+                                                <asp:HiddenField ID="rewardIDHiddenField" runat="server" />
+                                                <asp:HiddenField ID="rewardStatusHiddenField" runat="server" />
                                                 <h2><asp:Literal runat="server" ID="rewardNameLiteral"></asp:Literal></h2>
                                                 <h4><asp:Literal runat="server" ID="rewardPriceLiteral"></asp:Literal> Points</h4>
-                                                <asp:Button ID="btnEdit" CssClass="btn btn-success py-2 px-3" runat="server" Text="Edit" OnClientClick="return false;" data-bs-target="#editRewardModal" data-bs-toggle="modal"  />
+                                                <asp:Button ID="btnEditReward" OnClick="btnEditReward_Click" CssClass="btn btn-success py-2 px-3" runat="server" Text="Edit" data-bs-target="#editRewardModal" data-bs-toggle="modal"  />
                                             </div>
                                         </div>
                                     </ItemTemplate>
@@ -304,6 +315,21 @@
          </div>
 
          <script>
+
+             function showEditActivityModal() {
+                 var myModal = new bootstrap.Modal(document.getElementById('editActivityModal'))
+                 myModal.show()
+             }
+
+             function showEditUserModal() {
+                 var myModal = new bootstrap.Modal(document.getElementById('editUserModal'))
+                 myModal.show()
+             }
+
+             function showEditRewardModal() {
+                 var myModal = new bootstrap.Modal(document.getElementById('editRewardModal'))
+                 myModal.show()
+             }
 
             $(document).ready(function () {
                 $('#MainContent_dlRoleUser').change(function () {
@@ -329,6 +355,21 @@
                          fuData.value = '';
                          return false;
                      }
+                 }
+             }
+
+             function previewImage(inputT, imageT) {
+                 var input = document.getElementById(inputT);
+                 var image = document.getElementById(imageT);
+
+                 if (input.files && input.files[0]) {
+                     var reader = new FileReader();
+
+                     reader.onload = function (e) {
+                         image.src = e.target.result;
+                     };
+
+                     reader.readAsDataURL(input.files[0]);
                  }
              }
 
