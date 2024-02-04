@@ -213,13 +213,22 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.TextBox newEmail;
 
         /// <summary>
-        /// newRole control.
+        /// dlRole control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList newRole;
+        protected global::System.Web.UI.WebControls.DropDownList dlRole;
+
+        /// <summary>
+        /// managerEmailLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl managerEmailLabel;
 
         /// <summary>
         /// newManagerEmail control.
@@ -231,22 +240,31 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.TextBox newManagerEmail;
 
         /// <summary>
-        /// newProfileImage control.
+        /// userFileUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload newProfileImage;
+        protected global::System.Web.UI.WebControls.FileUpload userFileUpload;
 
         /// <summary>
-        /// CheckBox2 control.
+        /// UserImagePlaceholder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox2;
+        protected global::System.Web.UI.HtmlControls.HtmlImage UserImagePlaceholder;
+
+        /// <summary>
+        /// dlUserActivated control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dlUserActivated;
 
         /// <summary>
         /// btnComfirmUserChanges control.

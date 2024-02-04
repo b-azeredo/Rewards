@@ -423,7 +423,7 @@ p.userName {
 		}
 
 		.rewards .card:hover .contentBx {
-			bottom: 0px;
+			bottom: 2px;
 		}
 
 		.rewards .card .contentBx h2 {

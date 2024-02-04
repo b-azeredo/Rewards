@@ -47,7 +47,60 @@ namespace Rewards
 
         protected void btnEditUser_Click(object sender, EventArgs e)
         {
+            Button btnEditUser = (Button)sender;
+            ListViewItem item = (ListViewItem)btnEditUser.NamingContainer;
+
+            Image profileImage = (Image)item.FindControl("profileImage");
+            Literal litUserName = (Literal)item.FindControl("litUserName");
+            HiddenField idUser = (HiddenField)item.FindControl("userId");
+
+            ID.Text = idUser.Value;
+            newName.Text = litUserName.Text;
+            UserImagePlaceholder.Src = profileImage.ImageUrl;
+            newEmail.Text = UserManager.Get_Email(int.Parse(idUser.Value));
+            newManagerEmail.Text = UserManager.Get_Manager_Email(int.Parse(idUser.Value));
+
+            foreach (ListItem dlItem in dlRole.Items)
+            {
+                dlItem.Selected = false;
+            }
+
+            foreach (ListItem dlItem in dlUserActivated.Items)
+            {
+                dlItem.Selected = false;
+            }
+
+            dlRole.Items.FindByValue(UserManager.Get_Role(int.Parse(idUser.Value))).Selected = true;
+            dlUserActivated.Items.FindByValue(UserManager.Get_Activated(int.Parse(idUser.Value)).ToString()).Selected = true;
+
+            if (UserManager.Get_Role(int.Parse(idUser.Value)) != "EMPLOYEE"){
+                newManagerEmail.Visible = false;
+                managerEmailLabel.Visible = false;
+            }
+            else
+            {
+                newManagerEmail.Visible = true;
+                managerEmailLabel.Visible = true;
+            }
+
             Page.ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showEditUserModal()", true);
+        }
+
+        protected void dlRole_SelectedIndexChanged(object sender, EventArgs e) // BUG
+        {
+            DropDownList dropdown = sender as DropDownList;
+            string selectedValue = dropdown.SelectedValue;
+
+            if (selectedValue != "EMPLOYEE")
+            {
+                newManagerEmail.Visible = false;
+                managerEmailLabel.Visible = false;
+            }
+            else
+            {
+                newManagerEmail.Visible = true;
+                managerEmailLabel.Visible = true;
+            }
         }
 
 
@@ -219,16 +272,19 @@ namespace Rewards
         {
             if (e.Item.ItemType == ListViewItemType.DataItem)
             {
-                var item = e.Item.DataItem as LeaderboardItem;
+                var userData = e.Item.DataItem as LeaderboardItem;
                 var profileImage = e.Item.FindControl("profileImage") as Image;
-                var usernameLiteral = e.Item.FindControl("litUserName") as Literal;
-                var pointsLiteral = e.Item.FindControl("litPoints") as Literal;
+                var litUserName = e.Item.FindControl("litUserName") as Literal;
+                var litPoints = e.Item.FindControl("litPoints") as Literal;
+                var userid = e.Item.FindControl("userId") as HiddenField;
 
-                profileImage.ImageUrl = $"data:image;base64,{Convert.ToBase64String(item.PROFILE_IMAGE)}";
-                usernameLiteral.Text = item.USERNAME;
-                pointsLiteral.Text = item.POINTS.ToString();
+                userid.Value = userData.ID.ToString();
+                profileImage.ImageUrl = $"data:image;base64,{Convert.ToBase64String(userData.PROFILE_IMAGE)}";
+                litUserName.Text = userData.USERNAME;
+                litPoints.Text = userData.POINTS.ToString();
             }
         }
+
         protected void lvLeaderboard_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             if (e.Item.ItemType == ListViewItemType.DataItem)

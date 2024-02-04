@@ -144,17 +144,21 @@
                                     <p class="mb-0">Email:</p>
                                     <asp:TextBox ID="newEmail" CssClass="form-control mb-2" placeholder="New Email" runat="server"></asp:TextBox>
                                     <p class="mb-0">Role:</p>
-                                    <asp:DropDownList ID="newRole" CssClass="form-control mb-2" runat="server">
+                                    <asp:DropDownList ID="dlRole" OnSelectedIndexChanged="dlRole_SelectedIndexChanged" CssClass="form-control mb-2" runat="server">
                                         <asp:ListItem Text="EMPLOYEE" Value="EMPLOYEE"></asp:ListItem>
                                         <asp:ListItem Text="MANAGER" Value="MANAGER"></asp:ListItem>
                                         <asp:ListItem Text="ADMIN" Value="ADMIN"></asp:ListItem>
                                     </asp:DropDownList>
-                                    <p class="mb-0">Manager Email:</p>
+                                    <p class="mb-0" runat="server" id="managerEmailLabel">Manager Email:</p>
                                     <asp:TextBox ID="newManagerEmail" CssClass="form-control mb-2" placeholder="New Manager Email" runat="server"></asp:TextBox>
-                                    <p class="mb-0">Profile Image:</p>
-                                    <asp:FileUpload ID="newProfileImage" CssClass="form-control" runat="server" />
-                                    <p class="m-0">Active</p>
-                                    <asp:CheckBox ID="CheckBox2" runat="server" />
+                                    <p class="m-0">Image</p>
+                                    <asp:FileUpload ID="userFileUpload" runat="server" style="display: none;" onchange="previewImage('MainContent_userFileUpload', 'MainContent_UserImagePlaceholder')" accept="image/*" />
+                                    <img id="UserImagePlaceholder" runat="server" width="130" height="130" src="none" onclick="document.getElementById('MainContent_rewardFileUpload').click();" style="cursor: pointer;" />
+                                    <p class="m-0">Activated</p>
+                                    <asp:DropDownList ID="dlUserActivated" CssClass="form-control mb-2" runat="server">
+                                        <asp:ListItem Text="True" Value="True"></asp:ListItem>
+                                        <asp:ListItem Text="False" Value="False"></asp:ListItem>
+                                    </asp:DropDownList>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
@@ -182,6 +186,7 @@
                                         </div>
                                         <div class="userInfo">
                                             <div>
+                                                <asp:HiddenField ID="userId" runat="server" />
                                                 <p class="userName"><asp:Literal runat="server" ID="litUserName" Text='' /></p>
                                             </div>
                                             <p><asp:Literal runat="server" ID="litPoints" Text='' /> points</p>

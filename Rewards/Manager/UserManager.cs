@@ -104,6 +104,33 @@ namespace Rewards.Manager
             }
         }
 
+        public static string Get_Email(int ID)
+        {
+            using (Entities2 Entities = new Entities2())
+            {
+                var user = Entities.USER.FirstOrDefault(u => u.ID == ID);
+                return user.EMAIL;
+            }
+        }
+
+        public static string Get_Role(int ID)
+        {
+            using (Entities2 Entities = new Entities2())
+            {
+                var user = Entities.USER.FirstOrDefault(u => u.ID == ID);
+                return user.ROLE;
+            }
+        }
+
+        public static bool Get_Activated(int ID)
+        {
+            using (Entities2 Entities = new Entities2())
+            {
+                var user = Entities.USER.FirstOrDefault(u => u.ID == ID);
+                return user.ACTIVATED;
+            }
+        }
+
         public static string Get_Username(int ID)
         {
             using (Entities2 Entities = new Entities2())
