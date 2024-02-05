@@ -14,6 +14,10 @@
 	font-family: 'Rubik';
 }
 
+*::placeholder{
+	color: dimgray;
+}
+
 body {
 	background-color: var(--primary);
 }
@@ -411,7 +415,7 @@ p.userName {
 
 		.rewards .card .contentBx {
 			position: absolute;
-			bottom: -20px;
+			bottom: -35px;
 			width: 100%;
 			text-align: center;
 			transition: 0.5s;
@@ -419,7 +423,7 @@ p.userName {
 		}
 
 		.rewards .card:hover .contentBx {
-			bottom: 5px;
+			bottom: 2px;
 		}
 
 		.rewards .card .contentBx h2 {
@@ -429,6 +433,7 @@ p.userName {
 			color: var(--text-primary);
 			font-size: 20px;
 			transform: translateY(0px);
+			margin-bottom: 0px;
 		}
 
 		.rewards .card .contentBx h4 {

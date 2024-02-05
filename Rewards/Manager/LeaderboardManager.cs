@@ -23,7 +23,7 @@ namespace Rewards.Manager
                     PROFILE_IMAGE = u.PROFILE_IMAGE
                 }).ToList();
 
-                leaderboardItems = leaderboardItems.OrderByDescending(u => u.POINTS).ToList();
+                leaderboardItems = leaderboardItems.OrderByDescending(u => u.POINTS).Take(15).ToList();
                 return leaderboardItems;
             }
         }

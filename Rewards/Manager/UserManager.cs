@@ -14,7 +14,28 @@ namespace Rewards.Manager
 {
     public class UserManager
     {
-        
+        public static List<LeaderboardItem> GetUsersFromDatabase()
+        {
+            using (var context = new Entities2())
+            {
+                List<USER> users = context.USER.ToList();
+
+                List<LeaderboardItem> leaderboardItems = users.Select(u => new LeaderboardItem
+                {
+                    ID = u.ID,
+                    EMAIL = u.EMAIL,
+                    MANAGER_EMAIL = u.MANAGER_EMAIL,
+                    ROLE = u.ROLE,
+                    USERNAME = u.NAME,
+                    POINTS = UserManager.Get_Lifetime_Points(u.ID),
+                    PROFILE_IMAGE = u.PROFILE_IMAGE,
+                    ItemClass = u.ACTIVATED == true ? "" : "deactivatedUser"
+                }).ToList();
+
+                return leaderboardItems;
+            }
+        }
+
         public static int Get_Lifetime_Points(int ID)
         {
             using (Entities2 Entities = new Entities2())
@@ -80,6 +101,33 @@ namespace Rewards.Manager
             {
                 var user = Entities.USER.FirstOrDefault(u => u.ID == ID);
                 return user.MANAGER_EMAIL;
+            }
+        }
+
+        public static string Get_Email(int ID)
+        {
+            using (Entities2 Entities = new Entities2())
+            {
+                var user = Entities.USER.FirstOrDefault(u => u.ID == ID);
+                return user.EMAIL;
+            }
+        }
+
+        public static string Get_Role(int ID)
+        {
+            using (Entities2 Entities = new Entities2())
+            {
+                var user = Entities.USER.FirstOrDefault(u => u.ID == ID);
+                return user.ROLE;
+            }
+        }
+
+        public static bool Get_Activated(int ID)
+        {
+            using (Entities2 Entities = new Entities2())
+            {
+                var user = Entities.USER.FirstOrDefault(u => u.ID == ID);
+                return user.ACTIVATED;
             }
         }
 

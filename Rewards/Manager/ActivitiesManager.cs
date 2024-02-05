@@ -29,6 +29,41 @@ namespace Rewards.Manager
             }
         }
 
-        
+        public static string Get_Description(int activityID)
+        {
+            using (var entities = new Entities2())
+            {
+                var activity = entities.ACTIVITY.FirstOrDefault(u => u.ID == activityID);
+                return activity.DESCRIPTION;
+            }
+        }
+
+
+        public static int Get_Points(int activityID)
+        {
+            using (var entities = new Entities2())
+            {
+                var activity = entities.ACTIVITY.FirstOrDefault(u => u.ID == activityID);
+                return activity.POINTS;
+            }
+        }
+
+        public static int Get_Limit_per_Week(int activityID)
+        {
+            using (var entities = new Entities2())
+            {
+                var activity = entities.ACTIVITY.FirstOrDefault(u => u.ID == activityID);
+                return activity.LIMIT_PER_WEEK;
+            }
+        }
+
+        public static bool Get_Activated(int activityID)
+        {
+            using (var entities = new Entities2())
+            {
+                var activity = entities.ACTIVITY.FirstOrDefault(u => u.ID == activityID);
+                return activity.ACTIVATED;
+            }
+        }
     }
 }

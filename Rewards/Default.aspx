@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Rewards._Default" %>
 
     <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+        <style>
+            .form-control::placeholder{
+                color: dimgray;
+            }
+        </style>
 
         <main class="container-fluid p-3">
             <div class="row pb-4">
@@ -16,23 +21,25 @@
                                 <asp:ListView ID="lvActivity" runat="server" OnItemDataBound="lvActivity_ItemDataBound">
                                     <ItemTemplate>
                                         <li class="d-flex justify-content-between">
+                                            <asp:HiddenField runat="server" ID="activityIdLiteral"></asp:HiddenField>
+                                            <asp:HiddenField runat="server" ID="activityDescriptionLiteral"></asp:HiddenField>
                                             <h3><asp:Literal runat="server" ID="activityNameLiteral"></asp:Literal> <span class="mx-2 p-1"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal>  points</span> </h3>
-                                           <asp:Button ID="btnSubmitActivity" OnClick="btnSubmitActivity_Click" OnClientClick="return false;" runat="server" CssClass="btn btn-success py-1 px-2 submit-btn" Text="Submit" data-bs-toggle="modal" data-bs-target="#submitFormModal" />
+                                           <asp:Button ID="btnSubmitActivity" OnClick="btnSubmitActivity_Click" runat="server" CssClass="btn btn-success py-1 px-2 submit-btn" Text="Submit" />
                                         </li>
                                     </ItemTemplate>
                                 </asp:ListView>
                             </ol>
                         </div>
-                        <div id="submitFormModal" class="modal fade" role="dialog">
+                        <div class="modal fade" id="submitFormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header d-flex flex-column align-items-start">
-                                        <h5 class="modal-title" runat="server" id="activityNAME">Modal title</h5>
-                                        <p class="activityDescription mb-0"></p>
+                                        <h5 id="activityNAME" class="modal-title" runat="server">Label</h5>
+                                        <p runat="server" id="activityDESCRIPTION" class="mb-0"></p>
                                     </div>
                                     <div class="modal-body">
                                         <asp:HiddenField ID="activityID" runat="server" />
-                                        <asp:TextBox ID="activityDESCRIPTION" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Write down in detail the activity you did"></asp:TextBox>
+                                        <asp:TextBox ID="txtActivityDESCRIPTION" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Write down in detail the activity you did"></asp:TextBox>
                                         <asp:FileUpload ID="fileUpload1" runat="server" CssClass="form-control mt-3" Multiple="multiple" />
                                     </div>
                                     <div class="modal-footer">
@@ -146,7 +153,7 @@
                                             <ItemTemplate>
                                                 <div class="transaction d-flex justify-content-between">
                                                     <p class="white w-50"><asp:Literal runat="server" ID="transactionNameLiteral"></asp:Literal></p>
-                                                    <p class="<asp:Literal runat="server" ID="itemClassLiteral"></asp:Literal>"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal> points</p>
+                                                    <p class="<asp:Literal runat='server' ID='itemClassLiteral'></asp:Literal>"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal> points</p>
                                                     <p class="TransactionDate"><asp:Literal runat="server" ID="transactionDateLiteral"></asp:Literal></p>
                                                 </div>
                                             </ItemTemplate>
@@ -185,7 +192,7 @@
                                         <ItemTemplate>
                                             <div class="transaction d-flex justify-content-between">
                                                 <p class="white w-50"><asp:Literal runat="server" ID="transactionNameLiteral"></asp:Literal></p>
-                                                <p class="<asp:Literal runat="server" ID="itemClassLiteral"></asp:Literal>"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal> points</p>
+                                                <p class="<asp:Literal runat='server' ID='itemClassLiteral'></asp:Literal>"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal> points</p>
                                                 <p class="TransactionDate"><asp:Literal runat="server" ID="transactionDateLiteral"></asp:Literal></p>
                                             </div>
                                         </ItemTemplate>
@@ -239,6 +246,11 @@
 
                     reader.readAsDataURL(input.files[0]);
                 }
+            }
+
+            function showModal() {
+                var myModal = new bootstrap.Modal(document.getElementById('submitFormModal'))
+                myModal.show()
             }
         </script>
 

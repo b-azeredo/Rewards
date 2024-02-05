@@ -60,6 +60,15 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.Button btnComfirmAddActivity;
 
         /// <summary>
+        /// hiddenActivityID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenActivityID;
+
+        /// <summary>
         /// newActivityName control.
         /// </summary>
         /// <remarks>
@@ -96,22 +105,22 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.TextBox newActivityLimit;
 
         /// <summary>
-        /// CheckBox3 control.
+        /// dlActivityStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox3;
+        protected global::System.Web.UI.WebControls.DropDownList dlActivityStatus;
 
         /// <summary>
-        /// Button1 control.
+        /// btnComfirmActivityChanges control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnComfirmActivityChanges;
 
         /// <summary>
         /// btnAddActivity control.
@@ -213,13 +222,22 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.TextBox newEmail;
 
         /// <summary>
-        /// newRole control.
+        /// dlRole control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList newRole;
+        protected global::System.Web.UI.WebControls.DropDownList dlRole;
+
+        /// <summary>
+        /// managerEmailLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl managerEmailLabel;
 
         /// <summary>
         /// newManagerEmail control.
@@ -231,22 +249,31 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.TextBox newManagerEmail;
 
         /// <summary>
-        /// newProfileImage control.
+        /// userFileUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload newProfileImage;
+        protected global::System.Web.UI.WebControls.FileUpload userFileUpload;
 
         /// <summary>
-        /// CheckBox2 control.
+        /// UserImagePlaceholder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox2;
+        protected global::System.Web.UI.HtmlControls.HtmlImage UserImagePlaceholder;
+
+        /// <summary>
+        /// dlUserActivated control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dlUserActivated;
 
         /// <summary>
         /// btnComfirmUserChanges control.
@@ -321,67 +348,85 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.Button btnComfirmAddReward;
 
         /// <summary>
-        /// Label1 control.
+        /// rewardID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.HiddenField rewardID;
 
         /// <summary>
-        /// TextBox3 control.
+        /// labelCurrentStock control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.Label labelCurrentStock;
 
         /// <summary>
-        /// TextBox1 control.
+        /// txtInsertStock control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtInsertStock;
 
         /// <summary>
-        /// TextBox2 control.
+        /// txtRewardName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtRewardName;
 
         /// <summary>
-        /// FileUpload2 control.
+        /// txtRewardPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload2;
+        protected global::System.Web.UI.WebControls.TextBox txtRewardPrice;
 
         /// <summary>
-        /// CheckBox1 control.
+        /// rewardFileUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
+        protected global::System.Web.UI.WebControls.FileUpload rewardFileUpload;
 
         /// <summary>
-        /// Button2 control.
+        /// RewardImagePlaceholder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.HtmlControls.HtmlImage RewardImagePlaceholder;
+
+        /// <summary>
+        /// dlRewardStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dlRewardStatus;
+
+        /// <summary>
+        /// btnComfirmRewardChanges control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnComfirmRewardChanges;
 
         /// <summary>
         /// btnAddReward control.
