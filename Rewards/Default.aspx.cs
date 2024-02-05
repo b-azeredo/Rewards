@@ -14,20 +14,23 @@ namespace Rewards
 {
     public partial class _Default : System.Web.UI.Page
     {
-        private int USER_ID = 3;
+        private int USER_ID = 1;
 
-        protected void btnClaim_Command(object sender, CommandEventArgs e)
+
+        protected void btnClaim_Click(object sender, EventArgs e)
         {
-            if (e.CommandName == "Claim")
-            {
-                int rewardId = Convert.ToInt32(e.CommandArgument);
-                
+            Button btnSubmit = (Button)sender;
+            ListViewItem item = (ListViewItem)btnSubmit.NamingContainer;
+            HiddenField rewardIdLiteral = item.FindControl("rewardIdLiteral") as HiddenField;
 
-                if (UserManager.AddRewardToUser(rewardId, USER_ID) && UserManager.RemoveOneFromStock(rewardId))
-                {
-                    Response.Redirect(Request.RawUrl);
-                }
+            int rewardId = Convert.ToInt32(rewardIdLiteral.Value);
+
+            if (UserManager.AddRewardToUser(rewardId, USER_ID) && UserManager.RemoveOneFromStock(rewardId))
+            {
+
             }
+            Response.Redirect(Request.RawUrl);
+
         }
 
         protected void btnSubmitActivity_Click(object sender, EventArgs e)
@@ -83,14 +86,12 @@ namespace Rewards
                     entities.SaveChanges();
                     string message = "<script>messageAlert('The form was sent successfully. When your manager approves, you will receive your points.');</script>";
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", message);
-
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "RedirectPage", redirectScript);
                 }
             }
             else
             {
                 string message = "<script>messageAlert('Please upload at least one file.');</script>";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", message);
             }
         }
 
@@ -118,7 +119,8 @@ namespace Rewards
                 }
                 else
                 {
-
+                    string message = "<script>messageAlert('Upload another image.');</script>";
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", message);
                 }
             }
         }
@@ -166,10 +168,13 @@ namespace Rewards
                 var rewardImage = e.Item.FindControl("rewardImage") as Image;
                 var rewardNameLiteral = e.Item.FindControl("rewardNameLiteral") as Literal;
                 var rewardPriceLiteral = e.Item.FindControl("rewardPriceLiteral") as Literal;
+                var rewardIdLiteral = e.Item.FindControl("rewardIdLiteral") as HiddenField;
+
 
                 rewardImage.ImageUrl = $"data:image;base64,{Convert.ToBase64String(item.IMAGE)}";
                 rewardNameLiteral.Text = item.NAME;
                 rewardPriceLiteral.Text = item.PRICE.ToString();
+                rewardIdLiteral.Value = item.ID.ToString();
             }
         }
 
@@ -211,7 +216,6 @@ namespace Rewards
         {
             if (!IsPostBack)
             {
-
                 /* LEADERBOARD */
                 var leaderboardItems = LeaderboardManager.GetLeaderboardItemsFromDatabase();
                 lvLeaderboard.DataSource = leaderboardItems;
@@ -234,7 +238,7 @@ namespace Rewards
                 lvTransactions.DataBind();
 
                 /* YOUR PROGRESS INFO */
-                lifetimePoints.InnerText = $"{UserManager.Get_Lifetime_Points(USER_ID)}";    
+                lifetimePoints.InnerText = $"{UserManager.Get_Lifetime_Points(USER_ID)}";
                 activitiesDone.InnerText = $"{UserManager.Get_Number_Activities_Done(USER_ID)}";
                 redeemedRewards.InnerText = $"{UserManager.Get_Number_Redeemed_Rewards(USER_ID)}";
 
@@ -254,9 +258,6 @@ namespace Rewards
                 profilePoints2.InnerText = $"{UserManager.Get_Current_Points(USER_ID)}";
                 managerEmail.InnerText = $"{UserManager.Get_Manager_Email(USER_ID)}";
             }
-
         }
-
-
     }
 }

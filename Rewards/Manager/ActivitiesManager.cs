@@ -28,7 +28,14 @@ namespace Rewards.Manager
                 return activitiesItem;
             }
         }
-
+        public static string Get_Name(int activityID)
+        {
+            using (var entities = new Entities2())
+            {
+                var activity = entities.ACTIVITY.FirstOrDefault(u => u.ID == activityID);
+                return activity.NAME;
+            }
+        }
         public static string Get_Description(int activityID)
         {
             using (var entities = new Entities2())

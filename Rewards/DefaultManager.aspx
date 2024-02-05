@@ -37,6 +37,7 @@
                         <asp:ListView ID="lvActivityRequest" runat="server" OnItemDataBound="lvActivityRequest_ItemDataBound">
                             <ItemTemplate>
                                 <li class="d-flex justify-content-between">
+                                    <asp:HiddenField ID="FormID" runat="server" />
                                     <h3><asp:Literal runat="server" ID="userRequestNameLiteral"></asp:Literal> <span class="mx-2 p-1"><asp:Literal runat="server" ID="activityRequestNameLiteral"></asp:Literal>  points</span> </h3>
                                     <asp:Button ID="btnActivityRequest" OnClick="btnActivityRequest_Click" runat="server" CssClass="btn btn-success py-1 px-2 submit-btn" Text="View" />
                                 </li>

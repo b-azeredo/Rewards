@@ -1,9 +1,11 @@
-﻿using Rewards.Items;
+﻿using Rewards.Item;
+using Rewards.Items;
 using Rewards.Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Util;
@@ -12,14 +14,34 @@ namespace Rewards
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
-        private int USER_ID = 1;
+        private int USER_ID = 5;
 
         protected void btnActivityRequest_Click(object sender, EventArgs e)
+        {
+            Button btnEditActivity = (Button)sender;
+            ListViewItem item = (ListViewItem)btnEditActivity.NamingContainer;
+
+            HiddenField formID = (HiddenField)item.FindControl("FormID");
+
+            
+
+
+
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowApproveFormRequestModal()", true);
+        }
+
+        protected void btnSaveProfileChanges_Click(object sender, EventArgs e)
         {
 
         }
 
-        protected void btnSaveProfileChanges_Click(object sender, EventArgs e)
+
+        protected void btnDenyForm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAcceptForm_Click(object sender, EventArgs e)
         {
 
         }
@@ -75,45 +97,59 @@ namespace Rewards
 
         protected void lvActivityRequest_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                var item = e.Item.DataItem as FormItem;
+                var userRequestNameLiteral = e.Item.FindControl("userRequestNameLiteral") as Literal;
+                var activityRequestNameLiteral = e.Item.FindControl("activityRequestNameLiteral") as Literal;
+                var FormID = e.Item.FindControl("FormID") as HiddenField;
 
+                userRequestNameLiteral.Text = UserManager.Get_Username(item.USER_ID);
+                activityRequestNameLiteral.Text = ActivitiesManager.Get_Name(item.ACTIVITY_ID);
+                FormID.Value = item.ID.ToString();
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            /* LEADERBOARD */
-            var leaderboardItems = LeaderboardManager.GetLeaderboardItemsFromDatabase();
-            lvLeaderboard.DataSource = leaderboardItems;
-            lvLeaderboard.DataBind();
+            if (!IsPostBack)
+            {
+                /* TEAM LEADERBOARD */
+                var leaderboardItems = ManagerManager.GetTeamLeaderboardItemsFromDatabase();
+                lvLeaderboard.DataSource = leaderboardItems;
+                lvLeaderboard.DataBind();
 
-            /* REWARDS */
-            var RewardsItems = RewardsManager.GetRewardItemsFromDatabase();
-            lvRewards.DataSource = RewardsItems;
-            lvRewards.DataBind();
+                /* REWARDS */
+                var RewardsItems = RewardsManager.GetRewardItemsFromDatabase();
+                lvRewards.DataSource = RewardsItems;
+                lvRewards.DataBind();
 
-            /* ACTIVITIES */
-            var activityItems = ActivitiesManager.GetActivityItemsFromDatabase();
-            lvActivity.DataSource = activityItems;
-            lvActivity.DataBind();
+                /* ACTIVITIES REQUESTED */
+                var RequestedActivities = ManagerManager.GetRequestedActivitiesItemsFromDatabase();
+                lvActivityRequest.DataSource = RequestedActivities;
+                lvActivityRequest.DataBind();
 
-            /* YOUR PROGRESS INFO */
-            lifetimePoints.InnerText = $"{UserManager.Get_Lifetime_Points(USER_ID)}";
-            activitiesDone.InnerText = $"{UserManager.Get_Number_Activities_Done(USER_ID)}";
-            redeemedRewards.InnerText = $"{UserManager.Get_Number_Redeemed_Rewards(USER_ID)}";
+                /* ACTIVITIES */
+                var activityItems = ActivitiesManager.GetActivityItemsFromDatabase();
+                lvActivity.DataSource = activityItems;
+                lvActivity.DataBind();
 
-            /* PROFILE INFO */
-            profileImage.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
-            profileUsername.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
-            profilePoints.InnerText = $"{UserManager.Get_Current_Points(USER_ID)}";
+                /* YOUR TEAM PROGRESS INFO */
+                lifetimePoints.InnerText = $"{ManagerManager.Get_Team_Lifetime_Points(USER_ID)}";
+                activitiesDone.InnerText = $"{ManagerManager.Get_Team_Number_Activities_Done(USER_ID)}";
+                redeemedRewards.InnerText = $"{ManagerManager.Get_Team_Number_Redeemed_Rewards(USER_ID)}";
+
+                /* PROFILE INFO */
+                profileImage.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
+                profileUsername.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
+                profilePoints.InnerText = $"{UserManager.Get_Current_Points(USER_ID)}";
 
 
-            /* PROFILE INFO (Modal Info) */
-            profileImage2.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
-            profileUsername2.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
+                /* PROFILE INFO (Modal Info) */
+                profileImage2.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
+                profileUsername2.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
+            }
         }
-
-
-
-
 
     }
 }
