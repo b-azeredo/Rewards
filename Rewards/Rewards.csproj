@@ -269,6 +269,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Items\ActivityItem.cs" />
+    <Compile Include="Items\FormItem.cs" />
     <Compile Include="Items\RewardsItem.cs" />
     <Compile Include="Items\LeaderboardItem.cs" />
     <Compile Include="Items\TransactionItem.cs" />
@@ -281,6 +282,7 @@
     </Compile>
     <Compile Include="Manager\ActivitiesManager.cs" />
     <Compile Include="Manager\AdminManager.cs" />
+    <Compile Include="Manager\ManagerManager.cs" />
     <Compile Include="Manager\RewardsManager.cs" />
     <Compile Include="Manager\LeaderboardManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
