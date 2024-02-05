@@ -110,12 +110,12 @@
                                     <p class="m-0">Email:</p>
                                     <asp:TextBox ID="UserEmail" CssClass="form-control mb-2" placeholder="Email" runat="server"></asp:TextBox>
                                     <p class="m-0">Role:</p>
-                                    <asp:DropDownList ID="dlRoleUser" CssClass="form-control mb-2" runat="server">
+                                    <asp:DropDownList ID="dlRoleUser" onchange="hideManagerEmail2()" CssClass="form-control mb-2" runat="server">
                                         <asp:ListItem Text="EMPLOYEE" Value="EMPLOYEE"></asp:ListItem>
                                         <asp:ListItem Text="MANAGER" Value="MANAGER"></asp:ListItem>
                                         <asp:ListItem Text="ADMIN" Value="ADMIN"></asp:ListItem>
                                     </asp:DropDownList>
-                                    <p class="m-0">Manager Email:</p>
+                                    <p class="m-0" id="managerEmailLabel2">Manager Email:</p>
                                     <asp:TextBox ID="managerEmailTextBox" CssClass="form-control mb-2" placeholder="Manager Email" runat="server"></asp:TextBox>
                                     <p class="m-0">Image:</p>
                                     <asp:FileUpload ID="FileUpload1" CssClass="form-control" runat="server" />
@@ -144,7 +144,7 @@
                                     <p class="mb-0">Email:</p>
                                     <asp:TextBox ID="newEmail" CssClass="form-control mb-2" placeholder="New Email" runat="server"></asp:TextBox>
                                     <p class="mb-0">Role:</p>
-                                    <asp:DropDownList ID="dlRole" OnSelectedIndexChanged="dlRole_SelectedIndexChanged" CssClass="form-control mb-2" runat="server">
+                                    <asp:DropDownList ID="dlRole" onchange="hideManagerEmail()" CssClass="form-control mb-2" runat="server">
                                         <asp:ListItem Text="EMPLOYEE" Value="EMPLOYEE"></asp:ListItem>
                                         <asp:ListItem Text="MANAGER" Value="MANAGER"></asp:ListItem>
                                         <asp:ListItem Text="ADMIN" Value="ADMIN"></asp:ListItem>
@@ -153,7 +153,7 @@
                                     <asp:TextBox ID="newManagerEmail" CssClass="form-control mb-2" placeholder="New Manager Email" runat="server"></asp:TextBox>
                                     <p class="m-0">Image</p>
                                     <asp:FileUpload ID="userFileUpload" runat="server" style="display: none;" onchange="previewImage('MainContent_userFileUpload', 'MainContent_UserImagePlaceholder')" accept="image/*" />
-                                    <img id="UserImagePlaceholder" runat="server" width="130" height="130" src="none" onclick="document.getElementById('MainContent_rewardFileUpload').click();" style="cursor: pointer;" />
+                                    <img id="UserImagePlaceholder" runat="server" width="130" height="130" src="none" onclick="document.getElementById('MainContent_userFileUpload').click();" style="cursor: pointer;" />
                                     <p class="m-0">Activated</p>
                                     <asp:DropDownList ID="dlUserActivated" CssClass="form-control mb-2" runat="server">
                                         <asp:ListItem Text="True" Value="True"></asp:ListItem>
@@ -180,7 +180,7 @@
                             </div>
                             <asp:ListView ID="lvUsers" runat="server" OnItemDataBound="lvUsers_ItemDataBound">
                                 <ItemTemplate>
-                                    <div class="userCard">
+                                    <div class="userCard <%# Eval("ItemClass") %>">
                                         <div class="userImgPlaceholder">
                                              <asp:Image ID="profileImage" runat="server" />
                                         </div>
@@ -377,6 +377,34 @@
                      reader.readAsDataURL(input.files[0]);
                  }
              }
+
+             function hideManagerEmail() {
+                    var selectedRole = document.getElementById("<%= dlRole.ClientID %>").value;
+                     var managerEmailLabel = document.getElementById("<%= managerEmailLabel.ClientID %>");
+                     var newManagerEmail = document.getElementById("<%= newManagerEmail.ClientID %>");
+
+                     if (selectedRole !== "EMPLOYEE") {
+                         managerEmailLabel.style.display = "none";
+                         newManagerEmail.style.display = "none";
+                     } else {
+                         managerEmailLabel.style.display = "block";
+                         newManagerEmail.style.display = "block";
+                     }
+             }
+
+             function hideManagerEmail2() {
+                    var selectedRole = document.getElementById("<%= dlRoleUser.ClientID %>").value;
+                    var managerEmailLabel2 = document.getElementById("managerEmailLabel2");
+                     var managerEmailTextBox = document.getElementById("<%= managerEmailTextBox.ClientID %>");
+
+                     if (selectedRole !== "EMPLOYEE") {
+                         managerEmailLabel2.style.display = "none";
+                         managerEmailTextBox.style.display = "none";
+                     } else {
+                         managerEmailLabel2.style.display = "block";
+                         managerEmailTextBox.style.display = "block";
+                     }
+                 }
 
          </script>
 

@@ -74,35 +74,17 @@ namespace Rewards
             dlUserActivated.Items.FindByValue(UserManager.Get_Activated(int.Parse(idUser.Value)).ToString()).Selected = true;
 
             if (UserManager.Get_Role(int.Parse(idUser.Value)) != "EMPLOYEE"){
-                newManagerEmail.Visible = false;
-                managerEmailLabel.Visible = false;
+                newManagerEmail.Style["display"] = "none";
+                managerEmailLabel.Style["display"] = "none";
             }
             else
             {
-                newManagerEmail.Visible = true;
-                managerEmailLabel.Visible = true;
+                newManagerEmail.Style["display"] = "block";
+                managerEmailLabel.Style["display"] = "block";
             }
 
             Page.ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showEditUserModal()", true);
         }
-
-        protected void dlRole_SelectedIndexChanged(object sender, EventArgs e) // BUG
-        {
-            DropDownList dropdown = sender as DropDownList;
-            string selectedValue = dropdown.SelectedValue;
-
-            if (selectedValue != "EMPLOYEE")
-            {
-                newManagerEmail.Visible = false;
-                managerEmailLabel.Visible = false;
-            }
-            else
-            {
-                newManagerEmail.Visible = true;
-                managerEmailLabel.Visible = true;
-            }
-        }
-
 
         /* COMFIRM CHANGES */
 
@@ -113,8 +95,41 @@ namespace Rewards
 
         protected void btnComfirmUserChanges_Click(object sender, EventArgs e)
         {
+            int userId = int.Parse(ID.Text);
 
+            using (var entities = new Entities2())
+            {
+                USER user = entities.USER.FirstOrDefault(x => x.ID == userId);
+
+                if (user != null)
+                {
+                    user.NAME = newName.Text;
+                    user.EMAIL = newEmail.Text;
+                    user.ROLE = dlRole.SelectedValue;
+                    user.ACTIVATED = bool.Parse(dlUserActivated.SelectedValue);
+
+
+                    if (user.ROLE == "EMPLOYEE")
+                    {
+                        user.MANAGER_EMAIL = newManagerEmail.Text;
+                    }
+                    else
+                    {
+                        user.MANAGER_EMAIL = null;
+                    }
+
+                    if (userFileUpload.HasFile)
+                    {
+                        byte[] imageData = userFileUpload.FileBytes;
+                        user.PROFILE_IMAGE = imageData;
+                    }
+
+                    entities.SaveChanges();
+                    Response.Redirect(Request.RawUrl);
+                }
+            }
         }
+
 
         protected void btnComfirmRewardChanges_Click(object sender, EventArgs e)
         {
