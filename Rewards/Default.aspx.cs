@@ -81,16 +81,15 @@ namespace Rewards
                         entities.FILE.Add(file);
                     }
                     entities.SaveChanges();
-                    string successScript = "<script>alert('The form was sent successfully. When your manager approves, you will receive your points.');</script>";
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowSuccess", successScript);
+                    string message = "<script>messageAlert('The form was sent successfully. When your manager approves, you will receive your points.');</script>";
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", message);
 
-                    string redirectScript = "<script>setTimeout(function(){ window.location.href = '" + Request.RawUrl + "'; }, 100);</script>";
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "RedirectPage", redirectScript);
                 }
             }
             else
             {
-                string script = "<script>alert('Please upload at least one file.');</script>";
+                string message = "<script>messageAlert('Please upload at least one file.');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
             }
         }
