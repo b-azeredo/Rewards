@@ -32,12 +32,17 @@
                     <span class="d-flex align-items-center"><img width="30" height="30" src="icon/ranking-star-solid.svg"/></span>
                     <h1>Activity Requests</h1>
                 </div>
-                <div class="overflow-auto d-flex flex-column align-items-center" style="max-height:85%;">
-                    <asp:ListView ID="ListView1" runat="server" OnItemDataBound="lvLeaderboard_ItemDataBound">
-                        <ItemTemplate>
-                            
-                        </ItemTemplate>
-                    </asp:ListView>
+                <div class="overflow-auto" style="max-height:85%;">
+                    <ol style="--length: 0" role="list">
+                        <asp:ListView ID="lvActivityRequest" runat="server" OnItemDataBound="lvActivityRequest_ItemDataBound">
+                            <ItemTemplate>
+                                <li class="d-flex justify-content-between">
+                                    <h3><asp:Literal runat="server" ID="userRequestNameLiteral"></asp:Literal> <span class="mx-2 p-1"><asp:Literal runat="server" ID="activityRequestNameLiteral"></asp:Literal>  points</span> </h3>
+                                    <asp:Button ID="btnActivityRequest" OnClick="btnActivityRequest_Click" runat="server" CssClass="btn btn-success py-1 px-2 submit-btn" Text="View" />
+                                </li>
+                            </ItemTemplate>
+                        </asp:ListView>
+                    </ol>
                 </div>
             </div>
          </div>

@@ -14,6 +14,16 @@ namespace Rewards
     {
         private int USER_ID = 1;
 
+        protected void btnActivityRequest_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSaveProfileChanges_Click(object sender, EventArgs e)
+        {
+
+        }
+
         /* DATA BOUNDS */
 
         protected void lvActivity_ItemDataBound(object sender, ListViewItemEventArgs e)
@@ -63,6 +73,11 @@ namespace Rewards
             }
         }
 
+        protected void lvActivityRequest_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             /* LEADERBOARD */
@@ -96,9 +111,9 @@ namespace Rewards
             profileUsername2.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
         }
 
-        protected void btnSaveProfileChanges_Click(object sender, EventArgs e)
-        {
-            
-        }
+
+
+
+
     }
 }
