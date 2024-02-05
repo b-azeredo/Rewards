@@ -83,14 +83,12 @@ namespace Rewards
                     entities.SaveChanges();
                     string message = "<script>messageAlert('The form was sent successfully. When your manager approves, you will receive your points.');</script>";
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", message);
-
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "RedirectPage", redirectScript);
                 }
             }
             else
             {
                 string message = "<script>messageAlert('Please upload at least one file.');</script>";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", message);
             }
         }
 
