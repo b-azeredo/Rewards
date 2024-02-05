@@ -13,6 +13,9 @@
     </style>
 
      <main class="container-fluid p-3">
+         
+          <div class="alert alert-warning alert-dismissible fade show" role="alert" style="display:none;">
+        </div>
          <div class="row pb-4">
              <div class="col-5 overflow-hidden">
                  <!-- ACTIVITIES -->
@@ -409,8 +412,16 @@
                          managerEmailLabel2.style.display = "block";
                          managerEmailTextBox.style.display = "block";
                      }
-                 }
+             }
 
+             function messageAlert(text) {
+                 $('.alert').html(text);
+                 $('.alert').append('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
+                 $('.alert').show();
+                 setTimeout(function () {
+                     $('.alert').hide();
+                 }, 5000);
+             }
          </script>
 
 

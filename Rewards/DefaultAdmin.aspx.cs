@@ -218,6 +218,19 @@ namespace Rewards
 
         protected void btnComfirmAddActivity_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(ActivityName.Text) || string.IsNullOrWhiteSpace(ActivityDescription.Text) || string.IsNullOrWhiteSpace(ActivityPoints.Text))
+            {
+                string script = "<script>messageAlert('Please fill in all required fields.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+            if (!int.TryParse(ActivityPoints.Text, out int points))
+            {
+                string script = "<script>messageAlert('Please enter a valid integer value for points.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
             using (Entities2 entities2 = new Entities2())
             {
                 ACTIVITY newActivity = new ACTIVITY()

@@ -13,7 +13,6 @@
           <Property Name="NAME" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="POINTS" Type="int" Nullable="false" />
           <Property Name="ACTIVATED" Type="bit" Nullable="false" />
-          <Property Name="LIMIT_PER_WEEK" Type="int" Nullable="false" />
           <Property Name="DESCRIPTION" Type="varchar" MaxLength="8000" Nullable="false" />
         </EntityType>
         <EntityType Name="FILE">
@@ -389,7 +388,6 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="POINTS" ColumnName="POINTS" />
-                <ScalarProperty Name="LIMIT_PER_WEEK" ColumnName="LIMIT_PER_WEEK" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

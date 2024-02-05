@@ -23,11 +23,12 @@ namespace Rewards
 
             HiddenField formID = (HiddenField)item.FindControl("FormID");
 
-            
+            requestedActivityName.InnerText = ActivitiesManager.Get_Name(FormManager.Get_Activity_Id(int.Parse(formID.Value)));
+            requetedActivityDescription.InnerText = ActivitiesManager.Get_Description(FormManager.Get_Activity_Id(int.Parse(formID.Value)));
+            requestorName.Text = UserManager.Get_Username(FormManager.Get_User_Id(int.Parse(formID.Value)));
+            requestorDescription.Text = FormManager.Get_Description(int.Parse(formID.Value));
 
-
-
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowApproveFormRequestModal()", true);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showModal()", true);
         }
 
         protected void btnSaveProfileChanges_Click(object sender, EventArgs e)
