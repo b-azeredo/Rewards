@@ -14,7 +14,7 @@ namespace Rewards
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
-        private int USER_ID = 5;
+        private int USER_ID = 1002;
 
         protected void btnActivityRequest_Click(object sender, EventArgs e)
         {
