@@ -18,6 +18,28 @@ namespace Rewards
 
         protected void btnEditActivity_Click(object sender, EventArgs e)
         {
+            Button btnEditActivity = (Button)sender;
+            ListViewItem item = (ListViewItem)btnEditActivity.NamingContainer;
+
+            HiddenField activityID = (HiddenField)item.FindControl("activityIdLiteral");
+            Literal activityNameLiteral = (Literal)item.FindControl("activityNameLiteral");
+
+            newActivityName.Text = activityNameLiteral.Text.ToString();
+            newActivityDescription.Text = ActivitiesManager.Get_Description(int.Parse(activityID.Value));
+            newActivityPoints.Text = ActivitiesManager.Get_Points(int.Parse(activityID.Value)).ToString();
+            newActivityLimit.Text = ActivitiesManager.Get_Limit_per_Week(int.Parse(activityID.Value)).ToString();
+            hiddenActivityID.Value = activityID.Value;
+
+            foreach (ListItem dlItem in dlActivityStatus.Items)
+            {
+                dlItem.Selected = false;
+            }
+
+            bool activated = ActivitiesManager.Get_Activated(int.Parse(activityID.Value));
+            dlActivityStatus.Items.FindByValue(activated.ToString()).Selected = true;
+
+
+
             Page.ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showEditActivityModal()", true);
         }
 
@@ -90,7 +112,24 @@ namespace Rewards
 
         protected void btnComfirmActivityChanges_Click(object sender, EventArgs e)
         {
+            int activityId = int.Parse(hiddenActivityID.Value);
 
+            using (var entities = new Entities2())
+            {
+                ACTIVITY activity = entities.ACTIVITY.FirstOrDefault(x => x.ID == activityId);
+
+                if (activity != null)
+                {
+                    activity.NAME = newActivityName.Text;
+                    activity.DESCRIPTION = newActivityDescription.Text;
+                    activity.POINTS = int.Parse(newActivityPoints.Text);
+                    activity.LIMIT_PER_WEEK = int.Parse(newActivityLimit.Text);
+                    activity.ACTIVATED = bool.Parse(dlActivityStatus.SelectedValue);
+
+                    entities.SaveChanges();
+                    Response.Redirect(Request.RawUrl);
+                }
+            }
         }
 
         protected void btnComfirmUserChanges_Click(object sender, EventArgs e)
@@ -256,7 +295,9 @@ namespace Rewards
                 var item = e.Item.DataItem as ActivityItem;
                 var activityNameLiteral = e.Item.FindControl("activityNameLiteral") as Literal;
                 var pointsLiteral = e.Item.FindControl("pointsLiteral") as Literal;
+                var activityIDLiteral = e.Item.FindControl("activityIdLiteral") as HiddenField;
 
+                activityIDLiteral.Value  = item.ACTIVITY_ID.ToString();
                 activityNameLiteral.Text = item.NAME;
                 pointsLiteral.Text = item.POINTS.ToString();
             }

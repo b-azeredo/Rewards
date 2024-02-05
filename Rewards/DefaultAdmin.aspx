@@ -29,7 +29,7 @@
                                 <p class="m-0">Name:</p>
                                 <asp:TextBox ID="ActivityName" CssClass="form-control mb-2" placeholder="Name" runat="server"></asp:TextBox>
                                 <p class="m-0">Description:</p>
-                                <asp:TextBox ID="ActivityDescription" CssClass="form-control mb-2" placeholder="Description" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="ActivityDescription" TextMode="MultiLine" Rows="4" CssClass="form-control mb-2" placeholder="Description" runat="server"></asp:TextBox>
                                 <p class="m-0">Points:</p>
                                 <asp:TextBox ID="ActivityPoints" TextMode="Number" CssClass="form-control mb-2" placeholder="Points earned by doing this activity" runat="server"></asp:TextBox>
                                 <p class="m-0">Limit per week:</p>
@@ -52,16 +52,20 @@
                                </div>
                            </div>
                             <div class="modal-body">
+                                <asp:HiddenField ID="hiddenActivityID" runat="server" />
                                 <p class="mb-0">Name:</p>
                                 <asp:TextBox ID="newActivityName" CssClass="form-control mb-2" placeholder="New Name" runat="server"></asp:TextBox>
                                 <p class="mb-0">Description:</p>
-                                <asp:TextBox ID="newActivityDescription" CssClass="form-control mb-2" placeholder="New Description" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="newActivityDescription" TextMode="MultiLine" Rows="4" CssClass="form-control mb-2" placeholder="New Description" runat="server"></asp:TextBox>
                                 <p class="mb-0">Points:</p>
                                 <asp:TextBox ID="newActivityPoints" TextMode="Number" CssClass="form-control mb-2" placeholder="New Points" runat="server"></asp:TextBox>
                                 <p class="mb-0">Limit Per Week:</p>
                                 <asp:TextBox ID="newActivityLimit" TextMode="Number" CssClass="form-control mb-2" placeholder="New Limit per week" runat="server"></asp:TextBox>
-                                <p class="mb-0">Active:</p>
-                                <asp:CheckBox ID="CheckBox3" runat="server" />
+                                <p class="mb-0">Activated:</p>
+                                <asp:DropDownList ID="dlActivityStatus" CssClass="form-control mb-2" runat="server">
+                                    <asp:ListItem Text="True" Value="True"></asp:ListItem>
+                                    <asp:ListItem Text="False" Value="False"></asp:ListItem>
+                                </asp:DropDownList>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
@@ -84,7 +88,8 @@
                             </li>
                             <asp:ListView ID="lvActivity" runat="server" OnItemDataBound="lvActivity_ItemDataBound">
                                 <ItemTemplate>
-                                    <li class="d-flex justify-content-between">
+                                    <li class="d-flex justify-content-between <%# Eval("ItemClass") %>">
+                                        <asp:HiddenField ID="activityIdLiteral" runat="server" />
                                         <h3><asp:Literal runat="server" ID="activityNameLiteral"></asp:Literal> <span class="mx-2 p-1"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal>  points</span> </h3>
                                         <asp:Button ID="btnEditActivity" OnClick="btnEditActivity_Click" runat="server" CssClass="btn btn-success py-1 px-2 submit-btn" Text="Edit" data-bs-toggle="modal" data-bs-target="#editActivityModal" />
                                     </li>
@@ -151,10 +156,10 @@
                                     </asp:DropDownList>
                                     <p class="mb-0" runat="server" id="managerEmailLabel">Manager Email:</p>
                                     <asp:TextBox ID="newManagerEmail" CssClass="form-control mb-2" placeholder="New Manager Email" runat="server"></asp:TextBox>
-                                    <p class="m-0">Image</p>
+                                    <p class="m-0">Image:</p>
                                     <asp:FileUpload ID="userFileUpload" runat="server" style="display: none;" onchange="previewImage('MainContent_userFileUpload', 'MainContent_UserImagePlaceholder')" accept="image/*" />
                                     <img id="UserImagePlaceholder" runat="server" width="130" height="130" src="none" onclick="document.getElementById('MainContent_userFileUpload').click();" style="cursor: pointer;" />
-                                    <p class="m-0">Activated</p>
+                                    <p class="m-0">Activated:</p>
                                     <asp:DropDownList ID="dlUserActivated" CssClass="form-control mb-2" runat="server">
                                         <asp:ListItem Text="True" Value="True"></asp:ListItem>
                                         <asp:ListItem Text="False" Value="False"></asp:ListItem>

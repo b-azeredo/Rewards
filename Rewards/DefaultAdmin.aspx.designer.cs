@@ -60,6 +60,15 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.Button btnComfirmAddActivity;
 
         /// <summary>
+        /// hiddenActivityID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenActivityID;
+
+        /// <summary>
         /// newActivityName control.
         /// </summary>
         /// <remarks>
@@ -96,13 +105,13 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.TextBox newActivityLimit;
 
         /// <summary>
-        /// CheckBox3 control.
+        /// dlActivityStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox3;
+        protected global::System.Web.UI.WebControls.DropDownList dlActivityStatus;
 
         /// <summary>
         /// btnComfirmActivityChanges control.
