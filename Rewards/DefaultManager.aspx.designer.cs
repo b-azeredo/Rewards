@@ -24,13 +24,13 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.ListView lvActivity;
 
         /// <summary>
-        /// lvLeaderboard control.
+        /// ListView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvLeaderboard;
+        protected global::System.Web.UI.WebControls.ListView ListView1;
 
         /// <summary>
         /// activitiesDone control.
@@ -60,6 +60,24 @@ namespace Rewards
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lifetimePoints;
 
         /// <summary>
+        /// lvLeaderboard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lvLeaderboard;
+
+        /// <summary>
+        /// lvRewards control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lvRewards;
+
+        /// <summary>
         /// fileUpload control.
         /// </summary>
         /// <remarks>
@@ -85,24 +103,6 @@ namespace Rewards
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl profileUsername2;
-
-        /// <summary>
-        /// managerEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl managerEmail;
-
-        /// <summary>
-        /// profilePoints2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl profilePoints2;
 
         /// <summary>
         /// btnSaveProfileChanges control.
@@ -148,14 +148,5 @@ namespace Rewards
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl profilePoints;
-
-        /// <summary>
-        /// lvRewards control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvRewards;
     }
 }
