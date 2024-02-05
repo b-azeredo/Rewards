@@ -42,15 +42,6 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.TextBox ActivityPoints;
 
         /// <summary>
-        /// ActivityLimit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ActivityLimit;
-
-        /// <summary>
         /// btnComfirmAddActivity control.
         /// </summary>
         /// <remarks>
@@ -94,15 +85,6 @@ namespace Rewards
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox newActivityPoints;
-
-        /// <summary>
-        /// newActivityLimit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox newActivityLimit;
 
         /// <summary>
         /// dlActivityStatus control.

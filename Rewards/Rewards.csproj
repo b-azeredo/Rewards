@@ -131,6 +131,7 @@
       <DependentUpon>Entities.edmx</DependentUpon>
       <LastGenOutput>Entities.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="DBModel\Entities.edmx.sql" />
     <Content Include="DBModel\Entities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Entities.edmx</DependentUpon>
@@ -282,6 +283,7 @@
     </Compile>
     <Compile Include="Manager\ActivitiesManager.cs" />
     <Compile Include="Manager\AdminManager.cs" />
+    <Compile Include="Manager\FormManager.cs" />
     <Compile Include="Manager\ManagerManager.cs" />
     <Compile Include="Manager\RewardsManager.cs" />
     <Compile Include="Manager\LeaderboardManager.cs" />

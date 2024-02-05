@@ -19,7 +19,6 @@ namespace Rewards.Manager
                 List<ActivityItem> activitiesItem = activities.Select(a => new ActivityItem
                 {
                     ACTIVITY_ID = a.ID,
-                    LIMIT_PER_WEEK = a.LIMIT_PER_WEEK,
                     DESCRIPTION = a.DESCRIPTION,
                     NAME = a.NAME,
                     POINTS = a.POINTS
@@ -52,15 +51,6 @@ namespace Rewards.Manager
             {
                 var activity = entities.ACTIVITY.FirstOrDefault(u => u.ID == activityID);
                 return activity.POINTS;
-            }
-        }
-
-        public static int Get_Limit_per_Week(int activityID)
-        {
-            using (var entities = new Entities2())
-            {
-                var activity = entities.ACTIVITY.FirstOrDefault(u => u.ID == activityID);
-                return activity.LIMIT_PER_WEEK;
             }
         }
 

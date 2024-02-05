@@ -53,7 +53,12 @@ namespace Rewards
         {
             int activityId = Convert.ToInt32(activityID.Value);
 
-            if (fileUpload1.HasFiles)
+            if (string.IsNullOrWhiteSpace(txtActivityDESCRIPTION.Text))
+            {
+                string script = "<script>messageAlert('Please give a description to the activity.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+            }
+            else if (fileUpload1.HasFiles)
             {
                 using (Entities2 entities = new Entities2())
                 {
@@ -61,7 +66,7 @@ namespace Rewards
                     {
                         USER_ID = this.USER_ID,
                         ACTIVITY_ID = activityId,
-                        DESCRIPTION = activityDESCRIPTION.InnerText,
+                        DESCRIPTION = txtActivityDESCRIPTION.Text, // Use txtActivityDESCRIPTION.Text here
                         STATUS = true,
                         CREATE_DATE = DateTime.Now,
                         MANAGER_DATA_APROVED = DateTime.Now,
@@ -84,17 +89,17 @@ namespace Rewards
                         entities.FILE.Add(file);
                     }
                     entities.SaveChanges();
-                    string message = "<script>messageAlert('The form was sent successfully. When your manager approves, you will receive your points.');</script>";
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", message);
+
+                    string successScript = "<script>messageAlert('The form was sent successfully. When your manager approves, you will receive your points.');</script>";
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowSuccess", successScript);
                 }
             }
             else
             {
-                string message = "<script>messageAlert('Please upload at least one file.');</script>";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", message);
+                string script = "<script>messageAlert('Please upload at least one file.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
             }
         }
-
 
 
         protected void btnSaveProfileChanges_Click(object sender, EventArgs e)

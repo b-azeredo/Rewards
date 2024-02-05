@@ -23,7 +23,6 @@ namespace Rewards.DBModel
         public int ID { get; set; }
         public string NAME { get; set; }
         public int POINTS { get; set; }
-        public int LIMIT_PER_WEEK { get; set; }
         public bool ACTIVATED { get; set; }
         public string DESCRIPTION { get; set; }
     

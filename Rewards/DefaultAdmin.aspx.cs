@@ -27,7 +27,6 @@ namespace Rewards
             newActivityName.Text = activityNameLiteral.Text.ToString();
             newActivityDescription.Text = ActivitiesManager.Get_Description(int.Parse(activityID.Value));
             newActivityPoints.Text = ActivitiesManager.Get_Points(int.Parse(activityID.Value)).ToString();
-            newActivityLimit.Text = ActivitiesManager.Get_Limit_per_Week(int.Parse(activityID.Value)).ToString();
             hiddenActivityID.Value = activityID.Value;
 
             foreach (ListItem dlItem in dlActivityStatus.Items)
@@ -123,7 +122,6 @@ namespace Rewards
                     activity.NAME = newActivityName.Text;
                     activity.DESCRIPTION = newActivityDescription.Text;
                     activity.POINTS = int.Parse(newActivityPoints.Text);
-                    activity.LIMIT_PER_WEEK = int.Parse(newActivityLimit.Text);
                     activity.ACTIVATED = bool.Parse(dlActivityStatus.SelectedValue);
 
                     entities.SaveChanges();
@@ -218,6 +216,19 @@ namespace Rewards
 
         protected void btnComfirmAddActivity_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(ActivityName.Text) || string.IsNullOrWhiteSpace(ActivityDescription.Text) || string.IsNullOrWhiteSpace(ActivityPoints.Text))
+            {
+                string script = "<script>messageAlert('Please fill in all required fields.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+            if (!int.TryParse(ActivityPoints.Text, out int points))
+            {
+                string script = "<script>messageAlert('Please enter a valid integer value for points.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
             using (Entities2 entities2 = new Entities2())
             {
                 ACTIVITY newActivity = new ACTIVITY()
@@ -226,7 +237,6 @@ namespace Rewards
                     DESCRIPTION = ActivityDescription.Text,
                     ACTIVATED = true,
                     POINTS = int.Parse(ActivityPoints.Text),
-                    LIMIT_PER_WEEK = int.Parse(ActivityLimit.Text),
                 };
                 entities2.ACTIVITY.Add(newActivity);
                 entities2.SaveChanges();

@@ -25,6 +25,35 @@
                     </div>
              </div>
          </div>
+
+         <div class="modal fade" id="approveActivityModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header d-flex flex-column align-items-start">
+                    <h5 id="requestedActivityName" class="modal-title" runat="server">Label</h5>
+                    <p runat="server" id="requetedActivityDescription" class="mb-0">
+                    </p>
+                  </div>
+                  <div class="modal-body">
+                      <p class="mb-0">Requestor Name:</p>
+                      <asp:Label ID="requestorName" CssClass="tertiary" runat="server" Text="Label"></asp:Label>
+
+                      <p class="mb-0 mt-3">Requestor Description:</p>
+                      <asp:Label ID="requestorDescription" CssClass="tertiary" runat="server" Text="Label"></asp:Label>
+
+                      <p class="mb-0 mt-3">Requestor Uploaded Files:</p>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                    <asp:Button ID="btnDeny" runat="server" CssClass="btn btn-success" Text="Deny" />
+                    <asp:Button ID="btnAccept" runat="server" CssClass="btn btn-success" Text="Accept" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
          <div class="col-5 overflow-hidden">
              <!-- Activity Requests -->
             <div class="content">
@@ -38,7 +67,7 @@
                             <ItemTemplate>
                                 <li class="d-flex justify-content-between">
                                     <asp:HiddenField ID="FormID" runat="server" />
-                                    <h3><asp:Literal runat="server" ID="userRequestNameLiteral"></asp:Literal> <span class="mx-2 p-1"><asp:Literal runat="server" ID="activityRequestNameLiteral"></asp:Literal>  points</span> </h3>
+                                    <h3><asp:Literal runat="server" ID="userRequestNameLiteral"></asp:Literal> <span class="mx-2 p-1"><asp:Literal runat="server" ID="activityRequestNameLiteral"></asp:Literal></span> </h3>
                                     <asp:Button ID="btnActivityRequest" OnClick="btnActivityRequest_Click" runat="server" CssClass="btn btn-success py-1 px-2 submit-btn" Text="View" />
                                 </li>
                             </ItemTemplate>
@@ -200,6 +229,13 @@
              reader.readAsDataURL(input.files[0]);
          }
      }
+
+
+     function showModal() {
+         var myModal = new bootstrap.Modal(document.getElementById('approveActivityModal'))
+         myModal.show()
+     }
+
  </script>
 
 </asp:Content>
