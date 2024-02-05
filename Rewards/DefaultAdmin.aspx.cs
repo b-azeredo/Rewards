@@ -27,7 +27,6 @@ namespace Rewards
             newActivityName.Text = activityNameLiteral.Text.ToString();
             newActivityDescription.Text = ActivitiesManager.Get_Description(int.Parse(activityID.Value));
             newActivityPoints.Text = ActivitiesManager.Get_Points(int.Parse(activityID.Value)).ToString();
-            newActivityLimit.Text = ActivitiesManager.Get_Limit_per_Week(int.Parse(activityID.Value)).ToString();
             hiddenActivityID.Value = activityID.Value;
 
             foreach (ListItem dlItem in dlActivityStatus.Items)
@@ -123,7 +122,6 @@ namespace Rewards
                     activity.NAME = newActivityName.Text;
                     activity.DESCRIPTION = newActivityDescription.Text;
                     activity.POINTS = int.Parse(newActivityPoints.Text);
-                    activity.LIMIT_PER_WEEK = int.Parse(newActivityLimit.Text);
                     activity.ACTIVATED = bool.Parse(dlActivityStatus.SelectedValue);
 
                     entities.SaveChanges();
@@ -239,7 +237,6 @@ namespace Rewards
                     DESCRIPTION = ActivityDescription.Text,
                     ACTIVATED = true,
                     POINTS = int.Parse(ActivityPoints.Text),
-                    LIMIT_PER_WEEK = int.Parse(ActivityLimit.Text),
                 };
                 entities2.ACTIVITY.Add(newActivity);
                 entities2.SaveChanges();

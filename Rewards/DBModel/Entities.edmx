@@ -192,7 +192,6 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="POINTS" Type="Int32" Nullable="false" />
-          <Property Name="LIMIT_PER_WEEK" Type="Int32" Nullable="false" />
           <NavigationProperty Name="FORM" Relationship="Self.FK_4_1" FromRole="ACTIVITY" ToRole="FORM" />
           <Property Name="ACTIVATED" Type="Boolean" Nullable="false" />
           <Property Name="DESCRIPTION" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" Nullable="false" />
@@ -378,89 +377,88 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities2">
-          <EntitySetMapping Name="ACTIVITY">
-            <EntityTypeMapping TypeName="Model.ACTIVITY">
-              <MappingFragment StoreEntitySet="ACTIVITY">
-                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
-                <ScalarProperty Name="ACTIVATED" ColumnName="ACTIVATED" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="POINTS" ColumnName="POINTS" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FILE">
-            <EntityTypeMapping TypeName="Model.FILE">
-              <MappingFragment StoreEntitySet="FILE">
-                <ScalarProperty Name="FILE_EXTENSION" ColumnName="FILE_EXTENSION" />
-                <ScalarProperty Name="FILE_NAME" ColumnName="FILE_NAME" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="FORM_ID" ColumnName="FORM_ID" />
-                <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
-                </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FORM">
-            <EntityTypeMapping TypeName="Model.FORM">
-              <MappingFragment StoreEntitySet="FORM">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-                <ScalarProperty Name="ACTIVITY_ID" ColumnName="ACTIVITY_ID" />
-                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
-                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
-                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
-                <ScalarProperty Name="MANAGER_DATA_APROVED" ColumnName="MANAGER_DATA_APROVED" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PURCHASE">
-            <EntityTypeMapping TypeName="Model.PURCHASE">
-              <MappingFragment StoreEntitySet="PURCHASE">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-                <ScalarProperty Name="REWARD_ID" ColumnName="REWARD_ID" />
-                <ScalarProperty Name="PURCHASE_DATE" ColumnName="PURCHASE_DATE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="REWARD">
-            <EntityTypeMapping TypeName="Model.REWARD">
-              <MappingFragment StoreEntitySet="REWARD">
-                <ScalarProperty Name="ACTIVATED" ColumnName="ACTIVATED" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
-                <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="REWARD_STOCK">
-            <EntityTypeMapping TypeName="Model.REWARD_STOCK">
-              <MappingFragment StoreEntitySet="REWARD_STOCK">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="REWARD_ID" ColumnName="REWARD_ID" />
-                <ScalarProperty Name="STOCK" ColumnName="STOCK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="USER">
-            <EntityTypeMapping TypeName="Model.USER">
-              <MappingFragment StoreEntitySet="USER">
-                <ScalarProperty Name="ACTIVATED" ColumnName="ACTIVATED" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
-                <ScalarProperty Name="MANAGER_EMAIL" ColumnName="MANAGER_EMAIL" />
-                <ScalarProperty Name="PROFILE_IMAGE" ColumnName="PROFILE_IMAGE" />
-                </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities2">
+    <EntitySetMapping Name="ACTIVITY">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.ACTIVITY)">
+        <MappingFragment StoreEntitySet="ACTIVITY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="POINTS" ColumnName="POINTS" />
+          <ScalarProperty Name="ACTIVATED" ColumnName="ACTIVATED" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FILE">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.FILE)">
+        <MappingFragment StoreEntitySet="FILE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FORM_ID" ColumnName="FORM_ID" />
+          <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+          <ScalarProperty Name="FILE_NAME" ColumnName="FILE_NAME" />
+          <ScalarProperty Name="FILE_EXTENSION" ColumnName="FILE_EXTENSION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FORM">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.FORM)">
+        <MappingFragment StoreEntitySet="FORM">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="ACTIVITY_ID" ColumnName="ACTIVITY_ID" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+          <ScalarProperty Name="MANAGER_DATA_APROVED" ColumnName="MANAGER_DATA_APROVED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PURCHASE">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PURCHASE)">
+        <MappingFragment StoreEntitySet="PURCHASE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="REWARD_ID" ColumnName="REWARD_ID" />
+          <ScalarProperty Name="PURCHASE_DATE" ColumnName="PURCHASE_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REWARD">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.REWARD)">
+        <MappingFragment StoreEntitySet="REWARD">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+          <ScalarProperty Name="ACTIVATED" ColumnName="ACTIVATED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REWARD_STOCK">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.REWARD_STOCK)">
+        <MappingFragment StoreEntitySet="REWARD_STOCK">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="REWARD_ID" ColumnName="REWARD_ID" />
+          <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USER">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.USER)">
+        <MappingFragment StoreEntitySet="USER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+          <ScalarProperty Name="MANAGER_EMAIL" ColumnName="MANAGER_EMAIL" />
+          <ScalarProperty Name="PROFILE_IMAGE" ColumnName="PROFILE_IMAGE" />
+          <ScalarProperty Name="ACTIVATED" ColumnName="ACTIVATED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -474,7 +472,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

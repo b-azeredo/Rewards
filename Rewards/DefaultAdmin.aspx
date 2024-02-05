@@ -35,8 +35,6 @@
                                 <asp:TextBox ID="ActivityDescription" TextMode="MultiLine" Rows="4" CssClass="form-control mb-2" placeholder="Description" runat="server"></asp:TextBox>
                                 <p class="m-0">Points:</p>
                                 <asp:TextBox ID="ActivityPoints" TextMode="Number" CssClass="form-control mb-2" placeholder="Points earned by doing this activity" runat="server"></asp:TextBox>
-                                <p class="m-0">Limit per week:</p>
-                                <asp:TextBox ID="ActivityLimit" TextMode="Number" CssClass="form-control mb-2" placeholder="Limit per week" runat="server"></asp:TextBox>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
@@ -62,8 +60,6 @@
                                 <asp:TextBox ID="newActivityDescription" TextMode="MultiLine" Rows="4" CssClass="form-control mb-2" placeholder="New Description" runat="server"></asp:TextBox>
                                 <p class="mb-0">Points:</p>
                                 <asp:TextBox ID="newActivityPoints" TextMode="Number" CssClass="form-control mb-2" placeholder="New Points" runat="server"></asp:TextBox>
-                                <p class="mb-0">Limit Per Week:</p>
-                                <asp:TextBox ID="newActivityLimit" TextMode="Number" CssClass="form-control mb-2" placeholder="New Limit per week" runat="server"></asp:TextBox>
                                 <p class="mb-0">Activated:</p>
                                 <asp:DropDownList ID="dlActivityStatus" CssClass="form-control mb-2" runat="server">
                                     <asp:ListItem Text="True" Value="True"></asp:ListItem>
