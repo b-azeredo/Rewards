@@ -21,8 +21,9 @@ namespace Rewards
             if (e.CommandName == "Claim")
             {
                 int rewardId = Convert.ToInt32(e.CommandArgument);
+                
 
-                if (UserManager.RemoveOneFromStock(rewardId) && UserManager.AddRewardToUser(rewardId, USER_ID))
+                if (UserManager.AddRewardToUser(rewardId, USER_ID) && UserManager.RemoveOneFromStock(rewardId))
                 {
                     Response.Redirect(Request.RawUrl);
                 }
