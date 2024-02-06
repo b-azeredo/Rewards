@@ -44,7 +44,7 @@
                       <asp:Label ID="requestorDescription" CssClass="tertiary" runat="server" Text="Label"></asp:Label>
 
                       <p class="mb-0 mt-3">Requestor Uploaded Files:</p>
-
+                      <asp:Panel ID="requestorUploadedFiles" runat="server"></asp:Panel>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>

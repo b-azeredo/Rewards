@@ -309,21 +309,89 @@ namespace Rewards
 
         protected void btnComfirmAddUser_Click(object sender, EventArgs e)
         {
-            string role = dlRoleUser.SelectedValue;
+            if (string.IsNullOrWhiteSpace(UserName.Text))
+            {
+                string script = "<script>messageAlert('Please enter a valid Name.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(UserEmail.Text) || !IsValidEmail(UserEmail.Text))
+            {
+                string script = "<script>messageAlert('Please enter a valid Email.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
+            if (FileUpload1.PostedFile == null || FileUpload1.PostedFile.InputStream == null)
+            {
+                string script = "<script>messageAlert('Please enter a valid Image.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
+            if (dlRoleUser.SelectedValue == "EMPLOYEE" && string.IsNullOrWhiteSpace(managerEmailTextBox.Text))
+            {
+                string script = "<script>messageAlert('Please enter a Manager Email.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(managerEmailTextBox.Text) && !IsValidEmail(managerEmailTextBox.Text))
+            {
+                string script = "<script>messageAlert('Please enter a valid Manager Email.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
+            string fileExtension = Path.GetExtension(FileUpload1.FileName).ToLower();
+            if (fileExtension != ".png" && fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".gif")
+            {
+                string script = "<script>messageAlert('Please enter a valid Image Extension(.png .jpg .jpeg .gif');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
+            if (dlRoleUser.SelectedValue == "EMPLOYEE" && !IsManagerEmailValid(managerEmailTextBox.Text))
+            {
+                string script = "<script>messageAlert('Please enter a Manager Email that exists.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
             using (Entities2 entities2 = new Entities2())
             {
                 USER newuser = new USER
                 {
                     NAME = UserName.Text,
                     EMAIL = UserEmail.Text,
-                    ROLE = role,
+                    ROLE = dlRoleUser.SelectedValue,
                     PROFILE_IMAGE = FileUpload1.FileBytes,
-                    MANAGER_EMAIL = (role == "EMPLOYEE") ? managerEmailTextBox.Text : null,
+                    MANAGER_EMAIL = dlRoleUser.SelectedValue == "EMPLOYEE" ? managerEmailTextBox.Text : null,
                     ACTIVATED = true
                 };
                 entities2.USER.Add(newuser);
                 entities2.SaveChanges();
                 Response.Redirect(Request.RawUrl);
+            }
+        }
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        private bool IsManagerEmailValid(string managerEmail)
+        {
+            using (Entities2 entities2 = new Entities2())
+            {
+                return entities2.USER.Any(u => u.EMAIL == managerEmail && u.ROLE == "MANAGER");
             }
         }
 
