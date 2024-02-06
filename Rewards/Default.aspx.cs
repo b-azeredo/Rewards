@@ -78,12 +78,15 @@ namespace Rewards
                         byte[] fileBytes = new byte[uploadedFile.ContentLength];
                         uploadedFile.InputStream.Read(fileBytes, 0, uploadedFile.ContentLength);
 
+                        string fileName = Path.GetFileNameWithoutExtension(uploadedFile.FileName);
+                        string fileExtension = Path.GetExtension(uploadedFile.FileName);
+
                         var file = new FILE()
                         {
                             FORM_ID = form.ID,
                             CONTENT = fileBytes,
-                            FILE_NAME = "test",
-                            FILE_EXTENSION = "test"
+                            FILE_NAME = fileName,
+                            FILE_EXTENSION = fileExtension
                         };
                         entities.FILE.Add(file);
                     }
