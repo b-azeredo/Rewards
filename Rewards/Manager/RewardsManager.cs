@@ -2,6 +2,7 @@
 using Rewards.Items;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Mapping;
 using System.Linq;
 using System.Web;
 
@@ -26,11 +27,13 @@ namespace Rewards.Manager
         {
             using (Entities2 entities = new Entities2())
             {
-                List<REWARD_STOCK> rewardStock = entities.REWARD_STOCK.Where(r => r.REWARD_ID == rewardID).ToList();
-                foreach (var rewardStockItem in rewardStock)
+                int stock = GetRewardStock(rewardID);
+                var rewardStock = new REWARD_STOCK()
                 {
-                    rewardStockItem.STOCK = 0;
-                }
+                    REWARD_ID = rewardID,
+                    STOCK = stock * -1
+                };
+                entities.REWARD_STOCK.Add(rewardStock);
                 entities.SaveChanges();
             }
         }
