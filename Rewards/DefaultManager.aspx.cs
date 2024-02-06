@@ -180,16 +180,6 @@ namespace Rewards
                 lifetimePoints.InnerText = $"{ManagerManager.Get_Team_Lifetime_Points(USER_ID)}";
                 activitiesDone.InnerText = $"{ManagerManager.Get_Team_Number_Activities_Done(USER_ID)}";
                 redeemedRewards.InnerText = $"{ManagerManager.Get_Team_Number_Redeemed_Rewards(USER_ID)}";
-
-                /* PROFILE INFO */
-                profileImage.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
-                profileUsername.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
-                profilePoints.InnerText = $"{UserManager.Get_Current_Points(USER_ID)}";
-
-
-                /* PROFILE INFO (Modal Info) */
-                profileImage2.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
-                profileUsername2.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
             }
         }
 
