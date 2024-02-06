@@ -53,7 +53,6 @@ namespace Rewards.Manager
                 return leaderboardItems;
             }
         }
-
         public static int Get_Team_Lifetime_Points(int ID)
         {
             using (var context = new Entities2())
@@ -63,7 +62,7 @@ namespace Rewards.Manager
                 List<USER> users = (
                     from u in context.USER
                     where u.ROLE == "EMPLOYEE" && u.ACTIVATED == true &&
-                    context.USER.Any(manager => manager.ROLE == "Manager" && manager.EMAIL == u.MANAGER_EMAIL)
+                    context.USER.Any(manager => manager.ROLE == "MANAGER" && manager.EMAIL == u.MANAGER_EMAIL)
                     select u
                 ).ToList();
 
@@ -71,12 +70,15 @@ namespace Rewards.Manager
                 {
                     sum += context.FORM
                         .Where(p => p.USER_ID == user.ID && p.STATUS == true)
-                        .Sum(form => form.ACTIVITY.POINTS);
+                        .Select(form => (int?)form.ACTIVITY.POINTS)
+                        .DefaultIfEmpty()
+                        .Sum() ?? 0;
                 }
 
                 return sum;
             }
         }
+
         public static int Get_Team_Number_Activities_Done(int managerID)
         {
             using (var context = new Entities2())

@@ -311,35 +311,35 @@ namespace Rewards
         {
             if (string.IsNullOrWhiteSpace(UserName.Text))
             {
-                string script = "<script>messageAlert('Please enter a valid Name.');</script>";
+                string script = "<script>messageAlert('Please enter a valid name.');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(UserEmail.Text) || !IsValidEmail(UserEmail.Text))
             {
-                string script = "<script>messageAlert('Please enter a valid Email.');</script>";
+                string script = "<script>messageAlert('Please enter a valid email.');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
             }
 
             if (FileUpload1.PostedFile == null || FileUpload1.PostedFile.InputStream == null)
             {
-                string script = "<script>messageAlert('Please enter a valid Image.');</script>";
+                string script = "<script>messageAlert('Please enter a valid image.');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
             }
 
             if (dlRoleUser.SelectedValue == "EMPLOYEE" && string.IsNullOrWhiteSpace(managerEmailTextBox.Text))
             {
-                string script = "<script>messageAlert('Please enter a Manager Email.');</script>";
+                string script = "<script>messageAlert('Please enter a manager email.');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
             }
 
             if (!string.IsNullOrWhiteSpace(managerEmailTextBox.Text) && !IsValidEmail(managerEmailTextBox.Text))
             {
-                string script = "<script>messageAlert('Please enter a valid Manager Email.');</script>";
+                string script = "<script>messageAlert('Please enter a valid manager email.');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
             }
@@ -347,7 +347,7 @@ namespace Rewards
             string fileExtension = Path.GetExtension(FileUpload1.FileName).ToLower();
             if (fileExtension != ".png" && fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".gif")
             {
-                string script = "<script>messageAlert('Please enter a valid Image Extension(.png .jpg .jpeg .gif');</script>";
+                string script = "<script>messageAlert('Please enter a valid Image Extension(.png .jpg .jpeg .gif)');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
             }

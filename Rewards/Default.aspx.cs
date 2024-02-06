@@ -79,7 +79,7 @@ namespace Rewards
                         uploadedFile.InputStream.Read(fileBytes, 0, uploadedFile.ContentLength);
 
                         string fileName = Path.GetFileNameWithoutExtension(uploadedFile.FileName);
-                        string fileExtension = Path.GetExtension(uploadedFile.FileName);
+                        string fileExtension = Path.GetExtension(uploadedFile.FileName).Substring(1);
 
                         var file = new FILE()
                         {
