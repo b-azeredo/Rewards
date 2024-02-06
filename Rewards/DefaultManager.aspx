@@ -2,6 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
      <main class="container-fluid p-3">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" style="display:none;">
+        </div>
      <div class="row pb-4">
          <div class="col-4 overflow-hidden">
              <!-- ACTIVITIES -->
@@ -192,6 +194,15 @@
      function showModal() {
          var myModal = new bootstrap.Modal(document.getElementById('approveActivityModal'))
          myModal.show()
+     }
+
+     function messageAlert(text) {
+         $('.alert').html(text);
+         $('.alert').append('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
+         $('.alert').show();
+         setTimeout(function () {
+             $('.alert').hide();
+         }, 5000);
      }
  </script>
 

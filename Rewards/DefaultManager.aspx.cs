@@ -69,8 +69,10 @@ namespace Rewards
                     form.STATUS = true;
                 }
                 entities.SaveChanges();
+                Reload();
+                string script = "messageAlert('The form was accepted successfully');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
             }
-            Response.Redirect(Request.RawUrl);
         }
 
         protected void btnDeny_Click(object sender, EventArgs e)
@@ -84,8 +86,10 @@ namespace Rewards
                     form.STATUS = false;
                 }
                 entities.SaveChanges();
+                Reload();
+                string script = "messageAlert('The form was denied successfully');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
             }
-            Response.Redirect(Request.RawUrl);
         }
 
         /* DATA BOUNDS */
@@ -152,34 +156,39 @@ namespace Rewards
             }
         }
 
+        private void Reload()
+        {
+            /* TEAM LEADERBOARD */
+            var leaderboardItems = ManagerManager.GetTeamLeaderboardItemsFromDatabase();
+            lvLeaderboard.DataSource = leaderboardItems;
+            lvLeaderboard.DataBind();
+
+            /* REWARDS */
+            var RewardsItems = RewardsManager.GetRewardItemsFromDatabase();
+            lvRewards.DataSource = RewardsItems;
+            lvRewards.DataBind();
+
+            /* ACTIVITIES REQUESTED */
+            var RequestedActivities = ManagerManager.GetRequestedActivitiesItemsFromDatabase();
+            lvActivityRequest.DataSource = RequestedActivities;
+            lvActivityRequest.DataBind();
+
+            /* ACTIVITIES */
+            var activityItems = ActivitiesManager.GetActivityItemsFromDatabase();
+            lvActivity.DataSource = activityItems;
+            lvActivity.DataBind();
+
+            /* YOUR TEAM PROGRESS INFO */
+            lifetimePoints.InnerText = $"{ManagerManager.Get_Team_Lifetime_Points(USER_ID)}";
+            activitiesDone.InnerText = $"{ManagerManager.Get_Team_Number_Activities_Done(USER_ID)}";
+            redeemedRewards.InnerText = $"{ManagerManager.Get_Team_Number_Redeemed_Rewards(USER_ID)}";
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                /* TEAM LEADERBOARD */
-                var leaderboardItems = ManagerManager.GetTeamLeaderboardItemsFromDatabase();
-                lvLeaderboard.DataSource = leaderboardItems;
-                lvLeaderboard.DataBind();
-
-                /* REWARDS */
-                var RewardsItems = RewardsManager.GetRewardItemsFromDatabase();
-                lvRewards.DataSource = RewardsItems;
-                lvRewards.DataBind();
-
-                /* ACTIVITIES REQUESTED */
-                var RequestedActivities = ManagerManager.GetRequestedActivitiesItemsFromDatabase();
-                lvActivityRequest.DataSource = RequestedActivities;
-                lvActivityRequest.DataBind();
-
-                /* ACTIVITIES */
-                var activityItems = ActivitiesManager.GetActivityItemsFromDatabase();
-                lvActivity.DataSource = activityItems;
-                lvActivity.DataBind();
-
-                /* YOUR TEAM PROGRESS INFO */
-                lifetimePoints.InnerText = $"{ManagerManager.Get_Team_Lifetime_Points(USER_ID)}";
-                activitiesDone.InnerText = $"{ManagerManager.Get_Team_Number_Activities_Done(USER_ID)}";
-                redeemedRewards.InnerText = $"{ManagerManager.Get_Team_Number_Redeemed_Rewards(USER_ID)}";
+                Reload();
             }
         }
 

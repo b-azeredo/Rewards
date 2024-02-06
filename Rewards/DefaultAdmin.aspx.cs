@@ -141,7 +141,9 @@ namespace Rewards
                     activity.ACTIVATED = false;
                     entities.ACTIVITY.Add(activityItem);
                     entities.SaveChanges();
-                    Response.Redirect(Request.RawUrl);
+                    Reload();
+                    string script = "messageAlert('Your changes have been saved!');";
+                    ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                 }
             }
         }
@@ -178,7 +180,9 @@ namespace Rewards
                     }
 
                     entities.SaveChanges();
-                    Response.Redirect(Request.RawUrl);
+                    Reload();
+                    string script = "messageAlert('Your changes have been saved!');";
+                    ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                 }
             }
         }
@@ -268,7 +272,9 @@ namespace Rewards
                         entities.SaveChanges();
                     }
 
-                    Response.Redirect(Request.RawUrl);
+                    Reload();
+                    string script = "messageAlert('Your changes have been saved!');";
+                    ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                 }
             }
         }
@@ -303,7 +309,9 @@ namespace Rewards
                 };
                 entities2.ACTIVITY.Add(newActivity);
                 entities2.SaveChanges();
-                Response.Redirect(Request.RawUrl);
+                Reload();
+                string script = "messageAlert('Activity added successfully');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
             }
         }
 
@@ -372,7 +380,9 @@ namespace Rewards
                 };
                 entities2.USER.Add(newuser);
                 entities2.SaveChanges();
-                Response.Redirect(Request.RawUrl);
+                Reload();
+                string script = "messageAlert('User added successfully');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
             }
         }
         private bool IsValidEmail(string email)
@@ -428,14 +438,15 @@ namespace Rewards
                         };
                         entities2.REWARD.Add(newReward);
                         entities2.SaveChanges();
-                        Response.Redirect(Request.RawUrl);
-
+                        Reload();
+                        string script = "messageAlert('Reward added successfully');";
+                        ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                     };
                 }
             }
             else
             {
-                string script = "messageAlert('Please, insert an image');";
+                string script = "messageAlert('Please, insert a valid image');";
                 ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                 return;
             }
@@ -511,31 +522,35 @@ namespace Rewards
             }
         }
 
+
+        private void Reload()
+        {
+            /* LEADERBOARD */
+            var leaderboardItems = LeaderboardManager.GetLeaderboardItemsFromDatabase();
+            lvLeaderboard.DataSource = leaderboardItems;
+            lvLeaderboard.DataBind();
+
+            /* REWARDS */
+            var RewardsItems = AdminManager.GetRewardsFromDatabase();
+            lvRewards.DataSource = RewardsItems;
+            lvRewards.DataBind();
+
+            /* ACTIVITIES */
+            var activityItems = AdminManager.GetActivityItemsFromDatabase();
+            lvActivity.DataSource = activityItems;
+            lvActivity.DataBind();
+
+            /* USERS */
+            var userItems = UserManager.GetUsersFromDatabase();
+            lvUsers.DataSource = userItems;
+            lvUsers.DataBind();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "clearModalFields", "clearModalFields();", true);
             if (!IsPostBack)
             {
-                /* LEADERBOARD */
-                var leaderboardItems = LeaderboardManager.GetLeaderboardItemsFromDatabase();
-                lvLeaderboard.DataSource = leaderboardItems;
-                lvLeaderboard.DataBind();
-
-                /* REWARDS */
-                var RewardsItems = AdminManager.GetRewardsFromDatabase();
-                lvRewards.DataSource = RewardsItems;
-                lvRewards.DataBind();
-
-                /* ACTIVITIES */
-                var activityItems = AdminManager.GetActivityItemsFromDatabase();
-                lvActivity.DataSource = activityItems;
-                lvActivity.DataBind();
-
-                /* USERS */
-                var userItems = UserManager.GetUsersFromDatabase();
-                lvUsers.DataSource = userItems;
-                lvUsers.DataBind();
-
+                Reload();
             }
         }
 
