@@ -329,9 +329,17 @@ namespace Rewards
 
         protected void btnComfirmAddReward_Click(object sender, EventArgs e)
         {
+
+            if (string.IsNullOrWhiteSpace(txbRewardName.Text))
+            {
+                string script = "messageAlert('Please, insert a name in the reward');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                return;
+            }
+
             if (!int.TryParse(txbRewardPrice.Text, out _))
             {
-                string script = "alert('Por favor, insira um valor numérico válido para o preço.');";
+                string script = "messageAlert('Please, use a valid price');";
                 ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                 return;
             }
@@ -356,6 +364,12 @@ namespace Rewards
 
                     };
                 }
+            }
+            else
+            {
+                string script = "messageAlert('Please, insert an image');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                return;
             }
         }
 
