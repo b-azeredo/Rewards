@@ -370,6 +370,7 @@ namespace Rewards
         {
             if (!IsPostBack)
             {
+                ScriptManager.RegisterStartupScript(this, GetType(), "clearModalFields", "clearModalFields();", true);
                 /* LEADERBOARD */
                 var leaderboardItems = LeaderboardManager.GetLeaderboardItemsFromDatabase();
                 lvLeaderboard.DataSource = leaderboardItems;

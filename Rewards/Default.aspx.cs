@@ -66,10 +66,9 @@ namespace Rewards
                     {
                         USER_ID = this.USER_ID,
                         ACTIVITY_ID = activityId,
-                        DESCRIPTION = txtActivityDESCRIPTION.Text, // Use txtActivityDESCRIPTION.Text here
-                        STATUS = true,
+                        DESCRIPTION = txtActivityDESCRIPTION.Text,
+                        STATUS = null,
                         CREATE_DATE = DateTime.Now,
-                        MANAGER_DATA_APROVED = DateTime.Now,
                     };
                     entities.FORM.Add(form);
                     entities.SaveChanges();

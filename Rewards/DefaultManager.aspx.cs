@@ -1,4 +1,5 @@
-﻿using Rewards.Item;
+﻿using Rewards.DBModel;
+using Rewards.Item;
 using Rewards.Items;
 using Rewards.Manager;
 using System;
@@ -14,7 +15,7 @@ namespace Rewards
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
-        private int USER_ID = 5;
+        private int USER_ID = 2;
 
         protected void btnActivityRequest_Click(object sender, EventArgs e)
         {
@@ -23,6 +24,7 @@ namespace Rewards
 
             HiddenField formID = (HiddenField)item.FindControl("FormID");
 
+            hiddenFormID.Value = formID.Value;
             requestedActivityName.InnerText = ActivitiesManager.Get_Name(FormManager.Get_Activity_Id(int.Parse(formID.Value)));
             requetedActivityDescription.InnerText = ActivitiesManager.Get_Description(FormManager.Get_Activity_Id(int.Parse(formID.Value)));
             requestorName.Text = UserManager.Get_Username(FormManager.Get_User_Id(int.Parse(formID.Value)));
@@ -37,14 +39,34 @@ namespace Rewards
         }
 
 
-        protected void btnDenyForm_Click(object sender, EventArgs e)
+        protected void btnAccept_Click(object sender, EventArgs e)
         {
-
+            using (var entities = new Entities2())
+            {
+                var formid = int.Parse(hiddenFormID.Value);
+                var form = entities.FORM.FirstOrDefault(f => f.ID == formid);
+                if (form.STATUS.Equals(null))
+                {
+                    form.STATUS = true;
+                }
+                entities.SaveChanges();
+            }
+            Response.Redirect(Request.RawUrl);
         }
 
-        protected void btnAcceptForm_Click(object sender, EventArgs e)
+        protected void btnDeny_Click(object sender, EventArgs e)
         {
-
+            using (var entities = new Entities2())
+            {
+                var formid = int.Parse(hiddenFormID.Value);
+                var form = entities.FORM.FirstOrDefault(f => f.ID == formid);
+                if (form.STATUS.Equals(null))
+                {
+                    form.STATUS = false;
+                }
+                entities.SaveChanges();
+            }
+            Response.Redirect(Request.RawUrl);
         }
 
         /* DATA BOUNDS */
@@ -151,6 +173,7 @@ namespace Rewards
                 profileUsername2.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
             }
         }
+
 
     }
 }

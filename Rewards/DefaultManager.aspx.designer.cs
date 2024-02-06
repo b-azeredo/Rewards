@@ -42,6 +42,15 @@ namespace Rewards
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl requetedActivityDescription;
 
         /// <summary>
+        /// hiddenFormID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenFormID;
+
+        /// <summary>
         /// requestorName control.
         /// </summary>
         /// <remarks>
