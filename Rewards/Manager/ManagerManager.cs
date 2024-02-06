@@ -12,14 +12,10 @@ namespace Rewards.Manager
     {
         public static List<FormItem> GetRequestedActivitiesItemsFromDatabase()
         {
-            using (Entities2 context = new Entities2())
+            using (Entities2 entities = new Entities2())
             {
-                List<FORM> forms = (
-                    from FORM in context.FORM
-                    join USER in context.USER on FORM.USER_ID equals USER.ID
-                    where USER.ROLE == "Employee" && context.USER.Any(manager => manager.ROLE == "Manager" && manager.EMAIL == USER.MANAGER_EMAIL)
-                    select FORM
-                ).ToList();
+                List<FORM> forms = entities.FORM.Where(form => entities.USER.Any(user => form.USER_ID == user.ID && user.ROLE == "Employee" && entities.USER.Any(manager => manager.ROLE == "Manager" && manager.EMAIL == user.MANAGER_EMAIL)) && form.STATUS.Equals(null)).ToList();
+
 
                 List<FormItem> FormsItems = forms.Select(a => new FormItem
                 {

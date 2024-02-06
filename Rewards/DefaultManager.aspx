@@ -36,6 +36,7 @@
                     </p>
                   </div>
                   <div class="modal-body">
+                      <asp:HiddenField ID="hiddenFormID" runat="server" />
                       <p class="mb-0">Requestor Name:</p>
                       <asp:Label ID="requestorName" CssClass="tertiary" runat="server" Text="Label"></asp:Label>
 
@@ -47,8 +48,8 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                    <asp:Button ID="btnDeny" runat="server" CssClass="btn btn-success" Text="Deny" />
-                    <asp:Button ID="btnAccept" runat="server" CssClass="btn btn-success" Text="Accept" />
+                    <asp:Button ID="btnDeny" OnClick="btnDeny_Click" runat="server" CssClass="btn btn-success" Text="Deny" />
+                    <asp:Button ID="btnAccept" OnClick="btnAccept_Click" runat="server" CssClass="btn btn-success" Text="Accept" />
                   </div>
                 </div>
               </div>
@@ -230,12 +231,10 @@
          }
      }
 
-
      function showModal() {
          var myModal = new bootstrap.Modal(document.getElementById('approveActivityModal'))
          myModal.show()
      }
-
  </script>
 
 </asp:Content>

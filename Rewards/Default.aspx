@@ -6,10 +6,7 @@ AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Rewards._Default"
       .form-control::placeholder{ color: dimgray; }
     </style>
 
-      <div class="alert alert-warning alert-dismissible fade show" role="alert" style="display:none;">
-        
-    </div>
-
+      <div class="alert alert-warning alert-dismissible fade show" role="alert" style="display:none;"></div>
     <main class="container-fluid p-3">
       <div class="row pb-4">
         <div class="col-4 overflow-hidden">
@@ -365,5 +362,27 @@ AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Rewards._Default"
                 $('.alert').hide(); 
             }, 5000);
         }
+
+        function cleanTextBoxes() {
+            $('#submitFormModal input[type="text"]').val('');
+            $('#submitFormModal textarea').val('');
+            $('#submitFormModal .modal-body').find('img').attr('src', 'none');
+
+            $('#profileModal input[type="text"]').val('');
+            $('#profileModal textarea').val('');
+            $('#profileModal .modal-body').find('img').attr('src', 'none');
+        }
+
+        $(document).ready(function () {
+            cleanTextBoxes();
+            $('#submitFormModal').on('hidden.bs.modal', function () {
+                cleanTextBoxes();
+            });
+
+            $('#profileModal').on('hidden.bs.modal', function () {
+                cleanTextBoxes();
+            });
+        });
+
     </script>
   </asp:Content>

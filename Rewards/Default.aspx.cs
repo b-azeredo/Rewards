@@ -66,10 +66,9 @@ namespace Rewards
                     {
                         USER_ID = this.USER_ID,
                         ACTIVITY_ID = activityId,
-                        DESCRIPTION = txtActivityDESCRIPTION.Text, // Use txtActivityDESCRIPTION.Text here
-                        STATUS = true,
+                        DESCRIPTION = txtActivityDESCRIPTION.Text,
+                        STATUS = null,
                         CREATE_DATE = DateTime.Now,
-                        MANAGER_DATA_APROVED = DateTime.Now,
                     };
                     entities.FORM.Add(form);
                     entities.SaveChanges();
@@ -79,12 +78,15 @@ namespace Rewards
                         byte[] fileBytes = new byte[uploadedFile.ContentLength];
                         uploadedFile.InputStream.Read(fileBytes, 0, uploadedFile.ContentLength);
 
+                        string fileName = Path.GetFileNameWithoutExtension(uploadedFile.FileName);
+                        string fileExtension = Path.GetExtension(uploadedFile.FileName);
+
                         var file = new FILE()
                         {
                             FORM_ID = form.ID,
                             CONTENT = fileBytes,
-                            FILE_NAME = "test",
-                            FILE_EXTENSION = "test"
+                            FILE_NAME = fileName,
+                            FILE_EXTENSION = fileExtension
                         };
                         entities.FILE.Add(file);
                     }
