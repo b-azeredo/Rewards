@@ -37,8 +37,6 @@ namespace Rewards
             bool activated = ActivitiesManager.Get_Activated(int.Parse(activityID.Value));
             dlActivityStatus.Items.FindByValue(activated.ToString()).Selected = true;
 
-
-
             Page.ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showEditActivityModal()", true);
         }
 
@@ -117,13 +115,31 @@ namespace Rewards
             {
                 ACTIVITY activity = entities.ACTIVITY.FirstOrDefault(x => x.ID == activityId);
 
-                if (activity != null)
+                if (activity.POINTS == int.Parse(newActivityPoints.Text))
                 {
-                    activity.NAME = newActivityName.Text;
-                    activity.DESCRIPTION = newActivityDescription.Text;
-                    activity.POINTS = int.Parse(newActivityPoints.Text);
-                    activity.ACTIVATED = bool.Parse(dlActivityStatus.SelectedValue);
+                    if (activity != null)
+                    {
+                        activity.NAME = newActivityName.Text;
+                        activity.DESCRIPTION = newActivityDescription.Text;
+                        activity.POINTS = int.Parse(newActivityPoints.Text);
+                        activity.ACTIVATED = bool.Parse(dlActivityStatus.SelectedValue);
 
+                        entities.SaveChanges();
+                        Response.Redirect(Request.RawUrl);
+                    }
+                }
+                else
+                {
+                    ACTIVITY activityItem = new ACTIVITY()
+                    {
+                        NAME = newActivityName.Text,
+                        DESCRIPTION = newActivityDescription.Text,
+                        POINTS = int.Parse(newActivityPoints.Text),
+                        ACTIVATED = bool.Parse(dlActivityStatus.SelectedValue)
+                    };
+
+                    activity.ACTIVATED = false;
+                    entities.ACTIVITY.Add(activityItem);
                     entities.SaveChanges();
                     Response.Redirect(Request.RawUrl);
                 }
@@ -176,40 +192,87 @@ namespace Rewards
             {
                 REWARD reward = entities.REWARD.FirstOrDefault(x => x.ID == rewardId);
 
-                if (txtInsertStock.Text != "")
-                {
-                    REWARD_STOCK rewardStock = new REWARD_STOCK()
-                    {
-                        REWARD_ID = rewardId,
-                        STOCK = int.Parse(txtInsertStock.Text),
-                    };
-                    entities.REWARD_STOCK.Add(rewardStock);
-                }
-
                 if (reward != null)
                 {
-                    reward.NAME = txtRewardName.Text;
-                    reward.PRICE = int.Parse(txtRewardPrice.Text);
-                    reward.ACTIVATED = bool.Parse(dlRewardStatus.SelectedValue);
-                    if (rewardFileUpload.HasFile)
+                    if (txtInsertStock.Text != "")
                     {
-                        int maxSizeInBytes = 1024 * 1024; // 1 MB
-                        byte[] imageData = rewardFileUpload.FileBytes;
-                        if (imageData.Length <= maxSizeInBytes)
+                        int stock;
+                        if (int.TryParse(txtInsertStock.Text, out stock))
                         {
-                            reward.IMAGE = imageData;
+                            REWARD_STOCK rewardStock = new REWARD_STOCK()
+                            {
+                                REWARD_ID = rewardId,
+                                STOCK = stock,
+                            };
+                            entities.REWARD_STOCK.Add(rewardStock);
+                            entities.SaveChanges();
                         }
                         else
                         {
-                            // Lógica para lidar com o tamanho da imagem excedido
+                            // Handle invalid input for stock
                         }
                     }
 
-                    entities.SaveChanges();
+                    if (reward.PRICE != int.Parse(txtRewardPrice.Text))
+                    {
+                        int previousStock = RewardsManager.GetRewardStock(reward.ID);
+
+                        byte[] image = null;
+                        if (rewardFileUpload.HasFile)
+                        {
+                            int maxSizeInBytes = 1024 * 1024; // 1 MB
+                            byte[] imageData = rewardFileUpload.FileBytes;
+                            if (imageData.Length <= maxSizeInBytes)
+                            {
+                                image = imageData;
+                            }
+                        }
+
+                        var newReward = new REWARD()
+                        {
+                            NAME = txtRewardName.Text,
+                            PRICE = int.Parse(txtRewardPrice.Text),
+                            ACTIVATED = bool.Parse(dlRewardStatus.SelectedValue),
+                            IMAGE = image ?? reward.IMAGE
+                        };
+                        entities.REWARD.Add(newReward);
+                        entities.SaveChanges();
+
+                        int newRewardId = newReward.ID;
+
+                        RewardsManager.ClearRewardStock(rewardId);
+                        RewardsManager.ChangeStatus(rewardId);
+
+                        var rewardStock = new REWARD_STOCK()
+                        {
+                            REWARD_ID = newRewardId,
+                            STOCK = previousStock
+                        };
+                        entities.REWARD_STOCK.Add(rewardStock);
+                        entities.SaveChanges();
+                    }
+                    else
+                    {
+                        reward.NAME = txtRewardName.Text;
+                        reward.PRICE = int.Parse(txtRewardPrice.Text);
+                        reward.ACTIVATED = bool.Parse(dlRewardStatus.SelectedValue);
+                        if (rewardFileUpload.HasFile)
+                        {
+                            int maxSizeInBytes = 1024 * 1024; // 1 MB
+                            byte[] imageData = rewardFileUpload.FileBytes;
+                            if (imageData.Length <= maxSizeInBytes)
+                            {
+                                reward.IMAGE = imageData;
+                            }
+                        }
+                        entities.SaveChanges();
+                    }
+
                     Response.Redirect(Request.RawUrl);
                 }
             }
         }
+
 
 
         /* COMFIRM ADD */

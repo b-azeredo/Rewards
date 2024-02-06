@@ -22,6 +22,35 @@ namespace Rewards.Manager
             }
         }
 
+        public static void ClearRewardStock(int rewardID)
+        {
+            using (Entities2 entities = new Entities2())
+            {
+                List<REWARD_STOCK> rewardStock = entities.REWARD_STOCK.Where(r => r.REWARD_ID == rewardID).ToList();
+                foreach (var rewardStockItem in rewardStock)
+                {
+                    rewardStockItem.STOCK = 0;
+                }
+                entities.SaveChanges();
+            }
+        }
+        public static void ChangeStatus(int rewardID)
+        {
+            using (Entities2 entities = new Entities2())
+            {
+                var reward = entities.REWARD.FirstOrDefault(r => r.ID == rewardID);
+                if (reward.ACTIVATED == true)
+                {
+                    reward.ACTIVATED = false;
+                }
+                else
+                {
+                    reward.ACTIVATED = true;
+                }
+                entities.SaveChanges();
+            }
+        }
+
 
         public static List<RewardsItem> GetRewardItemsFromDatabase()
         {
