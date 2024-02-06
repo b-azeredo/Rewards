@@ -280,7 +280,7 @@ namespace Rewards
         protected void btnComfirmAddActivity_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(ActivityName.Text) || string.IsNullOrWhiteSpace(ActivityDescription.Text) || string.IsNullOrWhiteSpace(ActivityPoints.Text))
-            {
+      {
                 string script = "<script>messageAlert('Please fill in all required fields.');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
@@ -431,9 +431,9 @@ namespace Rewards
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ScriptManager.RegisterStartupScript(this, GetType(), "clearModalFields", "clearModalFields();", true);
             if (!IsPostBack)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "clearModalFields", "clearModalFields();", true);
                 /* LEADERBOARD */
                 var leaderboardItems = LeaderboardManager.GetLeaderboardItemsFromDatabase();
                 lvLeaderboard.DataSource = leaderboardItems;
