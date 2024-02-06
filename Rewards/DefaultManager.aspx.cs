@@ -17,6 +17,20 @@ namespace Rewards
     {
         private int USER_ID = 2;
 
+        protected void ShowFilesInModal(List<FILE> files)
+        {
+            foreach (var file in files)
+            {
+                string contentType = "application/octet-stream";
+                string base64String = Convert.ToBase64String(file.CONTENT);
+                string dataUrl = $"data:{contentType};base64,{base64String}";
+
+                string fileName = $"{file.FILE_NAME}.{file.FILE_EXTENSION}";
+                string linkTag = $"<a href='{dataUrl}' download='{fileName}'>{fileName}</a><br/>";
+                requestorUploadedFiles.Controls.Add(new LiteralControl(linkTag));
+            }
+        }
+
         protected void btnActivityRequest_Click(object sender, EventArgs e)
         {
             Button btnEditActivity = (Button)sender;
@@ -29,6 +43,11 @@ namespace Rewards
             requetedActivityDescription.InnerText = ActivitiesManager.Get_Description(FormManager.Get_Activity_Id(int.Parse(formID.Value)));
             requestorName.Text = UserManager.Get_Username(FormManager.Get_User_Id(int.Parse(formID.Value)));
             requestorDescription.Text = FormManager.Get_Description(int.Parse(formID.Value));
+
+            int formId = int.Parse(formID.Value);
+            List<FILE> files = FormManager.Get_Files(formId);
+
+            ShowFilesInModal(files);
 
             Page.ClientScript.RegisterStartupScript(this.GetType(), "Popup", "showModal()", true);
         }
@@ -50,8 +69,10 @@ namespace Rewards
                     form.STATUS = true;
                 }
                 entities.SaveChanges();
+                Reload();
+                string script = "messageAlert('The form was accepted successfully');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
             }
-            Response.Redirect(Request.RawUrl);
         }
 
         protected void btnDeny_Click(object sender, EventArgs e)
@@ -65,8 +86,10 @@ namespace Rewards
                     form.STATUS = false;
                 }
                 entities.SaveChanges();
+                Reload();
+                string script = "messageAlert('The form was denied successfully');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
             }
-            Response.Redirect(Request.RawUrl);
         }
 
         /* DATA BOUNDS */
@@ -133,44 +156,39 @@ namespace Rewards
             }
         }
 
+        private void Reload()
+        {
+            /* TEAM LEADERBOARD */
+            var leaderboardItems = ManagerManager.GetTeamLeaderboardItemsFromDatabase();
+            lvLeaderboard.DataSource = leaderboardItems;
+            lvLeaderboard.DataBind();
+
+            /* REWARDS */
+            var RewardsItems = RewardsManager.GetRewardItemsFromDatabase();
+            lvRewards.DataSource = RewardsItems;
+            lvRewards.DataBind();
+
+            /* ACTIVITIES REQUESTED */
+            var RequestedActivities = ManagerManager.GetRequestedActivitiesItemsFromDatabase();
+            lvActivityRequest.DataSource = RequestedActivities;
+            lvActivityRequest.DataBind();
+
+            /* ACTIVITIES */
+            var activityItems = ActivitiesManager.GetActivityItemsFromDatabase();
+            lvActivity.DataSource = activityItems;
+            lvActivity.DataBind();
+
+            /* YOUR TEAM PROGRESS INFO */
+            lifetimePoints.InnerText = $"{ManagerManager.Get_Team_Lifetime_Points(USER_ID)}";
+            activitiesDone.InnerText = $"{ManagerManager.Get_Team_Number_Activities_Done(USER_ID)}";
+            redeemedRewards.InnerText = $"{ManagerManager.Get_Team_Number_Redeemed_Rewards(USER_ID)}";
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                /* TEAM LEADERBOARD */
-                var leaderboardItems = ManagerManager.GetTeamLeaderboardItemsFromDatabase();
-                lvLeaderboard.DataSource = leaderboardItems;
-                lvLeaderboard.DataBind();
-
-                /* REWARDS */
-                var RewardsItems = RewardsManager.GetRewardItemsFromDatabase();
-                lvRewards.DataSource = RewardsItems;
-                lvRewards.DataBind();
-
-                /* ACTIVITIES REQUESTED */
-                var RequestedActivities = ManagerManager.GetRequestedActivitiesItemsFromDatabase();
-                lvActivityRequest.DataSource = RequestedActivities;
-                lvActivityRequest.DataBind();
-
-                /* ACTIVITIES */
-                var activityItems = ActivitiesManager.GetActivityItemsFromDatabase();
-                lvActivity.DataSource = activityItems;
-                lvActivity.DataBind();
-
-                /* YOUR TEAM PROGRESS INFO */
-                lifetimePoints.InnerText = $"{ManagerManager.Get_Team_Lifetime_Points(USER_ID)}";
-                activitiesDone.InnerText = $"{ManagerManager.Get_Team_Number_Activities_Done(USER_ID)}";
-                redeemedRewards.InnerText = $"{ManagerManager.Get_Team_Number_Redeemed_Rewards(USER_ID)}";
-
-                /* PROFILE INFO */
-                profileImage.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
-                profileUsername.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
-                profilePoints.InnerText = $"{UserManager.Get_Current_Points(USER_ID)}";
-
-
-                /* PROFILE INFO (Modal Info) */
-                profileImage2.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
-                profileUsername2.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
+                Reload();
             }
         }
 

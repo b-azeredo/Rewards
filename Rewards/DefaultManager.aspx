@@ -2,6 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
      <main class="container-fluid p-3">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" style="display:none;">
+        </div>
      <div class="row pb-4">
          <div class="col-4 overflow-hidden">
              <!-- ACTIVITIES -->
@@ -44,7 +46,7 @@
                       <asp:Label ID="requestorDescription" CssClass="tertiary" runat="server" Text="Label"></asp:Label>
 
                       <p class="mb-0 mt-3">Requestor Uploaded Files:</p>
-
+                      <asp:Panel ID="requestorUploadedFiles" runat="server"></asp:Panel>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
@@ -128,7 +130,7 @@
                 </div>
             </div>
          </div>
-         <div class="col-5">
+         <div class="col-8">
              <div class="content">
                  <!-- REWARDS -->
                  <div class="d-flex pb-2">
@@ -155,48 +157,6 @@
                  </div>
              </div>
          </div>
-         <div class="col-3">
-            <!-- YOUR PROFILE -->
-            <div id="profileModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header d-flex flex-column">
-                            <div class="d-flex align-items-center mb-3">
-                                <span class="d-flex align-items-center"><img width="30" height="30" src="icon/user-solid.svg"/></span>
-                                <h1 class="modal-title">Your Profile</h1>
-                            </div>
-                            <div class="d-flex justify-content-around w-100 align-items-center pt-4" style="border-top: 1px solid white;">
-                                <div class="d-flex flex-column align-items-center">
-                                    <asp:FileUpload ID="fileUpload" runat="server" style="display: none;" onchange="previewImage()" accept="image/*" />
-                                    <img id="profileImage2" runat="server" width="130" height="130" src="none" onclick="document.getElementById('MainContent_fileUpload').click();" style="cursor: pointer;" />
-                                    <p class="userName" runat="server" ID="profileUsername2" onclick="document.getElementById('changeUsernameBtn').click();"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                            <asp:Button ID="btnSaveProfileChanges" OnClick="btnSaveProfileChanges_Click" CssClass="btn btn-success" runat="server" Text="Save Changes" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content">
-                <div class="d-flex pb-2">
-                    <span class="d-flex align-items-center"><img width="30" height="30" src="icon/user-solid.svg"/></span>
-                    <h1>Your Profile</h1>
-                </div>
-                <div class="d-flex flex-column align-items-center" style="height: 85%;">
-                    <div class="userCard row-cols-2" data-bs-toggle="modal" data-bs-target="#profileModal" id="divProfile" runat="server">
-                        <div class="userImgPlaceholder"><img runat="server" id="profileImage" src="none" /></div>
-                        <div class="userInfo">
-                            <p class="userName" runat="server" ID="profileUsername"></p>
-                            <p class="bold white" runat="server" ID="profilePoints"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>
      </div>
  </main>
  <script>
@@ -234,6 +194,15 @@
      function showModal() {
          var myModal = new bootstrap.Modal(document.getElementById('approveActivityModal'))
          myModal.show()
+     }
+
+     function messageAlert(text) {
+         $('.alert').html(text);
+         $('.alert').append('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
+         $('.alert').show();
+         setTimeout(function () {
+             $('.alert').hide();
+         }, 5000);
      }
  </script>
 

@@ -34,5 +34,13 @@ namespace Rewards.Manager
                 return form.DESCRIPTION;
             }
         }
+
+        public static List<FILE> Get_Files(int formId)
+        {
+            using (var context = new Entities2())
+            {
+                return context.FILE.Where(f => f.FORM_ID == formId).ToList();
+            }
+        }
     }
 }

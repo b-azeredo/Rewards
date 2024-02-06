@@ -27,10 +27,18 @@ namespace Rewards
 
             if (UserManager.AddRewardToUser(rewardId, USER_ID) && UserManager.RemoveOneFromStock(rewardId))
             {
+                Reload();
+                string script = "<script>messageAlert('Reward Claimed!');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
 
             }
-            Response.Redirect(Request.RawUrl);
+            else
+            {
+                Reload();
+                string script = "<script>messageAlert('You can't claim this reward.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
 
+            }
         }
 
         protected void btnSubmitActivity_Click(object sender, EventArgs e)
@@ -79,7 +87,7 @@ namespace Rewards
                         uploadedFile.InputStream.Read(fileBytes, 0, uploadedFile.ContentLength);
 
                         string fileName = Path.GetFileNameWithoutExtension(uploadedFile.FileName);
-                        string fileExtension = Path.GetExtension(uploadedFile.FileName);
+                        string fileExtension = Path.GetExtension(uploadedFile.FileName).Substring(1);
 
                         var file = new FILE()
                         {
@@ -120,7 +128,9 @@ namespace Rewards
                         {
                             user.PROFILE_IMAGE = imageData;
                             entities.SaveChanges();
-                            Response.Redirect(Request.RawUrl);
+                            Reload();
+                            string message = "<script>messageAlert('Changes saved!');</script>";
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", message);
                         }
                     }
                 }
@@ -219,51 +229,56 @@ namespace Rewards
             }
         }
 
+        private void Reload()
+        {
+            /* LEADERBOARD */
+            var leaderboardItems = LeaderboardManager.GetLeaderboardItemsFromDatabase();
+            lvLeaderboard.DataSource = leaderboardItems;
+            lvLeaderboard.DataBind();
+
+            /* REWARDS */
+            var RewardsItems = RewardsManager.GetRewardItemsFromDatabase();
+            lvRewards.DataSource = RewardsItems;
+            lvRewards.DataBind();
+
+            /* ACTIVITIES */
+            var activityItems = ActivitiesManager.GetActivityItemsFromDatabase();
+            lvActivity.DataSource = activityItems;
+            lvActivity.DataBind();
+
+            /* TRANSACTIONS */
+
+            var transactionItems = UserManager.GetTransactionItemsFromDatabase(USER_ID).Take(5).ToList();
+            lvTransactions.DataSource = transactionItems;
+            lvTransactions.DataBind();
+
+            /* YOUR PROGRESS INFO */
+            lifetimePoints.InnerText = $"{UserManager.Get_Lifetime_Points(USER_ID)}";
+            activitiesDone.InnerText = $"{UserManager.Get_Number_Activities_Done(USER_ID)}";
+            redeemedRewards.InnerText = $"{UserManager.Get_Number_Redeemed_Rewards(USER_ID)}";
+
+            /* PROFILE INFO */
+            profileImage.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
+            profileUsername.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
+            profilePoints.InnerText = $"{UserManager.Get_Current_Points(USER_ID)}";
+
+            /* PROFILE INFO (Modal Transactions) */
+            var transactionItems2 = UserManager.GetTransactionItemsFromDatabase(USER_ID).Take(20).ToList();
+            lvProfileTransactions.DataSource = transactionItems2;
+            lvProfileTransactions.DataBind();
+
+            /* PROFILE INFO (Modal Info) */
+            profileImage2.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
+            profileUsername2.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
+            profilePoints2.InnerText = $"{UserManager.Get_Current_Points(USER_ID)}";
+            managerEmail.InnerText = $"{UserManager.Get_Manager_Email(USER_ID)}";
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                /* LEADERBOARD */
-                var leaderboardItems = LeaderboardManager.GetLeaderboardItemsFromDatabase();
-                lvLeaderboard.DataSource = leaderboardItems;
-                lvLeaderboard.DataBind();
-
-                /* REWARDS */
-                var RewardsItems = RewardsManager.GetRewardItemsFromDatabase();
-                lvRewards.DataSource = RewardsItems;
-                lvRewards.DataBind();
-
-                /* ACTIVITIES */
-                var activityItems = ActivitiesManager.GetActivityItemsFromDatabase();
-                lvActivity.DataSource = activityItems;
-                lvActivity.DataBind();
-
-                /* TRANSACTIONS */
-
-                var transactionItems = UserManager.GetTransactionItemsFromDatabase(USER_ID).Take(5).ToList();
-                lvTransactions.DataSource = transactionItems;
-                lvTransactions.DataBind();
-
-                /* YOUR PROGRESS INFO */
-                lifetimePoints.InnerText = $"{UserManager.Get_Lifetime_Points(USER_ID)}";
-                activitiesDone.InnerText = $"{UserManager.Get_Number_Activities_Done(USER_ID)}";
-                redeemedRewards.InnerText = $"{UserManager.Get_Number_Redeemed_Rewards(USER_ID)}";
-
-                /* PROFILE INFO */
-                profileImage.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
-                profileUsername.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
-                profilePoints.InnerText = $"{UserManager.Get_Current_Points(USER_ID)}";
-
-                /* PROFILE INFO (Modal Transactions) */
-                var transactionItems2 = UserManager.GetTransactionItemsFromDatabase(USER_ID).Take(20).ToList();
-                lvProfileTransactions.DataSource = transactionItems2;
-                lvProfileTransactions.DataBind();
-
-                /* PROFILE INFO (Modal Info) */
-                profileImage2.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
-                profileUsername2.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
-                profilePoints2.InnerText = $"{UserManager.Get_Current_Points(USER_ID)}";
-                managerEmail.InnerText = $"{UserManager.Get_Manager_Email(USER_ID)}";
+                Reload();
             }
         }
     }

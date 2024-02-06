@@ -19,7 +19,6 @@
          <div class="row pb-4">
              <div class="col-5 overflow-hidden">
                  <!-- ACTIVITIES -->
-
                  <div id="addActivityModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -252,7 +251,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                                    <asp:Button ID="btnComfirmAddReward" OnClick="btnComfirmAddReward_Click" OnClientClick="return validateFileUpload();" CssClass="btn btn-success" runat="server" Text="Add Reward" />
+                                    <asp:Button ID="btnComfirmAddReward" OnClick="btnComfirmAddReward_Click" CssClass="btn btn-success" runat="server" Text="Add Reward" />
                                 </div>
                             </div>
                         </div>

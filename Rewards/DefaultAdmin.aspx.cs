@@ -141,7 +141,9 @@ namespace Rewards
                     activity.ACTIVATED = false;
                     entities.ACTIVITY.Add(activityItem);
                     entities.SaveChanges();
-                    Response.Redirect(Request.RawUrl);
+                    Reload();
+                    string script = "messageAlert('Your changes have been saved!');";
+                    ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                 }
             }
         }
@@ -178,7 +180,9 @@ namespace Rewards
                     }
 
                     entities.SaveChanges();
-                    Response.Redirect(Request.RawUrl);
+                    Reload();
+                    string script = "messageAlert('Your changes have been saved!');";
+                    ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                 }
             }
         }
@@ -268,7 +272,9 @@ namespace Rewards
                         entities.SaveChanges();
                     }
 
-                    Response.Redirect(Request.RawUrl);
+                    Reload();
+                    string script = "messageAlert('Your changes have been saved!');";
+                    ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                 }
             }
         }
@@ -280,7 +286,7 @@ namespace Rewards
         protected void btnComfirmAddActivity_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(ActivityName.Text) || string.IsNullOrWhiteSpace(ActivityDescription.Text) || string.IsNullOrWhiteSpace(ActivityPoints.Text))
-            {
+      {
                 string script = "<script>messageAlert('Please fill in all required fields.');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
@@ -303,35 +309,115 @@ namespace Rewards
                 };
                 entities2.ACTIVITY.Add(newActivity);
                 entities2.SaveChanges();
-                Response.Redirect(Request.RawUrl);
+                Reload();
+                string script = "messageAlert('Activity added successfully');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
             }
         }
 
         protected void btnComfirmAddUser_Click(object sender, EventArgs e)
         {
-            string role = dlRoleUser.SelectedValue;
+            if (string.IsNullOrWhiteSpace(UserName.Text))
+            {
+                string script = "<script>messageAlert('Please enter a valid name.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(UserEmail.Text) || !IsValidEmail(UserEmail.Text))
+            {
+                string script = "<script>messageAlert('Please enter a valid email.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
+            if (FileUpload1.PostedFile == null || FileUpload1.PostedFile.InputStream == null)
+            {
+                string script = "<script>messageAlert('Please enter a valid image.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
+            if (dlRoleUser.SelectedValue == "EMPLOYEE" && string.IsNullOrWhiteSpace(managerEmailTextBox.Text))
+            {
+                string script = "<script>messageAlert('Please enter a manager email.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(managerEmailTextBox.Text) && !IsValidEmail(managerEmailTextBox.Text))
+            {
+                string script = "<script>messageAlert('Please enter a valid manager email.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
+            string fileExtension = Path.GetExtension(FileUpload1.FileName).ToLower();
+            if (fileExtension != ".png" && fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".gif")
+            {
+                string script = "<script>messageAlert('Please enter a valid Image Extension(.png .jpg .jpeg .gif)');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
+            if (dlRoleUser.SelectedValue == "EMPLOYEE" && !IsManagerEmailValid(managerEmailTextBox.Text))
+            {
+                string script = "<script>messageAlert('Please enter a Manager Email that exists.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
             using (Entities2 entities2 = new Entities2())
             {
                 USER newuser = new USER
                 {
                     NAME = UserName.Text,
                     EMAIL = UserEmail.Text,
-                    ROLE = role,
+                    ROLE = dlRoleUser.SelectedValue,
                     PROFILE_IMAGE = FileUpload1.FileBytes,
-                    MANAGER_EMAIL = (role == "EMPLOYEE") ? managerEmailTextBox.Text : null,
+                    MANAGER_EMAIL = dlRoleUser.SelectedValue == "EMPLOYEE" ? managerEmailTextBox.Text : null,
                     ACTIVATED = true
                 };
                 entities2.USER.Add(newuser);
                 entities2.SaveChanges();
-                Response.Redirect(Request.RawUrl);
+                Reload();
+                string script = "messageAlert('User added successfully');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+            }
+        }
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        private bool IsManagerEmailValid(string managerEmail)
+        {
+            using (Entities2 entities2 = new Entities2())
+            {
+                return entities2.USER.Any(u => u.EMAIL == managerEmail && u.ROLE == "MANAGER");
             }
         }
 
         protected void btnComfirmAddReward_Click(object sender, EventArgs e)
         {
+
+            if (string.IsNullOrWhiteSpace(txbRewardName.Text))
+            {
+                string script = "messageAlert('Please, insert a name in the reward');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                return;
+            }
+
             if (!int.TryParse(txbRewardPrice.Text, out _))
             {
-                string script = "alert('Por favor, insira um valor numérico válido para o preço.');";
+                string script = "messageAlert('Please, use a valid price');";
                 ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                 return;
             }
@@ -352,10 +438,17 @@ namespace Rewards
                         };
                         entities2.REWARD.Add(newReward);
                         entities2.SaveChanges();
-                        Response.Redirect(Request.RawUrl);
-
+                        Reload();
+                        string script = "messageAlert('Reward added successfully');";
+                        ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                     };
                 }
+            }
+            else
+            {
+                string script = "messageAlert('Please, insert a valid image');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                return;
             }
         }
 
@@ -429,31 +522,35 @@ namespace Rewards
             }
         }
 
+
+        private void Reload()
+        {
+            /* LEADERBOARD */
+            var leaderboardItems = LeaderboardManager.GetLeaderboardItemsFromDatabase();
+            lvLeaderboard.DataSource = leaderboardItems;
+            lvLeaderboard.DataBind();
+
+            /* REWARDS */
+            var RewardsItems = AdminManager.GetRewardsFromDatabase();
+            lvRewards.DataSource = RewardsItems;
+            lvRewards.DataBind();
+
+            /* ACTIVITIES */
+            var activityItems = AdminManager.GetActivityItemsFromDatabase();
+            lvActivity.DataSource = activityItems;
+            lvActivity.DataBind();
+
+            /* USERS */
+            var userItems = UserManager.GetUsersFromDatabase();
+            lvUsers.DataSource = userItems;
+            lvUsers.DataBind();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
+            ScriptManager.RegisterStartupScript(this, GetType(), "clearModalFields", "clearModalFields();", true);
             if (!IsPostBack)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "clearModalFields", "clearModalFields();", true);
-                /* LEADERBOARD */
-                var leaderboardItems = LeaderboardManager.GetLeaderboardItemsFromDatabase();
-                lvLeaderboard.DataSource = leaderboardItems;
-                lvLeaderboard.DataBind();
-
-                /* REWARDS */
-                var RewardsItems = AdminManager.GetRewardsFromDatabase();
-                lvRewards.DataSource = RewardsItems;
-                lvRewards.DataBind();
-
-                /* ACTIVITIES */
-                var activityItems = AdminManager.GetActivityItemsFromDatabase();
-                lvActivity.DataSource = activityItems;
-                lvActivity.DataBind();
-
-                /* USERS */
-                var userItems = UserManager.GetUsersFromDatabase();
-                lvUsers.DataSource = userItems;
-                lvUsers.DataBind();
-
+                Reload();
             }
         }
 

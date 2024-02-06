@@ -642,3 +642,7 @@ p span, .tertiary{
 	background-color: var(--tertiary);
 	color: black;
 }
+
+#MainContent_requestorUploadedFiles a {
+	color: var(--tertiary);
+}
