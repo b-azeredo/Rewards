@@ -61,54 +61,63 @@ namespace Rewards
         {
             int activityId = Convert.ToInt32(activityID.Value);
 
-            if (string.IsNullOrWhiteSpace(txtActivityDESCRIPTION.Text))
+            if (ActivitiesManager.Get_Activated(activityId))
             {
-                string script = "<script>messageAlert('Please give a description to the activity.');</script>";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
-            }
-            else if (fileUpload1.HasFiles)
-            {
-                using (Entities2 entities = new Entities2())
+                if (string.IsNullOrWhiteSpace(txtActivityDESCRIPTION.Text))
                 {
-                    var form = new FORM()
+                    string script = "<script>messageAlert('Please give a description to the activity.');</script>";
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                }
+                else if (fileUpload1.HasFiles)
+                {
+                    using (Entities2 entities = new Entities2())
                     {
-                        USER_ID = this.USER_ID,
-                        ACTIVITY_ID = activityId,
-                        DESCRIPTION = txtActivityDESCRIPTION.Text,
-                        STATUS = null,
-                        CREATE_DATE = DateTime.Now,
-                    };
-                    entities.FORM.Add(form);
-                    entities.SaveChanges();
-
-                    foreach (HttpPostedFile uploadedFile in fileUpload1.PostedFiles)
-                    {
-                        byte[] fileBytes = new byte[uploadedFile.ContentLength];
-                        uploadedFile.InputStream.Read(fileBytes, 0, uploadedFile.ContentLength);
-
-                        string fileName = Path.GetFileNameWithoutExtension(uploadedFile.FileName);
-                        string fileExtension = Path.GetExtension(uploadedFile.FileName).Substring(1);
-
-                        var file = new FILE()
+                        var form = new FORM()
                         {
-                            FORM_ID = form.ID,
-                            CONTENT = fileBytes,
-                            FILE_NAME = fileName,
-                            FILE_EXTENSION = fileExtension
+                            USER_ID = this.USER_ID,
+                            ACTIVITY_ID = activityId,
+                            DESCRIPTION = txtActivityDESCRIPTION.Text,
+                            STATUS = null,
+                            CREATE_DATE = DateTime.Now,
                         };
-                        entities.FILE.Add(file);
-                    }
-                    entities.SaveChanges();
+                        entities.FORM.Add(form);
+                        entities.SaveChanges();
 
-                    string successScript = "<script>messageAlert('The form was sent successfully. When your manager approves, you will receive your points.');</script>";
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowSuccess", successScript);
+                        foreach (HttpPostedFile uploadedFile in fileUpload1.PostedFiles)
+                        {
+                            byte[] fileBytes = new byte[uploadedFile.ContentLength];
+                            uploadedFile.InputStream.Read(fileBytes, 0, uploadedFile.ContentLength);
+
+                            string fileName = Path.GetFileNameWithoutExtension(uploadedFile.FileName);
+                            string fileExtension = Path.GetExtension(uploadedFile.FileName).Substring(1);
+
+                            var file = new FILE()
+                            {
+                                FORM_ID = form.ID,
+                                CONTENT = fileBytes,
+                                FILE_NAME = fileName,
+                                FILE_EXTENSION = fileExtension
+                            };
+                            entities.FILE.Add(file);
+                        }
+                        entities.SaveChanges();
+
+                        string successScript = "<script>messageAlert('The form was sent successfully. When your manager approves, you will receive your points.');</script>";
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowSuccess", successScript);
+                    }
+                }
+                else
+                {
+                    string script = "<script>messageAlert('Please upload at least one file.');</script>";
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 }
             }
             else
             {
-                string script = "<script>messageAlert('Please upload at least one file.');</script>";
+                string script = "<script>messageAlert('Try again.');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
             }
+            
         }
 
 

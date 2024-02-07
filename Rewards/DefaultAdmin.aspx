@@ -24,6 +24,7 @@
                         <div class="modal-content">
                             <div class="modal-header d-flex flex-column">
                                 <div class="d-flex align-items-center mb-1">
+                                    <span class="d-flex align-items-center"><img width="30" height="30" src="icon/list-check-solid.svg"/></span>
                                     <h1 class="modal-title">Add Activity</h1>
                                 </div>
                             </div>
@@ -104,6 +105,7 @@
                             <div class="modal-content">
                                <div class="modal-header d-flex flex-column">
                                    <div class="d-flex align-items-center mb-1">
+                                        <span class="d-flex align-items-center"><img width="30" height="30" src="icon/user-solid.svg"/></span>
                                        <h1 class="modal-title">Add User</h1>
                                    </div>
                                </div>
@@ -121,7 +123,7 @@
                                     <p class="m-0" id="managerEmailLabel2">Manager Email:</p>
                                     <asp:TextBox ID="managerEmailTextBox" CssClass="form-control mb-2" placeholder="Manager Email" runat="server"></asp:TextBox>
                                     <p class="m-0">Image:</p>
-                                    <asp:FileUpload ID="FileUpload1" CssClass="form-control" runat="server" />
+                                    <asp:FileUpload ID="FileUpload1" CssClass="form-control" runat="server" accept="image/jpeg, image/png, image/gif, image/jpg" />
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
@@ -155,7 +157,7 @@
                                     <p class="mb-0" runat="server" id="managerEmailLabel">Manager Email:</p>
                                     <asp:TextBox ID="newManagerEmail" CssClass="form-control mb-2" placeholder="New Manager Email" runat="server"></asp:TextBox>
                                     <p class="m-0">Image:</p>
-                                    <asp:FileUpload ID="userFileUpload" runat="server" style="display: none;" onchange="previewImage('MainContent_userFileUpload', 'MainContent_UserImagePlaceholder')" accept="image/*" />
+                                    <asp:FileUpload ID="userFileUpload" runat="server" style="display: none;" onchange="previewImage('MainContent_userFileUpload', 'MainContent_UserImagePlaceholder')" accept="image/jpeg, image/png, image/gif, image/jpg" />
                                     <img id="UserImagePlaceholder" runat="server" width="130" height="130" src="none" onclick="document.getElementById('MainContent_userFileUpload').click();" style="cursor: pointer;" />
                                     <p class="m-0">Activated:</p>
                                     <asp:DropDownList ID="dlUserActivated" CssClass="form-control mb-2" runat="server">
@@ -247,7 +249,7 @@
                                     <p class="m-0">Price:</p>
                                     <asp:TextBox ID="txbRewardPrice" TextMode="Number" CssClass="form-control mb-2" placeholder="Reward Price" runat="server"></asp:TextBox>
                                     <p class="m-0">Image:</p>
-                                    <asp:FileUpload ID="RewardImage" CssClass="form-control" runat="server" />
+                                    <asp:FileUpload ID="RewardImage" CssClass="form-control" runat="server" accept="image/jpeg, image/png, image/gif, image/jpg" />
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
@@ -275,7 +277,7 @@
                                     <p class="m-0">Price:</p>
                                     <asp:TextBox ID="txtRewardPrice" TextMode="Number" CssClass="form-control mb-2" placeholder="Type the price" runat="server"></asp:TextBox>
                                     <p class="m-0">Image</p>
-                                    <asp:FileUpload ID="rewardFileUpload" runat="server" style="display: none;" onchange="previewImage('MainContent_rewardFileUpload', 'MainContent_RewardImagePlaceholder')" accept="image/*" />
+                                    <asp:FileUpload ID="rewardFileUpload" runat="server" style="display: none;" onchange="previewImage('MainContent_rewardFileUpload', 'MainContent_RewardImagePlaceholder')" accept="image/jpeg, image/png, image/gif, image/jpg" />
                                     <img id="RewardImagePlaceholder" runat="server" width="130" height="130" src="none" onclick="document.getElementById('MainContent_rewardFileUpload').click();" style="cursor: pointer;" />
                                     <p class="m-0">Activated</p>
                                     <asp:DropDownList ID="dlRewardStatus" CssClass="form-control mb-2" runat="server">
