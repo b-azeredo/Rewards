@@ -175,6 +175,13 @@ namespace Rewards
                 return;
             }
 
+            if (!IsManagerEmailValid(newEmail.Text))
+            {
+                string script = "<script>messageAlert('Please enter a manager email that exists.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
             using (var entities = new Entities2())
             {
                 USER user = entities.USER.FirstOrDefault(x => x.ID == userId);
@@ -262,11 +269,6 @@ namespace Rewards
                             entities.REWARD_STOCK.Add(rewardStock);
                             entities.SaveChanges();
                         }
-                        else
-                        {
-                            // Handle invalid input for stock
-                        }
-
                     }
 
                     if (reward.PRICE != int.Parse(txtRewardPrice.Text))
