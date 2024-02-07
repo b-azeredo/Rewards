@@ -14,7 +14,7 @@ namespace Rewards
 {
     public partial class _Default : System.Web.UI.Page
     {
-        private int USER_ID = 1;
+        private int USER_ID = 13;
 
 
         protected void btnClaim_Click(object sender, EventArgs e)
@@ -116,7 +116,7 @@ namespace Rewards
         {
             if (fileUpload.HasFile)
             {
-                int maxSizeInBytes = 1024 * 1024; // 1 MB
+                int maxSizeInBytes = 2024 * 2024; // 2 MB
                 byte[] imageData = fileUpload.FileBytes;
 
                 if (imageData.Length <= maxSizeInBytes)
@@ -146,7 +146,7 @@ namespace Rewards
                 }
                 else
                 {
-                    string message = "<script>messageAlert('Please upload an image smaller than 1 MB.');</script>";
+                    string message = "<script>messageAlert('Please upload an image smaller than 2 MB.');</script>";
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", message);
                 }
             }

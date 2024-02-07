@@ -15,7 +15,7 @@ namespace Rewards
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
-        private int USER_ID = 2;
+        private int USER_ID = 12;
 
         protected void ShowFilesInModal(List<FILE> files)
         {
