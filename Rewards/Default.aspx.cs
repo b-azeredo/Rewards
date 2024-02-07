@@ -118,25 +118,35 @@ namespace Rewards
             {
                 int maxSizeInBytes = 1024 * 1024; // 1 MB
                 byte[] imageData = fileUpload.FileBytes;
+
                 if (imageData.Length <= maxSizeInBytes)
                 {
-                    using (var entities = new Entities2())
+                    string fileExtension = System.IO.Path.GetExtension(fileUpload.FileName).ToLower();
+                    if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png" || fileExtension == ".gif")
                     {
-                        USER user = entities.USER.FirstOrDefault(x => x.ID == USER_ID);
-
-                        if (user != null)
+                        using (var entities = new Entities2())
                         {
-                            user.PROFILE_IMAGE = imageData;
-                            entities.SaveChanges();
-                            Reload();
-                            string message = "<script>messageAlert('Changes saved!');</script>";
-                            Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", message);
+                            USER user = entities.USER.FirstOrDefault(x => x.ID == USER_ID);
+
+                            if (user != null)
+                            {
+                                user.PROFILE_IMAGE = imageData;
+                                entities.SaveChanges();
+                                Reload();
+                                string message = "<script>messageAlert('Changes saved!');</script>";
+                                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", message);
+                            }
                         }
+                    }
+                    else
+                    {
+                        string message = "<script>messageAlert('Please upload an image with a valid format (jpg, jpeg, png, or gif).');</script>";
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", message);
                     }
                 }
                 else
                 {
-                    string message = "<script>messageAlert('Upload another image.');</script>";
+                    string message = "<script>messageAlert('Please upload an image smaller than 1 MB.');</script>";
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", message);
                 }
             }
