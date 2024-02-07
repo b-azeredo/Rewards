@@ -9,7 +9,6 @@ using System.Linq;
 using System.Web;
 using Rewards.Items;
 using System.Web.UI.HtmlControls;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 
 namespace Rewards
 {
@@ -114,7 +113,7 @@ namespace Rewards
 
             if (string.IsNullOrWhiteSpace(newActivityName.Text) || string.IsNullOrWhiteSpace(newActivityDescription.Text) || string.IsNullOrWhiteSpace(newActivityPoints.Text))
             {
-                string script = "messageAlert('Please, fill all the camps');";
+                string script = "messageAlert('Please, fill all the fields');";
                 ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                 return;
             }
@@ -191,20 +190,9 @@ namespace Rewards
                     {
                         if (string.IsNullOrWhiteSpace(newManagerEmail.Text))
                         {
-                            string script2 = "messageAlert('Please , fill the Manager email field');";
+                            string script2 = "messageAlert('Please, fill the manager email field.');";
                             ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script2, true);
                             return;
-                        }
-                        else
-                        {
-
-                            bool managerExists = entities.USER.Any(u => u.ROLE == "MANAGER" && u.EMAIL == newManagerEmail.Text);
-                            if (!managerExists)
-                            {
-                                string script2 = "messageAlert('The manager email does not exist.');";
-                                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script2, true);
-                                return;
-                            }
                         }
                         user.MANAGER_EMAIL = newManagerEmail.Text;
                     }
@@ -240,16 +228,14 @@ namespace Rewards
         {
             if (string.IsNullOrWhiteSpace(txtRewardName.Text) || string.IsNullOrWhiteSpace(txtRewardPrice.Text))
             {
-                string script = "messageAlert('Please , fill all camps');";
+                string script = "messageAlert('Please, fill all fields.');";
                 ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                 return;
             }
-
             int rewardId = int.Parse(rewardID.Value);
             using (var entities = new Entities2())
             {
                 REWARD reward = entities.REWARD.FirstOrDefault(x => x.ID == rewardId);
-
                 if (reward != null)
                 {
                     if (rewardFileUpload.HasFile)
@@ -280,12 +266,12 @@ namespace Rewards
                         {
                             // Handle invalid input for stock
                         }
+
                     }
 
                     if (reward.PRICE != int.Parse(txtRewardPrice.Text))
                     {
                         int previousStock = RewardsManager.GetRewardStock(reward.ID);
-
                         byte[] image = null;
                         if (rewardFileUpload.HasFile)
                         {
@@ -296,7 +282,6 @@ namespace Rewards
                                 image = imageData;
                             }
                         }
-
                         var newReward = new REWARD()
                         {
                             NAME = txtRewardName.Text,
@@ -306,12 +291,9 @@ namespace Rewards
                         };
                         entities.REWARD.Add(newReward);
                         entities.SaveChanges();
-
                         int newRewardId = newReward.ID;
-
                         RewardsManager.ClearRewardStock(rewardId);
                         RewardsManager.ChangeStatus(rewardId);
-
                         var rewardStock = new REWARD_STOCK()
                         {
                             REWARD_ID = newRewardId,
@@ -336,7 +318,6 @@ namespace Rewards
                         }
                         entities.SaveChanges();
                     }
-
                     Reload();
                     string script = "messageAlert('Your changes have been saved!');";
                     ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
@@ -389,7 +370,7 @@ namespace Rewards
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(UserEmail.Text) || !IsValidEmail(UserEmail.Text))
+            if (string.IsNullOrWhiteSpace(UserEmail.Text) || !IsValidEmail(UserEmail.Text) || UserManager.Email_Exists(UserEmail.Text))
             {
                 string script = "<script>messageAlert('Please enter a valid email.');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
@@ -403,31 +384,17 @@ namespace Rewards
                 return;
             }
 
-            if (dlRoleUser.SelectedValue == "EMPLOYEE" && string.IsNullOrWhiteSpace(managerEmailTextBox.Text))
-            {
-                string script = "<script>messageAlert('Please enter a manager email.');</script>";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
-                return;
-            }
-
-            if (!string.IsNullOrWhiteSpace(managerEmailTextBox.Text) && !IsValidEmail(managerEmailTextBox.Text))
-            {
-                string script = "<script>messageAlert('Please enter a valid manager email.');</script>";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
-                return;
-            }
-
             string fileExtension = Path.GetExtension(FileUpload1.FileName).ToLower();
             if (fileExtension != ".png" && fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".gif")
             {
-                string script = "<script>messageAlert('Please enter a valid Image Extension(.png .jpg .jpeg .gif)');</script>";
+                string script = "<script>messageAlert('Please enter a valid image extension(.png .jpg .jpeg .gif)');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
             }
 
             if (dlRoleUser.SelectedValue == "EMPLOYEE" && !IsManagerEmailValid(managerEmailTextBox.Text))
             {
-                string script = "<script>messageAlert('Please enter a Manager Email that exists.');</script>";
+                string script = "<script>messageAlert('Please enter a manager email that exists.');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
             }

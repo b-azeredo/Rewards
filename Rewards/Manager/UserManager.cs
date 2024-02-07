@@ -223,5 +223,21 @@ namespace Rewards.Manager
             }
         }
 
+        public static bool Email_Exists(string email)
+        {
+            using (Entities2 Entities = new Entities2())
+            {
+                var user = Entities.USER.FirstOrDefault(u => u.EMAIL == email);
+                if (user == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
     }
 }

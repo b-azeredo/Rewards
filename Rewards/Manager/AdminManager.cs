@@ -14,7 +14,6 @@ namespace Rewards.Manager
             using (var context = new Entities2())
             {
                 var rewardsItems = context.REWARD
-                    .OrderByDescending(r => r.PRICE)
                     .Select(r => new RewardsItem
                     {
                         ID = r.ID,
@@ -22,13 +21,16 @@ namespace Rewards.Manager
                         PRICE = r.PRICE,
                         IMAGE = r.IMAGE,
                         ACTIVATED = r.ACTIVATED,
-                        ItemClass = r.REWARD_STOCK.Any(rs => rs.STOCK > 0) && r.ACTIVATED == true ? "inStock" : "outOfStock"
+                        ItemClass = r.REWARD_STOCK.Any(rs => rs.STOCK > 0) && r.ACTIVATED ? "inStock" : "outOfStock"
                     })
+                    .OrderBy(r => r.ItemClass)
+                    .ThenByDescending(r => r.PRICE)
                     .ToList();
 
                 return rewardsItems;
             }
         }
+
 
         public static List<ActivityItem> GetActivityItemsFromDatabase()
         {
