@@ -177,7 +177,7 @@ namespace Rewards
 
             if (dlRole.SelectedValue == "EMPLOYEE")
             {
-                if (!IsManagerEmailValid(newEmail.Text))
+                if (!IsManagerEmailValid(newManagerEmail.Text))
                 {
                     string script = "<script>messageAlert('Please enter a manager email that exists.');</script>";
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
