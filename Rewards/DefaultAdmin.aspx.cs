@@ -188,7 +188,7 @@ namespace Rewards
 
                 if (user != null)
                 {
-                    user.NAME = newName.Text;
+                    user.NAME = newName.Text;   
                     user.EMAIL = newEmail.Text;
                     user.ROLE = dlRole.SelectedValue;
                     user.ACTIVATED = bool.Parse(dlUserActivated.SelectedValue);
@@ -459,7 +459,7 @@ namespace Rewards
             if (RewardImage.HasFile)
             {
                 string fileExtension = System.IO.Path.GetExtension(RewardImage.FileName).ToLower();
-                if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png")
+                if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png" || fileExtension == ".gif")
                 {
                     using (Entities2 entities2 = new Entities2())
                     {
@@ -477,12 +477,12 @@ namespace Rewards
                         ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                     };
                 }
-            }
-            else
-            {
-                string script = "messageAlert('Please, insert a valid image');";
-                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
-                return;
+                else
+                {
+                    string script = "messageAlert('Please, insert a valid image');";
+                    ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                    return;
+                }
             }
         }
 

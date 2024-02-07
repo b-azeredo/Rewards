@@ -646,3 +646,11 @@ p span, .tertiary{
 #MainContent_requestorUploadedFiles a {
 	color: var(--tertiary);
 }
+
+#addActivityModal span, #addUserModal span {
+	padding: 0px 10px;
+	border-radius: 5px;
+	background-color: var(--tertiary);
+	height: 48px;
+	margin-right: 8px;
+}
