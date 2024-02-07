@@ -249,6 +249,10 @@ div.userCard {
 		background-color: var(--secondary);
 	}
 
+		div.userCard div.userImgPlaceholder{
+			overflow: hidden;
+		}
+
 		div.userCard div.userImgPlaceholder img {
 			max-width: 100%;
 			border-radius: 50%;
