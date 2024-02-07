@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web;
 using Rewards.Items;
 using System.Web.UI.HtmlControls;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 
 namespace Rewards
 {
@@ -244,22 +245,23 @@ namespace Rewards
                 return;
             }
 
-            string fileExtension = System.IO.Path.GetExtension(rewardFileUpload.FileName).ToLower();
-            if (fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".png" && fileExtension != ".gif")
-            {
-                string script = "messageAlert('Please select a valid image file (jpg, jpeg, png, or gif).');";
-                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
-                return;
-            }
-
             int rewardId = int.Parse(rewardID.Value);
-
             using (var entities = new Entities2())
             {
                 REWARD reward = entities.REWARD.FirstOrDefault(x => x.ID == rewardId);
 
                 if (reward != null)
                 {
+                    if (rewardFileUpload.HasFile)
+                    {
+                        string fileExtension = System.IO.Path.GetExtension(rewardFileUpload.FileName).ToLower();
+                        if (fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".png" && fileExtension != ".gif")
+                        {
+                            string script2 = "messageAlert('Image file type invalid! Please select a valid image file.');";
+                            ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script2, true);
+                            return;
+                        }
+                    }
                     if (txtInsertStock.Text != "")
                     {
                         int stock;
