@@ -387,7 +387,7 @@ namespace Rewards
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(UserEmail.Text) || !IsValidEmail(UserEmail.Text))
+            if (string.IsNullOrWhiteSpace(UserEmail.Text) || !IsValidEmail(UserEmail.Text) || UserManager.Email_Exists(UserEmail.Text))
             {
                 string script = "<script>messageAlert('Please enter a valid email.');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
