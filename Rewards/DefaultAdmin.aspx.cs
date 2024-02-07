@@ -175,11 +175,14 @@ namespace Rewards
                 return;
             }
 
-            if (!IsManagerEmailValid(newEmail.Text))
+            if (dlRole.SelectedValue == "EMPLOYEE")
             {
-                string script = "<script>messageAlert('Please enter a manager email that exists.');</script>";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
-                return;
+                if (!IsManagerEmailValid(newManagerEmail.Text))
+                {
+                    string script = "<script>messageAlert('Please enter a manager email that exists.');</script>";
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                    return;
+                }
             }
 
             using (var entities = new Entities2())
