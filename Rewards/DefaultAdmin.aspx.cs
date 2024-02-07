@@ -262,10 +262,6 @@ namespace Rewards
                             entities.REWARD_STOCK.Add(rewardStock);
                             entities.SaveChanges();
                         }
-                        else
-                        {
-                            // Handle invalid input for stock
-                        }
 
                     }
 
