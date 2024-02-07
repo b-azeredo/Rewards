@@ -149,6 +149,7 @@ namespace Rewards.Manager
 
                 var activitiesList = context.FORM.Where(f => f.USER_ID == ID && f.STATUS == true).ToList();
                 var purchasesList = context.PURCHASE.Where(p => p.USER_ID == ID).ToList();
+                var deniedActivitiesList = context.FORM.Where(f => f.USER_ID == ID && f.STATUS == false).ToList();
 
                 List<TransactionItem> transactionItems = activitiesList.Select(f => new TransactionItem
                 {
@@ -157,6 +158,14 @@ namespace Rewards.Manager
                     POINTS = f.ACTIVITY.POINTS,
                     ItemClass = "up"
                 }).ToList();
+
+                transactionItems.AddRange(deniedActivitiesList.Select(p => new TransactionItem
+                {
+                    NAME = $"Activity Denied ({p.ACTIVITY.NAME})",
+                    DATE = p.CREATE_DATE.ToString(),
+                    POINTS = 0,
+                    ItemClass = "down"
+                }));
 
                 transactionItems.AddRange(purchasesList.Select(p => new TransactionItem
                 {

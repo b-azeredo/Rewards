@@ -45,7 +45,12 @@ namespace Rewards.Manager
                     NAME = a.NAME,
                     POINTS = a.POINTS,
                     ItemClass = a.ACTIVATED == true ? "activatedActivity" : "deactivatedActivity"
-                }).ToList();
+                })
+                .OrderBy(r => r.ItemClass)
+                .ThenByDescending(r => r.POINTS)
+                .ToList();
+
+
 
                 return activitiesItem;
             }
