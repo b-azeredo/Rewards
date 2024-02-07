@@ -92,7 +92,8 @@ namespace Rewards
             dlRole.Items.FindByValue(UserManager.Get_Role(int.Parse(idUser.Value))).Selected = true;
             dlUserActivated.Items.FindByValue(UserManager.Get_Activated(int.Parse(idUser.Value)).ToString()).Selected = true;
 
-            if (UserManager.Get_Role(int.Parse(idUser.Value)) != "EMPLOYEE"){
+            if (UserManager.Get_Role(int.Parse(idUser.Value)) != "EMPLOYEE")
+            {
                 newManagerEmail.Style["display"] = "none";
                 managerEmailLabel.Style["display"] = "none";
             }
@@ -160,6 +161,20 @@ namespace Rewards
         {
             int userId = int.Parse(ID.Text);
 
+            if (string.IsNullOrWhiteSpace(newName.Text) || string.IsNullOrWhiteSpace(newEmail.Text))
+            {
+                string script = "messageAlert('Please fill in all required fields.');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                return;
+            }
+
+            if (!IsValidEmail(newEmail.Text))
+            {
+                string script = "messageAlert('Please enter a valid email address for the user.');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                return;
+            }
+
             using (var entities = new Entities2())
             {
                 USER user = entities.USER.FirstOrDefault(x => x.ID == userId);
@@ -171,29 +186,53 @@ namespace Rewards
                     user.ROLE = dlRole.SelectedValue;
                     user.ACTIVATED = bool.Parse(dlUserActivated.SelectedValue);
 
-
                     if (user.ROLE == "EMPLOYEE")
                     {
+                        if (string.IsNullOrWhiteSpace(newManagerEmail.Text))
+                        {
+                            string script2 = "messageAlert('Please , fill the Manager email field');";
+                            ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script2, true);
+                            return;
+                        }
+                        else
+                        {
+
+                            bool managerExists = entities.USER.Any(u => u.ROLE == "MANAGER" && u.EMAIL == newManagerEmail.Text);
+                            if (!managerExists)
+                            {
+                                string script2 = "messageAlert('The manager email does not exist.');";
+                                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script2, true);
+                                return;
+                            }
+                        }
                         user.MANAGER_EMAIL = newManagerEmail.Text;
                     }
                     else
                     {
                         user.MANAGER_EMAIL = null;
                     }
-
+                    string fileExtension = System.IO.Path.GetExtension(userFileUpload.FileName).ToLower();
                     if (userFileUpload.HasFile)
                     {
-                        byte[] imageData = userFileUpload.FileBytes;
-                        user.PROFILE_IMAGE = imageData;
+                        if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png" || fileExtension == ".gif")
+                        {
+                            user.PROFILE_IMAGE = userFileUpload.FileBytes;
+                        }
+                        else
+                        {
+                            string script2 = "messageAlert('Image file type invalid!');";
+                            ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script2, true);
+                            return;
+                        }
                     }
-
-                    entities.SaveChanges();
-                    Reload();
                     string script = "messageAlert('Your changes have been saved!');";
                     ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                    entities.SaveChanges();
+                    Reload();
                 }
             }
         }
+
 
 
         protected void btnComfirmRewardChanges_Click(object sender, EventArgs e)
@@ -230,6 +269,7 @@ namespace Rewards
                             {
                                 REWARD_ID = rewardId,
                                 STOCK = stock,
+                                DATE = DateTime.Now,
                             };
                             entities.REWARD_STOCK.Add(rewardStock);
                             entities.SaveChanges();
@@ -309,7 +349,7 @@ namespace Rewards
         protected void btnComfirmAddActivity_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(ActivityName.Text) || string.IsNullOrWhiteSpace(ActivityDescription.Text) || string.IsNullOrWhiteSpace(ActivityPoints.Text))
-      {
+            {
                 string script = "<script>messageAlert('Please fill in all required fields.');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
@@ -486,7 +526,7 @@ namespace Rewards
                 var pointsLiteral = e.Item.FindControl("pointsLiteral") as Literal;
                 var activityIDLiteral = e.Item.FindControl("activityIdLiteral") as HiddenField;
 
-                activityIDLiteral.Value  = item.ACTIVITY_ID.ToString();
+                activityIDLiteral.Value = item.ACTIVITY_ID.ToString();
                 activityNameLiteral.Text = item.NAME;
                 pointsLiteral.Text = item.POINTS.ToString();
             }

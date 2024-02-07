@@ -63,6 +63,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="REWARD_ID" Type="int" Nullable="false" />
           <Property Name="STOCK" Type="int" Nullable="false" />
+          <Property Name="DATE" Type="datetime" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -253,6 +254,7 @@
           <Property Name="REWARD_ID" Type="Int32" Nullable="false" />
           <Property Name="STOCK" Type="Int32" Nullable="false" />
           <NavigationProperty Name="REWARD" Relationship="Self.FK_5" FromRole="REWARD_STOCK" ToRole="REWARD" />
+          <Property Name="DATE" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -438,7 +440,8 @@
     <EntitySetMapping Name="REWARD_STOCK">
       <EntityTypeMapping TypeName="IsTypeOf(Model.REWARD_STOCK)">
         <MappingFragment StoreEntitySet="REWARD_STOCK">
-          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="REWARD_ID" ColumnName="REWARD_ID" />
           <ScalarProperty Name="STOCK" ColumnName="STOCK" />
         </MappingFragment>
