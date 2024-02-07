@@ -205,6 +205,14 @@ namespace Rewards
                 return;
             }
 
+            string fileExtension = System.IO.Path.GetExtension(rewardFileUpload.FileName).ToLower();
+            if (fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".png" && fileExtension != ".gif")
+            {
+                string script = "messageAlert('Please select a valid image file (jpg, jpeg, png, or gif).');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                return;
+            }
+
             int rewardId = int.Parse(rewardID.Value);
 
             using (var entities = new Entities2())
