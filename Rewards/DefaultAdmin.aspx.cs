@@ -109,6 +109,14 @@ namespace Rewards
 
         protected void btnComfirmActivityChanges_Click(object sender, EventArgs e)
         {
+
+            if (string.IsNullOrWhiteSpace(newActivityName.Text) || string.IsNullOrWhiteSpace(newActivityDescription.Text) || string.IsNullOrWhiteSpace(newActivityPoints.Text))
+            {
+                string script = "messageAlert('Please, fill all the camps');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                return;
+            }
+
             int activityId = int.Parse(hiddenActivityID.Value);
 
             using (var entities = new Entities2())
@@ -190,6 +198,13 @@ namespace Rewards
 
         protected void btnComfirmRewardChanges_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtRewardName.Text) || string.IsNullOrWhiteSpace(txtRewardPrice.Text))
+            {
+                string script = "messageAlert('Please , fill all camps');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                return;
+            }
+
             int rewardId = int.Parse(rewardID.Value);
 
             using (var entities = new Entities2())
