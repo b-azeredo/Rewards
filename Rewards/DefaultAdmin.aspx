@@ -421,25 +421,19 @@
              }
 
              function clearModalFields() {
-                 $('#addActivityModal').on('hidden.bs.modal', function () {
                      $('#MainContent_ActivityName').val('');
                      $('#MainContent_ActivityDescription').val('');
                      $('#MainContent_ActivityPoints').val('');
-                 });
 
-                 $('#addUserModal').on('hidden.bs.modal', function () {
                      $('#MainContent_UserName').val('');
                      $('#MainContent_UserEmail').val('');
                      $('#MainContent_dlRoleUser').val('EMPLOYEE');
                      $('#MainContent_managerEmailTextBox').val('');
                      $('#MainContent_FileUpload1').val('');
-                 });
 
-                 $('#addRewardModal').on('hidden.bs.modal', function () {
                      $('#MainContent_txbRewardName').val('');
                      $('#MainContent_txbRewardPrice').val('');
                      $('#MainContent_RewardImage').val('');
-                 });
              }
          </script>
 

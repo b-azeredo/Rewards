@@ -255,6 +255,8 @@ namespace Rewards
 
         private void Reload()
         {
+            ScriptManager.RegisterStartupScript(this, GetType(), "cleanTextBoxes", "cleanTextBoxes();", true);
+
             /* LEADERBOARD */
             var leaderboardItems = LeaderboardManager.GetLeaderboardItemsFromDatabase();
             lvLeaderboard.DataSource = leaderboardItems;

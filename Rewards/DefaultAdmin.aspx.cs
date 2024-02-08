@@ -612,6 +612,7 @@ namespace Rewards
 
         private void Reload()
         {
+            ScriptManager.RegisterStartupScript(this, GetType(), "clearModalFields", "clearModalFields();", true);
             /* LEADERBOARD */
             var leaderboardItems = LeaderboardManager.GetLeaderboardItemsFromDatabase();
             lvLeaderboard.DataSource = leaderboardItems;
