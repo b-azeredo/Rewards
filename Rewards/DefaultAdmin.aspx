@@ -113,7 +113,7 @@
                                     <p class="m-0">Name:</p>
                                     <asp:TextBox ID="UserName" CssClass="form-control mb-2" placeholder="Name" runat="server"></asp:TextBox>
                                     <p class="m-0">Email:</p>
-                                    <asp:TextBox ID="UserEmail" TextMode="Email" CssClass="form-control mb-2" placeholder="Email" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="UserEmail" CssClass="form-control mb-2" placeholder="Email" runat="server"></asp:TextBox>
                                     <p class="m-0">Role:</p>
                                     <asp:DropDownList ID="dlRoleUser" onchange="hideManagerEmail2()" CssClass="form-control mb-2" runat="server">
                                         <asp:ListItem Text="EMPLOYEE" Value="EMPLOYEE"></asp:ListItem>
@@ -121,7 +121,7 @@
                                         <asp:ListItem Text="ADMIN" Value="ADMIN"></asp:ListItem>
                                     </asp:DropDownList>
                                     <p class="m-0" id="managerEmailLabel2">Manager Email:</p>
-                                    <asp:TextBox ID="managerEmailTextBox" TextMode="Email" CssClass="form-control mb-2" placeholder="Manager Email" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="managerEmailTextBox" CssClass="form-control mb-2" placeholder="Manager Email" runat="server"></asp:TextBox>
                                     <p class="m-0">Image:</p>
                                     <asp:FileUpload ID="FileUpload1" CssClass="form-control" runat="server" accept="image/jpeg, image/png, image/gif, image/jpg" />
                                 </div>
@@ -147,7 +147,7 @@
                                     <p class="mb-0">Name:</p>
                                     <asp:TextBox ID="newName" CssClass="form-control mb-2" placeholder="New Name" runat="server"></asp:TextBox>
                                     <p class="mb-0">Email:</p>
-                                    <asp:TextBox ID="newEmail" TextMode="Email" CssClass="form-control mb-2" placeholder="New Email" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="newEmail" CssClass="form-control mb-2" placeholder="New Email" runat="server"></asp:TextBox>
                                     <p class="mb-0">Role:</p>
                                     <asp:DropDownList ID="dlRole" onchange="hideManagerEmail()" CssClass="form-control mb-2" runat="server">
                                         <asp:ListItem Text="EMPLOYEE" Value="EMPLOYEE"></asp:ListItem>
@@ -155,7 +155,7 @@
                                         <asp:ListItem Text="ADMIN" Value="ADMIN"></asp:ListItem>
                                     </asp:DropDownList>
                                     <p class="mb-0" runat="server" id="managerEmailLabel">Manager Email:</p>
-                                    <asp:TextBox ID="newManagerEmail" TextMode="Email" CssClass="form-control mb-2" placeholder="New Manager Email" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="newManagerEmail" CssClass="form-control mb-2" placeholder="New Manager Email" runat="server"></asp:TextBox>
                                     <p class="m-0">Image:</p>
                                     <asp:FileUpload ID="userFileUpload" runat="server" style="display: none;" onchange="previewImage('MainContent_userFileUpload', 'MainContent_UserImagePlaceholder')" accept="image/jpeg, image/png, image/gif, image/jpg" />
                                     <img id="UserImagePlaceholder" runat="server" width="130" height="130" src="none" onclick="document.getElementById('MainContent_userFileUpload').click();" style="cursor: pointer;" />
