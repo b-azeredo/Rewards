@@ -40,10 +40,10 @@
                   <div class="modal-body">
                       <asp:HiddenField ID="hiddenFormID" runat="server" />
                       <p class="mb-0">Requestor Name:</p>
-                      <asp:Label ID="requestorName" CssClass="tertiary" runat="server" Text="Label"></asp:Label>
+                      <asp:Label ID="requestorName" CssClass="tertiary word-wrap-break" runat="server" Text="Label"></asp:Label>
 
                       <p class="mb-0 mt-3">Requestor Description:</p>
-                      <asp:Label ID="requestorDescription" CssClass="tertiary" runat="server" Text="Label"></asp:Label>
+                      <asp:Label ID="requestorDescription" CssClass="tertiary word-wrap-break" runat="server" Text="Label"></asp:Label>
 
                       <p class="mb-0 mt-3">Requestor Uploaded Files:</p>
                       <asp:Panel ID="requestorUploadedFiles" runat="server"></asp:Panel>

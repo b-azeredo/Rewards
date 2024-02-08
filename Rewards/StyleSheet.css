@@ -658,3 +658,7 @@ p span, .tertiary{
 	height: 48px;
 	margin-right: 8px;
 }
+
+.word-wrap-break {
+	word-wrap: break-word;
+}
