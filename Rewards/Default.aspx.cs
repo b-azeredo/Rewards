@@ -35,7 +35,7 @@ namespace Rewards
             else
             {
                 Reload();
-                string script = "<script>messageAlert('You can't claim this reward.');</script>";
+                string script = "<script>messageAlert('You can\\'t claim this reward.');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
 
             }
