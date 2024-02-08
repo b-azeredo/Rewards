@@ -75,6 +75,20 @@ namespace Rewards
                 }
                 else if (fileUpload1.HasFiles)
                 {
+                    long totalFileSize = 0; 
+
+                    foreach (HttpPostedFile uploadedFile in fileUpload1.PostedFiles)
+                    {
+                        totalFileSize += uploadedFile.ContentLength;
+                    }
+
+                    if (totalFileSize > 190 * 1024 * 1024)
+                    {
+                        string script = "<script>messageAlert('Total file size exceeds 200 MB limit');</script>";
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                        return;
+                    }
+
                     using (Entities2 entities = new Entities2())
                     {
                         var form = new FORM()
@@ -122,8 +136,8 @@ namespace Rewards
                 string script = "<script>messageAlert('Try again.');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
             }
-            
         }
+
 
 
         protected void btnSaveProfileChanges_Click(object sender, EventArgs e)
