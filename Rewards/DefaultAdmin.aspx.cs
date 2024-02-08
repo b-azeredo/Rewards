@@ -296,7 +296,6 @@ namespace Rewards
 
                     if (reward.PRICE != int.Parse(txtRewardPrice.Text))
                     {
-                        int previousStock = RewardsManager.GetRewardStock(reward.ID);
                         byte[] image = null;
                         if (rewardFileUpload.HasFile)
                         {
@@ -317,15 +316,18 @@ namespace Rewards
                         entities.REWARD.Add(newReward);
                         entities.SaveChanges();
                         int newRewardId = newReward.ID;
-                        RewardsManager.ClearRewardStock(rewardId);
                         RewardsManager.ChangeStatus(rewardId);
-                        var rewardStock = new REWARD_STOCK()
+                        using (var context = new Entities2())
                         {
-                            REWARD_ID = newRewardId,
-                            STOCK = previousStock
-                        };
-                        entities.REWARD_STOCK.Add(rewardStock);
-                        entities.SaveChanges();
+                            var recordsToUpdate = context.REWARD_STOCK.Where(rs => rs.REWARD_ID == rewardId).ToList();
+
+                            foreach (var record in recordsToUpdate)
+                            {
+                                record.REWARD_ID = newRewardId;
+                            }
+
+                            context.SaveChanges();
+                        }
                     }
                     else
                     {
