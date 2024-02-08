@@ -84,7 +84,7 @@
              <div class="content">
                  <div class="d-flex pb-2">
                      <span class="d-flex align-items-center"><img width="30" height="30" src="icon/bars-progress-solid.svg"/></span>
-                     <h1>Your team progress</h1>
+                     <h1>Your Team Progress</h1>
                  </div>
                  <div class="ag-courses_box d-flex flex-column justify-content-center align-items-center overflow-auto">
                      <div class="ag-courses_item">

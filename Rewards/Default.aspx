@@ -119,7 +119,7 @@ AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Rewards._Default"
                 <img width="30" height="30" src="icon/bars-progress-solid.svg" />
               </span>
               <h1>
-                Your progress
+                Your Progress
               </h1>
             </div>
             <div class="ag-courses_box d-flex flex-column justify-content-center align-items-center overflow-auto">
