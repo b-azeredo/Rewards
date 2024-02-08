@@ -177,92 +177,109 @@ namespace Rewards
 
         protected void btnComfirmUserChanges_Click(object sender, EventArgs e)
         {
-            int userId = int.Parse(ID.Text);
+            if (UserManager.Get_Role(USER_ID) == "ADMIN")
+            {
+                int userId = int.Parse(ID.Text);
 
-            if (string.IsNullOrWhiteSpace(newName.Text) || string.IsNullOrWhiteSpace(newEmail.Text))
-            {
-                string script = "messageAlert('Please fill in all required fields.');";
-                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
-                return;
-            }
-            if (newName.Text.Length > 100 || newEmail.Text.Length > 100)
-            {
-                string script = "<script>messageAlert('Name and Email cannot exceed 100 characters characters.');</script>";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
-                return;
-            }
-            if (!IsValidEmail(newEmail.Text))
-            {
-                string script = "messageAlert('Please enter a valid email address for the user.');";
-                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
-                return;
-            }
-
-            if (dlRole.SelectedValue == "EMPLOYEE")
-            {
-                if (!IsManagerEmailValid(newManagerEmail.Text))
+                if (string.IsNullOrWhiteSpace(newName.Text) || string.IsNullOrWhiteSpace(newEmail.Text))
                 {
-                    string script = "<script>messageAlert('Please enter a manager email that exists.');</script>";
+                    string script = "messageAlert('Please fill in all required fields.');";
+                    ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                    return;
+                }
+                if (newName.Text.Length > 100 || newEmail.Text.Length > 100)
+                {
+                    string script = "<script>messageAlert('Name and Email cannot exceed 100 characters characters.');</script>";
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                     return;
                 }
-            }
-
-
-            using (var entities = new Entities2())
-            {
-                USER user = entities.USER.FirstOrDefault(x => x.ID == userId);
-
-                if (user != null)
+                if (!IsValidEmail(newEmail.Text))
                 {
-                    string OldManagerEmail = UserManager.Get_Email(userId);
-                    user.NAME = newName.Text;
-                    user.EMAIL = newEmail.Text;
-                    user.ROLE = dlRole.SelectedValue;
-                    user.ACTIVATED = bool.Parse(dlUserActivated.SelectedValue);
-                    if (user.ROLE == "MANAGER")
+                    string script = "messageAlert('Please enter a valid email address for the user.');";
+                    ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                    return;
+                }
+
+                if (dlRole.SelectedValue == "EMPLOYEE")
+                {
+                    if (!IsManagerEmailValid(newManagerEmail.Text))
                     {
-                        var employeesToUpdate = entities.USER.Where(u => u.ROLE == "EMPLOYEE" && u.MANAGER_EMAIL == OldManagerEmail).ToList();
-                        foreach (var employee in employeesToUpdate)
-                        {
-                            employee.MANAGER_EMAIL = user.EMAIL;
-                            entities.SaveChanges();
-                        }
+                        string script = "<script>messageAlert('Please enter a manager email that exists.');</script>";
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                        return;
                     }
-                    else if (user.ROLE == "EMPLOYEE")
+                }
+
+
+                using (var entities = new Entities2())
+                {
+                    USER user = entities.USER.FirstOrDefault(x => x.ID == userId);
+
+                    if (user != null)
                     {
-                        if (string.IsNullOrWhiteSpace(newManagerEmail.Text))
+                        string OldManagerEmail = UserManager.Get_Email(userId);
+                        user.NAME = newName.Text;
+                        user.EMAIL = newEmail.Text;
+                        if (userId != USER_ID)
                         {
-                            string script2 = "messageAlert('Please, fill the manager email field.');";
-                            ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script2, true);
-                            return;
-                        }
-                        user.MANAGER_EMAIL = newManagerEmail.Text;
-                    }
-                    else
-                    {
-                        user.MANAGER_EMAIL = null;
-                    }
-                    string fileExtension = System.IO.Path.GetExtension(userFileUpload.FileName).ToLower();
-                    if (userFileUpload.HasFile)
-                    {
-                        if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png")
-                        {
-                            user.PROFILE_IMAGE = userFileUpload.FileBytes;
+                            user.ROLE = dlRole.SelectedValue;
                         }
                         else
                         {
-                            string script2 = "messageAlert('Image file type invalid!');";
-                            ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script2, true);
+                            string script2 = "<script>messageAlert('You can\\'t change your own role.');</script>";
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script2);
                             return;
                         }
+                        user.ACTIVATED = bool.Parse(dlUserActivated.SelectedValue);
+                        if (user.ROLE == "MANAGER")
+                        {
+                            var employeesToUpdate = entities.USER.Where(u => u.ROLE == "EMPLOYEE" && u.MANAGER_EMAIL == OldManagerEmail).ToList();
+                            foreach (var employee in employeesToUpdate)
+                            {
+                                employee.MANAGER_EMAIL = user.EMAIL;
+                                entities.SaveChanges();
+                            }
+                        }
+                        else if (user.ROLE == "EMPLOYEE")
+                        {
+                            if (string.IsNullOrWhiteSpace(newManagerEmail.Text))
+                            {
+                                string script2 = "messageAlert('Please, fill the manager email field.');";
+                                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script2, true);
+                                return;
+                            }
+                            user.MANAGER_EMAIL = newManagerEmail.Text;
+                        }
+                        else
+                        {
+                            user.MANAGER_EMAIL = null;
+                        }
+                        string fileExtension = System.IO.Path.GetExtension(userFileUpload.FileName).ToLower();
+                        if (userFileUpload.HasFile)
+                        {
+                            if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png")
+                            {
+                                user.PROFILE_IMAGE = userFileUpload.FileBytes;
+                            }
+                            else
+                            {
+                                string script2 = "messageAlert('Image file type invalid!');";
+                                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script2, true);
+                                return;
+                            }
+                        }
+                        string script = "messageAlert('Your changes have been saved!');";
+                        ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                        entities.SaveChanges();
+                        Reload();
                     }
-                    string script = "messageAlert('Your changes have been saved!');";
-                    ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
-                    entities.SaveChanges();
-                    Reload();
                 }
             }
+            else
+            {
+                Response.Redirect("~/UnauthorizedAccess.aspx");
+            }
+
         }
 
 
