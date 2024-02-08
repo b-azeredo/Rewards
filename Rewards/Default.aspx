@@ -50,10 +50,10 @@ AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Rewards._Default"
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header d-flex flex-column align-items-start">
-                    <h5 id="activityNAME" class="modal-title word-wrap-break" runat="server">
+                    <h5 id="activityNAME" class="modal-title word-wrap-break " runat="server">
                       Label
                     </h5>
-                    <p runat="server" id="activityDESCRIPTION" class="mb-0 word-wrap-break">
+                    <p runat="server" id="activityDESCRIPTION" class="mb-0 word-wrap-break ">
                     </p>
                   </div>
                   <div class="modal-body">

@@ -212,12 +212,21 @@ namespace Rewards
 
                 if (user != null)
                 {
-                    user.NAME = newName.Text;   
+                    string OldManagerEmail = UserManager.Get_Email(userId);
+                    user.NAME = newName.Text;
                     user.EMAIL = newEmail.Text;
                     user.ROLE = dlRole.SelectedValue;
                     user.ACTIVATED = bool.Parse(dlUserActivated.SelectedValue);
-
-                    if (user.ROLE == "EMPLOYEE")
+                    if (user.ROLE == "MANAGER")
+                    {
+                        var employeesToUpdate = entities.USER.Where(u => u.ROLE == "EMPLOYEE" && u.MANAGER_EMAIL == OldManagerEmail).ToList();
+                        foreach (var employee in employeesToUpdate)
+                        {
+                            employee.MANAGER_EMAIL = user.EMAIL;
+                            entities.SaveChanges();
+                        }
+                    }
+                    else if (user.ROLE == "EMPLOYEE")
                     {
                         if (string.IsNullOrWhiteSpace(newManagerEmail.Text))
                         {
