@@ -2,11 +2,12 @@
 AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Rewards._Default"
 %>
   <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
     <style>
       .form-control::placeholder{ color: dimgray; }
     </style>
 
-      <div class="alert alert-warning alert-dismissible fade show" role="alert" style="display:none;"></div>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" style="display:none;"></div>
     <main class="container-fluid p-3">
       <div class="row pb-4">
         <div class="col-4 overflow-hidden">

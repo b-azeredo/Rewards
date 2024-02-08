@@ -13,9 +13,7 @@
     </style>
 
      <main class="container-fluid p-3">
-         
-          <div class="alert alert-warning alert-dismissible fade show" role="alert" style="display:none;">
-        </div>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" style="display:none;"></div>
          <div class="row pb-4">
              <div class="col-5 overflow-hidden">
                  <!-- ACTIVITIES -->
@@ -43,7 +41,6 @@
                         </div>
                     </div>
                 </div>
-
                  <div id="editActivityModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -73,8 +70,7 @@
                         </div>
                     </div>
                 </div>
-
-                 <div class="content" style="max-height:100%;">
+                <div class="content" style="max-height:100%;">
                      <div class="d-flex pb-2">
                          <span class="d-flex align-items-center"><img width="30" height="30" src="icon/list-check-solid.svg"/></span>
                          <h1>Activities</h1>
@@ -132,7 +128,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div id="editUserModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -172,7 +167,6 @@
                             </div>
                         </div>
                     </div>
-
                  <div class="content">
                      <div class="d-flex pb-2">
                          <span class="d-flex align-items-center"><img width="30" height="30" src="icon/user-solid.svg"/></span>
@@ -214,22 +208,21 @@
                          <h1>Leaderboard</h1>
                      </div>
                      <div class="overflow-auto d-flex flex-column align-items-center" style="max-height:85%;">
-                            <asp:ListView ID="lvLeaderboard" runat="server" OnItemDataBound="lvLeaderboard_ItemDataBound">
-                                <ItemTemplate>
-                                    <div class="userCard">
-                                        <div class="userImgPlaceholder">
-                                            <asp:Image ID="profileImage" runat="server" />
-                                        </div>
-                                        <div class="userInfo">
-                                            <p class="userName"><asp:Literal runat="server" ID="usernameLiteral"></asp:Literal></p>
-                                            <p><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal> points</p>
-                                        </div>
+                        <asp:ListView ID="lvLeaderboard" runat="server" OnItemDataBound="lvLeaderboard_ItemDataBound">
+                            <ItemTemplate>
+                                <div class="userCard">
+                                    <div class="userImgPlaceholder">
+                                        <asp:Image ID="profileImage" runat="server" />
                                     </div>
-                                </ItemTemplate>
-                            </asp:ListView>
+                                    <div class="userInfo">
+                                        <p class="userName"><asp:Literal runat="server" ID="usernameLiteral"></asp:Literal></p>
+                                        <p><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal> points</p>
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:ListView>
                      </div>
                  </div>
-
              </div>
              <div class="col-7">
                  <div class="content">
@@ -258,8 +251,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div id="editRewardModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -292,7 +283,6 @@
                             </div>
                         </div>
                     </div>
-
                      <div class="d-flex pb-2">
                          <span class="d-flex align-items-center"><img width="30" height="30" src="icon/award-solid.svg"/></span>
                          <h1>Rewards</h1>
@@ -302,22 +292,22 @@
                              <div id="addRewardCard" class="d-flex justify-content-center align-items-end">
                                 <asp:Button ID="btnAddReward" CssClass="btn btn-success py-2 px-3 mb-3" OnClientClick="return false;" data-bs-target="#addRewardModal" data-bs-toggle="modal" runat="server" Text="Add Reward" />
                             </div>
-                                <asp:ListView ID="lvRewards" runat="server" OnItemDataBound="lvRewards_ItemDataBound">
-                                    <ItemTemplate>
-                                        <div class="<%# Eval("ItemClass") %> card">
-                                            <div class="imgBx">
-                                                <asp:Image ID="rewardImage" runat="server" Width="100" Height="100" />
-                                            </div>
-                                            <div class="contentBx">
-                                                <asp:HiddenField ID="rewardIDHiddenField" runat="server" />
-                                                <asp:HiddenField ID="rewardStatusHiddenField" runat="server" />
-                                                <h2><asp:Literal runat="server" ID="rewardNameLiteral"></asp:Literal></h2>
-                                                <h4><asp:Literal runat="server" ID="rewardPriceLiteral"></asp:Literal> Points</h4>
-                                                <asp:Button ID="btnEditReward" OnClick="btnEditReward_Click" CssClass="btn btn-success py-2 px-3" runat="server" Text="Edit" data-bs-target="#editRewardModal" data-bs-toggle="modal"  />
-                                            </div>
+                            <asp:ListView ID="lvRewards" runat="server" OnItemDataBound="lvRewards_ItemDataBound">
+                                <ItemTemplate>
+                                    <div class="<%# Eval("ItemClass") %> card">
+                                        <div class="imgBx">
+                                            <asp:Image ID="rewardImage" runat="server" Width="100" Height="100" />
                                         </div>
-                                    </ItemTemplate>
-                                </asp:ListView>
+                                        <div class="contentBx">
+                                            <asp:HiddenField ID="rewardIDHiddenField" runat="server" />
+                                            <asp:HiddenField ID="rewardStatusHiddenField" runat="server" />
+                                            <h2><asp:Literal runat="server" ID="rewardNameLiteral"></asp:Literal></h2>
+                                            <h4><asp:Literal runat="server" ID="rewardPriceLiteral"></asp:Literal> Points</h4>
+                                            <asp:Button ID="btnEditReward" OnClick="btnEditReward_Click" CssClass="btn btn-success py-2 px-3" runat="server" Text="Edit" data-bs-target="#editRewardModal" data-bs-toggle="modal"  />
+                                        </div>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:ListView>
                          </div>
                      </div>
                  </div>
@@ -325,7 +315,6 @@
          </div>
 
          <script>
-
              function showEditActivityModal() {
                  var myModal = new bootstrap.Modal(document.getElementById('editActivityModal'))
                  myModal.show()

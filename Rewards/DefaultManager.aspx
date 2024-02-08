@@ -19,7 +19,7 @@
                                     <li class="d-flex justify-content-between">
                                         <asp:HiddenField runat="server" ID="activityIdLiteral"></asp:HiddenField>
                                         <asp:HiddenField runat="server" ID="activityDescriptionLiteral"></asp:HiddenField>
-                                        <h3><asp:Literal runat="server" ID="activityNameLiteral"></asp:Literal> <span class="mx-2 p-1"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal>  points</span> </h3>
+                                        <h3><asp:Literal runat="server" ID="activityNameLiteral"></asp:Literal> <span class="mx-2 p-1"><asp:Literal runat="server" ID="pointsLiteral"></asp:Literal> points</span> </h3>
                                     </li>
                                 </ItemTemplate>
                             </asp:ListView>
@@ -27,7 +27,6 @@
                     </div>
              </div>
          </div>
-
          <div class="modal fade" id="approveActivityModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
               <div class="modal-dialog">
@@ -56,7 +55,6 @@
                 </div>
               </div>
             </div>
-
          <div class="col-5 overflow-hidden">
              <!-- Activity Requests -->
             <div class="content">
