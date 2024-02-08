@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DefaultManager.aspx.cs" Inherits="Rewards.WebForm2" %>
+﻿<%@ Page Title="Manager Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DefaultManager.aspx.cs" Inherits="Rewards.WebForm2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
      <main class="container-fluid p-3">
