@@ -461,6 +461,13 @@ namespace Rewards
                 return;
             }
 
+            if (dlRoleUser.SelectedValue != "EMPLOYEE" && dlRoleUser.SelectedValue != "MANAGER" && dlRoleUser.SelectedValue != "ADMIN")
+            {
+                string script = "<script>messageAlert('Please enter valid role.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
             using (Entities2 entities2 = new Entities2())
             {
                 USER newuser = new USER
