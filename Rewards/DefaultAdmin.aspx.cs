@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web;
 using Rewards.Items;
 using System.Web.UI.HtmlControls;
+using System.Xml.Linq;
 
 namespace Rewards
 {
@@ -117,6 +118,13 @@ namespace Rewards
                 ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                 return;
             }
+            if (newActivityName.Text.Length > 500 || newActivityDescription.Text.Length > 8000)
+            {
+                string script = "<script>messageAlert('Name cannot exceed 500 characters and description cannot exceed 8000 characters.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
 
             int activityId = int.Parse(hiddenActivityID.Value);
 
@@ -167,7 +175,12 @@ namespace Rewards
                 ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                 return;
             }
-
+            if (newName.Text.Length > 100 || newEmail.Text.Length > 100)
+            {
+                string script = "<script>messageAlert('Name and Email cannot exceed 100 characters characters.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
             if (!IsValidEmail(newEmail.Text))
             {
                 string script = "messageAlert('Please enter a valid email address for the user.');";
@@ -184,6 +197,7 @@ namespace Rewards
                     return;
                 }
             }
+
 
             using (var entities = new Entities2())
             {
@@ -240,6 +254,12 @@ namespace Rewards
             {
                 string script = "messageAlert('Please, fill all fields.');";
                 ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                return;
+            }
+            if (txtRewardName.Text.Length > 50)
+            {
+                string script = "<script>messageAlert('Name cannot exceed 50 characters.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
             }
             int rewardId = int.Parse(rewardID.Value);
@@ -342,6 +362,12 @@ namespace Rewards
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
             }
+            if (ActivityName.Text.Length > 500 || ActivityDescription.Text.Length > 8000)
+            {
+                string script = "<script>messageAlert('Name cannot exceed 500 characters and description cannot exceed 8000 characters.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
             if (!int.TryParse(ActivityPoints.Text, out int points))
             {
                 string script = "<script>messageAlert('Please enter a valid integer value for points.');</script>";
@@ -374,7 +400,12 @@ namespace Rewards
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
             }
-
+            if (UserName.Text.Length > 100 || UserEmail.Text.Length > 100)
+            {
+                string script = "<script>messageAlert('Name and Email cannot exceed 100 characters characters.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
             if (string.IsNullOrWhiteSpace(UserEmail.Text) || !IsValidEmail(UserEmail.Text) || UserManager.Email_Exists(UserEmail.Text))
             {
                 string script = "<script>messageAlert('Please enter a valid email.');</script>";
@@ -382,19 +413,23 @@ namespace Rewards
                 return;
             }
 
-            if (FileUpload1.PostedFile == null || FileUpload1.PostedFile.InputStream == null)
+            byte[] profileImageBytes = null;
+            if (FileUpload1.HasFile)
             {
-                string script = "<script>messageAlert('Please enter a valid image.');</script>";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
-                return;
-            }
+                string fileExtension = Path.GetExtension(FileUpload1.FileName).ToLower();
+                if (fileExtension != ".png" && fileExtension != ".jpg" && fileExtension != ".jpeg")
+                {
+                    string script = "<script>messageAlert('Please enter a valid image extension(.png, .jpg or .jpeg)');</script>";
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                    return;
+                }
 
-            string fileExtension = Path.GetExtension(FileUpload1.FileName).ToLower();
-            if (fileExtension != ".png" && fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".gif")
+                profileImageBytes = FileUpload1.FileBytes;
+            }
+            else
             {
-                string script = "<script>messageAlert('Please enter a valid image extension(.png .jpg .jpeg .gif)');</script>";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
-                return;
+                string defaultImagePath = Server.MapPath("~/icon/userPicture.png");
+                profileImageBytes = File.ReadAllBytes(defaultImagePath);
             }
 
             if (dlRoleUser.SelectedValue == "EMPLOYEE" && !IsManagerEmailValid(managerEmailTextBox.Text))
@@ -411,7 +446,7 @@ namespace Rewards
                     NAME = UserName.Text,
                     EMAIL = UserEmail.Text,
                     ROLE = dlRoleUser.SelectedValue,
-                    PROFILE_IMAGE = FileUpload1.FileBytes,
+                    PROFILE_IMAGE = profileImageBytes,
                     MANAGER_EMAIL = dlRoleUser.SelectedValue == "EMPLOYEE" ? managerEmailTextBox.Text : null,
                     ACTIVATED = true
                 };
@@ -452,6 +487,13 @@ namespace Rewards
                 return;
             }
 
+            if (txbRewardName.Text.Length > 100)
+            {
+                string script = "<script>messageAlert('Name cannot exceed 50 characters.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
             if (!int.TryParse(txbRewardPrice.Text, out _))
             {
                 string script = "messageAlert('Please, use a valid price');";
@@ -486,6 +528,12 @@ namespace Rewards
                     ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                     return;
                 }
+            }
+            else
+            {
+                string script = "messageAlert('Please, insert a image');";
+                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                return;
             }
         }
 

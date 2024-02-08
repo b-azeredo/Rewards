@@ -14,7 +14,7 @@ namespace Rewards
 {
     public partial class _Default : System.Web.UI.Page
     {
-        private int USER_ID = 13;
+        private int USER_ID = 1;
 
 
         protected void btnClaim_Click(object sender, EventArgs e)
@@ -66,6 +66,11 @@ namespace Rewards
                 if (string.IsNullOrWhiteSpace(txtActivityDESCRIPTION.Text))
                 {
                     string script = "<script>messageAlert('Please give a description to the activity.');</script>";
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                }
+                else if (txtActivityDESCRIPTION.Text.Length > 8000)
+                {
+                    string script = "<script>messageAlert('Description cannot exceed 8000 characters');</script>";
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 }
                 else if (fileUpload1.HasFiles)
