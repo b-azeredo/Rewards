@@ -23,6 +23,22 @@ namespace Rewards.Manager
             }
         }
 
+        public static bool GetRewardStatus(int rewardID)
+        {
+            using (Entities2 entities = new Entities2())
+            {
+                var reward = entities.REWARD.FirstOrDefault(r => r.ID == rewardID);
+                if (reward != null)
+                {
+                    return reward.ACTIVATED;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         public static void ChangeStatus(int rewardID)
         {
             using (Entities2 entities = new Entities2())

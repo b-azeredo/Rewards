@@ -421,6 +421,7 @@
              }
 
              function clearModalFields() {
+                     $('#MainContent_txtInsertStock').val('');
                      $('#MainContent_ActivityName').val('');
                      $('#MainContent_ActivityDescription').val('');
                      $('#MainContent_ActivityPoints').val('');

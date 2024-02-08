@@ -213,7 +213,7 @@ namespace Rewards.Manager
                 int userPoints = Get_Current_Points(userId);
                 int rewardPoints = entities.REWARD.Where(r => r.ID == rewardId).Select(r => r.PRICE).FirstOrDefault();
 
-                if (userPoints >= rewardPoints)
+                if (userPoints >= rewardPoints && RewardsManager.GetRewardStatus(rewardId))
                 {
                     PURCHASE purchase = new PURCHASE
                     {
