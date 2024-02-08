@@ -125,6 +125,13 @@ namespace Rewards
                 return;
             }
 
+            if (!int.TryParse(newActivityPoints.Text, out _))
+            {
+                string script = "<script>messageAlert('Please enter a valid integer value for points.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
 
             int activityId = int.Parse(hiddenActivityID.Value);
 
@@ -262,6 +269,13 @@ namespace Rewards
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
             }
+
+            if (!int.TryParse(txtRewardPrice.Text, out _))
+            {
+                string script = "<script>messageAlert('Please enter a valid integer value for price.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
             int rewardId = int.Parse(rewardID.Value);
             using (var entities = new Entities2())
             {
@@ -291,6 +305,12 @@ namespace Rewards
                             };
                             entities.REWARD_STOCK.Add(rewardStock);
                             entities.SaveChanges();
+                        }
+                        else
+                        {
+                            string script2 = "<script>messageAlert('Please enter a valid integer value for stock.');</script>";
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script2);
+                            return;
                         }
                     }
 
@@ -370,7 +390,7 @@ namespace Rewards
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
             }
-            if (!int.TryParse(ActivityPoints.Text, out int points))
+            if (!int.TryParse(ActivityPoints.Text, out _))
             {
                 string script = "<script>messageAlert('Please enter a valid integer value for points.');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
