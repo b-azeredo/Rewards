@@ -15,7 +15,7 @@ namespace Rewards
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
-        private int USER_ID = 12;
+        private int USER_ID = 1018;
 
         protected void ShowFilesInModal(List<FILE> files)
         {
@@ -186,12 +186,17 @@ namespace Rewards
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (UserManager.Get_Role(USER_ID) != "MANAGER")
             {
-                Reload();
+                Response.Redirect("~/UnauthorizedAccess.aspx");
+            }
+            else
+            {
+                if (!IsPostBack)
+                {
+                    Reload();
+                }
             }
         }
-
-
     }
 }

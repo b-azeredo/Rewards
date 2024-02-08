@@ -14,7 +14,7 @@ namespace Rewards
 {
     public partial class _Default : System.Web.UI.Page
     {
-        private int USER_ID = 17;
+        private int USER_ID = 1019;
 
 
         protected void btnClaim_Click(object sender, EventArgs e)
@@ -316,9 +316,16 @@ namespace Rewards
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (UserManager.Get_Role(USER_ID) != "EMPLOYEE")
             {
-                Reload();
+                Response.Redirect("~/UnauthorizedAccess.aspx");
+            }
+            else
+            {
+                if (!IsPostBack)
+                {
+                    Reload();
+                }
             }
         }
     }

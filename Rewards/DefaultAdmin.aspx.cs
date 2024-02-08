@@ -15,6 +15,9 @@ namespace Rewards
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+
+        int USER_ID = 1020;
+
         /* Open Modal Click */
 
         protected void btnEditActivity_Click(object sender, EventArgs e)
@@ -669,15 +672,21 @@ namespace Rewards
             lvUsers.DataSource = userItems;
             lvUsers.DataBind();
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "clearModalFields", "clearModalFields();", true);
-            if (!IsPostBack)
+            if (UserManager.Get_Role(USER_ID) != "ADMIN")
             {
-                Reload();
+                Response.Redirect("~/UnauthorizedAccess.aspx");
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "clearModalFields", "clearModalFields();", true);
+                if (!IsPostBack)
+                {
+                    Reload();
+                }
             }
         }
-
-
     }
 }
