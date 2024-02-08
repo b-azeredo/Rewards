@@ -10,12 +10,12 @@ using System.Web;
 using Rewards.Items;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
+using Microsoft.Ajax.Utilities;
 
 namespace Rewards
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-
         int USER_ID = 1020;
 
         /* Open Modal Click */
@@ -692,17 +692,16 @@ namespace Rewards
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (UserManager.Get_Role(USER_ID) != "ADMIN")
+            USER user = (USER)Session["User"];
+            if (user == null )
             {
-                Response.Redirect("~/UnauthorizedAccess.aspx");
+                Response.Redirect("~/LoginPage.aspx");
             }
-            else
+
+            if (!IsPostBack)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "clearModalFields", "clearModalFields();", true);
-                if (!IsPostBack)
-                {
-                    Reload();
-                }
+                Reload();
             }
         }
     }

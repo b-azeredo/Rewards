@@ -67,7 +67,7 @@ a {
 	width: 100%;
 }
 
-	.loginContainer input[type="text"] {
+	.loginContainer input[type="text"], .loginContainer input[type="password"] {
 		width: 100%;
 		padding: 8px 20px;
 		border-radius: 5px;
@@ -475,7 +475,7 @@ p.userName {
 }
 
 	.btn-success:hover {
-		box-shadow: inset 260px 0px 0px 0px var(--secondary);
+		box-shadow: inset 360px 0px 0px 0px var(--secondary);
 		color: white;
 		border: none;
 	}
