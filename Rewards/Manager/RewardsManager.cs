@@ -23,20 +23,6 @@ namespace Rewards.Manager
             }
         }
 
-        public static void ClearRewardStock(int rewardID)
-        {
-            using (Entities2 entities = new Entities2())
-            {
-                int stock = GetRewardStock(rewardID);
-                var rewardStock = new REWARD_STOCK()
-                {
-                    REWARD_ID = rewardID,
-                    STOCK = stock * -1
-                };
-                entities.REWARD_STOCK.Add(rewardStock);
-                entities.SaveChanges();
-            }
-        }
         public static void ChangeStatus(int rewardID)
         {
             using (Entities2 entities = new Entities2())

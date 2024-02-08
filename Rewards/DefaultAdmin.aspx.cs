@@ -125,6 +125,13 @@ namespace Rewards
                 return;
             }
 
+            if (!int.TryParse(newActivityPoints.Text, out _))
+            {
+                string script = "<script>messageAlert('Please enter a valid integer value for points.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
 
             int activityId = int.Parse(hiddenActivityID.Value);
 
@@ -227,7 +234,7 @@ namespace Rewards
                     string fileExtension = System.IO.Path.GetExtension(userFileUpload.FileName).ToLower();
                     if (userFileUpload.HasFile)
                     {
-                        if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png" || fileExtension == ".gif")
+                        if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png")
                         {
                             user.PROFILE_IMAGE = userFileUpload.FileBytes;
                         }
@@ -262,6 +269,13 @@ namespace Rewards
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
             }
+
+            if (!int.TryParse(txtRewardPrice.Text, out _))
+            {
+                string script = "<script>messageAlert('Please enter a valid integer value for price.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
             int rewardId = int.Parse(rewardID.Value);
             using (var entities = new Entities2())
             {
@@ -271,7 +285,7 @@ namespace Rewards
                     if (rewardFileUpload.HasFile)
                     {
                         string fileExtension = System.IO.Path.GetExtension(rewardFileUpload.FileName).ToLower();
-                        if (fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".png" && fileExtension != ".gif")
+                        if (fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".png")
                         {
                             string script2 = "messageAlert('Image file type invalid! Please select a valid image file.');";
                             ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script2, true);
@@ -292,11 +306,16 @@ namespace Rewards
                             entities.REWARD_STOCK.Add(rewardStock);
                             entities.SaveChanges();
                         }
+                        else
+                        {
+                            string script2 = "<script>messageAlert('Please enter a valid integer value for stock.');</script>";
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script2);
+                            return;
+                        }
                     }
 
                     if (reward.PRICE != int.Parse(txtRewardPrice.Text))
                     {
-                        int previousStock = RewardsManager.GetRewardStock(reward.ID);
                         byte[] image = null;
                         if (rewardFileUpload.HasFile)
                         {
@@ -317,15 +336,18 @@ namespace Rewards
                         entities.REWARD.Add(newReward);
                         entities.SaveChanges();
                         int newRewardId = newReward.ID;
-                        RewardsManager.ClearRewardStock(rewardId);
                         RewardsManager.ChangeStatus(rewardId);
-                        var rewardStock = new REWARD_STOCK()
+                        using (var context = new Entities2())
                         {
-                            REWARD_ID = newRewardId,
-                            STOCK = previousStock
-                        };
-                        entities.REWARD_STOCK.Add(rewardStock);
-                        entities.SaveChanges();
+                            var recordsToUpdate = context.REWARD_STOCK.Where(rs => rs.REWARD_ID == rewardId).ToList();
+
+                            foreach (var record in recordsToUpdate)
+                            {
+                                record.REWARD_ID = newRewardId;
+                            }
+
+                            context.SaveChanges();
+                        }
                     }
                     else
                     {
@@ -368,7 +390,7 @@ namespace Rewards
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
             }
-            if (!int.TryParse(ActivityPoints.Text, out int points))
+            if (!int.TryParse(ActivityPoints.Text, out _))
             {
                 string script = "<script>messageAlert('Please enter a valid integer value for points.');</script>";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
@@ -439,6 +461,13 @@ namespace Rewards
                 return;
             }
 
+            if (dlRoleUser.SelectedValue != "EMPLOYEE" && dlRoleUser.SelectedValue != "MANAGER" && dlRoleUser.SelectedValue != "ADMIN")
+            {
+                string script = "<script>messageAlert('Please enter valid role.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
             using (Entities2 entities2 = new Entities2())
             {
                 USER newuser = new USER
@@ -504,7 +533,7 @@ namespace Rewards
             if (RewardImage.HasFile)
             {
                 string fileExtension = System.IO.Path.GetExtension(RewardImage.FileName).ToLower();
-                if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png" || fileExtension == ".gif")
+                if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png")
                 {
                     using (Entities2 entities2 = new Entities2())
                     {
@@ -610,6 +639,7 @@ namespace Rewards
 
         private void Reload()
         {
+            ScriptManager.RegisterStartupScript(this, GetType(), "clearModalFields", "clearModalFields();", true);
             /* LEADERBOARD */
             var leaderboardItems = LeaderboardManager.GetLeaderboardItemsFromDatabase();
             lvLeaderboard.DataSource = leaderboardItems;
