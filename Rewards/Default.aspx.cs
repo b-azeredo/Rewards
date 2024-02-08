@@ -136,7 +136,7 @@ namespace Rewards
                 if (imageData.Length <= maxSizeInBytes)
                 {
                     string fileExtension = System.IO.Path.GetExtension(fileUpload.FileName).ToLower();
-                    if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png" || fileExtension == ".gif")
+                    if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png")
                     {
                         using (var entities = new Entities2())
                         {
@@ -154,7 +154,7 @@ namespace Rewards
                     }
                     else
                     {
-                        string message = "<script>messageAlert('Please upload an image with a valid format (jpg, jpeg, png, or gif).');</script>";
+                        string message = "<script>messageAlert('Please upload an image with a valid format (jpg, jpeg or png).');</script>";
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", message);
                     }
                 }

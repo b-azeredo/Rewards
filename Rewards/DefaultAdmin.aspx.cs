@@ -227,7 +227,7 @@ namespace Rewards
                     string fileExtension = System.IO.Path.GetExtension(userFileUpload.FileName).ToLower();
                     if (userFileUpload.HasFile)
                     {
-                        if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png" || fileExtension == ".gif")
+                        if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png")
                         {
                             user.PROFILE_IMAGE = userFileUpload.FileBytes;
                         }
@@ -271,7 +271,7 @@ namespace Rewards
                     if (rewardFileUpload.HasFile)
                     {
                         string fileExtension = System.IO.Path.GetExtension(rewardFileUpload.FileName).ToLower();
-                        if (fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".png" && fileExtension != ".gif")
+                        if (fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".png")
                         {
                             string script2 = "messageAlert('Image file type invalid! Please select a valid image file.');";
                             ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script2, true);
@@ -504,7 +504,7 @@ namespace Rewards
             if (RewardImage.HasFile)
             {
                 string fileExtension = System.IO.Path.GetExtension(RewardImage.FileName).ToLower();
-                if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png" || fileExtension == ".gif")
+                if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png")
                 {
                     using (Entities2 entities2 = new Entities2())
                     {
