@@ -248,5 +248,21 @@ namespace Rewards.Manager
             }
         }
 
+
+        public static bool Username_Exists(string username)
+        {
+            using (Entities2 Entities = new Entities2())
+            {
+                var user = Entities.USER.FirstOrDefault(u => u.NAME == username);
+                if (user == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
     }
 }

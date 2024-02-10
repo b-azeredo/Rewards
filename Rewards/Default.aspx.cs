@@ -14,7 +14,7 @@ namespace Rewards
 {
     public partial class _Default : System.Web.UI.Page
     {
-        private int USER_ID = 1019;
+        private int USER_ID;
 
 
         protected void btnClaim_Click(object sender, EventArgs e)
@@ -209,7 +209,14 @@ namespace Rewards
                 var usernameLiteral = e.Item.FindControl("usernameLiteral") as Literal;
                 var pointsLiteral = e.Item.FindControl("pointsLiteral") as Literal;
 
-                profileImage.ImageUrl = $"data:image;base64,{Convert.ToBase64String(item.PROFILE_IMAGE)}";
+                try
+                {
+                    profileImage.ImageUrl = $"data:image;base64,{Convert.ToBase64String(item.PROFILE_IMAGE)}";
+                }
+                catch
+                {
+                    profileImage.ImageUrl = "icon/UserPicture.png";
+                }
                 usernameLiteral.Text = item.USERNAME;
                 pointsLiteral.Text = item.POINTS.ToString();
             }
@@ -298,7 +305,14 @@ namespace Rewards
             redeemedRewards.InnerText = $"{UserManager.Get_Number_Redeemed_Rewards(USER_ID)}";
 
             /* PROFILE INFO */
-            profileImage.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
+            try
+            {
+                profileImage.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
+            }
+            catch
+            {
+                profileImage.Src = "icon/userPicture.png";
+            }
             profileUsername.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
             profilePoints.InnerText = $"{UserManager.Get_Current_Points(USER_ID)}";
 
@@ -308,7 +322,14 @@ namespace Rewards
             lvProfileTransactions.DataBind();
 
             /* PROFILE INFO (Modal Info) */
-            profileImage2.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
+            try
+            {
+                profileImage2.Src = "data:image;base64," + Convert.ToBase64String(UserManager.Get_Profile_Image(USER_ID));
+            }
+            catch
+            {
+                profileImage2.Src = "icon/userPicture.png";
+            }
             profileUsername2.InnerHtml = $"{UserManager.Get_Username(USER_ID)}";
             profilePoints2.InnerText = $"{UserManager.Get_Current_Points(USER_ID)}";
             managerEmail.InnerText = $"{UserManager.Get_Manager_Email(USER_ID)}";
@@ -316,15 +337,24 @@ namespace Rewards
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (UserManager.Get_Role(USER_ID) != "EMPLOYEE")
+            USER user = (USER)Session["User"];
+            if (user == null)
             {
-                Response.Redirect("~/UnauthorizedAccess.aspx");
+                Response.Redirect("~/LoginPage.aspx");
             }
             else
             {
-                if (!IsPostBack)
+                USER_ID = user.ID;
+                if (UserManager.Get_Role(USER_ID) != "EMPLOYEE")
                 {
-                    Reload();
+                    Response.Redirect("~/UnauthorizedAccess.aspx");
+                }
+                else
+                {
+                    if (!IsPostBack)
+                    {
+                        Reload();
+                    }
                 }
             }
         }

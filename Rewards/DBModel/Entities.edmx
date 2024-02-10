@@ -22,8 +22,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FORM_ID" Type="int" Nullable="false" />
           <Property Name="CONTENT" Type="varbinary(max)" Nullable="false" />
-          <Property Name="FILE_NAME" Type="varchar" MaxLength="100" />
-          <Property Name="FILE_EXTENSION" Type="varchar" MaxLength="5" />
+          <Property Name="FILE_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FILE_EXTENSION" Type="varchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <EntityType Name="FORM">
           <Key>
@@ -53,7 +53,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PRICE" Type="int" Nullable="false" />
-          <Property Name="IMAGE" Type="image" Nullable="false" />
+          <Property Name="IMAGE" Type="varbinary(max)" Nullable="false" />
           <Property Name="ACTIVATED" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="REWARD_STOCK">
@@ -63,7 +63,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="REWARD_ID" Type="int" Nullable="false" />
           <Property Name="STOCK" Type="int" Nullable="false" />
-          <Property Name="DATE" Type="datetime" />
+          <Property Name="DATE" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -74,7 +74,7 @@
           <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ROLE" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="MANAGER_EMAIL" Type="varchar" MaxLength="100" />
-          <Property Name="PROFILE_IMAGE" Type="varbinary(max)" Nullable="false" />
+          <Property Name="PROFILE_IMAGE" Type="varbinary(max)" />
           <Property Name="ACTIVATED" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_3">
@@ -205,8 +205,8 @@
           <Property Name="FORM_ID" Type="Int32" Nullable="false" />
           <Property Name="CONTENT" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="FORM" Relationship="Self.FK_7" FromRole="FILE" ToRole="FORM" />
-          <Property Name="FILE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="FILE_EXTENSION" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="FILE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FILE_EXTENSION" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="FORM">
           <Key>
@@ -254,7 +254,7 @@
           <Property Name="REWARD_ID" Type="Int32" Nullable="false" />
           <Property Name="STOCK" Type="Int32" Nullable="false" />
           <NavigationProperty Name="REWARD" Relationship="Self.FK_5" FromRole="REWARD_STOCK" ToRole="REWARD" />
-          <Property Name="DATE" Type="DateTime" Precision="3" />
+          <Property Name="DATE" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -265,7 +265,7 @@
           <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ROLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MANAGER_EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="PROFILE_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="PROFILE_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="FORM" Relationship="Self.FK_3" FromRole="USER" ToRole="FORM" />
           <NavigationProperty Name="PURCHASE" Relationship="Self.FK_4" FromRole="USER" ToRole="PURCHASE" />
           <Property Name="ACTIVATED" Type="Boolean" Nullable="false" />

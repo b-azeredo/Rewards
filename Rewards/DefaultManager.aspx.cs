@@ -120,7 +120,14 @@ namespace Rewards
                 var usernameLiteral = e.Item.FindControl("usernameLiteral") as Literal;
                 var pointsLiteral = e.Item.FindControl("pointsLiteral") as Literal;
 
-                profileImage.ImageUrl = $"data:image;base64,{Convert.ToBase64String(item.PROFILE_IMAGE)}";
+                try
+                {
+                    profileImage.ImageUrl = $"data:image;base64,{Convert.ToBase64String(item.PROFILE_IMAGE)}";
+                }
+                catch
+                {
+                    profileImage.ImageUrl = "icon/UserPicture.png";
+                }
                 usernameLiteral.Text = item.USERNAME;
                 pointsLiteral.Text = item.POINTS.ToString();
             }
@@ -186,15 +193,24 @@ namespace Rewards
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (UserManager.Get_Role(USER_ID) != "MANAGER")
+            USER user = (USER)Session["User"];
+            if (user == null)
             {
-                Response.Redirect("~/UnauthorizedAccess.aspx");
+                Response.Redirect("~/LoginPage.aspx");
             }
             else
             {
-                if (!IsPostBack)
+                USER_ID = user.ID;
+                if (UserManager.Get_Role(USER_ID) != "MANAGER")
                 {
-                    Reload();
+                    Response.Redirect("~/UnauthorizedAccess.aspx");
+                }
+                else
+                {
+                    if (!IsPostBack)
+                    {
+                        Reload();
+                    }
                 }
             }
         }

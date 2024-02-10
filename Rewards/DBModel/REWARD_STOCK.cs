@@ -17,7 +17,7 @@ namespace Rewards.DBModel
         public int ID { get; set; }
         public int REWARD_ID { get; set; }
         public int STOCK { get; set; }
-        public Nullable<System.DateTime> DATE { get; set; }
+        public System.DateTime DATE { get; set; }
     
         public virtual REWARD REWARD { get; set; }
     }

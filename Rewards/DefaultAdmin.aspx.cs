@@ -16,7 +16,7 @@ namespace Rewards
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        int USER_ID = 1020;
+        int USER_ID;
 
         /* Open Modal Click */
 
@@ -218,13 +218,34 @@ namespace Rewards
                     if (user != null)
                     {
                         string OldManagerEmail = UserManager.Get_Email(userId);
-                        user.NAME = newName.Text;
-                        user.EMAIL = newEmail.Text;
+
+                        if (user.NAME != newName.Text && UserManager.Username_Exists(newName.Text))
+                        {
+                            string script2 = "<script>messageAlert('This username already exists.');</script>";
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script2);
+                            return;
+                        }
+                        else
+                        {
+                            user.NAME = newName.Text;
+                        }
+
+                        if (user.EMAIL != newEmail.Text && UserManager.Email_Exists(newEmail.Text))
+                        {
+                            string script2 = "<script>messageAlert('This email already exists.');</script>";
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script2);
+                            return;
+                        }
+                        else
+                        {
+                            user.EMAIL = newEmail.Text;
+                        }
+
                         if (userId != USER_ID)
                         {
                             user.ROLE = dlRole.SelectedValue;
                         }
-                        else
+                        else if (user.ROLE != dlRole.SelectedValue)
                         {
                             string script2 = "<script>messageAlert('You can\\'t change your own role.');</script>";
                             Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script2);
@@ -457,6 +478,14 @@ namespace Rewards
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
                 return;
             }
+
+            if (UserManager.Username_Exists(UserName.Text))
+            {
+                string script = "<script>messageAlert('This username already exists.');</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script);
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(UserEmail.Text) || !IsValidEmail(UserEmail.Text) || UserManager.Email_Exists(UserEmail.Text))
             {
                 string script = "<script>messageAlert('Please enter a valid email.');</script>";
@@ -476,11 +505,6 @@ namespace Rewards
                 }
 
                 profileImageBytes = FileUpload1.FileBytes;
-            }
-            else
-            {
-                string defaultImagePath = Server.MapPath("~/icon/userPicture.png");
-                profileImageBytes = File.ReadAllBytes(defaultImagePath);
             }
 
             if (dlRoleUser.SelectedValue == "EMPLOYEE" && !IsManagerEmailValid(managerEmailTextBox.Text))
@@ -644,7 +668,14 @@ namespace Rewards
                 var userid = e.Item.FindControl("userId") as HiddenField;
 
                 userid.Value = userData.ID.ToString();
-                profileImage.ImageUrl = $"data:image;base64,{Convert.ToBase64String(userData.PROFILE_IMAGE)}";
+                try
+                {
+                    profileImage.ImageUrl = $"data:image;base64,{Convert.ToBase64String(userData.PROFILE_IMAGE)}";
+                }
+                catch
+                {
+                    profileImage.ImageUrl = "icon/UserPicture.png";
+                }
                 litUserName.Text = userData.USERNAME;
                 litPoints.Text = userData.POINTS.ToString();
             }
@@ -659,7 +690,14 @@ namespace Rewards
                 var usernameLiteral = e.Item.FindControl("usernameLiteral") as Literal;
                 var pointsLiteral = e.Item.FindControl("pointsLiteral") as Literal;
 
-                profileImage.ImageUrl = $"data:image;base64,{Convert.ToBase64String(item.PROFILE_IMAGE)}";
+                try
+                {
+                    profileImage.ImageUrl = $"data:image;base64,{Convert.ToBase64String(item.PROFILE_IMAGE)}";
+                }
+                catch
+                {
+                    profileImage.ImageUrl = "icon/UserPicture.png";
+                }
                 usernameLiteral.Text = item.USERNAME;
                 pointsLiteral.Text = item.POINTS.ToString();
             }
@@ -693,15 +731,24 @@ namespace Rewards
         protected void Page_Load(object sender, EventArgs e)
         {
             USER user = (USER)Session["User"];
-            if (user == null )
+            if (user == null)
             {
                 Response.Redirect("~/LoginPage.aspx");
             }
-
-            if (!IsPostBack)
+            else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "clearModalFields", "clearModalFields();", true);
-                Reload();
+                USER_ID = user.ID;
+                if (UserManager.Get_Role(USER_ID) != "ADMIN")
+                {
+                    Response.Redirect("~/UnauthorizedAccess.aspx");
+                }
+                else
+                {
+                    if (!IsPostBack)
+                    {
+                        Reload();
+                    }
+                }
             }
         }
     }

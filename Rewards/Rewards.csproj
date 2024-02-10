@@ -157,6 +157,7 @@
     <Content Include="icon\magnifying-glass-solid.svg" />
     <Content Include="icon\ranking-star-solid.svg" />
     <Content Include="icon\user-solid.svg" />
+    <Content Include="icon\userPicture.png" />
     <Content Include="LoginPage.aspx" />
     <Content Include="RegisterPage.aspx" />
     <Content Include="RegisterPageBoss.aspx" />

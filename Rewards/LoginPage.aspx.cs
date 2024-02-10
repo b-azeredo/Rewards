@@ -118,12 +118,22 @@ namespace Rewards
                                     Response.Redirect("~/DefaultAdmin.aspx");
                                 }
                             }
+                            else
+                            {
+                                string script = "messageAlert('Try to register before logging in.');";
+                                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                            }
                         }
+                    }
+                    else
+                    {
+                        string script = "messageAlert('Username or password incorrect.');";
+                        ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                     }
                 }
                 else
                 {
-                    string script = "messageAlert('Please fill all the fields');";
+                    string script = "messageAlert('Please fill all the fields.');";
                     ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                 }
             }
