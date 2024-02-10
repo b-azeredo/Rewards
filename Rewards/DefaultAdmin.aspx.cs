@@ -227,7 +227,16 @@ namespace Rewards
                         }
                         else
                         {
-                            user.NAME = newName.Text;
+                            if (user.ID != userId)
+                            {
+                                user.NAME = newName.Text;
+                            }
+                            else if (user.NAME != newName.Text)
+                            {
+                                string script2 = "<script>messageAlert('You can\\'t change your own username.');</script>";
+                                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script2);
+                                return;
+                            }
                         }
 
                         if (user.EMAIL != newEmail.Text && UserManager.Email_Exists(newEmail.Text))
@@ -251,7 +260,18 @@ namespace Rewards
                             Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script2);
                             return;
                         }
-                        user.ACTIVATED = bool.Parse(dlUserActivated.SelectedValue);
+
+                        if (user.ID != userId)
+                        {
+                            user.ACTIVATED = bool.Parse(dlUserActivated.SelectedValue);
+                        }
+                        else if (user.ACTIVATED != bool.Parse(dlUserActivated.SelectedValue))
+                        {
+                            string script2 = "<script>messageAlert('You can\\'t change your own status.');</script>";
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowError", script2);
+                            return;
+                        }
+
                         if (user.ROLE == "MANAGER")
                         {
                             var employeesToUpdate = entities.USER.Where(u => u.ROLE == "EMPLOYEE" && u.MANAGER_EMAIL == OldManagerEmail).ToList();

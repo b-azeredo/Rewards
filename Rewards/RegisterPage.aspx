@@ -23,7 +23,7 @@
     <main class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh; width: 100vw;">
         <div id="mainContent" class="row">
             <div class="col-7 imageContainer">
-                <img class="w-100 h-100" src="https://images.pexels.com/photos/259915/pexels-photo-259915.jpeg?auto=compress&cs=tinysrgb&w=600" />
+                <img class="w-100 h-100" src="/icon/dhlImage.jpg" />
             </div>
             <div class="loginBox col-5 d-flex flex-column justify-content-center align-items-center p-4" >
                 <div class="w-75">
