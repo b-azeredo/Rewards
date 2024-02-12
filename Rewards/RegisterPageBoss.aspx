@@ -20,6 +20,9 @@
             }
         }
 
+        #mainContent{
+            min-height: 440px;
+        }
     </style>
     <main class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh; width: 100vw;">
         <div id="mainContent" class="row">
