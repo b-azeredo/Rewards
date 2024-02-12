@@ -88,7 +88,7 @@ namespace Rewards
         {
             try
             {
-                if (!String.IsNullOrEmpty(username.Text) && !String.IsNullOrEmpty(password.Text) && !String.IsNullOrEmpty(email.Text) && !String.IsNullOrEmpty(bossEmail.Text))
+                if (!String.IsNullOrEmpty(username.Text) && !String.IsNullOrEmpty(password.Text) && !String.IsNullOrEmpty(email.Text) && !String.IsNullOrEmpty(managerEmail.Text))
                 {
                     string Username = username.Text;
                     string Password = password.Text;
@@ -99,25 +99,33 @@ namespace Rewards
                             var user = entities.USER.FirstOrDefault(u => u.NAME == Username && u.ACTIVATED == true);
                             if (user != null)
                             {
-                                string script = "messageAlert('There is an already exist account with this user info.');";
+                                string script = "messageAlert('There is already an account with this user info.');";
                                 ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                             }
                             else
                             {
-                                USER NewUser = new USER
+                                var managerUser = entities.USER.FirstOrDefault(u => u.ROLE == "MANAGER" && u.EMAIL == managerEmail.Text);
+                                if (managerUser != null && managerUser.EMAIL == managerEmail.Text)
                                 {
-                                    NAME = Username,                                    
-                                    EMAIL = email.Text,
-                                    MANAGER_EMAIL = bossEmail.Text,
-                                    ROLE = "EMPLOYEE",
-                                    ACTIVATED = true 
-                                };
-                                entities.USER.Add(NewUser);
-                                entities.SaveChanges();
-                                string script = "messageAlert('Account registred with sucess!.');";
-                                ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
-                                ClientScript.RegisterStartupScript(this.GetType(), "RedirectToLoginPage", "setTimeout(function() { window.location.href = 'LoginPage.aspx'; }, 2000);", true);
-
+                                    USER NewUser = new USER
+                                    {
+                                        NAME = Username,
+                                        EMAIL = email.Text,
+                                        MANAGER_EMAIL = managerEmail.Text,
+                                        ROLE = "EMPLOYEE",
+                                        ACTIVATED = true
+                                    };
+                                    entities.USER.Add(NewUser);
+                                    entities.SaveChanges();
+                                    string script = "messageAlert('Account registered with success!');";
+                                    ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                                    ClientScript.RegisterStartupScript(this.GetType(), "RedirectToLoginPage", "setTimeout(function() { window.location.href = 'LoginPage.aspx'; }, 2000);", true);
+                                }
+                                else
+                                {
+                                    string script = "messageAlert('Manager not found! Try another one.');";
+                                    ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
+                                }
                             }
                         }
                     }

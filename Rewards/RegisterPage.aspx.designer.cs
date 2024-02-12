@@ -33,13 +33,13 @@ namespace Rewards
         protected global::System.Web.UI.WebControls.TextBox email;
 
         /// <summary>
-        /// bossEmail control.
+        /// managerEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox bossEmail;
+        protected global::System.Web.UI.WebControls.TextBox managerEmail;
 
         /// <summary>
         /// password control.
