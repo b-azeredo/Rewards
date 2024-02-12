@@ -14,9 +14,9 @@
 	font-family: 'Rubik';
 }
 
-*::placeholder{
-	color: dimgray;
-}
+	*::placeholder {
+		color: dimgray;
+	}
 
 body {
 	background-color: var(--primary);
@@ -165,7 +165,7 @@ li {
 		background-color: var(--tertiary);
 	}
 
-	li.deactivatedActivity h3::before, li.deactivatedActivity h3 span, li.deactivatedActivity input{
+	li.deactivatedActivity h3::before, li.deactivatedActivity h3 span, li.deactivatedActivity input {
 		background-color: dimgray;
 		color: white;
 	}
@@ -174,13 +174,13 @@ li {
 		background-color: dimgray;
 	}
 
-	h3 {
-		display: flex;
-		align-items: baseline;
-		color: var(--text-primary);
-		font-size: 1rem;
-		margin-bottom: 4px;
-	}
+h3 {
+	display: flex;
+	align-items: baseline;
+	color: var(--text-primary);
+	font-size: 1rem;
+	margin-bottom: 4px;
+}
 
 	h3::before {
 		display: flex;
@@ -234,13 +234,13 @@ div.userCard {
 	cursor: pointer;
 }
 
-	div.userCard.deactivatedUser{
+	div.userCard.deactivatedUser {
 		border: 1px solid dimgray;
 	}
 
-	div.userCard.deactivatedUser input {
-		background-color: dimgray;
-	}
+		div.userCard.deactivatedUser input {
+			background-color: dimgray;
+		}
 
 	div.userCard div.userImgPlaceholder {
 		width: 40px;
@@ -249,9 +249,9 @@ div.userCard {
 		background-color: var(--secondary);
 	}
 
-		div.userCard div.userImgPlaceholder{
-			overflow: hidden;
-		}
+	div.userCard div.userImgPlaceholder {
+		overflow: hidden;
+	}
 
 		div.userCard div.userImgPlaceholder img {
 			max-width: 100%;
@@ -574,11 +574,32 @@ p.userName {
 h1.modal-title {
 	font-size: 1.7vw;
 }
+
+input[type="submit"] {
+	height: 36px;
+}
+
 /* responsiveness */
 @media (max-height: 640px) {
 	.ag-courses_box {
 		height: 90%;
 		padding: 40px 0px 20px 0px;
+	}
+
+	.ag-courses_item .ag-courses-item_bg {
+		width: 100px;
+	}
+
+	.ag-courses_item .ag-courses-item_title {
+		font-size: 15px;
+	}
+
+	h3, h4 {
+		font-size: 0.8rem;
+	}
+
+	input[type="submit"] {
+		font-size: 12px;
 	}
 }
 
@@ -628,16 +649,16 @@ h1.modal-title {
 	}
 }
 
-#h3AddActivity::before{
-	display:none;
+#h3AddActivity::before {
+	display: none;
 }
 
-p span, .tertiary{
+p span, .tertiary {
 	color: var(--tertiary);
 }
 
 
-.alert{
+.alert {
 	position: absolute;
 	top: 25px;
 	width: 38.7vw;

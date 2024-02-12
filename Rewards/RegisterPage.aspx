@@ -19,6 +19,9 @@
             }
         }
 
+        #mainContent{
+            min-height: 440px;
+        }
     </style>
     <main class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh; width: 100vw;">
         <div class="alert alert-warning alert-dismissible fade show" role="alert" style="display:none;"></div>
