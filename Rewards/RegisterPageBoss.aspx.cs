@@ -88,7 +88,7 @@ namespace Rewards
         {
             try
             {
-                if (!String.IsNullOrEmpty(username.Text) && !String.IsNullOrEmpty(password.Text) && !String.IsNullOrEmpty(email.Text) && !String.IsNullOrEmpty(passwordConfirm.Text))
+                if (!String.IsNullOrEmpty(username.Text) && !String.IsNullOrEmpty(password.Text) && !String.IsNullOrEmpty(email.Text))
                 {
                     string Username = username.Text;
                     string Password = password.Text;
