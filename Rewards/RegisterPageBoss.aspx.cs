@@ -113,7 +113,7 @@ namespace Rewards
                                 };
                                 entities.USER.Add(NewUser);
                                 entities.SaveChanges();
-                                string script = "messageAlert('Account registered with success!.');";
+                                string script = "messageAlert('Account registered with success!');";
                                 ClientScript.RegisterStartupScript(this.GetType(), "ValidationAlert", script, true);
                                 ClientScript.RegisterStartupScript(this.GetType(), "RedirectToLoginPage", "setTimeout(function() { window.location.href = 'LoginPage.aspx'; }, 2000);", true);
                             }

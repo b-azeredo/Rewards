@@ -67,7 +67,7 @@ a {
 	width: 100%;
 }
 
-	.loginContainer input[type="text"], .loginContainer input[type="password"] {
+	.loginContainer input[type="text"], .loginContainer input[type="password"], .loginContainer input[type="email"] {
 		width: 100%;
 		padding: 8px 20px;
 		border-radius: 5px;

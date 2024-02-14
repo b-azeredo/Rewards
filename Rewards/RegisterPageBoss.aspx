@@ -37,9 +37,9 @@
                 </div>
                  <div class="w-75 loginContainer d-flex flex-column justify-content-between align-items-center">
                      <asp:TextBox placeholder="Username" CssClass="mb-2" ID="username" runat="server" ForeColor="White"></asp:TextBox>
-                     <asp:TextBox placeholder="E-mail" CssClass="mb-2" ID="email" runat="server" ForeColor="White"></asp:TextBox>
-                     <asp:TextBox placeholder="Password" CssClass="mb-2" ID="password" runat="server" ForeColor="White"></asp:TextBox>
-                     <asp:TextBox placeholder="Comfirm Password" CssClass="mb-2" ID="passwordConfirm" runat="server" ForeColor="White"></asp:TextBox>
+                     <asp:TextBox placeholder="E-mail" TextMode="Email" CssClass="mb-2" ID="email" runat="server" ForeColor="White"></asp:TextBox>
+                     <asp:TextBox placeholder="Password" TextMode="Password" CssClass="mb-2" ID="password" runat="server" ForeColor="White"></asp:TextBox>
+                     <asp:TextBox placeholder="Comfirm Password" TextMode="Password" CssClass="mb-2" ID="passwordConfirm" runat="server" ForeColor="White"></asp:TextBox>
                      <asp:Button CssClass="btn btn-success mt-2" ID="btnRegisterManager" OnClick="btnRegisterManager_Click" runat="server" Text="Register" />
                     <a href="LoginPage.aspx">Already have an account?</a>
 
